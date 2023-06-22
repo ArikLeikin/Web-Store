@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Toy Store</title>
+    <link rel="stylesheet" type="text/css" href="product.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="product.js"></script>
+
+    <style>
+    </style>
+</head>
+<body>
+    <h1>"Name category" Toys</h1> 
+
+    <button id="toggle-filter">Hide Filter</button>
+
+    <!-- Product Grid -->
+    <div id="product-grid">
+        <div class="product-item">
+            <a href="details.html">
+                <img src="game1.jpg" alt="Game 1">
+            </a>
+        </div>
+        <div class="product-item">
+            <a href="details.html">
+                <img src="game2.jpg" alt="Game 2">
+            </a>
+        </div>
+        <div class="product-item">
+            <a href="details.html">
+                <img src="game3.jpg" alt="Game 3">
+            </a>
+        </div>
+        <div class="product-item">
+            <a href="details.html">
+                <img src="game4.jpg" alt="Game 4">
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- Filter Sidebar -->
+    <div id="filter-sidebar">
+
+        <h2>Filters</h2>
+        <label for="age-filter">Age:</label>
+        <select id="age-filter">
+            <option value="">All</option>
+            <option value="0-2">0-2 Years</option>
+            <option value="3-5">3-5 Years</option>
+            <option value="6-8">6-8 Years</option>
+            <option value="8+">8+ Years</option>
+
+        </select>
+
+        <label for="price-filter">Price:</label>
+        <div id="price-range-slider"></div> <!-- Price range slider container -->
+        <div id="price-range-values"></div> <!-- Price range values container -->
+        <div id="price-dot-min" class="price-dot"></div> <!-- Dot for minimum price -->
+        <div id="price-dot-max" class="price-dot"></div> <!-- Dot for maximum price -->
+        </select>
+
+        <label for="game-type-filter">Game Type:</label>
+        <select id="game-type-filter">
+            <option value="">All</option>
+            <option value="board">Board Games</option>
+            <option value="card">Card Games</option>
+            <option value="puzzle">Puzzle Games</option>
+            <option value="dolls">Dolls</option>
+
+        </select>
+
+
+        
+    </div>
+
+</body>
+</html>

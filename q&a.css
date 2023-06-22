@@ -1,0 +1,49 @@
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto; /* Set left and right margins to 'auto' */
+    padding: 20px;
+}
+
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 100px;
+    color:rgb(20, 19, 19);
+}
+
+.card {
+    margin-bottom: 10px;
+}
+
+.card-header button {
+    width: 100%;
+    text-align: left;
+    background-color: #f8f9fa;
+    color: #716156;
+    font-weight: bold;
+    border: none;
+}
+
+.card-header button:hover {
+    background-color: #e9ecef;
+}
+
+.card-body {
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+}
+
+.card-body p {
+    margin: 0;
+}
+
+.card-body a {
+    color: #007bff;
+}
+
+.card-body a:hover {
+    text-decoration: underline;
+}
