@@ -1,10 +1,11 @@
 body {
   box-sizing: border-box;
   background: #edeff0;
-  font-family: "San Francisco", "Segoe UI", Arial, sans-serif;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-
-/* Start Navigation Bar */
 
 .navbar {
   background-color: #384fb2;
@@ -228,4 +229,53 @@ li:hover a.hasDropdown:after {
 }
 :focus-visible {
   outline: none;
+}
+
+.wrapper {
+  flex: 1;
+}
+
+.btn-twitter {
+  color: #55acee;
+}
+
+.btn-instagram {
+  color: #e4405f;
+}
+
+.btn-youtube {
+  color: #cd201f;
+}
+
+.btn-tiktok {
+  color: #000000;
+}
+
+.footer {
+  background-color: #384fb2;
+  max-height: fit-content;
+}
+
+.footer a {
+  color: #E4DFCC;
+}
+
+.btn-social-icon.btn-facebook:hover {
+  color: #3b5998; /* Facebook color */
+}
+
+.btn-social-icon.btn-twitter:hover {
+  color: #1da1f2; /* Twitter color */
+}
+
+.btn-social-icon.btn-instagram:hover {
+  color: #e4405f; /* Instagram color */
+}
+
+.btn-social-icon.btn-youtube:hover {
+  color: #ff0000; /* YouTube color */
+}
+
+.btn-social-icon.btn-tiktok:hover {
+  color: #000000; /* TikTok color */
 }
