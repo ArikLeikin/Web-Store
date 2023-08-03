@@ -1,4 +1,4 @@
-/* CSS for Registration Page */
+
 
 body {
   font-family: Arial, sans-serif;
@@ -81,7 +81,7 @@ a:hover {
   cursor: pointer;
 }
 .toggle-password.active {
-  color: blue; /* Change the color as desired */
+  color: blue; 
 }
 
 .error-message {
