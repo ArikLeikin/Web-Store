@@ -1,15 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-mongoose.connect(
-  "mongodb+srv://" +
-    process.env.DB_USERNAME +
-    ":" +
-    process.env.DB_PASSWORD +
-    "@cluster0-owf5m.mongodb.net/cmscart?retryWrites=true&w=majority",
-  { useUnifiedTopology: true, useNewUrlParser: true }
-);
-
 const ProductSchema = new Schema({
   title: {
     type: String,
