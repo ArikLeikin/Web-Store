@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Games For All</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="js/index.js"></script>
+  
+  <header class="header" role="banner">
+    <div class="container">
+      <nav class="navUser">
+        <ul class="navUser-section">
+          <li class="item__account">
+            <a aria-label="Account" href=""
+              ><img
+                src="images/white-icons/account-icon.png"
+                alt="account"
+                width="30"
+              />
+            </a>
+          </li>
+          <li class="item__wishlist">
+            <a aria-label="Wishlist" href="">
+              <img
+                src="images/white-icons/wishlist-icon.png"
+                alt="Cart"
+                width="30"
+              />
+            </a>
+          </li>
+          <li class="item__cart">
+            <a href="" aria-label="Cart">
+              <img
+                src="images/white-icons/cart-icon.png"
+                alt="Cart"
+                width="30"
+              />
+            </a>
+          </li>
+        </ul>
+      </nav>
+  
+      <div class="header-logo">
+        <a href="#" data-instantload='{"page":"home"}'>
+          <div class="header-logo-image-container">
+            <img
+              class="header-logo-image"
+              src="images/logo.png"
+              width="180"
+              height="auto"
+            />
+          </div>
+        </a>
+      </div>
+  
+      <div class="quickSearch">
+        <form class="form">
+          <div class="form-container">
+            <input
+              class="form-input"
+              data-search-quick
+              name="search_query"
+              id="search_query"
+              data-error-message="Search field cannot be empty."
+              placeholder="Search the store"
+              autocomplete="off"
+            />
+            <button
+              type="submit"
+              class="button search-button"
+              id="searchButton"
+            >
+              <img
+                src="images/white-icons/search-icon.png"
+                alt="Search"
+                width="25"
+                height="auto"
+              />
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Start Navigation Bar -->
+    <nav class="navbar">
+      <ul class="menu">
+        <li>
+          <a class="hasDropdown" href="#"
+            >Categories <i class="fa fa-angle-down"></i
+          ></a>
+  
+          <ul class="nav_container">
+            <div class="container__list">
+              <div class="container__listItem">
+                <div class="container__listItem_title">Board Games</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Science</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Games</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Riding Toys</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Puzzles</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Music&Karaoke</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Books</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Lego</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Dolls</div>
+              </div>
+              <div class="container__listItem"></div>
+              <div class="container__listItem"></div>
+  
+              <div class="container__listItem">
+                <div class="container__listItem_title bold no-underline">
+                  $10 & Below
+                </div>
+              </div>
+            </div>
+          </ul>
+        </li>
+        <li>
+          <a class="hasDropdown" href="#"
+            >Ages<i class="fa fa-angle-down"></i
+          ></a>
+          <ul class="nav_container">
+            <div class="container__list">
+              <div class="container__listItem">
+                <div class="container__listItem_title">0-12 MONTHS</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">12-24 MONTHS</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">2-4 YEARS</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">5-7 YEARS</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">8-99 YEARS</div>
+              </div>
+            </div>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Outdoor</a>
+        </li>
+        <li>
+          <a href="#">Yad2</a>
+        </li>
+        <li>
+          <a href="#">Gift Finder</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- End Navigation Bar -->
+  </header>
+
+  <main style="margin-top: 200px;">
+    <title>Product Details</title>
+    <link rel="stylesheet" type="text/css" href="css/details.css"> <!-- Add CSS styling if desired -->
+</head>
+<body> 
+    <h1>Product Name</h1>
+    <div class="container">
+        <div class="content">
+            <p>Price: </p>
+            <p>ID: </p>
+            <p>Serial Number: </p>
+            <p>Explanation about the game: </p>
+        </div>
+        <div class="sidebar">
+            <div class="image-container">
+                <img src="path_to_your_image.jpg" alt="Product Image">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h2>Similar Products You Might Like!</h2>
+        <div class="suggested-products">
+            <div class="product">
+                <p>Product 1 name</p>
+                <a href="details.html">
+                    <img src="path_to_product1_image.jpg" alt="Product 1">
+                </a>
+            </div>
+            <div class="product">
+                <p>Product 2 name</p>
+                <a href="details.html">
+                    <img src="path_to_product2_image.jpg" alt="Product 2">
+                </a>
+                
+            </div>
+            <div class="product">
+                <p>Product 3 name</p>
+                <a href="details.html">
+                    <img src="path_to_product1_image.jpg" alt="Product 1">
+                </a>
+            </div>
+            <div class="product">
+                <p>Product 4 name</p>
+                <a href="details.html">
+                    <img src="path_to_product4_image.jpg" alt="Product 4">
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

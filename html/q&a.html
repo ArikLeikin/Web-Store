@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Games For All</title>
+  <link rel="icon" type="image/x-icon" href="images/favicon.png" />
+  <link rel="stylesheet" href="css/index.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <script src="js/index.js"></script>
+
+<header class="header" role="banner">
+  <div class="container">
+    <nav class="navUser">
+      <ul class="navUser-section">
+        <li class="item__account">
+          <a aria-label="Account" href=""
+            ><img
+              src="images/white-icons/account-icon.png"
+              alt="account"
+              width="30"
+            />
+          </a>
+        </li>
+        <li class="item__wishlist">
+          <a aria-label="Wishlist" href="">
+            <img
+              src="images/white-icons/wishlist-icon.png"
+              alt="Cart"
+              width="30"
+            />
+          </a>
+        </li>
+        <li class="item__cart">
+          <a href="" aria-label="Cart">
+            <img
+              src="images/white-icons/cart-icon.png"
+              alt="Cart"
+              width="30"
+            />
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header-logo">
+      <a href="#" data-instantload='{"page":"home"}'>
+        <div class="header-logo-image-container">
+          <img
+            class="header-logo-image"
+            src="images/logo.png"
+            width="180"
+            height="auto"
+          />
+        </div>
+      </a>
+    </div>
+
+    <div class="quickSearch">
+      <form class="form">
+        <div class="form-container">
+          <input
+            class="form-input"
+            data-search-quick
+            name="search_query"
+            id="search_query"
+            data-error-message="Search field cannot be empty."
+            placeholder="Search the store"
+            autocomplete="off"
+          />
+          <button
+            type="submit"
+            class="button search-button"
+            id="searchButton"
+          >
+            <img
+              src="images/white-icons/search-icon.png"
+              alt="Search"
+              width="25"
+              height="auto"
+            />
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Start Navigation Bar -->
+  <nav class="navbar">
+    <ul class="menu">
+      <li>
+        <a class="hasDropdown" href="#"
+          >Categories <i class="fa fa-angle-down"></i
+        ></a>
+
+        <ul class="nav_container">
+          <div class="container__list">
+            <div class="container__listItem">
+              <div class="container__listItem_title">Board Games</div>
+            </div>
+            <div class="container__listItem">
+              <div class="container__listItem_title">Science</div>
+            </div>
+            <div class="container__listItem">
+              <div class="container__listItem_title">Games</div>
+            </div>
+            <div class="container__listItem">
+              <div class="container__listItem_title">Riding Toys</div>
+            </div>
+            <div class="container__listItem">
+              <div class="container__listItem_title">Puzzles</div>
+            </div>
+            <div class="container__listItem">
+              <div class="container__listItem_title">Music&Karaoke</div>
+            </div>
+            <div class="container__listItem">
+              <div class="container__listItem_title">Books</div>
+            </div>
+            <div class="container__listItem">
+              <div class="container__listItem_title">Lego</div>
+            </div>
+            <div class="container__listItem">
+              <div class="container__listItem_title">Dolls</div>
+            </div>
+            <div class="container__listItem"></div>
+            <div class="container__listItem"></div>
+
+            <div class="container__listItem">
+              <div class="container__listItem_title bold no-underline">
+                $10 & Below
+              </div>
+            </div>
+          </div>
+        </ul>
+      </li>
+      <li>
+        <a class="hasDropdown" href="#"
+          >Ages<i class="fa fa-angle-down"></i
+        ></a>
+        <ul class="nav_container">
+          <div class="container__list">
+            <div class="container__listItem">
+              <div class="container__listItem_title">0-12 MONTHS</div>
+            </div>
+            <div class="container__listItem">
+              <div class="container__listItem_title">12-24 MONTHS</div>
+            </div>
+            <div class="container__listItem">
+              <div class="container__listItem_title">2-4 YEARS</div>
+            </div>
+            <div class="container__listItem">
+              <div class="container__listItem_title">5-7 YEARS</div>
+            </div>
+            <div class="container__listItem">
+              <div class="container__listItem_title">8-99 YEARS</div>
+            </div>
+          </div>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Outdoor</a>
+      </li>
+      <li>
+        <a href="#">Yad2</a>
+      </li>
+      <li>
+        <a href="#">Gift Finder</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- End Navigation Bar -->
+</header>
+  
+    <title>Toy Store - Q&A</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/q&a.css">
+    
+</head>
+<body>
+    <main style="margin-top: 250px;"></main>
+    
+      <h1 class="mt-4">Toy Store - Questions and Answers</h1>
+      <p>Here are some answers to some of our most asked questions from our costumers. We hope you find it helpfull! </p>
+   
+    
+   
+    <div class="container">
+        <div class="accordion mt-4" id="accordionExample">
+
+            <!-- Question 1 -->
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            1. How to use our website?
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        To use our website, simply navigate through the different categories and subcategories of toys. Click on the desired toy to view its details, including description, images, and pricing. You can add items to your cart and proceed to the checkout page to complete your purchase.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            2. What are the shipping options?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        We offer various shipping options depending on your location. During the checkout process, you can select the preferred shipping method, such as standard shipping, express shipping, or store pickup. Shipping costs and estimated delivery times will be displayed for each option.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            3. What ages are the toys suitable for?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Our toys are designed for children of different age groups. We provide age recommendations for each toy to help you choose the most appropriate options. Common age ranges include infants (0-2 years), toddlers (2-4 years), preschoolers (4-6 years), and older children (6+ years).
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            4. How are the prices determined?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Our toy prices are determined based on factors such as manufacturing costs, brand reputation, and market demand. We strive to offer competitive prices while ensuring the quality and safety of our products. Prices may vary depending on the specific toy and any ongoing promotions or discounts.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="card">
+                <div class="card-header" id="headingFive">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            5. Can I return or exchange a toy?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Yes, we have a return and exchange policy in place. If you are not satisfied with your purchase, you can return the toy within 30 days of receipt. The toy should be in its original packaging and in unused condition. Please refer to our Returns and Exchanges page for detailed instructions.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="card">
+                <div class="card-header" id="headingSix">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            6. How can I contact customer support?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                    <div class="card-body">
+                        For any questions or assistance, our customer support team is ready to help. You can reach us through phone, email, or live chat. Visit our Contact Us page for contact details and operating hours.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="card">
+                <div class="card-header" id="headingSeven">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            7. Are there any discounts or promotions available?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+                    <div class="card-body">
+                        We frequently run discounts and promotions on our toys. Keep an eye on our website's homepage and subscribe to our newsletter to stay updated on the latest offers. Additionally, we may offer exclusive discounts to registered members or during special events.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="card">
+                <div class="card-header" id="headingEight">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                            8. Can I gift-wrap my order?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Yes, we provide gift-wrapping services for an additional fee. During the checkout process, you will have the option to select gift-wrapping and include a personalized message. Our team will ensure that your order is beautifully wrapped before being shipped.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="card">
+                <div class="card-header" id="headingNine">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                            9. Are the toys safe for children?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
+                    <div class="card-body">
+                        At our toy store, safety is our top priority. We carefully select toys from reputable manufacturers that meet safety standards and regulations. Each toy undergoes rigorous testing to ensure it is safe for children to play with. However, we always recommend adult supervision during playtime.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="card">
+                <div class="card-header" id="headingTen">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                            10. Do you offer international shipping?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Currently, we offer shipping within the country only. We do not provide international shipping services. However, we are continuously evaluating options to expand our shipping capabilities in the future.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="card">
+                <div class="card-header" id="headingEleven">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                            11. How can I track my order?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Once your order is shipped, we will provide you with a tracking number via email. You can use this tracking number to monitor the progress of your delivery. Simply visit our Order Tracking page and enter your tracking number to get the latest updates on your shipment.
+                    </div>
+                </div>
+            </div>
+
+             <!-- Question 12 -->
+             <div class="card">
+                <div class="card-header" id="headingEleven">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                            12. How can I sell toys?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Our Websit offers an option of selling used toys and games by clients. Clients that sell toys and games can earn reward point and enjoy many gifts and discounts in their next purcheses in the wbsite and in the stores!
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
