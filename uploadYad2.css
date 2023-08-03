@@ -1,0 +1,70 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color:coral;
+    margin-top: 200px;
+  }
+  p{
+    text-align: center;
+  }
+  
+  main{
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  
+  input[type="file"] {
+    margin-top: 5px;
+  }
+  
+  select {
+    height: 36px;
+  }
+  
+  input[type="submit"] {
+    background-color: coral;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: chocolate;
+  }
+  
+  /* Optional: Add some styles for error messages or other messages */
+  .error-message {
+    color: red;
+    font-size: 12px;
+    /* margin-top: -5px; */
+  }

@@ -171,147 +171,81 @@
     </nav>
     <!-- End Navigation Bar -->
   </header>
-  <main style="margin-top: 200px;"></main>
-
-    <title>Toy Store</title>
-    <link rel="stylesheet" type="text/css" href="css/product.css">
+    <link rel="stylesheet" type="text/css" href="uploadYad2.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="product.js"></script>
+    <script src="uploadYad2.js"></script>
 
-    <style>
-    </style>
+  <title>Upload a Yad 2 Product:</title>
 </head>
 <body>
     
-    <h1>"Name category" Toys</h1> 
+  <h2>Upload a Yad 2 Product:</h2>
+  <p class="intro">
+    Welcome to our game selling platform!<br>
+    Here, you can upload your own games and toys to reach a wide audience of kids and parents.<br>
+    To get started, please fill out the form below with all the necessary details about your product.<br>
+    Make sure to provide accurate information and an attractive photo of the item.<br>
+    We have various categories and age ranges to cater to different interests and developmental stages.<br>
+    Once you submit the form, your product will be available for potential buyers to explore and purchase.<br>
+    Don't forget to include your bank account and email, so we can transfer your earnings and contact you if needed.<br>
+    Happy selling!
+  </p>
+  <main>
+  <form action="your_server_upload_handler.php" method="post" enctype="multipart/form-data">
+    <label for="productName">Product Name:</label>
+    <input type="text" id="productName" name="productName" required><br>
 
-    <button id="toggle-filter">Hide Filter</button>
+    <label for="category">Category:</label>
+    <select id="category" name="category" required>
+      <option value="board">Board Games</option>
+      <option value="riding">Riding Toys</option>
+      <option value="book">Books</option>
+      <option value="science">Science</option>
+      <option value="puzzle">Puzzle Games</option>
+      <option value="lego">Lego</option>
+      <option value="games">Games</option>
+      <option value="music & karaoke">Music & Karaoke</option>
+      <option value="dolls">Dolls</option>
+      <option value="10$ & bellow">10$ & Bellow</option>
+      <option value="Yad 2">Yad 2</option>
+    </select><br>
 
+
+    <label for="productId">Product ID:</label>
+    <input type="text" id="productId" name="productId" required><br>
+
+    <label for="ages">Appropriate Ages:</label>
+    <select id="ages" name="ages" required>
+      <option value="0-12 months">0-12 months</option>
+      <option value="12-24 months">12-24 months</option>
+      <option value="2-4">2-4 Years</option>
+      <option value="5-7">5-7 Years</option>
+      <option value="8-99">8-99 Years</option>
+    </select><br>
+
+    <label for="productPhoto">Product Photo:</label>
+    <input type="file" id="productPhoto" name="productPhoto" accept="image/*" required><br>
+
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="price" required><br>
+    <div id="price-error" class="error-message"></div>
+
+    <label for="condition">Condition:</label>
+    <select id="condition" name="condition" required>
+      <option value="new">New</option>
+      <option value="used">Used</option>
+      <option value="refurbished">Refurbished</option>
+    </select><br>
     
-    <!-- Filter Sidebar -->
-    <div id="filter-sidebar">
+    <label for="bankAccount">Bank Account:</label>
+    <input type="text" id="bankAccount" name="bankAccount" required><br>
+    <div id="bankAccount-error" class="error-message"></div>
 
-        <h2>Filters</h2>
-        <label for="age-filter">Age:</label>
-        <select id="age-filter">
-            <option value="">All</option>
-            <option value="0-12 months">0-12 months</option>
-            <option value="12-24 months">12-24 months</option>
-            <option value="2-4">2-4 Years</option>
-            <option value="5-7">5-7 Years</option>
-            <option value="8-99">8-99 Years</option>
-            
-
-        </select>
-
-        <label for="price-filter">Price:</label>
-        <div id="price-range-slider"></div> 
-        <div id="price-range-values"></div> 
-        <div id="price-dot-min" class="price-dot"></div> 
-        <div id="price-dot-max" class="price-dot"></div> 
-        </select>
-
-
-        <label for="game-type-filter">Game Type:</label>
-        <select id="game-type-filter">
-            <option value="">All</option>
-            <option value="board">Board Games</option>
-            <option value="riding">Riding Toys</option>
-            <option value="book">Books</option>
-            <option value="sience">Sience</option>
-            <option value="puzzle">Puzzle Games</option>
-            <option value="leggo">Leggo</option>
-            <option value="games">Games</option>
-            <option value="music & karaoke">Music & Karaoke</option>
-            <option value="dolls">Dolls</option>
-            <option value="10$ & bellow">10$ & Bellow</option>
-            <option value="Yad 2">Yad 2</option>
-            <option value="sale">SALE</option>
-
-        </select> 
-    </div>
-
-     <!-- Product Grid -->
-    <div id="product-grid">
-        <div class="product-item" data-age-range="0-12 months" data-game-type="board" data-price="100.00">
-            <a href="details.html">
-                <img src="game1.jpg" alt="Game">
-            </a>
-            <h3>Product Name </h3>
-            <p>Age Range: 0-12 months</p>
-            <p>Game Type: Board Game</p>
-            <p>Price: $100.00</p>
-            <!-- Additional product details, descriptions, etc. can be added here -->
-        </div>
-
-        <div class="product-item" data-age-range="12-24 months" data-game-type="book" data-price="150.00">
-            <a href="details.html">
-                <img src="game2.jpg" alt="Game ">
-            </a>
-            <h3>Product Name </h3>
-            <p>Age Range: 12-24 months</p>
-            <p>Game Type: Books</p>
-            <p>Price: $150.00</p>
-            <!-- Additional product details, descriptions, etc. can be added here -->
-        </div>
-        
-        <div class="product-item" data-age-range="2-4" data-game-type="puzzle" data-price="200.00">
-            <a href="details.html">
-                <img src="game3.jpg" alt="Game">
-            </a>
-            <h3>Product Name </h3>
-            <p>Age Range: 2-4 Years</p>
-            <p>Game Type: Puzzle Game</p>
-            <p>Price: $200.00</p>
-            <!-- Additional product details, descriptions, etc. can be added here -->
-        </div>
-
-
-        <div class="product-item" data-age-range="5-7" data-game-type="dolls" data-price="85.00">
-            <a href="details.html">
-                <img src="game2.jpg" alt="Game 2">
-            </a>
-            <h3>Product Name </h3>
-            <p>Age Range: 5-7 Years</p>
-            <p>Game Type: Dolls</p>
-            <p>Price: $85.00</p>
-            <!-- Additional product details, descriptions, etc. can be added here -->
-        </div>
-
-        <div class="product-item" data-age-range="8-99" data-game-type="Yad 2" data-price="100.00">
-            <a href="details.html">
-                <img src="game2.jpg" alt="Game">
-            </a>
-            <h3>Product Name </h3>
-            <p>Age Range: 8-99 Years</p>
-            <p>Game Type: Yad 2</p>
-            <p>Price: $100.00</p>
-            <!-- Additional product details, descriptions, etc. can be added here -->
-        </div>
-
-        <div class="product-item" data-age-range="5-7" data-game-type="sale" data-price="300.00">
-            <a href="details.html">
-                <img src="game2.jpg" alt="Game">
-            </a>
-            <h3>Product Name </h3>
-            <p>Age Range: 0-12 months</p>
-            <p>Game Type: Yad 2</p>
-            <p>Price: $300.00</p>
-            <!-- Additional product details, descriptions, etc. can be added here -->
-        </div>
-
-        <div class="product-item" data-age-range="0-12 months" data-game-type="board" data-price="70.00">
-            <a href="details.html">
-                <img src="game1.jpg" alt="Game">
-            </a>
-            <h3>Product Name</h3>
-            <p>Age Range: 0-12 months</p>
-            <p>Game Type: Board Game</p>
-            <p>Price: $70.00</p>
-        </div>
-   
-</div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
     
+    <input type="submit" value="Upload Product">
+  </form>
+    </main>
 </body>
 </html>
