@@ -13,10 +13,10 @@ const userSchema = new Schema({
     orderHistory: [{type: Schema.Types.ObjectId, ref: 'Order', default: null}],
     phoneNumber: {type: String},
     address: { 
-        city: {type: String, required: true},
-        street: {type: String, required: true},
-        country: {type: String, required: true},
-        postalCode: {type: String, required: true},
+        city: {type: String},
+        street: {type: String},
+        country: {type: String},
+        postalCode: {type: String},
     },
     creditCard: {type: String},
     usedProducts: {type: String}
