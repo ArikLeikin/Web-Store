@@ -1,0 +1,41 @@
+/* styles.css */
+
+/* Apply general styling to the table */
+#data-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+  }
+  
+  /* Style table header */
+  #data-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 10px;
+  }
+  
+  /* Style table cells */
+  #data-table td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 10px;
+  }
+  
+  /* Add alternating row colors */
+  #data-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #000;
+  }
+  
+  /* Style the paragraph */
+  p {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
