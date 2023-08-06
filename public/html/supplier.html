@@ -2,13 +2,13 @@
 <html>
 <head>
   <title>Games For All</title>
-  <link rel="icon" type="image/x-icon" href="../public/images/favicon.png" />
-  <link rel="stylesheet" href="../public/css/index.css" />
+  <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
+  <link rel="stylesheet" href="../css/index.css" />
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
-  <script src="js/index.js"></script>
+  <script src="../js/index.js"></script>
 
 <header class="header" role="banner">
   <div class="container">
@@ -17,7 +17,7 @@
         <li class="item__account">
           <a aria-label="Account" href=""
             ><img
-              src="../public//images/white-icons/account-icon.png"
+              src="../images/white-icons/account-icon.png"
               alt="account"
               width="30"
             />
@@ -26,7 +26,7 @@
         <li class="item__wishlist">
           <a aria-label="Wishlist" href="">
             <img
-              src="../public//images/white-icons/wishlist-icon.png"
+              src="../images/white-icons/wishlist-icon.png"
               alt="Cart"
               width="30"
             />
@@ -35,7 +35,7 @@
         <li class="item__cart">
           <a href="" aria-label="Cart">
             <img
-              src="../public//images/white-icons/cart-icon.png"
+              src="../images/white-icons/cart-icon.png"
               alt="Cart"
               width="30"
             />
@@ -49,7 +49,7 @@
         <div class="header-logo-image-container">
           <img
             class="header-logo-image"
-            src="../public//images/logo.png"
+            src="../images/logo.png"
             width="180"
             height="auto"
           />
@@ -75,7 +75,7 @@
             id="searchButton"
           >
             <img
-              src="../public//images/white-icons/search-icon.png"
+              src="../images/white-icons/search-icon.png"
               alt="Search"
               width="25"
               height="auto"
@@ -171,33 +171,83 @@
   </nav>
   <!-- End Navigation Bar -->
 </header>
-<main style="margin-top: 200px;"></main>
-  <title>Login Page</title>
-  <link rel="stylesheet" href="../public/css/login.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="../js/login.js"></script>
-  <style>
-  </style>
+
+    <link rel="stylesheet" type="text/css" href="../css/supplier.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/supplier.js"></script>
+
+  <title>Adding new products to the supply</title>
 </head>
 <body>
-
-  <h1>Login Page</h1>
+    
+  <h2>Adding new products to the supply:</h2>
+  <h3>Supplier Guide:</h3>
   
-  <form method="POST" action="/login">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-    <br>
-    <div class="password-field">
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
-      <span class="toggle-password"><i class="fas fa-eye"></i></span>
-    </div>
-    <br>
-    <input type="submit" value="Login">
+    <p>Welcome to the supplier portal for Games For All! </p>
+    <p>This is where you can add new products to our store's supply and reach a wide audience of gaming enthusiasts.</p>
+     <p> To get started, please fill out the product details in the form above.</p>
+    <p> Once you've filled in all the necessary fields, click on "Upload Product" to submit it for review.</p>
+    <p>Our team will then review your submission, and upon approval, your product will be made available for purchase by our customers.</p> 
+    <p>Thank you for partnering with Games For All, and we look forward to showcasing your amazing products to the world!</p>
+
+
+  <main>
+  <form action="your_server_upload_handler.php" method="post" enctype="multipart/form-data">
+    <label for="productName">Product Name:</label>
+    <input type="text" id="productName" name="productName" required><br>
+
+    <label for="category">Category:</label>
+    <select id="category" name="category" required>
+      <option value="board">Board Games</option>
+      <option value="riding">Riding Toys</option>
+      <option value="book">Books</option>
+      <option value="science">Science</option>
+      <option value="puzzle">Puzzle Games</option>
+      <option value="lego">Lego</option>
+      <option value="games">Games</option>
+      <option value="music & karaoke">Music & Karaoke</option>
+      <option value="dolls">Dolls</option>
+      <option value="10$ & bellow">10$ & Bellow</option>
+      <option value="Yad 2">Yad 2</option>
+    </select><br>
+
+
+    <label for="productId">Product ID:</label>
+    <input type="text" id="productId" name="productId" required><br>
+
+    <label for="ages">Appropriate Ages:</label>
+    <select id="ages" name="ages" required>
+      <option value="0-12 months">0-12 months</option>
+      <option value="12-24 months">12-24 months</option>
+      <option value="2-4">2-4 Years</option>
+      <option value="5-7">5-7 Years</option>
+      <option value="8-99">8-99 Years</option>
+    </select><br>
+
+    <label for="productPhoto">Product Photo:</label>
+    <input type="file" id="productPhoto" name="productPhoto" accept="image/*" required><br>
+
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="price" required><br>
+    <div id="price-error" class="error-message"></div>
+
+    <label for="condition">Condition:</label>
+    <select id="condition" name="condition" required>
+      <option value="new">New</option>
+      <option value="used">Used</option>
+      <option value="refurbished">Refurbished</option>
+    </select><br>
+    
+    <label for="companyName">Company's Name:</label>
+    <input type="text" id="companyName" name="companyName" required><br>
+
+    <label for="supplierID">Supplier ID:</label>
+    <input type="text" id="supplierID" name="supplierID" required><br>
+    <div id="supplierID-error" class="error-message"></div>
+
+    
+    <input type="submit" value="Upload Product">
   </form>
-  <p>Not a member? <a href="register.html">Register here</a></p>
-  
-
+    </main>
 </body>
 </html>
