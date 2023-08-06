@@ -84,7 +84,32 @@ exports.postRegister = async (req, res, next) => {
   const user = new User({
     username: username,
     password: hashedPassword,
-    cart: { items: [] },
+    orderHistory: {},
+    cart: {
+      items: [
+        {
+          productId: {
+            type: Schema.Types.ObjectId,
+            ref: "Product",
+            required: true,
+          },
+          quantity: { type: Number, required: true },
+        },
+      ],
+    },
+    phoneNumber: req.body.phoneNumber,
+    address: {
+      city: req.body.address.city,
+      country: req.body.address.country,
+      postalCode: req.body.address.postalCode,
+      street: req.body.address.street,
+    },
+    creditCard: req.body.creditCard, // need to check how to put only if entered
+    name: {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+    },
+    usedProducts: null, // need to check
   });
   user.save();
   res.redirect("/login");
