@@ -2,13 +2,13 @@
 <html>
 <head>
   <title>Games For All</title>
-  <link rel="icon" type="image/x-icon" href="../public/images/favicon.png" />
-  <link rel="stylesheet" href="../public/css/index.css" />
+  <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
+  <link rel="stylesheet" href="../css/index.css" />
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
-  <script src="js/index.js"></script>
+  <script src="../js/index.js"></script>
 
 <header class="header" role="banner">
   <div class="container">
@@ -17,7 +17,7 @@
         <li class="item__account">
           <a aria-label="Account" href=""
             ><img
-              src="../public//images/white-icons/account-icon.png"
+              src="../images/white-icons/account-icon.png"
               alt="account"
               width="30"
             />
@@ -26,7 +26,7 @@
         <li class="item__wishlist">
           <a aria-label="Wishlist" href="">
             <img
-              src="../public//images/white-icons/wishlist-icon.png"
+              src="../images/white-icons/wishlist-icon.png"
               alt="Cart"
               width="30"
             />
@@ -35,7 +35,7 @@
         <li class="item__cart">
           <a href="" aria-label="Cart">
             <img
-              src="../public//images/white-icons/cart-icon.png"
+              src="../images/white-icons/cart-icon.png"
               alt="Cart"
               width="30"
             />
@@ -49,7 +49,7 @@
         <div class="header-logo-image-container">
           <img
             class="header-logo-image"
-            src="../public//images/logo.png"
+            src="../images/logo.png"
             width="180"
             height="auto"
           />
@@ -75,7 +75,7 @@
             id="searchButton"
           >
             <img
-              src="../public//images/white-icons/search-icon.png"
+              src="../images/white-icons/search-icon.png"
               alt="Search"
               width="25"
               height="auto"
@@ -172,55 +172,81 @@
   <!-- End Navigation Bar -->
 </header>
 
-  <main style="margin-top: 200px;">
-    <title>Product Details</title>
-    <link rel="stylesheet" type="text/css" href="../public/css/details.css"> 
-</head>
-<body> 
-    <h1>Product Name</h1>
-    <div class="container">
-        <div class="content">
-            <p>Price: </p>
-            <p>ID: </p>
-            <p>Serial Number: </p>
-            <p>Explanation about the game: </p>
-        </div>
-        <div class="sidebar">
-            <div class="image-container">
-                <img src="path_to_your_image.jpg" alt="Product Image">
-            </div>
-        </div>
-    </div>
+    <link rel="stylesheet" type="text/css" href="../css/uploadYad2.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/uploadYad2.js"></script>
 
-    <footer>
-        <h2>Similar Products You Might Like!</h2>
-        <div class="suggested-products">
-            <div class="product">
-                <p>Product 1 name</p>
-                <a href="details.html">
-                    <img src="path_to_product1_image.jpg" alt="Product 1">
-                </a>
-            </div>
-            <div class="product">
-                <p>Product 2 name</p>
-                <a href="details.html">
-                    <img src="path_to_product2_image.jpg" alt="Product 2">
-                </a>
-                
-            </div>
-            <div class="product">
-                <p>Product 3 name</p>
-                <a href="details.html">
-                    <img src="path_to_product1_image.jpg" alt="Product 1">
-                </a>
-            </div>
-            <div class="product">
-                <p>Product 4 name</p>
-                <a href="details.html">
-                    <img src="path_to_product4_image.jpg" alt="Product 4">
-                </a>
-            </div>
-        </div>
-    </footer>
+  <title>Upload a Yad 2 Product:</title>
+</head>
+<body>
+    
+  <h2>Upload a Yad 2 Product:</h2>
+  <p class="intro">
+    Welcome to our game selling platform!<br>
+    Here, you can upload your own games and toys to reach a wide audience of kids and parents.<br>
+    To get started, please fill out the form below with all the necessary details about your product.<br>
+    Make sure to provide accurate information and an attractive photo of the item.<br>
+    We have various categories and age ranges to cater to different interests and developmental stages.<br>
+    Once you submit the form, your product will be available for potential buyers to explore and purchase.<br>
+    Don't forget to include your bank account and email, so we can transfer your earnings and contact you if needed.<br>
+    Happy selling!
+  </p>
+  <main>
+  <form action="your_server_upload_handler.php" method="post" enctype="multipart/form-data">
+    <label for="productName">Product Name:</label>
+    <input type="text" id="productName" name="productName" required><br>
+
+    <label for="category">Category:</label>
+    <select id="category" name="category" required>
+      <option value="board">Board Games</option>
+      <option value="riding">Riding Toys</option>
+      <option value="book">Books</option>
+      <option value="science">Science</option>
+      <option value="puzzle">Puzzle Games</option>
+      <option value="lego">Lego</option>
+      <option value="games">Games</option>
+      <option value="music & karaoke">Music & Karaoke</option>
+      <option value="dolls">Dolls</option>
+      <option value="10$ & bellow">10$ & Bellow</option>
+      <option value="Yad 2">Yad 2</option>
+    </select><br>
+
+
+    <label for="productId">Product ID:</label>
+    <input type="text" id="productId" name="productId" required><br>
+
+    <label for="ages">Appropriate Ages:</label>
+    <select id="ages" name="ages" required>
+      <option value="0-12 months">0-12 months</option>
+      <option value="12-24 months">12-24 months</option>
+      <option value="2-4">2-4 Years</option>
+      <option value="5-7">5-7 Years</option>
+      <option value="8-99">8-99 Years</option>
+    </select><br>
+
+    <label for="productPhoto">Product Photo:</label>
+    <input type="file" id="productPhoto" name="productPhoto" accept="image/*" required><br>
+
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="price" required><br>
+    <div id="price-error" class="error-message"></div>
+
+    <label for="condition">Condition:</label>
+    <select id="condition" name="condition" required>
+      <option value="new">New</option>
+      <option value="used">Used</option>
+      <option value="refurbished">Refurbished</option>
+    </select><br>
+    
+    <label for="bankAccount">Bank Account:</label>
+    <input type="text" id="bankAccount" name="bankAccount" required><br>
+    <div id="bankAccount-error" class="error-message"></div>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+    
+    <input type="submit" value="Upload Product">
+  </form>
+    </main>
 </body>
 </html>
