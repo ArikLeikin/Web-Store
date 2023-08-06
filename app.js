@@ -6,27 +6,26 @@ const User = require("./models/user");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
+
 const store = new MongoDBStore({
-  uri: "mongodb://localhost:27017/playtopia",
+  uri: "mongodb+srv://playtopia:playtopia@webstore.svlylpv.mongodb.net/",
   collection: "mySessions",
 });
-mongoose.connect(
-  "mongodb+srv://playtopia:playtopia@webstore.svlylpv.mongodb.net/"
-);
 
 //view engine
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-//routes
+//setting up routes
 const shopRoutes = require("./routes/shop.routes");
+const connectRoutes = require("./routes/auth.routes");
 
 //middleware for each request
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   session({
-    secret: "nightwayne",
+    secret: "playtopia FOREVER",
     resave: false,
     saveUninitialized: false,
     store: store,
@@ -52,8 +51,17 @@ app.use((req, res, next) => {
   next();
 });
 
+//routing request
 app.use(shopRoutes);
+app.use(connectRoutes);
 
-app.listen(process.env.PORT, () => {
-  console.log("Server started");
-});
+mongoose
+  .connect("mongodb+srv://playtopia:playtopia@webstore.svlylpv.mongodb.net/")
+  .then((result) => {
+    app.listen(process.env.PORT, () => {
+      console.log("Server started");
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
