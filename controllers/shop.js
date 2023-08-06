@@ -22,7 +22,6 @@ exports.getProduct = (req, res, next) => {
       res.render("shop/product-details", {
         product: product,
         pageTitle: product.title,
-        path: "/products",
       });
     })
     .catch((err) => {
