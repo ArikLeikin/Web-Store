@@ -10,8 +10,7 @@ const userSchema = new Schema({
     lastName: { type: String, required: true },
   },
   cart: {
-    items: [{ type: Schema.Types.ObjectId, ref: "Product", default: null }],
-    quantity: { type: Number },
+    items: {},
   },
   orderHistory: [{ type: Schema.Types.ObjectId, ref: "Order", default: null }],
   phoneNumber: { type: String },

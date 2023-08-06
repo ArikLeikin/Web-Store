@@ -4,19 +4,34 @@ const bodyParser = require("body-parser");
 const app = express();
 const User = require("./models/user");
 const mongoose = require("mongoose");
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
+const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
+const store = new MongoDBStore({
+  uri: "mongodb://localhost:27017/playtopia",
+  collection: "mySessions",
+});
 mongoose.connect(
   "mongodb+srv://playtopia:playtopia@webstore.svlylpv.mongodb.net/"
 );
 
-const shopRoutes = require("./routes/shop.routes");
-
+//view engine
 app.set("view engine", "ejs");
 app.set("views", "views");
 
+//routes
+const shopRoutes = require("./routes/shop.routes");
+
+//middleware for each request
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  session({
+    secret: "nightwayne",
+    resave: false,
+    saveUninitialized: false,
+    store: store,
+  })
+);
 
 // for each request the session is added to the request
 app.use((req, res, next) => {
