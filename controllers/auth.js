@@ -88,7 +88,7 @@ exports.postRegister = async (req, res, next) => {
     cart: {
       items: [
         {
-          productId: {
+          product: {
             type: Schema.Types.ObjectId,
             ref: "Product",
             required: true,
