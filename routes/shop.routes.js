@@ -7,9 +7,9 @@ router.get("/", shopController.getHomePage);
 
 router.get("/about", shopController.getAboutPage);
 
-// router.get("/contact", shopController.getContactPage);
+router.get("/contact", shopController.getContactPage);
 
-// router.get("/product/:productId", shopController.getProduct);
+router.get("/product/:productId", shopController.getProduct);
 
 // router.post("/product/:productId/add-to-cart", shopController.addProductToCart);
 
