@@ -44,7 +44,7 @@ exports.postLogin = async (req, res, next) => {
     return res.redirect("/login");
   }
 
-  const doMatch = await bcrypt.compare(password, user.password);
+  const doMatch = await bcrypt.compare(password, user.password); // check
   if (doMatch) {
     req.session.isLoggedIn = true;
     req.session.user = user;
@@ -88,7 +88,7 @@ exports.postRegister = async (req, res, next) => {
     cart: {
       items: [
         {
-          productId: {
+          product: {
             type: Schema.Types.ObjectId,
             ref: "Product",
             required: true,
