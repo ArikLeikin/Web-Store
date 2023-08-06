@@ -17,10 +17,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    checkoutButton.addEventListener("click", function() {
-        // You can add your checkout process here
-        alert("Thank you for your purchase!");
-    });
+    // checkoutButton.addEventListener("click", function() {
+    //     // You can add your checkout process here
+    //     alert("Thank you for your purchase!");
+    // });
 
     function updateTotalPrice() {
         const items = document.querySelectorAll(".item");
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         document.querySelector(".cart-total p").textContent = "Total: $" + total.toFixed(2);
+        sessionStorage.setItem("cartTotal", total);
     }
 
     updateTotalPrice();

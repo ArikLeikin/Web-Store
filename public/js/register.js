@@ -17,7 +17,7 @@ $(document).ready(function() {
       var password = $('#password').val();
       var passwordValidation = $('#password-validation').val();
       
-      if (username.length < 5 || password.length < 5 || passwordValidation.length < 5) {
+      if (username.length < 5 || password.length < 5 || passwordValidation.length < 5||password !== passwordValidation) {
         event.preventDefault(); // Prevent form submission
         
         if (username.length < 5) {
@@ -37,6 +37,14 @@ $(document).ready(function() {
         } else {
           $('#password-validation-error').removeClass('error-message').text('');
         }
+
+        if (password !== passwordValidation) {
+          event.preventDefault(); // Prevent form submission
+          $('#password-validation-error').addClass('error-message').text('Passwords do not match.');
+        } else {
+          $('#password-validation-error').removeClass('error-message').text('');
+        }
+
       }
     });
   });

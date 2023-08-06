@@ -55,7 +55,7 @@ h1, h2 {
     max-width: 600px;
 }
 
-/* Filter Sidebar styles */
+
 #filter-sidebar {
     float: right;
     width: 200px;
@@ -69,9 +69,11 @@ h1, h2 {
     z-index: 1;
     right: 0;
     bottom: 0;
-    width: 200px;
     height: 100vh;
-    gap: 10 px;
+    gap: 0px;
+    margin-top:165px;
+    margin-bottom: 100px;
+    
 
 }
 
@@ -81,7 +83,7 @@ h1, h2 {
 
 #filter-sidebar label {
     display: block;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 
@@ -97,6 +99,7 @@ h1, h2 {
     border-radius: 2px;
     cursor: pointer;
     z-index: 2;
+    margin-top: 180px;
 }
 
 #price-range-slider {
@@ -128,15 +131,15 @@ h1, h2 {
 
 #price-dot-min {
     left:10;
-    top: 293px;
+    top: 193px;
 }
 
 #price-dot-max {
     right: 0;
-    top: 293px;
+    top: 193px;
 }
 
-
-
-
+.filter-option {
+    margin-bottom: 50px;
+}
 
