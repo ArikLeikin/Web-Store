@@ -1,0 +1,80 @@
+<%- include('../includes/head.ejs') %>
+
+<main style="margin-top: 200px;"></main>
+
+<title>Toy Store</title>
+<link rel="stylesheet" type="text/css" href="../css/product.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="../js/product.js"></script>
+
+<style>
+</style>
+</head>
+<body>
+
+<h1>"Name category" Toys</h1> 
+
+<button id="toggle-filter">Hide Filter</button>
+
+
+<!-- Filter Sidebar -->
+<div id="filter-sidebar">
+
+    <h2>Filters</h2>
+    <label for="age-filter">Age:</label>
+    <select id="age-filter">
+        <option value="">All</option>
+        <option value="0-12 months">0-12 months</option>
+        <option value="12-24 months">12-24 months</option>
+        <option value="2-4">2-4 Years</option>
+        <option value="5-7">5-7 Years</option>
+        <option value="8-99">8-99 Years</option>
+        
+
+    </select>
+
+    <label for="price-filter">Price:</label>
+    <div id="price-range-slider"></div> 
+    <div id="price-range-values"></div> 
+    <div id="price-dot-min" class="price-dot"></div> 
+    <div id="price-dot-max" class="price-dot"></div> 
+    </select>
+
+
+    <label for="game-type-filter">Game Type:</label>
+    <select id="game-type-filter">
+        <option value="">All</option>
+        <option value="board">Board Games</option>
+        <option value="riding">Riding Toys</option>
+        <option value="book">Books</option>
+        <option value="sience">Sience</option>
+        <option value="puzzle">Puzzle Games</option>
+        <option value="leggo">Leggo</option>
+        <option value="games">Games</option>
+        <option value="music & karaoke">Music & Karaoke</option>
+        <option value="dolls">Dolls</option>
+        <option value="10$ & bellow">10$ & Bellow</option>
+        <option value="Yad 2">Yad 2</option>
+        <option value="sale">SALE</option>
+
+    </select> 
+</div>
+
+ <!-- Product Grid -->
+<div id="product-grid">
+    <% for (let product of products) { %>
+        <div class="product-item" data-age-range="0-12 months" data-game-type="board" data-price="70.00">
+            <a href="details.html">
+                <img src="<%= product.image %>" alt="Game">
+            </a>
+            <h3><%= product.title %></h3>
+            <p>Age Range: <%= product.age %></p>
+            <p>Game Type: <%= product.category %></p>
+            <p>Price: <%= product.price %></p>
+        </div>
+    <% } %>
+</div>
+
+</body>
+</html>
