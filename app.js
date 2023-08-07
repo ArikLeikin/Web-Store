@@ -5,6 +5,7 @@ const app = express();
 const User = require("./models/user");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const flash = require("connect-flash");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
 const store = new MongoDBStore({
@@ -31,6 +32,8 @@ app.use(
     store: store,
   })
 );
+
+app.use(flash());
 
 // for each request the session is added to the request
 app.use((req, res, next) => {
