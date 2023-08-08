@@ -12,6 +12,7 @@ const userSchema = new Schema({
   },
   username: { type: String, required: true },
   password: { type: String, required: true },
+  email: { type: String, required: true },
   name: {
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
@@ -37,6 +38,8 @@ const userSchema = new Schema({
     postalCode: { type: String },
   },
   creditCard: { type: String },
+  resetToken: { type: String },
+  resetTokenExpiration: { type: Date },
   usedProducts: [
     {
       title: { type: String, required: true },

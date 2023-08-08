@@ -23,6 +23,7 @@ const connectRoutes = require("./routes/auth.routes");
 
 //middleware for each request
 app.use(express.static("public"));
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   session({
@@ -59,7 +60,13 @@ app.use(shopRoutes);
 app.use(connectRoutes);
 
 mongoose
-  .connect("mongodb+srv://playtopia:playtopia@webstore.svlylpv.mongodb.net/")
+  .connect(
+    "mongodb+srv://" +
+      process.env.DB_USERNAME +
+      ":" +
+      process.env.DB_PASSWORD +
+      "@webstore.svlylpv.mongodb.net/"
+  )
   .then((result) => {
     app.listen(process.env.PORT, () => {
       console.log("Server started");
