@@ -1,208 +1,271 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Games For All</title>
-  <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
-  <link rel="stylesheet" href="../css/index.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-  />
-  <script src="../js/index.js"></script>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Games For All</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="../js/index.js"></script>
 
-<header class="header" role="banner">
-  <div class="container">
-    <nav class="navUser">
-      <ul class="navUser-section">
-        <li class="item__account">
-          <a aria-label="Account" href=""
-            ><img
-              src="../images/white-icons/account-icon.png"
-              alt="account"
-              width="30"
-            />
-          </a>
-        </li>
-        <li class="item__wishlist">
-          <a aria-label="Wishlist" href="">
-            <img
-              src="../images/white-icons/wishlist-icon.png"
-              alt="Cart"
-              width="30"
-            />
-          </a>
-        </li>
-        <li class="item__cart">
-          <a href="" aria-label="Cart">
-            <img
-              src="../images/white-icons/cart-icon.png"
-              alt="Cart"
-              width="30"
-            />
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <header class="header" role="banner">
+      <div class="container">
+        <nav class="navUser">
+          <ul class="navUser-section">
+            <li class="item__account">
+              <a aria-label="Account" href=""
+                ><img
+                  src="../images/white-icons/account-icon.png"
+                  alt="account"
+                  width="30"
+                />
+              </a>
+            </li>
+            <li class="item__wishlist">
+              <a aria-label="Wishlist" href="">
+                <img
+                  src="../images/white-icons/wishlist-icon.png"
+                  alt="Cart"
+                  width="30"
+                />
+              </a>
+            </li>
+            <li class="item__cart">
+              <a href="" aria-label="Cart">
+                <img
+                  src="../images/white-icons/cart-icon.png"
+                  alt="Cart"
+                  width="30"
+                />
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-    <div class="header-logo">
-      <a href="#" data-instantload='{"page":"home"}'>
-        <div class="header-logo-image-container">
-          <img
-            class="header-logo-image"
-            src="../images/logo.png"
-            width="180"
-            height="auto"
-          />
+        <div class="header-logo">
+          <a href="#" data-instantload='{"page":"home"}'>
+            <div class="header-logo-image-container">
+              <img
+                class="header-logo-image"
+                src="../images/logo.png"
+                width="180"
+                height="auto"
+              />
+            </div>
+          </a>
         </div>
-      </a>
-    </div>
 
-    <div class="quickSearch">
-      <form class="form">
-        <div class="form-container">
-          <input
-            class="form-input"
-            data-search-quick
-            name="search_query"
-            id="search_query"
-            data-error-message="Search field cannot be empty."
-            placeholder="Search the store"
-            autocomplete="off"
-          />
-          <button
-            type="submit"
-            class="button search-button"
-            id="searchButton"
-          >
-            <img
-              src="../images/white-icons/search-icon.png"
-              alt="Search"
-              width="25"
-              height="auto"
-            />
-          </button>
+        <div class="quickSearch">
+          <form class="form">
+            <div class="form-container">
+              <input
+                class="form-input"
+                data-search-quick
+                name="search_query"
+                id="search_query"
+                data-error-message="Search field cannot be empty."
+                placeholder="Search the store"
+                autocomplete="off"
+              />
+              <button
+                type="submit"
+                class="button search-button"
+                id="searchButton"
+              >
+                <img
+                  src="../images/white-icons/search-icon.png"
+                  alt="Search"
+                  width="25"
+                  height="auto"
+                />
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
-  </div>
+      </div>
 
-  <!-- Start Navigation Bar -->
-  <nav class="navbar">
-    <ul class="menu">
-      <li>
-        <a class="hasDropdown" href="#"
-          >Categories <i class="fa fa-angle-down"></i
-        ></a>
+      <!-- Start Navigation Bar -->
+      <nav class="navbar">
+        <ul class="menu">
+          <li>
+            <a class="hasDropdown" href="#"
+              >Categories <i class="fa fa-angle-down"></i
+            ></a>
 
-        <ul class="nav_container">
-          <div class="container__list">
-            <div class="container__listItem">
-              <div class="container__listItem_title">Board Games</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Science</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Games</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Riding Toys</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Puzzles</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Music&Karaoke</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Books</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Lego</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Dolls</div>
-            </div>
-            <div class="container__listItem"></div>
-            <div class="container__listItem"></div>
+            <ul class="nav_container">
+              <div class="container__list">
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Board Games</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Science</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Games</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Riding Toys</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Puzzles</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Music&Karaoke</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Books</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Lego</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Dolls</div>
+                </div>
+                <div class="container__listItem"></div>
+                <div class="container__listItem"></div>
 
-            <div class="container__listItem">
-              <div class="container__listItem_title bold no-underline">
-                $10 & Below
+                <div class="container__listItem">
+                  <div class="container__listItem_title bold no-underline">
+                    $10 & Below
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </ul>
+          </li>
+          <li>
+            <a class="hasDropdown" href="#"
+              >Ages<i class="fa fa-angle-down"></i
+            ></a>
+            <ul class="nav_container">
+              <div class="container__list">
+                <div class="container__listItem">
+                  <div class="container__listItem_title">0-12 MONTHS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">12-24 MONTHS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">2-4 YEARS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">5-7 YEARS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">8-99 YEARS</div>
+                </div>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Outdoor</a>
+          </li>
+          <li>
+            <a href="#">Yad2</a>
+          </li>
+          <li>
+            <a href="#">Gift Finder</a>
+          </li>
         </ul>
-      </li>
-      <li>
-        <a class="hasDropdown" href="#"
-          >Ages<i class="fa fa-angle-down"></i
-        ></a>
-        <ul class="nav_container">
-          <div class="container__list">
-            <div class="container__listItem">
-              <div class="container__listItem_title">0-12 MONTHS</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">12-24 MONTHS</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">2-4 YEARS</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">5-7 YEARS</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">8-99 YEARS</div>
-            </div>
-          </div>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Outdoor</a>
-      </li>
-      <li>
-        <a href="#">Yad2</a>
-      </li>
-      <li>
-        <a href="#">Gift Finder</a>
-      </li>
-    </ul>
-  </nav>
-  <!-- End Navigation Bar -->
-</header>
+      </nav>
+      <!-- End Navigation Bar -->
+    </header>
 
     <title>Shopping Cart</title>
-    <link rel="stylesheet" type="text/css" href="../css/cart.css">
+    <link rel="stylesheet" type="text/css" href="../css/cart.css" />
     <script src="../js/cart.js"></script>
-</head>
-<body>
-    <main style="margin-top: 200px;"></main>
-    <div class="shopping-cart">
-        <h1>Shopping Cart</h1>
-        <div class="cart-items">
-            <!-- Product item template -->
-            <div class="item">
-                <img src="product1.jpg" alt="Product 1">
-                <div class="item-details">
-                    <h3>Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces</h3>
-                    <p>Price: $50.00</p>
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" value="1">
-                    <button class="remove-item">Remove</button>
-                </div>
+  </head>
+  <body>
+    <main style="margin-top: 200px"></main>
+    <section class="shopping-cart">
+      <h1>Shopping Cart</h1>
+      <div class="cart-items">
+        <!-- Product item template -->
+        <div class="item">
+          <img
+            src="https://i5.walmartimages.com/asr/87ae6e55-34c8-4474-b25e-776cbc4f8d66.4e7a5736a91ebfa9e6a2ad4d90364653.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF"
+            alt="Product 1"
+          />
+          <div class="item-details">
+            <h3>Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces</h3>
+            <p>Price: $50.00</p>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" value="1" />
+            <button class="remove-item">Remove</button>
+          </div>
+        </div>
+
+        <!-- Add more product items here as needed -->
+      </div>
+
+      <div class="cart-total">
+        <p>Total: $0.00</p>
+        <button class="checkout">
+          <a href="payment.html">Proceed to Payment </a>
+        </button>
+      </div>
+    </section>
+    <section class="cart">
+      <table class="cart-items">
+        <tr class="cart-item" id="item">
+          <td class="cart-item-block cart-item-del">
+            <a
+              class="cart-remove icon"
+              data-cart-itemid="10b74f62-7f30-47cb-b78b-a12f682eaeab"
+              href="#"
+              data-confirm-delete="Are you sure you want to delete this item?"
+            >
+              <img src="../images/white-icons/x-icon.png" />
+            </a>
+          </td>
+          <td class="cart-item-block cart-item-figure">
+            <img
+              src="https://i5.walmartimages.com/asr/87ae6e55-34c8-4474-b25e-776cbc4f8d66.4e7a5736a91ebfa9e6a2ad4d90364653.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF"
+              alt=" Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces"
+              title=" Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces"
+              data-sizes="auto"
+              class="cart-item-image"
+            />
+          </td>
+          <td class="cart-item-block cart-item-title">
+            <h4 class="cart-item-name">
+              <a href="#item-link">
+                Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces</a
+              >
+            </h4>
+            <span class="cart-item-label qty">Price</span>
+            <span class="cart-item-value qty">$52.00</span>
+          </td>
+
+          <td class="cart-item-block cart-item-quantity">
+            <div class="quantity-input">
+              <input class="minus btn" type="button" value="-" />
+              <input
+                id="text_tribulus"
+                value="1"
+                class="input-text qty text"
+                size="4"
+                id="quantity"
+              />
+              <input class="plus btn" type="button" value="+" />
             </div>
+          </td>
 
-            <!-- Add more product items here as needed -->
-        </div>
-
-        <div class="cart-total">
-            <p>Total: $0.00</p>
-            <button class="checkout"><a href="payment.html">Proceed to Payment </a></button>
-        </div>
-    </div>
-
-    
-</body>
+          <td class="cart-item-block cart-item-subtotal">
+            <strong class="cart-item-value subtotal">$52.00</strong>
+          </td>
+        </tr>
+      </table>
+      <div class="cart-total">
+        <span class="cart-item-label total">Total</span>
+        <span class="cart-item-value total">$52.00</span>
+        <br />
+        <button class="checkout">
+          <a href="payment.html">CHECKOUT</a>
+        </button>
+      </div>
+    </section>
+  </body>
 </html>
