@@ -3,6 +3,9 @@ body {
   margin: 0;
   padding: 0;
 }
+.header {
+  position: static;
+}
 
 .shopping-cart {
   width: 600px;
@@ -10,45 +13,6 @@ body {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-}
-
-h1 {
-  text-align: center;
-  color: coral;
-}
-
-.cart-items {
-  margin-top: 20px;
-}
-
-.item {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.item img {
-  width: 100px;
-  height: 100px;
-  margin-right: 20px;
-}
-
-.item-details {
-  flex: 1;
-}
-
-.item h3 {
-  margin: 0;
-}
-
-.item p {
-  margin: 5px 0;
-}
-
-.item label {
-  display: block;
-  margin-top: 5px;
 }
 
 .cart-total {
