@@ -180,7 +180,7 @@
     <title>Product Purchase</title>
   </head>
   <body>
-    <main style="margin-top: 150px">
+    <main style="margin-top:150px">
       <div class="centered-link">
         <a href="cart.html">Go back to cart...</a>
       </div>
@@ -190,18 +190,22 @@
           <fieldset>
             <label for="phone">Phone Number</label>
             <input type="tel" id="phone" required />
+            <div id="phone-error" class="error-message"></div>
           </fieldset>
           <fieldset>
             <label for="city">City</label>
             <input type="text" id="city" required />
+            <div id="city-error" class="error-message"></div>
           </fieldset>
           <fieldset class="fieldset-street">
             <label for="street">Street</label>
             <input type="text" id="street" required />
+            <div id="street-error" class="error-message"></div>
           </fieldset>
           <fieldset class="fieldset-streetNo">
-            <label for="street number">Street No.</label>
-            <input type="number" id="street_number" required />
+            <label for="street_number">Street No.</label>
+            <input type="number" id="street_number" required min="1" />
+            <div id="street-number-error" class="error-message"></div>
           </fieldset>
           <fieldset>
             <label for="card-number">Card Number</label>
@@ -217,6 +221,7 @@
               id="card-number-1"
               class="input-cart-number"
               maxlength="4"
+              
             />
             <input
               type="num"
@@ -235,9 +240,11 @@
               required
             />
           </fieldset>
+          <div id="card-number-error" class="error-message"></div>
           <fieldset>
             <label for="card-holder">Card holder</label>
             <input type="text" id="card-holder" required />
+            <div id="card-holder-error" class="error-message"></div>
           </fieldset>
           <fieldset class="fieldset-expiration">
             <label for="card-expiration-month">Expiration date</label>
@@ -258,6 +265,7 @@
                 <option>12</option>
               </select>
             </div>
+            <div id="expiration-month-error" class="error-message"></div>
             <div class="select">
               <select id="card-expiration-year" required>
                 <option></option>
@@ -273,102 +281,24 @@
                 <option>2025</option>
               </select>
             </div>
+            <div id="expiration-year-error" class="error-message"></div>
           </fieldset>
           <fieldset class="fieldset-ccv">
             <label for="card-ccv">CCV</label>
             <input type="num" id="card-ccv" maxlength="3" required />
+            <div id="cvv-number-error" class="error-message"></div>
           </fieldset>
           <fieldset class="fieldset-footer">
             <div class="form-footer">
               <p id="total-price">Total(USD) $0</p>
+
 
               <button type="submit" id="purchase-button">Purchase</button>
             </div>
           </fieldset>
         </form>
       </div>
-      <!--
-      <form id="purchase-form">
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" required />
-        <div id="username-error" class="error-message"></div>
 
-        <label for="phone">Phone number:</label>
-        <input type="tel" id="phone" name="phone" required />
-        <div id="phone-error" class="error-message"></div>
-
-        <label for="id">ID:</label>
-        <input type="text" id="id" name="id" required />
-        <div id="id-error" class="error-message"></div>
-
-        <label for="delivery-address">Delivery Address:</label>
-        <div class="delivery-address-inputs">
-          <label for="city">City:</label>
-          <input type="text" id="city" name="city" required />
-          <div id="city-error" class="error-message"></div>
-
-          <label for="street">Street:</label>
-          <input type="text" id="street" name="street" required />
-          <div id="street-error" class="error-message"></div>
-
-          <label for="street-number">Street Number:</label>
-          <input type="text" id="street-number" name="street-number" required />
-          <div id="street-number-error" class="error-message"></div>
-        </div>
-
-        <label for="credit-card">Credit Card Number:</label>
-        <input
-          type="text"
-          id="credit-card"
-          name="credit-card"
-          placeholder="xxxxxxxxxxxxxxxx"
-          required
-        />
-        <div id="credit-card-error" class="error-message"></div>
-
-        <label for="cvv">CVV Number:</label>
-        <input type="text" id="cvv" name="cvv" placeholder="xxx" required />
-        <div id="cvv-number-error" class="error-message"></div>
-
-        <label for="expiration-date">Expiration Date:</label>
-        <div class="expiration-date-inputs">
-          <div class="expiration-month">
-            <select id="expiration-month" name="expiration-month" required>
-              <option value="" disabled selected>Month/</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-            </select>
-          </div>
-
-          <div class="expiration-year">
-            <select id="expiration-year" name="expiration-year" required>
-              <option value="" disabled selected>Year</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-              <option value="2026">2026</option>
-              <option value="2027">2027</option>
-              <option value="2028">2028</option>
-            </select>
-          </div>
-        </div>
-        <div id="expiration-date-error" class="error-message"></div>
-
-        <p id="total-price">Total Price: $0</p>
-
-        <button type="submit" id="purchase-button">Purchase</button>
-      </form>
-      -->
     </main>
 
     <div id="myModal" class="modal">
