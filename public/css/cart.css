@@ -71,8 +71,9 @@ h1 {
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 3px;
   overflow: auto;
+  background-color: white;
 }
 .cart-items {
   width: max-content;
