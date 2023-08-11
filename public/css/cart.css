@@ -20,14 +20,6 @@ body {
   text-align: right;
 }
 
-.checkout {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~nofar~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .cart {
@@ -77,6 +69,7 @@ input.plus.btn {
   padding: 1px 6px;
   background-color: #dddddd;
   border-radius: 3px;
+  cursor: pointer;
   border: none;
 }
 input.input-text {
@@ -131,9 +124,18 @@ td.cart-item-block.cart-item-subtotal {
   color: black;
   font-size: 18px;
 }
-.checkout a {
+.btn-checkout a {
   text-decoration: none;
   color: white;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
+}
+.btn-checkout {
+  font-size: 15px;
+  padding: 7px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

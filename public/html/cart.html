@@ -2,20 +2,29 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Games For All</title>
+    <title>Games For All|Cart</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../js/index.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="../css/cart.css" />
+    <script src="../js/cart.js"></script>
+  </head>
+  <body>
     <header class="header" role="banner">
       <div class="container">
         <nav class="navUser">
           <ul class="navUser-section">
-            <li class="item__account">
+            <li class="item__account" id="item__account">
               <a aria-label="Account" href=""
                 ><img
                   src="../images/white-icons/account-icon.png"
@@ -173,12 +182,7 @@
       <!-- End Navigation Bar -->
     </header>
 
-    <title>Shopping Cart</title>
-    <link rel="stylesheet" type="text/css" href="../css/cart.css" />
-    <script src="../js/cart.js"></script>
-  </head>
-  <body>
-    <main style="margin-top: 100px"></main>
+    <main style="margin-top: 150px"></main>
     <section class="cart">
       <table class="cart-items">
         <tr class="cart-item" id="item">
@@ -234,10 +238,16 @@
         <span class="cart-item-label total">Total</span>
         <span class="cart-item-value total">$52.00</span>
         <br />
-        <button class="checkout">
+        <button class="btn-checkout">
           <a href="payment.html">CHECKOUT</a>
         </button>
       </div>
     </section>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-content"></div>
+      </div>
+    </div>
   </body>
 </html>

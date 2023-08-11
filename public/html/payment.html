@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Games For All</title>
+    <title>Games For All|Purchase</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/payment.css" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <script src="../js/index.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../js/payment.js"></script>
+    <script src="../js/index.js"></script>
+  </head>
+  <body>
     <header class="header" role="banner">
       <div class="container">
         <nav class="navUser">
           <ul class="navUser-section">
-            <li class="item__account">
+            <li class="item__account" id="item__account">
               <a aria-label="Account" href=""
                 ><img
                   src="../images/white-icons/account-icon.png"
@@ -172,15 +184,7 @@
       <!-- End Navigation Bar -->
     </header>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/payment.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../js/payment.js"></script>
-    <title>Product Purchase</title>
-  </head>
-  <body>
-    <main style="margin-top:150px">
+    <main style="margin-top: 150px">
       <div class="centered-link">
         <a href="cart.html">Go back to cart...</a>
       </div>
@@ -188,27 +192,27 @@
       <div class="checkout">
         <form class="form" autocomplete="off" id="purchase-form" novalidate>
           <fieldset>
-            <label for="phone">Phone Number</label>
+            <label class="pay-label" for="phone">Phone Number</label>
             <input type="tel" id="phone" required />
             <div id="phone-error" class="error-message"></div>
           </fieldset>
           <fieldset>
-            <label for="city">City</label>
+            <label class="pay-label" for="city">City</label>
             <input type="text" id="city" required />
             <div id="city-error" class="error-message"></div>
           </fieldset>
           <fieldset class="fieldset-street">
-            <label for="street">Street</label>
+            <label class="pay-label" for="street">Street</label>
             <input type="text" id="street" required />
             <div id="street-error" class="error-message"></div>
           </fieldset>
           <fieldset class="fieldset-streetNo">
-            <label for="street_number">Street No.</label>
+            <label class="pay-label" for="street_number">Street No.</label>
             <input type="number" id="street_number" required min="1" />
             <div id="street-number-error" class="error-message"></div>
           </fieldset>
           <fieldset>
-            <label for="card-number">Card Number</label>
+            <label class="pay-label" for="card-number">Card Number</label>
             <input
               type="num"
               id="card-number"
@@ -221,7 +225,6 @@
               id="card-number-1"
               class="input-cart-number"
               maxlength="4"
-              
             />
             <input
               type="num"
@@ -242,12 +245,14 @@
           </fieldset>
           <div id="card-number-error" class="error-message"></div>
           <fieldset>
-            <label for="card-holder">Card holder</label>
+            <label class="pay-label" for="card-holder">Card holder</label>
             <input type="text" id="card-holder" required />
             <div id="card-holder-error" class="error-message"></div>
           </fieldset>
           <fieldset class="fieldset-expiration">
-            <label for="card-expiration-month">Expiration date</label>
+            <label class="pay-label" for="card-expiration-month"
+              >Expiration date</label
+            >
             <div class="select">
               <select id="card-expiration-month" required>
                 <option></option>
@@ -269,22 +274,20 @@
             <div class="select">
               <select id="card-expiration-year" required>
                 <option></option>
-                <option>2016</option>
-                <option>2017</option>
-                <option>2018</option>
-                <option>2019</option>
-                <option>2020</option>
-                <option>2021</option>
-                <option>2022</option>
                 <option>2023</option>
                 <option>2024</option>
                 <option>2025</option>
+                <option>2026</option>
+                <option>2027</option>
+                <option>2028</option>
+                <option>2029</option>
+                <option>2030</option>
               </select>
             </div>
             <div id="expiration-year-error" class="error-message"></div>
           </fieldset>
           <fieldset class="fieldset-ccv">
-            <label for="card-ccv">CCV</label>
+            <label class="pay-label" for="card-ccv">CCV</label>
             <input type="num" id="card-ccv" maxlength="3" required />
             <div id="cvv-number-error" class="error-message"></div>
           </fieldset>
@@ -292,13 +295,13 @@
             <div class="form-footer">
               <p id="total-price">Total(USD) $0</p>
 
-
-              <button type="submit" id="purchase-button">Purchase</button>
+              <button class="prc-btn" type="submit" id="purchase-button">
+                Purchase
+              </button>
             </div>
           </fieldset>
         </form>
       </div>
-
     </main>
 
     <div id="myModal" class="modal">
