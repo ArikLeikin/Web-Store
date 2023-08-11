@@ -29,6 +29,7 @@ const ProductSchema = new Schema({
     // new/used
     type: String,
     required: true,
+    enum: ["new", "used"],
   },
   category: {
     type: String,
@@ -41,7 +42,7 @@ const ProductSchema = new Schema({
   supplier: {
     type: Schema.Types.ObjectId,
     ref: "Supplier",
-    required: true,
+    required: false,
   },
   quantity: {
     type: Number,

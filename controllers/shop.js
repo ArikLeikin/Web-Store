@@ -4,7 +4,20 @@ const fs = require("fs");
 const Product = require("../models/product");
 const Order = require("../models/order");
 const User = require("../models/user");
-const { error } = require("console");
+const multer = require('multer')
+
+// Configure multer for handling image uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, '../public/product-images'); // Change this to your desired upload directory
+  },
+  filename: (req, file, cb) => {
+    const timestamp = Date.now();
+    cb(null, `${timestamp}-${file.originalname}`);
+  },
+});
+
+const upload = multer({ storage });
 
 exports.getHomePage = (req, res, next) => {
   const mainPage = path.join(rootPath, "..", "/public/html/main.html")
@@ -115,5 +128,90 @@ exports.getFaq = (req, res, next)=> {
       message: "Internal server error"
     })
   }
- 
+}
+
+exports.getSuppplierPage = (req,res, next)=>{
+  try{
+    const supplierPage = path.join(rootPath, "..", "/public/html/supplier.html")
+    res.status(200).sendFile(supplierPage)
+  }catch(err){
+    res.status(500).json({
+      message: "Internal server error"
+    })
+  }
+}
+
+exports.submitSuppliersItem = async (req, res, next) => {
+  try {
+    const supplier = req.session.user
+    if(supplier == null){
+      return res.status(401).json("Log in required")
+    }
+    if(supplier.permission != "supplier"){
+      return res.status(401).json("Not a supplier")
+    }
+
+    const {
+      title,
+      price,
+      description,
+      condition,
+      category,
+      manufacture_date,
+      quantity,
+      age_range_from,
+      age_range_to,
+    } = req.body;
+
+    const image = req.file ? req.file.path : ''; // Retrieve the image path from req.file
+
+    const newProduct = new Product({
+      title,
+      price,
+      description,
+      image,
+      condition : "new",
+      category,
+      manufacture_date,
+      supplier,
+      quantity,
+      age_range: {
+        from: age_range_from,
+        to: age_range_to,
+      },
+    });
+
+    supplier.availableProducts.push(newProduct);
+    const savedProduct = await supplier.save();
+
+    res.status(201).json({
+      message: 'Product submitted successfully',
+      product: savedProduct,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: 'Internal server error',
+    });
+  }
+};
+
+exports.getYad2 = async (req, res)=>{
+  try{
+    const yad2Page = path.join(rootPath, "..", "/public/html/uploadYad2.html")
+    res.status(200).sendFile(yad2Page)
+  }catch(err){
+    res.status(500).json({
+      message: "Internal server error"
+    })
+  }
+}
+
+exports.submitYad2 = async (req, res) => {
+  try{
+
+  }catch(err){
+    res.status(500).json({
+      message: "Internal server error"
+    })
+  }
 }

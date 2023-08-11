@@ -28,12 +28,12 @@ router.get("/category/:category", shopController.getCategory);
 
 router.get("/faq", shopController.getFaq);
 
-// router.get("/supplier", shopController.getSuppplierPage);
+router.get("/supplier", shopController.getSuppplierPage);
 
-// router.post("/supplier/submit", shopController.submitSuplliersItem);
+router.post("/supplier/submit", upload.single('image'),shopController.submitSuplliersItem);
 
-// router.get("/uploadYad2", shopController.getYad2);
+router.get("/uploadYad2", shopController.getYad2);
 
-// router.get("/uploadYad2/submit", shopController.submitYad2);
+router.get("/uploadYad2/submit", shopController.submitYad2);
 
 module.exports = router;
