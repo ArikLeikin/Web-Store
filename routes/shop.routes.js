@@ -12,7 +12,7 @@ router.get("/contact", shopController.getContactPage);
 
 router.get("/product/:productId", shopController.getProduct);
 
-// router.post("/product/:productId/add-to-cart", shopController.addProductToCart);
+router.post("/product/:productId/", shopController.addProductToCart);
 
 // router.get("/payment/cart", shopController.cartCheckout);
 
@@ -26,7 +26,7 @@ router.post("/cart", isAuth, shopController.postCart);
 
 router.get("/category/:category", shopController.getCategory);
 
-// router.get("/faq", shopController.getFaq);
+router.get("/faq", shopController.getFaq);
 
 // router.get("/supplier", shopController.getSuppplierPage);
 

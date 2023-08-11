@@ -1,48 +1,93 @@
 const path = require("path");
+const rootPath = path.resolve(__dirname);
 const fs = require("fs");
 const Product = require("../models/product");
 const Order = require("../models/order");
+const User = require("../models/user");
+const { error } = require("console");
 
 exports.getHomePage = (req, res, next) => {
-  res.render("shop/main");
+  const mainPage = path.join(rootPath, "..", "/public/html/main.html")
+  res.status(200).sendFile(mainPage);
 };
 
 exports.getAboutPage = (req, res, next) => {
-  res.render("shop/about");
+  const aboutPage = path.join(rootPath, "..", "/public/html/about.html")
+  res.status(200).sendFile(aboutPage);
 };
 
 exports.getContactPage = (req, res, next) => {
-  res.render("shop/about");
+  const contactPage = path.join(rootPath, "..", "/public/html/contact.html")
+  res.status(200).sendFile(contactPage);
 };
 
-exports.getProduct = (req, res, next) => {
-  const prodId = req.params.productId;
-  Product.findById(prodId)
-    .then((product) => {
-      const imagePath = path.join(__dirname, "..", product.image);
-      const imageBase64 = fs.readFileSync(imagePath, { encoding: "base64" });
-      res.render("shop/product-details", {
-        product: product,
-        pageTitle: product.title,
-        imagePath: `data:image/jpeg;base64,${imageBase64}`,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      const error = new Error("Error on server side!");
-      error.httpStatusCode = 500;
-      next(error);
+exports.getProduct = async (req, res, next) => {
+  try{
+    const prodId = req.params.productId;
+    console.log(prodId)
+    const product = await Product.findById(prodId)
+    console.log(product)
+    if(product != null)
+      res.status(200).json({
+        data: product,
     });
+    else{
+      res.status(400).json({
+        "message" : "Product not found",
+      })
+    }
+  }catch (err){
+    res.status(500).json({
+      message: "Internal server error"
+    })
+  }
 };
 
-exports.getCart = (req, res, next) => {
+exports.addProductToCart = async (req, res, next) => {
+  try{
+    const user = req.session.user;
+    if(user == null){
+      return res.status(401).json("Log in required")
+    }
+    const productToAdd = await Product.findById(req.productId)
+    if(productToAdd == null){
+      throw new Error("Product not found")
+    }
+    const cart = req.session.cart || [];
+    
+    // Add the product to the cart array
+    cart.push(productToAdd);
+    
+    // Update the cart in the session
+    req.session.cart = cart;
+    user.cart = cart
+    await user.save()
+
+    res.status(200).json("Product added to cart successfully");
+  }catch(err){
+    res.status(500).json({
+      message: "Internal server error"
+    })
+  }
+}
+
+exports.getCart = async (req, res, next) => {
   const user = req.session.user;
-  const cartData = user.cart.items;
-  res.render("shop/cart", { cartItems: cartData });
+  if(user == null){
+    return res.status(401).json("Log in required")
+  }
+  const cartData = await User.findById(user.id).cart;
+  console.log(cartData)
+  res.status(200).json({
+    data: cartData,
+  })
 };
 
 exports.postCart = (req, res, next) => {
   const user = req.session.user;
+  if(user == null){
+    return res.status(401).json("Log in required")
+  }
   user.save();
   res.status(200);
 };
@@ -50,12 +95,25 @@ exports.postCart = (req, res, next) => {
 exports.getCategory = async (req, res, next) => {
   try {
     const category = req.params.category;
-    const products = await Product.find({ category: category });
-    res.render("shop/category", {
-      products: products,
-    });
+    const categoryData = await Product.find({ category: category });
+    res.status(200).json({
+      data: categoryData,
+    })
   } catch (err) {
-    // Handle any errors that occurred during the query or rendering
-    next(err);
+    res.status(500).json({
+      message: "Internal server error",
+    })
   }
 };
+
+exports.getFaq = (req, res, next)=> {
+  try{
+    const faqPage = path.join(rootPath, "..", "/public/html/q&a.html")
+    res.status(200).sendFile(faqPage)
+  }catch(err){
+    res.status(500).json({
+      message: "Internal server error"
+    })
+  }
+ 
+}
