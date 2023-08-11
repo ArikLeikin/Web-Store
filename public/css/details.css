@@ -1,111 +1,204 @@
 /* Set styles for the body */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~nofar~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.productView {
+  background-color: #fff;
+  border: 1px solid #dfdfdf;
+  border-radius: 4px;
+  box-shadow: 0 3px 0 #dfdfdf;
+  /*position: relative;*/
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  width: 90%;
+  position: relative;
+  margin: 0 auto;
+}
+.productView-images,
+.productView-info {
+  padding: 0.7rem;
+  margin-bottom: 0;
+  float: left;
+}
+.productView-info {
+  flex: 3;
+  display: grid;
+}
+.productView-images {
+  flex: 2;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.productView-image {
+  width: 400px;
+  border-radius: 3px;
+}
+.productView-name {
+  font-size: 25px;
+  padding: 0;
+}
+.productView-price {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+.productView-slick-slider {
+  list-style: none;
+  margin-left: 0;
+  font-size: 0;
+  margin-bottom: 1.5rem;
+  white-space: nowrap;
+  overflow: visible;
+  float: left;
+}
+.slick-track {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  width: 450px;
+  transform: translate3d(0px, 0px, 0px);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  left: 0;
+  top: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.productView-image-option {
+  height: 60px;
+  display: inline-block;
+}
+.productView-imageSlick {
+  display: inline-block;
+  border: 1px solid #dfdfdf;
+  margin: 0 0.75rem 0.75rem 0;
+  cursor: pointer;
+  position: relative;
+}
+.productView-imageSlick.active {
+  border: 1px solid #fe8686;
+}
+/*quantity*/
+.quantity-input {
+  margin: 5px auto;
+  border: 2px solid #dddddd;
+  width: fit-content;
+  float: left;
+  border-radius: 6px;
 }
 
-.container {
-    display: flex;
-    flex-direction: row;
+.quantity-input input {
+  max-width: 50px;
 }
-
-/* Style the content area */
-.content {
-    flex: 1;
+input.minus.btn,
+input.plus.btn {
+  width: 30px;
+  height: 30px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #696969;
+  padding: 1px 6px;
+  background-color: #dddddd;
+  border: none;
+  cursor: pointer;
 }
-
-/* Style the h1 heading */
-h1 {
-    color: #e4c892;
-    text-align: center;
-    margin-top: 20px;
+input.plus.btn {
+  border-radius: 0 3px 3px 0;
 }
-
-/* Style the paragraphs */
-p {
-    color: #211f1f;
-    line-height: 1.5;
-    margin-top: 60px;
-    margin-bottom: 40px;
-    margin-left: 100px;
-    text-decoration: underline;
+input.minus.btn {
+  border-radius: 3px 0 0 3px;
 }
-
-/* Style the sidebar */
-.sidebar {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+input.input-text {
+  background-color: transparent;
+  border: none;
+  width: 25px;
+  height: 25px;
+  font-size: 25px;
+  text-align: center;
 }
-
-/* Square container for the product image */
-.image-container {
-    width: 400px;
-    height: 400px;
-    overflow: hidden;
-    margin-top: 40px;
-    border: 1px solid #1b1818;
-    text-align: center;
-    background-color: rgb(210, 209, 194); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 150px;
+.btn-add-to-cart {
+  padding: 7px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  float: left;
 }
-
-/* Position the image within the container */
-.image-container img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+.btn-add-to-cart a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
 }
-
-footer {
-    padding-top: 40px;
-    text-align: center;
-    border-top: 1px solid #1b1818;
-    margin-top: 40px;
-    border: 2px solid rgb(29, 29, 31);
-    padding: 20px;
+.productView-qty {
+  margin-bottom: 10px;
 }
-
-
-h2 {
-    color: #a99773;
+.productView-details {
+  font-size: 14px;
 }
+.productView-details-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+h4.productView-name {
+  margin-bottom: 10px;
+}
+/*suggested-products*/
 
 .suggested-products {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
-    margin-top: 20px;
+  width: 90%;
+  margin: 10px auto;
+  padding: 20px;
 }
-
-.product {
-    width: 250px;
-    height: 250px;
-    background-color: rgb(199, 199, 172);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.items {
+  display: block;
+  margin: 20px 0;
 }
-
-.product:hover {
-    transform: scale(1.05); /* Add a scale effect on hover */
+.item {
+  background-color: #fff;
+  float: left;
+  margin: 0 10px 10px 0;
+  width: 240px;
+  padding: 10px;
+  min-height: 300px;
+  display: grid;
+  border: 1px solid #dfdfdf;
+  border-radius: 4px;
 }
-
-.product img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
+.item img {
+  display: block;
+  margin: auto;
 }
-
-.product p {
-    margin-top: 10px;
-    text-align: center;
-    margin-left: 10px;
+.title {
+  font-size: 14px;
+  display: block;
+  border-bottom: 1px solid #ccc;
+  margin: 0 0 10px 0;
+  padding: 0 0 5px 0;
+}
+.title-desc {
+  float: left;
+}
+.title-desc a {
+  color: black;
+}
+.title-price {
+  float: right;
+}
+.add-to-cart {
+  border: 1px solid #007bff;
+  padding: 4px 14px;
+  background-color: #fff;
+  color: #007bff;
+  text-transform: uppercase;
+  float: right;
+  margin: 5px 0;
+  font-weight: bold;
+  cursor: pointer;
 }

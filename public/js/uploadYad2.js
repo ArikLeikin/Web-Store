@@ -26,3 +26,4 @@ $(document).ready(function() {
   function containsOnlyNumbers(str) {
     return /^\d+$/.test(str);
   }
+

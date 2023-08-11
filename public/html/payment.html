@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Games For All</title>
+    <title>Games For All|Purchase</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/payment.css" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -12,13 +14,19 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
-    <script src="../js/index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../js/payment.js"></script>
+    <script src="../js/index.js"></script>
+  </head>
+  <body>
     <header class="header" role="banner">
       <div class="container">
         <nav class="navUser">
           <ul class="navUser-section">
-            <li class="item__account">
+            <li class="item__account" id="item__account">
               <a aria-label="Account" href=""
                 ><img
                   src="../images/white-icons/account-icon.png"
@@ -176,45 +184,131 @@
       <!-- End Navigation Bar -->
     </header>
 
-    <title>Data Table Example</title>
-    <link rel="stylesheet" href="../css/statistics.css" />
-    <script src="../js/statistics.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"
-      integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-  </head>
-  <body>
-    <main style="margin-top: 150px"></main>
-    <h1>Statistics about Age Ranges in Areas of Israel</h1>
-    <p>
-      This table displays statistics about different age ranges in various areas
-      of Israel for july 2023(based on Government databases website):
-    </p>
-    <p>
-      Source:
-      <a
-        href="https://data.gov.il/dataset/residents_in_israel_by_communities_and_age_groups/resource/64edd0ee-3d5d-43ce-8562-c336c24dbc1f"
-        target="_blank"
-        >Data.gov.il</a
-      >
-    </p>
-    <table id="data-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>נפה</th>
-          <th>גיל 0-5</th>
-          <th>גיל 6-18</th>
-          <th>גיל 19-45</th>
-          <th>גיל 46-55</th>
-          <th>גיל 56-64</th>
-          <th>גיל 65+</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <main style="margin-top: 150px">
+      <div class="centered-link">
+        <a href="cart.html">Go back to cart...</a>
+      </div>
+
+      <div class="checkout">
+        <form class="form" autocomplete="off" id="purchase-form" novalidate>
+          <fieldset>
+            <label class="pay-label" for="phone">Phone Number</label>
+            <input type="tel" id="phone" required />
+            <div id="phone-error" class="error-message"></div>
+          </fieldset>
+          <fieldset>
+            <label class="pay-label" for="city">City</label>
+            <input type="text" id="city" required />
+            <div id="city-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset-street">
+            <label class="pay-label" for="street">Street</label>
+            <input type="text" id="street" required />
+            <div id="street-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset-streetNo">
+            <label class="pay-label" for="street_number">Street No.</label>
+            <input type="number" id="street_number" required min="1" />
+            <div id="street-number-error" class="error-message"></div>
+          </fieldset>
+          <fieldset>
+            <label class="pay-label" for="card-number">Card Number</label>
+            <input
+              type="num"
+              id="card-number"
+              class="input-cart-number"
+              maxlength="4"
+              required
+            />
+            <input
+              type="num"
+              id="card-number-1"
+              class="input-cart-number"
+              maxlength="4"
+            />
+            <input
+              type="num"
+              id="card-number-2"
+              class="input-cart-number"
+              max="9999"
+              maxlength="4"
+              required
+            />
+            <input
+              type="num"
+              id="card-number-3"
+              class="input-cart-number"
+              max="9999"
+              maxlength="4"
+              required
+            />
+          </fieldset>
+          <div id="card-number-error" class="error-message"></div>
+          <fieldset>
+            <label class="pay-label" for="card-holder">Card holder</label>
+            <input type="text" id="card-holder" required />
+            <div id="card-holder-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset-expiration">
+            <label class="pay-label" for="card-expiration-month"
+              >Expiration date</label
+            >
+            <div class="select">
+              <select id="card-expiration-month" required>
+                <option></option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>
+                <option>08</option>
+                <option>09</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+              </select>
+            </div>
+            <div id="expiration-month-error" class="error-message"></div>
+            <div class="select">
+              <select id="card-expiration-year" required>
+                <option></option>
+                <option>2023</option>
+                <option>2024</option>
+                <option>2025</option>
+                <option>2026</option>
+                <option>2027</option>
+                <option>2028</option>
+                <option>2029</option>
+                <option>2030</option>
+              </select>
+            </div>
+            <div id="expiration-year-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset-ccv">
+            <label class="pay-label" for="card-ccv">CCV</label>
+            <input type="num" id="card-ccv" maxlength="3" required />
+            <div id="cvv-number-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset-footer">
+            <div class="form-footer">
+              <p id="total-price">Total(USD) $0</p>
+
+              <button class="prc-btn" type="submit" id="purchase-button">
+                Purchase
+              </button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </main>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-content"></div>
+      </div>
+    </div>
   </body>
 </html>

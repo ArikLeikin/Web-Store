@@ -1,211 +1,246 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Games For All</title>
+    <title>Games For All|Registration</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="../js/index.js"></script>
-  
-  <header class="header" role="banner">
-    <div class="container">
-      <nav class="navUser">
-        <ul class="navUser-section">
-          <li class="item__account">
-            <a aria-label="Account" href=""
-              ><img
-                src="../images/white-icons/account-icon.png"
-                alt="account"
-                width="30"
-              />
-            </a>
-          </li>
-          <li class="item__wishlist">
-            <a aria-label="Wishlist" href="">
+
+    <link rel="stylesheet" href="../css/register.css" />
+
+    <script src="../js/register.js"></script>
+    <style></style>
+  </head>
+  <body>
+    <header class="header" role="banner">
+      <div class="container">
+        <nav class="navUser">
+          <ul class="navUser-section">
+            <li class="item__account" id="item__account">
+              <a aria-label="Account" href=""
+                ><img
+                  src="../images/white-icons/account-icon.png"
+                  alt="account"
+                  width="30"
+                />
+              </a>
+            </li>
+            <li class="item__wishlist">
+              <a aria-label="Wishlist" href="">
+                <img
+                  src="../images/white-icons/wishlist-icon.png"
+                  alt="Cart"
+                  width="30"
+                />
+              </a>
+            </li>
+            <li class="item__cart">
+              <a href="" aria-label="Cart">
+                <img
+                  src="../images/white-icons/cart-icon.png"
+                  alt="Cart"
+                  width="30"
+                />
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-logo">
+          <a href="#" data-instantload='{"page":"home"}'>
+            <div class="header-logo-image-container">
               <img
-                src="../images/white-icons/wishlist-icon.png"
-                alt="Cart"
-                width="30"
+                class="header-logo-image"
+                src="../images/logo.png"
+                width="180"
+                height="auto"
               />
-            </a>
+            </div>
+          </a>
+        </div>
+
+        <div class="quickSearch">
+          <form class="form">
+            <div class="form-container">
+              <input
+                class="form-input"
+                data-search-quick
+                name="search_query"
+                id="search_query"
+                data-error-message="Search field cannot be empty."
+                placeholder="Search the store"
+                autocomplete="off"
+              />
+              <button
+                type="submit"
+                class="button search-button"
+                id="searchButton"
+              >
+                <img
+                  src="../images/white-icons/search-icon.png"
+                  alt="Search"
+                  width="25"
+                  height="auto"
+                />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Start Navigation Bar -->
+      <nav class="navbar">
+        <ul class="menu">
+          <li>
+            <a class="hasDropdown" href="#"
+              >Categories <i class="fa fa-angle-down"></i
+            ></a>
+
+            <ul class="nav_container">
+              <div class="container__list">
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Board Games</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Science</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Games</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Riding Toys</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Puzzles</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Music&Karaoke</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Books</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Lego</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Dolls</div>
+                </div>
+                <div class="container__listItem"></div>
+                <div class="container__listItem"></div>
+
+                <div class="container__listItem">
+                  <div class="container__listItem_title bold no-underline">
+                    $10 & Below
+                  </div>
+                </div>
+              </div>
+            </ul>
           </li>
-          <li class="item__cart">
-            <a href="" aria-label="Cart">
-              <img
-                src="../images/white-icons/cart-icon.png"
-                alt="Cart"
-                width="30"
-              />
-            </a>
+          <li>
+            <a class="hasDropdown" href="#"
+              >Ages<i class="fa fa-angle-down"></i
+            ></a>
+            <ul class="nav_container">
+              <div class="container__list">
+                <div class="container__listItem">
+                  <div class="container__listItem_title">0-12 MONTHS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">12-24 MONTHS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">2-4 YEARS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">5-7 YEARS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">8-99 YEARS</div>
+                </div>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Outdoor</a>
+          </li>
+          <li>
+            <a href="#">Yad2</a>
+          </li>
+          <li>
+            <a href="#">Gift Finder</a>
           </li>
         </ul>
       </nav>
-  
-      <div class="header-logo">
-        <a href="#" data-instantload='{"page":"home"}'>
-          <div class="header-logo-image-container">
-            <img
-              class="header-logo-image"
-              src="../images/logo.png"
-              width="180"
-              height="auto"
-            />
-          </div>
-        </a>
-      </div>
-  
-      <div class="quickSearch">
-        <form class="form">
-          <div class="form-container">
-            <input
-              class="form-input"
-              data-search-quick
-              name="search_query"
-              id="search_query"
-              data-error-message="Search field cannot be empty."
-              placeholder="Search the store"
-              autocomplete="off"
-            />
-            <button
-              type="submit"
-              class="button search-button"
-              id="searchButton"
-            >
-              <img
-                src="../images/white-icons/search-icon.png"
-                alt="Search"
-                width="25"
-                height="auto"
-              />
-            </button>
-          </div>
-        </form>
+      <!-- End Navigation Bar -->
+    </header>
+    <main style="margin-top: 150px">
+      <h1>Registration Page</h1>
+
+      <form method="POST" action="/register" class="reg-form">
+        <label class="reg-label" for="username">Username:</label>
+        <input
+          class="reg-input"
+          type="text"
+          id="username"
+          name="username"
+          required
+        /><br />
+        <div id="username-error"></div>
+        <label class="reg-label" for="email">Email:</label>
+        <input
+          class="reg-input"
+          type="email"
+          id="email"
+          name="email"
+          required
+        /><br />
+        <div class="password-field">
+          <label class="reg-label" for="password">Password:</label>
+          <input
+            class="reg-input"
+            type="password"
+            id="password"
+            name="password"
+            required
+          />
+          <span class="toggle-password"><i class="fas fa-eye"></i></span>
+        </div>
+        <br />
+        <div id="password-error"></div>
+        <div class="password-field">
+          <label class="reg-label" for="password-validation"
+            >Password validation:</label
+          >
+          <input
+            class="reg-input"
+            type="password"
+            id="password-validation"
+            name="password-validation"
+            required
+          />
+          <span class="toggle-password"><i class="fas fa-eye"></i></span>
+        </div>
+        <br />
+        <div id="password-validation-error"></div>
+        <input class="reg-sub" type="submit" value="Register" />
+      </form>
+      <p>Already a member? <a href="#" id="login-link">Log in here</a></p>
+    </main>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-content"></div>
       </div>
     </div>
-  
-    <!-- Start Navigation Bar -->
-    <nav class="navbar">
-      <ul class="menu">
-        <li>
-          <a class="hasDropdown" href="#"
-            >Categories <i class="fa fa-angle-down"></i
-          ></a>
-  
-          <ul class="nav_container">
-            <div class="container__list">
-              <div class="container__listItem">
-                <div class="container__listItem_title">Board Games</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Science</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Games</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Riding Toys</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Puzzles</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Music&Karaoke</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Books</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Lego</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Dolls</div>
-              </div>
-              <div class="container__listItem"></div>
-              <div class="container__listItem"></div>
-  
-              <div class="container__listItem">
-                <div class="container__listItem_title bold no-underline">
-                  $10 & Below
-                </div>
-              </div>
-            </div>
-          </ul>
-        </li>
-        <li>
-          <a class="hasDropdown" href="#"
-            >Ages<i class="fa fa-angle-down"></i
-          ></a>
-          <ul class="nav_container">
-            <div class="container__list">
-              <div class="container__listItem">
-                <div class="container__listItem_title">0-12 MONTHS</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">12-24 MONTHS</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">2-4 YEARS</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">5-7 YEARS</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">8-99 YEARS</div>
-              </div>
-            </div>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Outdoor</a>
-        </li>
-        <li>
-          <a href="#">Yad2</a>
-        </li>
-        <li>
-          <a href="#">Gift Finder</a>
-        </li>
-      </ul>
-    </nav>
-    <!-- End Navigation Bar -->
-  </header>
-  <main style="margin-top: 200px;"></main>
-
-    <title>Registration Page</title>
-    <link rel="stylesheet" href="../css/register.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../js/register.js"></script>
-    <style>
-    </style>
-  </head>
-  <body>
-   
-    <h1>Registration Page</h1>
-
-    <form method="POST" action="/register">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required /><br />
-      <div id="username-error"></div>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required /><br />
-      <div class="password-field">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required />
-        <span class="toggle-password"><i class="fas fa-eye"></i></span>
-      </div><br />
-      <div id="password-error"></div>
-      <div class="password-field">
-        <label for="password-validation">Password validation:</label>
-        <input type="password" id="password-validation" name="password-validation" required />
-        <span class="toggle-password"><i class="fas fa-eye"></i></span>
-      </div><br />
-      <div id="password-validation-error"></div>
-      <input type="submit" value="Register" />
-    </form>
-    <p>Already a member? <a href="login.html">Log in here</a></p>
-    
   </body>
 </html>

@@ -1,31 +1,31 @@
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 20px;
+  position: static;
 }
 
 h1 {
-    text-align: center;
-    color:coral;
+  text-align: center;
+  color: coral;
 }
 
 p {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .logo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 5px solid #FF5733;
-    margin: 20px auto;
-    display: block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 20px auto;
+  display: block;
 }
 
 .info {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px; /* Add padding to create some space between content and frame */
-    border: 3px solid #333; /* Add a solid border around the .info div */
-    border-radius: 10px; /* Optional: Add rounded corners to the border */
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px; /* Add padding to create some space between content and frame */
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }

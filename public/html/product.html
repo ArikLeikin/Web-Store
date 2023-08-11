@@ -1,317 +1,400 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Games For All</title>
-  <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
-  <link rel="stylesheet" href="../css/index.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-  />
-  <script src="../js/index.js"></script>
-
-<header class="header" role="banner">
-  <div class="container">
-    <nav class="navUser">
-      <ul class="navUser-section">
-        <li class="item__account">
-          <a aria-label="Account" href=""
-            ><img
-              src="../images/white-icons/account-icon.png"
-              alt="account"
-              width="30"
-            />
-          </a>
-        </li>
-        <li class="item__wishlist">
-          <a aria-label="Wishlist" href="">
-            <img
-              src="../images/white-icons/wishlist-icon.png"
-              alt="Cart"
-              width="30"
-            />
-          </a>
-        </li>
-        <li class="item__cart">
-          <a href="" aria-label="Cart">
-            <img
-              src="../images/white-icons/cart-icon.png"
-              alt="Cart"
-              width="30"
-            />
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="header-logo">
-      <a href="#" data-instantload='{"page":"home"}'>
-        <div class="header-logo-image-container">
-          <img
-            class="header-logo-image"
-            src="../images/logo.png"
-            width="180"
-            height="auto"
-          />
-        </div>
-      </a>
-    </div>
-
-    <div class="quickSearch">
-      <form class="form">
-        <div class="form-container">
-          <input
-            class="form-input"
-            data-search-quick
-            name="search_query"
-            id="search_query"
-            data-error-message="Search field cannot be empty."
-            placeholder="Search the store"
-            autocomplete="off"
-          />
-          <button
-            type="submit"
-            class="button search-button"
-            id="searchButton"
-          >
-            <img
-              src="../images/white-icons/search-icon.png"
-              alt="Search"
-              width="25"
-              height="auto"
-            />
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Start Navigation Bar -->
-  <nav class="navbar">
-    <ul class="menu">
-      <li>
-        <a class="hasDropdown" href="#"
-          >Categories <i class="fa fa-angle-down"></i
-        ></a>
-
-        <ul class="nav_container">
-          <div class="container__list">
-            <div class="container__listItem">
-              <div class="container__listItem_title">Board Games</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Science</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Games</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Riding Toys</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Puzzles</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Music&Karaoke</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Books</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Lego</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Dolls</div>
-            </div>
-            <div class="container__listItem"></div>
-            <div class="container__listItem"></div>
-
-            <div class="container__listItem">
-              <div class="container__listItem_title bold no-underline">
-                $10 & Below
-              </div>
-            </div>
-          </div>
-        </ul>
-      </li>
-      <li>
-        <a class="hasDropdown" href="#"
-          >Ages<i class="fa fa-angle-down"></i
-        ></a>
-        <ul class="nav_container">
-          <div class="container__list">
-            <div class="container__listItem">
-              <div class="container__listItem_title">0-12 MONTHS</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">12-24 MONTHS</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">2-4 YEARS</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">5-7 YEARS</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">8-99 YEARS</div>
-            </div>
-          </div>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Outdoor</a>
-      </li>
-      <li>
-        <a href="#">Yad2</a>
-      </li>
-      <li>
-        <a href="#">Gift Finder</a>
-      </li>
-    </ul>
-  </nav>
-  <!-- End Navigation Bar -->
-</header>
-  <main style="margin-top: 200px;"></main>
-
-    <title>Toy Store</title>
-    <link rel="stylesheet" type="text/css" href="../css/product.css">
+  <head>
+    <title>Games For All</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../css/product.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <script src="../js/index.js"></script>
     <script src="../js/product.js"></script>
+  </head>
+  <body>
+    <header class="header" role="banner">
+      <div class="container">
+        <nav class="navUser">
+          <ul class="navUser-section">
+            <li class="item__account" id="item__account">
+              <a aria-label="Account" href=""
+                ><img
+                  src="../images/white-icons/account-icon.png"
+                  alt="account"
+                  width="30"
+                />
+              </a>
+            </li>
+            <li class="item__wishlist">
+              <a aria-label="Wishlist" href="">
+                <img
+                  src="../images/white-icons/wishlist-icon.png"
+                  alt="Cart"
+                  width="30"
+                />
+              </a>
+            </li>
+            <li class="item__cart">
+              <a href="" aria-label="Cart">
+                <img
+                  src="../images/white-icons/cart-icon.png"
+                  alt="Cart"
+                  width="30"
+                />
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-    <style>
-    </style>
-</head>
-<body>
-    
-    <h1>"Name category" Toys</h1> 
+        <div class="header-logo">
+          <a href="#" data-instantload='{"page":"home"}'>
+            <div class="header-logo-image-container">
+              <img
+                class="header-logo-image"
+                src="../images/logo.png"
+                width="180"
+                height="auto"
+              />
+            </div>
+          </a>
+        </div>
 
-    <button id="toggle-filter">Hide Filter</button>
+        <div class="quickSearch">
+          <form class="form">
+            <div class="form-container">
+              <input
+                class="form-input"
+                data-search-quick
+                name="search_query"
+                id="search_query"
+                data-error-message="Search field cannot be empty."
+                placeholder="Search the store"
+                autocomplete="off"
+              />
+              <button
+                type="submit"
+                class="button search-button"
+                id="searchButton"
+              >
+                <img
+                  src="../images/white-icons/search-icon.png"
+                  alt="Search"
+                  width="25"
+                  height="auto"
+                />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
 
-    
-    <!-- Filter Sidebar -->
-    <div id="filter-sidebar">
+      <!-- Start Navigation Bar -->
+      <nav class="navbar">
+        <ul class="menu">
+          <li>
+            <a class="hasDropdown" href="#"
+              >Categories <i class="fa fa-angle-down"></i
+            ></a>
 
+            <ul class="nav_container">
+              <div class="container__list">
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Board Games</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Science</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Games</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Riding Toys</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Puzzles</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Music&Karaoke</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Books</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Lego</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Dolls</div>
+                </div>
+                <div class="container__listItem"></div>
+                <div class="container__listItem"></div>
+
+                <div class="container__listItem">
+                  <div class="container__listItem_title bold no-underline">
+                    $10 & Below
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a class="hasDropdown" href="#"
+              >Ages<i class="fa fa-angle-down"></i
+            ></a>
+            <ul class="nav_container">
+              <div class="container__list">
+                <div class="container__listItem">
+                  <div class="container__listItem_title">0-12 MONTHS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">12-24 MONTHS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">2-4 YEARS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">5-7 YEARS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">8-99 YEARS</div>
+                </div>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Outdoor</a>
+          </li>
+          <li>
+            <a href="#">Yad2</a>
+          </li>
+          <li>
+            <a href="#">Gift Finder</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- End Navigation Bar -->
+    </header>
+    <main style="margin-top: 150px">
+      <!-- Filter Sidebar -->
+      <div class="filter-sidebar" id="filter-sidebar">
         <h2>Filters</h2>
-        <label for="age-filter">Age:</label>
-        <select id="age-filter">
-            <option value="">All</option>
-            <option value="0-12 months">0-12 months</option>
-            <option value="12-24 months">12-24 months</option>
-            <option value="2-4">2-4 Years</option>
-            <option value="5-7">5-7 Years</option>
-            <option value="8-99">8-99 Years</option>
-            
 
-        </select>
-
+        <table class="filter-container">
+          <tr>
+            <td>
+              <span class="select-label">Age</span>
+            </td>
+            <td>
+              <select class="select-filter" id="age-filter">
+                <option value="">All</option>
+                <option value="0-12 months">0-12 months</option>
+                <option value="12-24 months">12-24 months</option>
+                <option value="2-4">2-4 Years</option>
+                <option value="5-7">5-7 Years</option>
+                <option value="8-99">8-99 Years</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="select-label">Game Type</span>
+            </td>
+            <td>
+              <select class="select-filter" id="game-type-filter">
+                <option value="">All</option>
+                <option value="board">Board Games</option>
+                <option value="riding">Riding Toys</option>
+                <option value="book">Books</option>
+                <option value="sience">Sience</option>
+                <option value="puzzle">Puzzle Games</option>
+                <option value="leggo">Leggo</option>
+                <option value="games">Games</option>
+                <option value="music & karaoke">Music & Karaoke</option>
+                <option value="dolls">Dolls</option>
+                <option value="10$ & bellow">10$ & Bellow</option>
+                <option value="Yad 2">Yad 2</option>
+                <option value="sale">SALE</option>
+              </select>
+            </td>
+          </tr>
+          <!--<tr>
+            <td>
+              <span class="select-label">Price</span>
+            </td>
+            <td>
+              <div id="price-range-slider"></div>
+              <div id="price-range-values"></div>
+              <div id="price-dot-min" class="price-dot"></div>
+              <div id="price-dot-max" class="price-dot"></div>
+            </td>
+          </tr>-->
+          <tr>
+            <td>
+              <span class="select-label">Price</span>
+            </td>
+            <td>
+              <div class="slider-container">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div id="slider-range"></div>
+                  </div>
+                </div>
+                <div class="row slider-labels">
+                  <div class="col-xs-6 caption">
+                    <span id="price-dot-min"></span>
+                  </div>
+                  <div class="col-xs-6 text-right caption">
+                    <span id="price-dot-max"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <form>
+                      <input type="hidden" name="min-value" value="" />
+                      <input type="hidden" name="max-value" value="" />
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <br /><br /><br /><br />
         <label for="price-filter">Price:</label>
-        <div id="price-range-slider"></div> 
-        <div id="price-range-values"></div> 
-        <div id="price-dot-min" class="price-dot"></div> 
-        <div id="price-dot-max" class="price-dot"></div> 
-        </select>
+        <div id="price-range-slider"></div>
+        <div id="price-range-values"></div>
+        <div id="price-dot-min" class="price-dot"></div>
+        <div id="price-dot-max" class="price-dot"></div>
+      </div>
 
-
-        <label for="game-type-filter">Game Type:</label>
-        <select id="game-type-filter">
-            <option value="">All</option>
-            <option value="board">Board Games</option>
-            <option value="riding">Riding Toys</option>
-            <option value="book">Books</option>
-            <option value="sience">Sience</option>
-            <option value="puzzle">Puzzle Games</option>
-            <option value="leggo">Leggo</option>
-            <option value="games">Games</option>
-            <option value="music & karaoke">Music & Karaoke</option>
-            <option value="dolls">Dolls</option>
-            <option value="10$ & bellow">10$ & Bellow</option>
-            <option value="Yad 2">Yad 2</option>
-            <option value="sale">SALE</option>
-
-        </select> 
-    </div>
-
-     <!-- Product Grid -->
-    <div id="product-grid">
-        <div class="product-item" data-age-range="0-12 months" data-game-type="board" data-price="100.00">
+      <!-- Product Grid -->
+      <div class="product-grid-section">
+        <h1>"Name category" Toys</h1>
+        <div class="product-grid" id="product-grid">
+          <div
+            class="product-item"
+            data-age-range="0-12 months"
+            data-game-type="board"
+            data-price="100.00"
+          >
             <a href="details.html">
-                <img src="game1.jpg" alt="Game">
+              <img src="game1.jpg" alt="Game" />
             </a>
-            <h3>Product Name </h3>
+            <h3>Product Name</h3>
             <p>Age Range: 0-12 months</p>
             <p>Game Type: Board Game</p>
             <p>Price: $100.00</p>
             <!-- Additional product details, descriptions, etc. can be added here -->
-        </div>
+          </div>
 
-        <div class="product-item" data-age-range="12-24 months" data-game-type="book" data-price="150.00">
+          <div
+            class="product-item"
+            data-age-range="12-24 months"
+            data-game-type="book"
+            data-price="150.00"
+          >
             <a href="details.html">
-                <img src="game2.jpg" alt="Game ">
+              <img src="game2.jpg" alt="Game " />
             </a>
-            <h3>Product Name </h3>
+            <h3>Product Name</h3>
             <p>Age Range: 12-24 months</p>
             <p>Game Type: Books</p>
             <p>Price: $150.00</p>
             <!-- Additional product details, descriptions, etc. can be added here -->
-        </div>
-        
-        <div class="product-item" data-age-range="2-4" data-game-type="puzzle" data-price="200.00">
+          </div>
+
+          <div
+            class="product-item"
+            data-age-range="2-4"
+            data-game-type="puzzle"
+            data-price="200.00"
+          >
             <a href="details.html">
-                <img src="game3.jpg" alt="Game">
+              <img src="game3.jpg" alt="Game" />
             </a>
-            <h3>Product Name </h3>
+            <h3>Product Name</h3>
             <p>Age Range: 2-4 Years</p>
             <p>Game Type: Puzzle Game</p>
             <p>Price: $200.00</p>
             <!-- Additional product details, descriptions, etc. can be added here -->
-        </div>
+          </div>
 
-
-        <div class="product-item" data-age-range="5-7" data-game-type="dolls" data-price="85.00">
+          <div
+            class="product-item"
+            data-age-range="5-7"
+            data-game-type="dolls"
+            data-price="85.00"
+          >
             <a href="details.html">
-                <img src="game2.jpg" alt="Game 2">
+              <img src="game2.jpg" alt="Game 2" />
             </a>
-            <h3>Product Name </h3>
+            <h3>Product Name</h3>
             <p>Age Range: 5-7 Years</p>
             <p>Game Type: Dolls</p>
             <p>Price: $85.00</p>
             <!-- Additional product details, descriptions, etc. can be added here -->
-        </div>
+          </div>
 
-        <div class="product-item" data-age-range="8-99" data-game-type="Yad 2" data-price="100.00">
+          <div
+            class="product-item"
+            data-age-range="8-99"
+            data-game-type="Yad 2"
+            data-price="100.00"
+          >
             <a href="details.html">
-                <img src="game2.jpg" alt="Game">
+              <img src="game2.jpg" alt="Game" />
             </a>
-            <h3>Product Name </h3>
+            <h3>Product Name</h3>
             <p>Age Range: 8-99 Years</p>
             <p>Game Type: Yad 2</p>
             <p>Price: $100.00</p>
             <!-- Additional product details, descriptions, etc. can be added here -->
-        </div>
+          </div>
 
-        <div class="product-item" data-age-range="5-7" data-game-type="sale" data-price="300.00">
+          <div
+            class="product-item"
+            data-age-range="5-7"
+            data-game-type="sale"
+            data-price="300.00"
+          >
             <a href="details.html">
-                <img src="game2.jpg" alt="Game">
+              <img src="game2.jpg" alt="Game" />
             </a>
-            <h3>Product Name </h3>
+            <h3>Product Name</h3>
             <p>Age Range: 0-12 months</p>
             <p>Game Type: Yad 2</p>
             <p>Price: $300.00</p>
             <!-- Additional product details, descriptions, etc. can be added here -->
-        </div>
+          </div>
 
-        <div class="product-item" data-age-range="0-12 months" data-game-type="board" data-price="70.00">
+          <div
+            class="product-item"
+            data-age-range="0-12 months"
+            data-game-type="board"
+            data-price="70.00"
+          >
             <a href="details.html">
-                <img src="game1.jpg" alt="Game">
+              <img src="game1.jpg" alt="Game" />
             </a>
             <h3>Product Name</h3>
             <p>Age Range: 0-12 months</p>
             <p>Game Type: Board Game</p>
             <p>Price: $70.00</p>
+          </div>
         </div>
-   
-</div>
-    
-</body>
+      </div>
+    </main>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-content"></div>
+      </div>
+    </div>
+  </body>
 </html>

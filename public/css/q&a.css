@@ -1,8 +1,8 @@
 
 
 header {
- position: fixed;
- z-index: 9999;
+ position: fixed; 
+  z-index: 9999;
   
 }
 /* .navbar {
@@ -11,7 +11,7 @@ header {
 
 .container {
     max-width: 800px;
-    margin: 0 auto; /* Set left and right margins to 'auto' */
+    margin: 0 auto; 
     padding: 20px;
     overflow-y: auto;
     
