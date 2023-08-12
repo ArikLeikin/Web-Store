@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/user");
-const path = require('path');
+const path = require("path");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 
@@ -14,12 +14,12 @@ const transporter = nodemailer.createTransport({
 
 exports.getRegister = (req, res, next) => {
   // setting a error message to display if there is one from a previous request
-  try{
-      const registerPath = path.join(__dirname,"../public/html/register.html");
-      res.status(200).sendFile(registerPath);
-  }catch(err){
-      console.log(err);
-      res.status(500).json({message:"error loading register"});
+  try {
+    const registerPath = path.join(__dirname, "../public/html/register.html");
+    res.status(200).sendFile(registerPath);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "error loading register" });
   }
 
   // let message = req.flash("error");
@@ -38,12 +38,12 @@ exports.getRegister = (req, res, next) => {
 
 exports.getLogin = (req, res, next) => {
   // setting a error message to display if there is one from a previous request
-  try{
-    const loginPath = path.join(__dirname,"../public/html/login.html");
+  try {
+    const loginPath = path.join(__dirname, "../public/html/login.html");
     res.status(200).sendFile(loginPath);
-  }catch(err){
+  } catch (err) {
     console.log(err);
-    res.status(500).json({message:"error loading login"});
+    res.status(500).json({ message: "error loading login" });
   }
   // let message = req.flash("error"); // m.get("error")
   // if (message.length > 0) {
@@ -63,7 +63,6 @@ exports.postLogin = async (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
-
   try {
     const user = await User.findOne({ username: username });
     if (!user) {
@@ -74,6 +73,7 @@ exports.postLogin = async (req, res, next) => {
     if (doMatch) {
       req.session.isLoggedIn = true;
       req.session.user = user;
+      //req.session.permission = user.permission;
       await req.session.save();
       return res.status(200).json({ message: "Login success." });
     } else {
@@ -84,7 +84,7 @@ exports.postLogin = async (req, res, next) => {
     return res.status(500).json({ message: "An error occurred." });
   }
   // const user = await User.findOne({ username: username });
-  
+
   // if (!user) {
   //   // This is where we set the "error" to display at the next request/redirect
   //   req.flash("error", "Invalid username or password."); // m.put("error", "Invalid username or password")
@@ -151,7 +151,7 @@ exports.postRegister = async (req, res, next) => {
     });
 
     await user.save();
-    return res.status(200).json({ message: "Registration successful." });
+    return res.status(200).redirect("/login"); //if register successfull -> redirect to login screen
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "An error occurred." });
@@ -170,19 +170,19 @@ exports.postRegister = async (req, res, next) => {
 
   // //Need to check if to change amount of salt
   // const hashedPassword = await bcrypt.hash(password, 12);
-  
+
   // await user.save();
   // res.redirect("/login");
   // console.log("Registeration successful!");
 };
 
 exports.getResetPassword = async (req, res, next) => {
-  try{
-    const resetPagePath = path.join(__dirname,"../public/html/reset.html");
+  try {
+    const resetPagePath = path.join(__dirname, "../public/html/reset.html");
     res.status(200).sendFile(resetPagePath);
-  }catch(err){
+  } catch (err) {
     console.log(err);
-    res.status(500).json({message:"error loading reset page"});
+    res.status(500).json({ message: "error loading reset page" });
   }
   // let message = req.flash("error");
   // if (message.length > 0) {
@@ -201,12 +201,9 @@ exports.getResetPassword = async (req, res, next) => {
 exports.postResetPassword = async (req, res, next) => {
   crypto.randomBytes(32, async (err, buffer) => {
     if (err) {
-      return res.status(500).json({ message: "Error in creating random bytes" });
-      req.flash(
-        "error",
-        "Error trying to reset password. Please try again later."
-      );
-      return res.redirect("/reset");
+      return res
+        .status(500)
+        .json({ message: "Error in creating random bytes" });
     }
     const token = buffer.toString("hex");
     const user = await User.findOne({ email: req.body.email });
@@ -218,53 +215,36 @@ exports.postResetPassword = async (req, res, next) => {
     user.resetToken = token;
     user.resetTokenExpiration = Date.now() + 3600000; // token is valid for one hour
     await user.save();
-    res.status(200).json({message:"Sent to email link to reset password"});
+    res.status(200).json({ message: "Sent to email link to reset password" });
     transporter.sendMail({
       to: req.body.email,
       from: process.env.EMAIL_USERNAME,
       subject: "Password reset",
       html: `
         <p>You requested a password reset</p>
-        <p>Click this <a href="http://localhost:8080/reset/${token}">link</a> to set a new password.</p>
+        <p>Enter the token to the reset form at the following link to the reset password:  <a href="http://localhost:${process.env.PORT}/new-password">Reset Password</a></p>
+        <p>token: ${token} </p>
       `,
     });
   });
 };
 
 exports.getNewPassword = async (req, res, next) => {
-  
-  const user = await User.findOne({
-    resetToken: token,
-    // $gt: Date.now() -> means greater than current date
-    resetTokenExpiration: { $gt: Date.now() },
-  });
-  if (!user) {
-    console.log("error in reset password or token expired");
-    return res.status(400).json({ message: "error in reset password or token expired." });
-    //return res.redirect("/");
+  try {
+    const resetPasswordPagePath = path.join(
+      __dirname + "../public/html/new-password.html"
+    );
+    return res.status(200).sendFile(resetPasswordPagePath);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "error sending html file" });
   }
-  //const resetPasswordPagePath = path.join(__dirname,"../public/html/reset-password.html");
-  const resetPasswordPagePath = path.join(__dirname+"../public/html/reset-password.html")
-  return res.status(200).sendFile(resetPasswordPagePath);
-  // let message = req.flash("error");
-  // if (message.length > 0) {
-  //   message = message[0];
-  // } else {
-  //   message = null;
-  // }
-  // res.render("auth/new-password", {
-  //   path: "/new-password",
-  //   pageTitle: "New Password",
-  //   errorMessage: message,
-  //   userId: user._id.toString(), // pass to place inside hidden input inside form of new password
-  //   passwordToken: token, // pass to place inside hidden input inside form of new password
-  // });
 };
 
 exports.postNewPassword = async (req, res, next) => {
   const newPassword = req.body.password;
   const newPasswordConfirm = req.body.passwordConfirm;
-  if(newPassword!=newPasswordConfirm){
+  if (newPassword != newPasswordConfirm) {
     return res.status(400).json({ message: "Passwords don't match." });
   }
   //const userId = req.body.userId; // passed through hidden input inside form of new password
@@ -276,20 +256,13 @@ exports.postNewPassword = async (req, res, next) => {
   });
   if (!user) {
     console.log("error in reset password or token expired");
-    return res.status(400).json({ message: "error in reset password or token expired." });
+    return res
+      .status(400)
+      .json({ message: "error in reset password or token expired." });
     //return res.redirect("/");
   }
-  //const passwordToken = req.body.passwordToken; // passed through hidden input inside form of new password
-  let resetUser;
 
-  // const user = await User.findOne({
-  //   resetToken: passwordToken,
-  //   // $gt: Date.now() -> means greater than current date
-  //   resetTokenExpiration: { $gt: Date.now() },
-  //   _id: userId,
-  // });
-
-  resetUser = user;
+  let resetUser = user;
   const hashedPassword = await bcrypt.hash(newPassword, 12);
   resetUser.password = hashedPassword; // setup new password for the user
   resetUser.resetToken = undefined; // reseting for future possible of forget password again
