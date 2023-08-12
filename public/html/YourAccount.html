@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <script src="../js/index.js"></script>
+    <header class="header" role="banner">
+      <div class="container">
+        <nav class="navUser">
+          <ul class="navUser-section">
+            <li class="item__account">
+              <a aria-label="Account" href=""
+                ><img
+                  src="../images/white-icons/account-icon.png"
+                  alt="account"
+                  width="30"
+                />
+              </a>
+            </li>
+            <li class="item__wishlist">
+              <a aria-label="Wishlist" href="">
+                <img
+                  src="../images/white-icons/wishlist-icon.png"
+                  alt="Cart"
+                  width="30"
+                />
+              </a>
+            </li>
+            <li class="item__cart">
+              <a href="" aria-label="Cart">
+                <img
+                  src="../images/white-icons/cart-icon.png"
+                  alt="Cart"
+                  width="30"
+                />
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-logo">
+          <a href="#" data-instantload='{"page":"home"}'>
+            <div class="header-logo-image-container">
+              <img
+                class="header-logo-image"
+                src="../images/logo.png"
+                width="180"
+                height="auto"
+              />
+            </div>
+          </a>
+        </div>
+
+        <div class="quickSearch">
+          <form class="form">
+            <div class="form-container">
+              <input
+                class="form-input"
+                data-search-quick
+                name="search_query"
+                id="search_query"
+                data-error-message="Search field cannot be empty."
+                placeholder="Search the store"
+                autocomplete="off"
+              />
+              <button
+                type="submit"
+                class="button search-button"
+                id="searchButton"
+              >
+                <img
+                  src="../images/white-icons/search-icon.png"
+                  alt="Search"
+                  width="25"
+                  height="auto"
+                />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Start Navigation Bar -->
+      <nav class="navbar">
+        <ul class="menu">
+          <li>
+            <a class="hasDropdown" href="#"
+              >Categories <i class="fa fa-angle-down"></i
+            ></a>
+
+            <ul class="nav_container">
+              <div class="container__list">
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Board Games</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Science</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Games</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Riding Toys</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Puzzles</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Music&Karaoke</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Books</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Lego</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Dolls</div>
+                </div>
+                <div class="container__listItem"></div>
+                <div class="container__listItem"></div>
+
+                <div class="container__listItem">
+                  <div class="container__listItem_title bold no-underline">
+                    $10 & Below
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a class="hasDropdown" href="#"
+              >Ages<i class="fa fa-angle-down"></i
+            ></a>
+            <ul class="nav_container">
+              <div class="container__list">
+                <div class="container__listItem">
+                  <div class="container__listItem_title">0-12 MONTHS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">12-24 MONTHS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">2-4 YEARS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">5-7 YEARS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">8-99 YEARS</div>
+                </div>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Outdoor</a>
+          </li>
+          <li>
+            <a href="#">Yad2</a>
+          </li>
+          <li>
+            <a href="#">Gift Finder</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- End Navigation Bar -->
+    </header>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/YourAccount.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/YourAccount.js"></script>
+    <title>Client Personal Area</title>
+    
+</head>
+<body>
+    <main style="margin-top: 200px"></main>
+    
+        <h1>Welcome, [Client Name]!</h1>
+        <p>Username: [Username]</p>
+        <p>Email: [Client Email]</p>
+        
+        <h2>Update Email:</h2>
+        <form id="updateEmailForm">
+            <input type="email" id="newEmail" placeholder="Enter new email">
+            <button type="submit">Update Email</button>
+        </form>
+        
+        <h2> My Order History:</h2>
+        <div class="accordion mt-4" id="orderHistoryAccordion">
+            <div class="card">
+                <div class="card-header" data-toggle="collapse" data-target="#order1">
+                    Order example
+                </div>
+                <div class="card-content collapse" id="order1">
+                    <p><strong>User Information:</strong></p>
+                    <p>Name: John Doe</p>
+                    <p>Address: 123 Main Street, City</p>
+                    <p>Contact: john@example.com | 123-456-7890</p>
+        
+                    <p><strong>Products:</strong></p>
+                    <p>Product 1 x 2</p>
+                    <p>Product 2 x 3</p>
+                    <p>Product 3 x 1</p>
+        
+                    <p><strong>Total Price:</strong> $245.00</p>
+                    <p><strong>Order Date:</strong> July 15, 2023</p>
+                    <p><strong>Status:</strong> Delivered</p>
+                </div>
+            </div>
+          
+        </div>
+        
+        <h2>My Yad2 Uploads History:</h2>
+        <div class="accordion mt-4" id="yad2HistoryAccordion">
+            <div class="card">
+                <div class="card-header" data-toggle="collapse" data-target="#upload1">
+                    Yad2 Upload example
+                </div>
+                <div class="card-content collapse" id="upload1">
+                    <p><strong>Category:</strong> Card GameS</p>
+                    <p><strong>Creation Time:</strong> August 5, 2023</p>
+                    <p><strong>Title:</strong> Card game</p>
+                    <p><strong>Age Range:</strong> 3-5 years</p>
+                    <p><strong>Description:</strong> Gently used Card game,in great condition.</p>
+                    <p><strong>Price:</strong> $50.00</p>
+                    <p><strong>Serial Number:</strong> ABC12345</p>
+                </div>
+            </div>
+           
+        </div>
+    
+    
+
+</body>
+</html>
