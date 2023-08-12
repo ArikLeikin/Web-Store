@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const timestamp = Date.now();
-    cb(null, `${timestamp}-${file.originalname}`);
+    cb(null, `${file.originalname}`);
   },
 });
 
@@ -24,6 +24,8 @@ router.get("/about", shopController.getAboutPage);
 router.get("/contact", shopController.getContactPage);
 
 router.get("/product/:productId", shopController.getProduct);
+
+router.get("/product", shopController.getAllProducts);
 
 router.post("/product/:productId/", shopController.addProductToCart);
 

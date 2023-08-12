@@ -20,6 +20,15 @@ exports.getContactPage = (req, res, next) => {
   res.status(200).sendFile(contactPage);
 };
 
+exports.getAllProducts = async (req, res) => {
+  try {
+    const products = await Product.find(); // Retrieve all products from the database
+    res.status(200).json(products); // Send the products as a JSON response
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 exports.getProduct = async (req, res, next) => {
   try {
     const prodId = req.params.productId;
