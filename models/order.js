@@ -45,5 +45,5 @@ OrderSchema.path("products").validate(
   "At least one product is required."
 );
 
-const Order = mongoos.model("Order", OrderSchema);
+const Order = mongoose.model("Order", OrderSchema);
 module.exports = Order;

@@ -30,7 +30,7 @@ const ProductSchema = new Schema({
     type: String,
     required: true,
   },
-  catagory: {
+  category: {
     type: String,
     required: true,
   },
@@ -59,5 +59,5 @@ const ProductSchema = new Schema({
   },
 });
 
-const Product = mongoos.model("Product", ProductSchema);
+const Product = mongoose.model("Product", ProductSchema);
 module.exports = Product;

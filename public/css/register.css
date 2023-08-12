@@ -1,10 +1,11 @@
-
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 20px;
+<<<<<<< HEAD
   /* background-color: #fff; */
+=======
+>>>>>>> f530dd473efdabe1dbcf12cc736fd5a7cdf8970d
 }
 
 h1 {
@@ -12,7 +13,7 @@ h1 {
   color: #333;
 }
 
-form {
+.reg-form {
   max-width: 400px;
   margin: 20px auto;
   background-color: #fff;
@@ -21,15 +22,12 @@ form {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.623);
 }
 
-label {
+.reg-label {
   display: block;
   margin-top: 10px;
   color: #555;
 }
-
-input[type="text"],
-input[type="password"],
-input[type="email"] {
+.reg-input {
   width: 95%;
   padding: 8px;
   margin-top: 5px;
@@ -38,7 +36,7 @@ input[type="email"] {
   border-radius: 4px;
 }
 
-input[type="submit"] {
+.reg-sub {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
@@ -50,7 +48,7 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-input[type="submit"]:hover {
+.reg-sub:hover {
   background-color: #ffa659;
 }
 
@@ -81,7 +79,7 @@ a:hover {
   cursor: pointer;
 }
 .toggle-password.active {
-  color: blue; 
+  color: blue;
 }
 
 .error-message {

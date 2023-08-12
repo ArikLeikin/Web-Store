@@ -12,7 +12,7 @@ h1 {
   color: #333;
 }
 
-form {
+.login-form {
   max-width: 400px;
   margin: 20px auto;
   background-color: #fff;
@@ -21,14 +21,15 @@ form {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.623);
 }
 
-label {
+.login-user,
+.login-pass {
   display: block;
   margin-top: 10px;
   color: #555;
 }
 
-input[type="text"],
-input[type="password"]{
+.input-user,
+.input-pass {
   width: 95%;
   padding: 8px;
   margin-top: 5px;
@@ -37,7 +38,7 @@ input[type="password"]{
   border-radius: 4px;
 }
 
-input[type="submit"] {
+.login-btn {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
@@ -49,7 +50,7 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-input[type="submit"]:hover {
+.login-btn:hover {
   background-color: #ffa659;
 }
 
@@ -81,6 +82,5 @@ a:hover {
 }
 
 .toggle-password.active {
-  color: blue; 
+  color: blue;
 }
-

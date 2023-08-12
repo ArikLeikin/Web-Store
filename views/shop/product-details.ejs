@@ -1,0 +1,53 @@
+<%- include('../includes/head.ejs') %>
+<main style="margin-top: 200px;">
+    <title>Product Details</title>
+    <link rel="stylesheet" type="text/css" href="../css/details.css"> 
+</head>
+<body> 
+    <h1><%= product.title %></h1>
+    <div class="container">
+        <div class="content">
+            <p>Price: </p>
+            <p>ID: </p>
+            <p>Serial Number: </p>
+            <p>Explanation about the game: </p>
+        </div>
+        <div class="sidebar">
+            <div class="image-container">
+                <img src="<%= imagePath %>" alt="Product Image">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h2>Similar Products You Might Like!</h2>
+        <div class="suggested-products">
+            <div class="product">
+                <p>Product 1 name</p>
+                <a href="details.html">
+                    <img src="path_to_product1_image.jpg" alt="Product 1">
+                </a>
+            </div>
+            <div class="product">
+                <p>Product 2 name</p>
+                <a href="details.html">
+                    <img src="path_to_product2_image.jpg" alt="Product 2">
+                </a>
+                
+            </div>
+            <div class="product">
+                <p>Product 3 name</p>
+                <a href="details.html">
+                    <img src="path_to_product1_image.jpg" alt="Product 1">
+                </a>
+            </div>
+            <div class="product">
+                <p>Product 4 name</p>
+                <a href="details.html">
+                    <img src="path_to_product4_image.jpg" alt="Product 4">
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
