@@ -190,7 +190,7 @@
       </div>
 
       <div class="checkout">
-        <form class="form" autocomplete="off" id="purchase-form" novalidate>
+        <form method="POST" action="/payment" class="form"  id="purchase-form" >
           <fieldset>
             <label class="pay-label" for="phone">Phone Number</label>
             <input type="tel" id="phone" required />
