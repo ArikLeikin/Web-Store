@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
   // Use the correct ID selector '#item__account'
   $("#item__account").click(function (event) {
@@ -24,6 +25,16 @@ $(document).ready(function () {
     $("#modal-content").html(modalContent);
 
     $("#myModal").show();
+
+    $(".toggle-password").click(function() {
+      $(this).toggleClass('active');
+      var passwordInput = $(this).prev("input");
+      if (passwordInput.attr("type") === "password") {
+        passwordInput.attr("type", "text");
+      } else {
+        passwordInput.attr("type", "password");
+      }
+    });
   });
 
   $(".close").click(function () {
