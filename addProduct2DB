@@ -1,0 +1,44 @@
+const mongoose = require("mongoose");
+const Product = require("./models/product"); // Adjust the path to your product schema file
+
+mongoose.connect(
+  "mongodb+srv://playtopia:playtopia@webstore.svlylpv.mongodb.net/",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "Connection error:"));
+db.once("open", async () => {
+  console.log("Connected to the database");
+
+  // Create a new product object based on the product schema
+  const newProduct = new Product({
+    title: "Lego Tiger",
+    price: 49.99,
+    description: "This is a sample product description.",
+    image: "tiger.gif",
+    condition: "Used", // Changed to match the enum values
+    category: "Lego",
+    manufacture_date: new Date(),
+    supplier: "64d7c4679a0e734eceed2b67", // Replace with an actual supplier ObjectId
+    quantity: 100,
+    age_range: {
+      from: 3,
+      to: 8,
+    },
+  });
+
+  // Save the product to the database
+  try {
+    const savedProduct = await newProduct.save();
+    console.log("Product saved:", savedProduct);
+  } catch (error) {
+    console.error("Error saving product:", error);
+  }
+
+  // Close the database connection
+  db.close();
+});
