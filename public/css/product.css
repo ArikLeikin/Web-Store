@@ -1,58 +1,27 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 50px;
-  padding: 0;
+  margin: 0;
+  padding: 20px;
 }
 
 h1,
 h2 {
   color: #3f3e39;
-  text-align: center;
+  text-align: left;
+  font-family: math;
+  margin-top: 0;
+  padding-top: 5px;
 }
 
 /* Product Grid styles */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three columns */
-  grid-gap: 10px; /* Gap between grid items */
-  margin-bottom: 20px;
-  margin-top: 70px;
-}
-
-.product-item {
-  border: 1px solid #ddd;
-  padding: 10px;
-  width: 250px;
-  height: 250px;
-  text-align: center;
-  aspect-ratio: 1/1;
-  margin-bottom: 20px;
-}
-
-.product-item img {
-  max-width: 100%;
-  height: auto;
+  grid-template-columns: repeat(4, 1fr); /* Three columns */
+  grid-gap: 6px; /* Gap between grid items */
+  margin: 0 auto;
 }
 
 /* Product Details Modal styles */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-  background-color: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  max-width: 600px;
-}
 
 .filter-sidebar {
   float: left;
@@ -68,6 +37,12 @@ h2 {
 .filter-sidebar,
 .product-grid-section {
   display: inline-block;
+}
+.filter-sidebar {
+  width: 19%;
+}
+.product-grid-section {
+  width: 70%;
 }
 /*
 #price-range-slider {
@@ -129,7 +104,7 @@ h2 {
 .select-container {
   position: relative;
   display: flex;
-  width: 90%;
+  width: 85%;
   height: 35px;
   border-radius: 0.25em;
   overflow: hidden;
@@ -163,7 +138,7 @@ h2 {
 /* slider*/
 /* This line can be removed it was just for display on CodePen: */
 .slider-container {
-  margin-top: 125px;
+  margin-top: 25px;
 }
 
 .slider-labels {
@@ -272,10 +247,6 @@ h2 {
 .noUi-target {
   border-radius: 2px;
 }
-
-.noUi-target.noUi-connect {
-}
-
 /* Handles and cursors;
    */
 .noUi-draggable {
@@ -320,4 +291,84 @@ h2 {
 span#slider-range-value2,
 span#price-dot-max {
   float: right;
+}
+/* product item grid*/
+.product-item {
+  background-color: #fff;
+  float: left;
+  margin: 0 10px 10px 0;
+  width: 200px;
+  padding: 7px;
+  min-height: 200px;
+  display: grid;
+  border: 1px solid #dfdfdf;
+  border-radius: 4px;
+}
+/*
+.product-item {
+  text-align: center;
+  margin-bottom: 15px;
+}*/
+
+.product-img img {
+  display: block;
+  margin: auto;
+  width: 190px;
+  height: auto;
+}
+.product-title,
+.product-price {
+  font-size: 15px;
+  display: block;
+  margin: 0 0 5px 0;
+  font-family: math;
+  text-align: center;
+}
+.product-title {
+  border-bottom: 1px solid #dcdcdc;
+}
+.product-title-desc a {
+  color: black;
+  text-decoration: none;
+}
+.product-title-price {
+  font-size: 20px;
+  color: #0093dd;
+}
+/*sort select list*/
+.sort-select {
+  background-color: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+  margin: 0 0 2rem;
+  max-width: fit-content;
+}
+.sort-select-label,
+.sort-select-filter {
+  display: inline-block;
+}
+.sort-select-label {
+  color: #000;
+  font-size: 1rem;
+  line-height: 3rem;
+  margin-bottom: 0;
+  padding-left: 0.75rem;
+  margin: 0 0.375rem 0 0;
+  cursor: pointer;
+}
+.sort-select-filter {
+  font-size: 1rem;
+
+  height: 3rem;
+  color: #000;
+  border: 0;
+  padding-left: 0.1875rem;
+  width: auto;
+  background-position: right 0.5625rem top 0.6875rem;
+  background-color: #fff;
+  cursor: pointer;
+  width: auto;
+  margin-right: 6px;
 }

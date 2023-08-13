@@ -12,6 +12,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../js/index.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/details.css" />
     <script src="../js/details.js"></script>
@@ -21,7 +22,7 @@
       <div class="container">
         <nav class="navUser">
           <ul class="navUser-section">
-            <li class="item__account">
+            <li class="item__account" id="item__account">
               <a aria-label="Account" href=""
                 ><img
                   src="../images/white-icons/account-icon.png"
@@ -40,7 +41,7 @@
               </a>
             </li>
             <li class="item__cart">
-              <a href="" aria-label="Cart">
+              <a href="../html/cart.html" aria-label="Cart">
                 <img
                   src="../images/white-icons/cart-icon.png"
                   alt="Cart"
@@ -271,7 +272,7 @@
             </div>
           </section>
           <section class="add-to-cart-section">
-            <button class="btn-add-to-cart">
+            <button class="btn-ns-hot">
               <a href="#">ADD TO CART</a>
             </button>
           </section>
@@ -314,5 +315,11 @@
         </div>
       </div>
     </main>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-content"></div>
+      </div>
+    </div>
   </body>
 </html>

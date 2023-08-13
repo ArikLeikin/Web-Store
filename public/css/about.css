@@ -5,11 +5,6 @@ body {
   position: static;
 }
 
-h1 {
-  text-align: center;
-  color: coral;
-}
-
 p {
   margin-bottom: 10px;
 }

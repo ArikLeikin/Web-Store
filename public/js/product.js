@@ -1,6 +1,6 @@
-$(function () {
+/*$(function () {
   // Price range slider initialization
-  $("#price-range-slider").slider({
+   $("#price-range-slider").slider({
     range: true,
     min: 1,
     max: 300,
@@ -30,31 +30,31 @@ $(function () {
       " - $" +
       $("#price-range-slider").slider("values", 1)
   );
-});
+});*/
 
 function filterProducts() {
   const selectedAgeRange = $("#age-filter").val();
   const selectedGameType = $("#game-type-filter").val();
-  const priceMin = $("#price-range-slider").slider("values", 0);
-  const priceMax = $("#price-range-slider").slider("values", 1);
+  // const priceMin = $("#price-range-slider").slider("values", 0);
+  // const priceMax = $("#price-range-slider").slider("values", 1);
 
   // Loop through each product item
   $(".product-item").each(function () {
     const productAgeRange = $(this).data("age-range");
     const productGameType = $(this).data("game-type");
-    const productPrice = parseFloat($(this).data("price"));
+    // const productPrice = parseFloat($(this).data("price"));
 
     // Check if the product matches all selected filters
     const ageMatch =
       selectedAgeRange === "" || productAgeRange === selectedAgeRange;
     const gameTypeMatch =
       selectedGameType === "" || productGameType === selectedGameType;
-    const priceMatch =
-      isNaN(productPrice) ||
-      (productPrice >= priceMin && productPrice <= priceMax);
+    //  const priceMatch =
+    //   isNaN(productPrice) ||
+    //  (productPrice >= priceMin && productPrice <= priceMax);
 
     // Show or hide the product item based on the filter criteria
-    if (ageMatch && gameTypeMatch && priceMatch) {
+    if (ageMatch && gameTypeMatch /*&& priceMatch*/) {
       $(this).show(); // Product matches all selected filters, show the item
     } else {
       $(this).hide(); // Product does not match all selected filters, hide the item
@@ -64,7 +64,7 @@ function filterProducts() {
 
 $(function () {
   // Price range slider initialization and event handler
-  $("#price-range-slider").slider({
+  /*$("#price-range-slider").slider({
     range: true,
     min: 1,
     max: 300,
@@ -88,7 +88,7 @@ $(function () {
       filterProducts(); // Call the filter function on slider change
     },
   });
-
+*/
   // Add event listeners for age and game type filters
   $("#age-filter, #game-type-filter").on("change", function () {
     filterProducts(); // Call the filter function when age or game type filters change
@@ -118,11 +118,11 @@ $(document).ready(function () {
     prefix: "$",
   });
   noUiSlider.create(rangeSlider, {
-    start: [0, 100000],
+    start: [0, 10000],
     step: 1,
     range: {
       min: [0],
-      max: [100000],
+      max: [10000],
     },
     format: moneyFormat,
     connect: true,
@@ -137,8 +137,6 @@ $(document).ready(function () {
   });
 });
 
-// https://refreshless.com/nouislider/
-/*! nouislider - 8.3.0 - 2016-02-14 17:37:19 */
 (function (factory) {
   if (typeof define === "function" && define.amd) {
     // AMD. Register as an anonymous module.
@@ -523,18 +521,7 @@ $(document).ready(function () {
   Spectrum.prototype.convert = function (value) {
     return this.getStep(this.toStepping(value));
   };
-  /*	Every input option is tested and parsed. This'll prevent
-      endless validation in internal methods. These tests are
-      structured with an item for every option available. An
-      option can be marked as required by setting the 'r' flag.
-      The testing function is provided with three arguments:
-          - The provided value for the option;
-          - A reference to the options object;
-          - The name for the option;
-  
-      The testing function returns false when an error is detected,
-      or true when everything is OK. It can also modify the option
-      object, to make sure all values can be correctly looped elsewhere. */
+
   var defaultFormatter = {
     to: function (value) {
       return value !== undefined && value.toFixed(2);
