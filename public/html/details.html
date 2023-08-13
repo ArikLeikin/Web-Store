@@ -1,318 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Games For All|Product Details</title>
-    <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
-    <link rel="stylesheet" href="../css/index.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-    <script src="../js/index.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/details.css" />
-    <script src="../js/details.js"></script>
-  </head>
-  <body>
-    <header class="header" role="banner">
-      <div class="container">
-        <nav class="navUser">
-          <ul class="navUser-section">
-            <li class="item__account">
-              <a aria-label="Account" href=""
-                ><img
-                  src="../images/white-icons/account-icon.png"
-                  alt="account"
-                  width="30"
-                />
-              </a>
-            </li>
-            <li class="item__wishlist">
-              <a aria-label="Wishlist" href="">
-                <img
-                  src="../images/white-icons/wishlist-icon.png"
-                  alt="Cart"
-                  width="30"
-                />
-              </a>
-            </li>
-            <li class="item__cart">
-              <a href="" aria-label="Cart">
-                <img
-                  src="../images/white-icons/cart-icon.png"
-                  alt="Cart"
-                  width="30"
-                />
-              </a>
-            </li>
-          </ul>
-        </nav>
+<head>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <!-- Include Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row" id="product-details">
+      <!-- Product details will be displayed here -->
+    </div>
+  </div>
 
-        <div class="header-logo">
-          <a href="#" data-instantload='{"page":"home"}'>
-            <div class="header-logo-image-container">
-              <img
-                class="header-logo-image"
-                src="../images/logo.png"
-                width="180"
-                height="auto"
-              />
-            </div>
-          </a>
-        </div>
+  <script>
+    $(document).ready(function() {
+      // Replace this with the actual product ID you want to retrieve
+      var productId = "64d0c1872f31cd1e45478f1e";
 
-        <div class="quickSearch">
-          <form class="form">
-            <div class="form-container">
-              <input
-                class="form-input"
-                data-search-quick
-                name="search_query"
-                id="search_query"
-                data-error-message="Search field cannot be empty."
-                placeholder="Search the store"
-                autocomplete="off"
-              />
-              <button
-                type="submit"
-                class="button search-button"
-                id="searchButton"
-              >
-                <img
-                  src="../images/white-icons/search-icon.png"
-                  alt="Search"
-                  width="25"
-                  height="auto"
-                />
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <!-- Start Navigation Bar -->
-      <nav class="navbar">
-        <ul class="menu">
-          <li>
-            <a class="hasDropdown" href="#"
-              >Categories <i class="fa fa-angle-down"></i
-            ></a>
-
-            <ul class="nav_container">
-              <div class="container__list">
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Board Games</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Science</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Games</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Riding Toys</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Puzzles</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Music&Karaoke</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Books</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Lego</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Dolls</div>
-                </div>
-                <div class="container__listItem"></div>
-                <div class="container__listItem"></div>
-
-                <div class="container__listItem">
-                  <div class="container__listItem_title bold no-underline">
-                    $10 & Below
-                  </div>
-                </div>
-              </div>
-            </ul>
-          </li>
-          <li>
-            <a class="hasDropdown" href="#"
-              >Ages<i class="fa fa-angle-down"></i
-            ></a>
-            <ul class="nav_container">
-              <div class="container__list">
-                <div class="container__listItem">
-                  <div class="container__listItem_title">0-12 MONTHS</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">12-24 MONTHS</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">2-4 YEARS</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">5-7 YEARS</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">8-99 YEARS</div>
-                </div>
-              </div>
-            </ul>
-          </li>
-          <li>
-            <a href="#">Outdoor</a>
-          </li>
-          <li>
-            <a href="#">Yad2</a>
-          </li>
-          <li>
-            <a href="#">Gift Finder</a>
-          </li>
-        </ul>
-      </nav>
-      <!-- End Navigation Bar -->
-    </header>
-
-    <main style="margin-top: 150px">
-      <div class="productView">
-        <div class="productView-images">
-          <img
-            src="https://i5.walmartimages.com/asr/87ae6e55-34c8-4474-b25e-776cbc4f8d66.4e7a5736a91ebfa9e6a2ad4d90364653.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF"
-            alt=" Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces"
-            title=" Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces"
-            data-sizes="auto"
-            class="productView-image"
-          />
-          <ul class="productView-slick-slider">
-            <div class="slick-track">
-              <li
-                class="productView-imageSlick active"
-                data-slick-index="0"
-                aria-hidden="false"
-                tabindex="0"
-              >
-                <img
-                  src="https://i5.walmartimages.com/asr/87ae6e55-34c8-4474-b25e-776cbc4f8d66.4e7a5736a91ebfa9e6a2ad4d90364653.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF"
-                  alt=" LEGO DUPLO 10840 BIG FAIR"
-                  title=" LEGO DUPLO 10840 BIG FAIR"
-                  data-sizes="auto"
-                  class="productView-image-option"
-                />
-              </li>
-              <li
-                class="productView-imageSlick"
-                data-slick-index="1"
-                aria-hidden="false"
-                tabindex="0"
-              >
-                <img
-                  src="https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6783/10840__44648.1684056186.jpg?c=2"
-                  alt=" LEGO DUPLO 10840 BIG FAIR"
-                  title=" LEGO DUPLO 10840 BIG FAIR"
-                  data-sizes="auto"
-                  class="productView-image-option"
-                />
-              </li>
-              <li
-                class="productView-imageSlick"
-                data-slick-index="2"
-                aria-hidden="false"
-                tabindex="0"
-              >
-                <img
-                  src="https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6784/10840_alt2__86991.1684056189.jpg?c=2"
-                  alt=" LEGO DUPLO 10840 BIG FAIR"
-                  title=" LEGO DUPLO 10840 BIG FAIR"
-                  data-sizes="auto"
-                  class="productView-image-option"
-                />
-              </li>
-              <li
-                class="productView-imageSlick"
-                data-slick-index="3"
-                aria-hidden="false"
-                tabindex="0"
-              >
-                <img
-                  src="https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6785/10840_alt16__63979.1684056193.jpg?c=2"
-                  alt=" LEGO DUPLO 10840 BIG FAIR"
-                  title=" LEGO DUPLO 10840 BIG FAIR"
-                  data-sizes="auto"
-                  class="productView-image-option"
-                />
-              </li>
-            </div>
-          </ul>
-        </div>
-        <div class="productView-info">
-          <section class="productView-title">
-            <h4 class="productView-name">
-              Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces
-            </h4>
-            <span class="productView-price">$52.00</span>
-          </section>
-          <section class="productView-qty">
-            <div class="quantity-input">
-              <input class="minus btn" type="button" value="-" />
-              <input
-                id="text_tribulus"
-                value="1"
-                class="input-text qty text"
-                size="4"
-                id="quantity"
-              />
-              <input class="plus btn" type="button" value="+" />
-            </div>
-          </section>
-          <section class="add-to-cart-section">
-            <button class="btn-add-to-cart">
-              <a href="#">ADD TO CART</a>
-            </button>
-          </section>
-          <section class="productView-details">
-            <span class="productView-details-title">Product Description</span>
-            <span class="productView-details-description">
-              Experience the realism of WWII tanks in this new IMEX Oxford brick
-              building kit. This replica is hyper-realistic and the tight fit
-              bricks are compatible with all major brands and will work with
-              your existing collection. This is part of a new series of WWII
-              models which will soon include the release of several other tanks
-              and ships. Kit comes complete with decals. Our high-quality
-              replica is made from ABS plastic, is safe, durable, and made for
-              long term use. Box contains 100 percent compatible pieces and a
-              detailed color instruction manual. A great building set for any
-              boy, girl, teen, or adult. Help promote an interest in history,
-              real life events, and all things military with this enjoyable set.
-              The finished product is a fantastic static model for hobby
-              enthusiasts, teachers, historians, or just plain funs of military
-              tanks and ships.
-            </span>
-          </section>
-        </div>
-      </div>
-      <div class="suggested-products">
-        <section><h1>Customers Also Viewed</h1></section>
-        <div class="item">
-          <img
-            src="http://img1.exportersindia.com/product_images/bc-small/dir_55/1620613/cannondale-jekyll-1-2011-mountain-bike-309779.jpg"
-            alt="item"
-          />
-          <section class="title">
-            <span class="title-desc"
-              ><a href="#">Cannondale Jekyll 3 - Mountain</a></span
-            >
-
-            <span class="title-price"> $130</span>
-          </section>
-          <button class="add-to-cart" type="button">Add to cart</button>
-        </div>
-      </div>
-    </main>
-  </body>
+      // Send a GET request to the server
+      $.get("https://your-server.com/products/" + productId, function(data) {
+        // 'data' contains the JSON response from the server
+        // Update the product details in the HTML
+        var productDetails = `
+          <div class="col-md-6">
+            <h2>${data.title}</h2>
+            <p>Price: $${data.price}</p>
+            <p>Description: ${data.description}</p>
+            <p>Condition: ${data.condition}</p>
+            <p>Category: ${data.category}</p>
+            <p>Manufacture Date: ${data.manufacture_date}</p>
+            <p>Supplier: ${data.supplier}</p>
+            <p>Quantity: ${data.quantity}</p>
+            <p>Age Range: ${data.age_range.from} - ${data.age_range.to} years</p>
+          </div>
+          <div class="col-md-6">
+            <img src="${data.image}" alt="${data.title}" class="img-fluid">
+          </div>
+        `;
+        $("#product-details").html(productDetails);
+      });
+    });
+  </script>
+</body>
 </html>

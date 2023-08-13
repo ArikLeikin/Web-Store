@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Free Address Lookup</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<input id="address" placeholder="Enter your address" type="text">
+<button id="lookup">Lookup Address</button>
+<div id="results"></div>
+
+<script>
+    $('#lookup').click(function() {
+        var address = $('#address').val();
+        $.get(`https://nominatim.openstreetmap.org/search?format=json&q=${address}`, function(data) {
+            $('#results').empty();
+            data.forEach(function(item) {
+                $('#results').append(`<p>${item.display_name}</p>`);
+            });
+        });
+    });
+</script>
+</body>
+</html>

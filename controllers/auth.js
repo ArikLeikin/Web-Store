@@ -178,7 +178,7 @@ exports.postRegister = async (req, res, next) => {
 
 exports.getResetPassword = async (req, res, next) => {
   try {
-    const resetPagePath = path.join(__dirname, "../public/html/reset.html");
+    const resetPagePath = path.join(__dirname, "../public/html/passwordReset.html");
     res.status(200).sendFile(resetPagePath);
   } catch (err) {
     console.log(err);
@@ -209,7 +209,7 @@ exports.postResetPassword = async (req, res, next) => {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
       //req.flash("error", "No account with that email found.");
-      return res.status(400).json({ message: "Username already exists." });
+      return res.status(400).json({ message: "No account with that email found." });
       // return res.redirect("/reset");
     }
     user.resetToken = token;
