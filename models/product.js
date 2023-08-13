@@ -1,3 +1,4 @@
+const { ObjectId } = require("bson");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -29,6 +30,7 @@ const ProductSchema = new Schema({
     // new/used
     type: String,
     required: true,
+    enum: ["New", "Used"], // Changed!!!!!!!
   },
   category: {
     type: String,
@@ -39,8 +41,7 @@ const ProductSchema = new Schema({
     required: true,
   },
   supplier: {
-    type: Schema.Types.ObjectId,
-    ref: "Supplier",
+    type: ObjectId, // check if worth adding a prefix for user - U/ supplier - S
     required: true,
   },
   quantity: {
