@@ -98,3 +98,35 @@ $(document).ready(function () {
     $("#myModal").hide();
   });
 });
+
+$(document).ready(function () {
+  $(".reg-form").submit(function (event) {
+    event.preventDefault(); // Prevent the form from submitting traditionally
+
+    const formData = new FormData(this); // Gather form data
+
+    $.ajax({
+      type: "POST",
+      url: "/register", // Update with your server endpoint
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (data) {
+        // Registration successful, redirect to login page
+        window.location.href = "/login";
+      },
+      error: function (xhr) {
+        const errorMessage = JSON.parse(xhr.responseText).message;
+
+        // Display error message using SweetAlert
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: errorMessage,
+        });
+      },
+    });
+  });
+});
+
+
