@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
- 
     const minusButtons = document.querySelectorAll(".minus");
     const plusButtons = document.querySelectorAll(".plus");
     const quantityInputs = document.querySelectorAll(".input-text.qty");
@@ -23,36 +22,38 @@ document.addEventListener("DOMContentLoaded", function () {
         input.value = quantity;
       });
     });
-  
+
    
   });
 
 
-  $(document).ready(function() {
-    // Replace this with the actual product ID you want to retrieve
-    var productId = "64d0c1872f31cd1e45478f1e";
-    
 
-    // Send a GET request to the server
-    $.get("http://127.0.0.1:8080/product/" + productId, function(data) {
-      // 'data' contains the JSON response from the server
-      // Update the product details in the HTML
-      var productDetails = `
-        <div class="col-md-6">
-          <h2>${data.title}</h2>
-          <p>Price: $${data.price}</p>
-          <p>Description: ${data.description}</p>
-          <p>Condition: ${data.condition}</p>
-          <p>Category: ${data.category}</p>
-          <p>Manufacture Date: ${data.manufacture_date}</p>
-          <p>Supplier: ${data.supplier}</p>
-          <p>Quantity: ${data.quantity}</p>
-          <p>Age Range: ${data.age_range.from} - ${data.age_range.to} years</p>
-        </div>
-        <div class="col-md-6">
-          <img src="${data.image}" alt="${data.title}" class="img-fluid">
-        </div>
-      `;
-      $("#product-details").html(productDetails);
-     });
-    });
+const productId = "64d0c13b1b865c48c367f6d8"; // Replace with your product ID
+const url = `http://127.0.0.1:8080/product/${productId}`;
+
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    const productDetailsDiv = document.getElementById("product-details");
+    
+    const { title, price, description, category, condition, manufacture_date, supplier, quantity, image } = data.data;
+
+    const productHTML = `
+        <h1>${title}</h1>
+        <p><strong>Price:</strong> $${price}</p>
+        <p><strong>Description:</strong> ${description}</p>
+        <p><strong>Category:</strong> ${category}</p>
+        <p><strong>Condition:</strong> ${condition}</p>
+        <p><strong>Manufacturer Date:</strong> ${manufacture_date}</p>
+        <p><strong>Supplier:</strong> ${supplier}</p>
+        <p><strong>Quantity:</strong> ${quantity}</p>
+        <img src="${image}" alt="Product Image">
+    `;
+    
+    productDetailsDiv.innerHTML = productHTML;
+  })
+  .catch(error => {
+    console.error("Error fetching data:", error);
+  });
+
+ 
