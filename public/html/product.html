@@ -42,7 +42,7 @@
               </a>
             </li>
             <li class="item__cart">
-              <a href="" aria-label="Cart">
+              <a href="../html/cart.html" aria-label="Cart">
                 <img
                   src="../images/white-icons/cart-icon.png"
                   alt="Cart"
@@ -180,7 +180,7 @@
       </nav>
       <!-- End Navigation Bar -->
     </header>
-    <main style="margin-top: 150px">
+    <main style="margin-top: 170px">
       <!-- Filter Sidebar -->
       <div class="filter-sidebar" id="filter-sidebar">
         <h2>Filters</h2>
@@ -203,7 +203,7 @@
           </tr>
           <tr>
             <td>
-              <span class="select-label">Game Type</span>
+              <span class="select-label">Category</span>
             </td>
             <td>
               <select class="select-filter" id="game-type-filter">
@@ -223,17 +223,7 @@
               </select>
             </td>
           </tr>
-          <!--<tr>
-            <td>
-              <span class="select-label">Price</span>
-            </td>
-            <td>
-              <div id="price-range-slider"></div>
-              <div id="price-range-values"></div>
-              <div id="price-dot-min" class="price-dot"></div>
-              <div id="price-dot-max" class="price-dot"></div>
-            </td>
-          </tr>-->
+
           <tr>
             <td>
               <span class="select-label">Price</span>
@@ -264,18 +254,41 @@
               </div>
             </td>
           </tr>
+          <tr></tr>
+          <!--  <tr>
+            <td>
+              <span class="select-label">Sort By</span>
+            </td>
+            <td>
+              <select class="select-filter" id="Sortby-filter">
+                <option value="">Recommended</option>
+                <option value="book">Best selling</option>
+                <option value="board">Price high to low</option>
+                <option value="board">Price low to high</option>
+              </select>
+            </td>
+          </tr>-->
         </table>
-        <br /><br /><br /><br />
+        <!--      <br /><br /><br /><br />
         <label for="price-filter">Price:</label>
         <div id="price-range-slider"></div>
         <div id="price-range-values"></div>
         <div id="price-dot-min" class="price-dot"></div>
-        <div id="price-dot-max" class="price-dot"></div>
+        <div id="price-dot-max" class="price-dot"></div>-->
       </div>
 
       <!-- Product Grid -->
       <div class="product-grid-section">
-        <h1>"Name category" Toys</h1>
+        <h1 class="category-title" id="category-title">BOARD GAMES</h1>
+        <div class="sort-select">
+          <label class="sort-select-label" for="sort">Sort By:</label>
+          <select class="sort-select-filter" id="Sortby-filter">
+            <option value="">Recommended</option>
+            <option value="book">Best selling</option>
+            <option value="board">Price high to low</option>
+            <option value="board">Price low to high</option>
+          </select>
+        </div>
         <div class="product-grid" id="product-grid">
           <div
             class="product-item"
@@ -283,109 +296,20 @@
             data-game-type="board"
             data-price="100.00"
           >
-            <a href="details.html">
-              <img src="game1.jpg" alt="Game" />
+            <a class="product-img" href="#">
+              <img
+                src="http://img1.exportersindia.com/product_images/bc-small/dir_55/1620613/cannondale-jekyll-1-2011-mountain-bike-309779.jpg"
+                alt="item"
+              />
             </a>
-            <h3>Product Name</h3>
-            <p>Age Range: 0-12 months</p>
-            <p>Game Type: Board Game</p>
-            <p>Price: $100.00</p>
-            <!-- Additional product details, descriptions, etc. can be added here -->
-          </div>
-
-          <div
-            class="product-item"
-            data-age-range="12-24 months"
-            data-game-type="book"
-            data-price="150.00"
-          >
-            <a href="details.html">
-              <img src="game2.jpg" alt="Game " />
-            </a>
-            <h3>Product Name</h3>
-            <p>Age Range: 12-24 months</p>
-            <p>Game Type: Books</p>
-            <p>Price: $150.00</p>
-            <!-- Additional product details, descriptions, etc. can be added here -->
-          </div>
-
-          <div
-            class="product-item"
-            data-age-range="2-4"
-            data-game-type="puzzle"
-            data-price="200.00"
-          >
-            <a href="details.html">
-              <img src="game3.jpg" alt="Game" />
-            </a>
-            <h3>Product Name</h3>
-            <p>Age Range: 2-4 Years</p>
-            <p>Game Type: Puzzle Game</p>
-            <p>Price: $200.00</p>
-            <!-- Additional product details, descriptions, etc. can be added here -->
-          </div>
-
-          <div
-            class="product-item"
-            data-age-range="5-7"
-            data-game-type="dolls"
-            data-price="85.00"
-          >
-            <a href="details.html">
-              <img src="game2.jpg" alt="Game 2" />
-            </a>
-            <h3>Product Name</h3>
-            <p>Age Range: 5-7 Years</p>
-            <p>Game Type: Dolls</p>
-            <p>Price: $85.00</p>
-            <!-- Additional product details, descriptions, etc. can be added here -->
-          </div>
-
-          <div
-            class="product-item"
-            data-age-range="8-99"
-            data-game-type="Yad 2"
-            data-price="100.00"
-          >
-            <a href="details.html">
-              <img src="game2.jpg" alt="Game" />
-            </a>
-            <h3>Product Name</h3>
-            <p>Age Range: 8-99 Years</p>
-            <p>Game Type: Yad 2</p>
-            <p>Price: $100.00</p>
-            <!-- Additional product details, descriptions, etc. can be added here -->
-          </div>
-
-          <div
-            class="product-item"
-            data-age-range="5-7"
-            data-game-type="sale"
-            data-price="300.00"
-          >
-            <a href="details.html">
-              <img src="game2.jpg" alt="Game" />
-            </a>
-            <h3>Product Name</h3>
-            <p>Age Range: 0-12 months</p>
-            <p>Game Type: Yad 2</p>
-            <p>Price: $300.00</p>
-            <!-- Additional product details, descriptions, etc. can be added here -->
-          </div>
-
-          <div
-            class="product-item"
-            data-age-range="0-12 months"
-            data-game-type="board"
-            data-price="70.00"
-          >
-            <a href="details.html">
-              <img src="game1.jpg" alt="Game" />
-            </a>
-            <h3>Product Name</h3>
-            <p>Age Range: 0-12 months</p>
-            <p>Game Type: Board Game</p>
-            <p>Price: $70.00</p>
+            <section class="product-title">
+              <span class="product-title-desc"
+                ><a href="#">Cannondale Jekyll 3 - Mountain</a></span
+              >
+            </section>
+            <section class="product-price">
+              <span class="product-title-price"> $130</span>
+            </section>
           </div>
         </div>
       </div>

@@ -12,13 +12,23 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
-    <script src="../js/index.js"></script>
+    <link rel="stylesheet" href="../css/statistics.css" />
 
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"
+      integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/statistics.js"></script>
+  </head>
+  <body>
     <header class="header" role="banner">
       <div class="container">
         <nav class="navUser">
           <ul class="navUser-section">
-            <li class="item__account">
+            <li class="item__account" id="item__account">
               <a aria-label="Account" href=""
                 ><img
                   src="../images/white-icons/account-icon.png"
@@ -37,7 +47,7 @@
               </a>
             </li>
             <li class="item__cart">
-              <a href="" aria-label="Cart">
+              <a href="../html/cart.html" aria-label="Cart">
                 <img
                   src="../images/white-icons/cart-icon.png"
                   alt="Cart"
@@ -175,46 +185,40 @@
       </nav>
       <!-- End Navigation Bar -->
     </header>
-
-    <title>Data Table Example</title>
-    <link rel="stylesheet" href="../css/statistics.css" />
-    <script src="../js/statistics.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"
-      integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-  </head>
-  <body>
-    <main style="margin-top: 150px"></main>
-    <h1>Statistics about Age Ranges in Areas of Israel</h1>
-    <p>
-      This table displays statistics about different age ranges in various areas
-      of Israel for july 2023(based on Government databases website):
-    </p>
-    <p>
-      Source:
-      <a
-        href="https://data.gov.il/dataset/residents_in_israel_by_communities_and_age_groups/resource/64edd0ee-3d5d-43ce-8562-c336c24dbc1f"
-        target="_blank"
-        >Data.gov.il</a
-      >
-    </p>
-    <table id="data-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>נפה</th>
-          <th>גיל 0-5</th>
-          <th>גיל 6-18</th>
-          <th>גיל 19-45</th>
-          <th>גיל 46-55</th>
-          <th>גיל 56-64</th>
-          <th>גיל 65+</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <main style="margin-top: 150px">
+      <h1 class="page-title">Statistics about Age Ranges in Areas of Israel</h1>
+      <p>
+        This table displays statistics about different age ranges in various
+        areas of Israel for july 2023(based on Government databases website):
+        <br />
+        Source:
+        <a
+          href="https://data.gov.il/dataset/residents_in_israel_by_communities_and_age_groups/resource/64edd0ee-3d5d-43ce-8562-c336c24dbc1f"
+          target="_blank"
+          >Data.gov.il</a
+        >
+      </p>
+      <table class="data-table" id="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>נפה</th>
+            <th>גיל 0-5</th>
+            <th>גיל 6-18</th>
+            <th>גיל 19-45</th>
+            <th>גיל 46-55</th>
+            <th>גיל 56-64</th>
+            <th>גיל 65+</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </main>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-content"></div>
+      </div>
+    </div>
   </body>
 </html>

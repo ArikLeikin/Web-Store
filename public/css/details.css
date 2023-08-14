@@ -10,11 +10,9 @@ body {
   border: 1px solid #dfdfdf;
   border-radius: 4px;
   box-shadow: 0 3px 0 #dfdfdf;
-  /*position: relative;*/
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
-  width: 90%;
-  position: relative;
+  width: 85%;
   margin: 0 auto;
 }
 .productView-images,
@@ -33,11 +31,11 @@ body {
   white-space: nowrap;
 }
 .productView-image {
-  width: 400px;
+  width: 350px;
   border-radius: 3px;
 }
 .productView-name {
-  font-size: 25px;
+  font-size: 23px;
   padding: 0;
 }
 .productView-price {
@@ -46,9 +44,7 @@ body {
 }
 .productView-slick-slider {
   list-style: none;
-  margin-left: 0;
   font-size: 0;
-  margin-bottom: 1.5rem;
   white-space: nowrap;
   overflow: visible;
   float: left;
@@ -57,17 +53,8 @@ body {
   position: relative;
   overflow: hidden;
   display: block;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
-  opacity: 1;
-  width: 450px;
-  transform: translate3d(0px, 0px, 0px);
-  backface-visibility: hidden;
-  perspective: 1000px;
-  left: 0;
-  top: 0;
-  margin-left: auto;
-  margin-right: auto;
 }
 .productView-image-option {
   height: 60px;
@@ -85,11 +72,11 @@ body {
 }
 /*quantity*/
 .quantity-input {
-  margin: 5px auto;
   border: 2px solid #dddddd;
   width: fit-content;
   float: left;
   border-radius: 6px;
+  display: flex;
 }
 
 .quantity-input input {
@@ -97,9 +84,9 @@ body {
 }
 input.minus.btn,
 input.plus.btn {
-  width: 30px;
-  height: 30px;
-  font-size: 25px;
+  width: 25px;
+  height: 25px;
+  font-size: 20px;
   font-weight: bold;
   color: #696969;
   padding: 1px 6px;
@@ -116,9 +103,9 @@ input.minus.btn {
 input.input-text {
   background-color: transparent;
   border: none;
-  width: 25px;
-  height: 25px;
-  font-size: 25px;
+  width: 20px;
+  height: 20px;
+  font-size: 18px;
   text-align: center;
 }
 .btn-add-to-cart {
@@ -136,9 +123,7 @@ input.input-text {
   color: white;
   font-weight: bold;
 }
-.productView-qty {
-  margin-bottom: 10px;
-}
+
 .productView-details {
   font-size: 14px;
 }
@@ -148,6 +133,7 @@ input.input-text {
 }
 h4.productView-name {
   margin-bottom: 10px;
+  margin-top: 5px;
 }
 /*suggested-products*/
 
