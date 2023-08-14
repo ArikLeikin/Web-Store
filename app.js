@@ -20,6 +20,7 @@ app.set("views", "views");
 //setting up routes
 const shopRoutes = require("./routes/shop.routes");
 const connectRoutes = require("./routes/auth.routes");
+const errorRoutes = require("./routes/error.routes");
 
 //middleware for each request
 app.use(express.static("public"));
@@ -58,6 +59,12 @@ app.use((req, res, next) => {
 //routing request
 app.use(shopRoutes);
 app.use(connectRoutes);
+app.use(errorRoutes);
+
+//when something went wrong
+app.use((req, res, next) => {
+  res.redirect("/404");
+});
 
 mongoose
   .connect(
