@@ -28,32 +28,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-const productId = "64d0c13b1b865c48c367f6d8"; // Replace with your product ID
-const url = `http://127.0.0.1:8080/product/${productId}`;
+// const productId = "64d0c13b1b865c48c367f6d8"; // Replace with your product ID
+// const url = `http://127.0.0.1:8080/product/${productId}`;
 
-fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    const productDetailsDiv = document.getElementById("product-details");
+// fetch(url)
+//   .then(response => response.json())
+//   .then(data => {
+//     const productDetailsDiv = document.getElementById("product-details");
     
-    const { title, price, description, category, condition, manufacture_date, supplier, quantity, image } = data.data;
+//     const { title, price, description, category, condition, manufacture_date, supplier, quantity, image } = data.data;
 
-    const productHTML = `
-        <h1>${title}</h1>
-        <p><strong>Price:</strong> $${price}</p>
-        <p><strong>Description:</strong> ${description}</p>
-        <p><strong>Category:</strong> ${category}</p>
-        <p><strong>Condition:</strong> ${condition}</p>
-        <p><strong>Manufacturer Date:</strong> ${manufacture_date}</p>
-        <p><strong>Supplier:</strong> ${supplier}</p>
-        <p><strong>Quantity:</strong> ${quantity}</p>
-        <img src="${image}" alt="Product Image">
-    `;
+//     const productHTML = `
+//         <h1>${title}</h1>
+//         <p><strong>Price:</strong> $${price}</p>
+//         <p><strong>Description:</strong> ${description}</p>
+//         <p><strong>Category:</strong> ${category}</p>
+//         <p><strong>Condition:</strong> ${condition}</p>
+//         <p><strong>Manufacturer Date:</strong> ${manufacture_date}</p>
+//         <p><strong>Supplier:</strong> ${supplier}</p>
+//         <p><strong>Quantity:</strong> ${quantity}</p>
+//         <img src="${image}" alt="Product Image">
+//     `;
     
-    productDetailsDiv.innerHTML = productHTML;
-  })
-  .catch(error => {
-    console.error("Error fetching data:", error);
-  });
+//     productDetailsDiv.innerHTML = productHTML;
+//   })
+//   .catch(error => {
+//     console.error("Error fetching data:", error);
+//   });
 
  
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const imageSlickItems = document.querySelectorAll(".productView-imageSlick");
+  const mainImage = document.querySelector(".productView-image");
+
+  imageSlickItems.forEach(function (imageSlickItem, index) {
+    imageSlickItem.addEventListener("click", function () {
+      // Remove active class from all images
+      imageSlickItems.forEach(function (item) {
+        item.classList.remove("active");
+      });
+
+      // Add active class to the clicked image
+      imageSlickItem.classList.add("active");
+
+      // Update the main image source
+      const imageSource = imageSlickItem.querySelector("img").src;
+      mainImage.src = imageSource;
+    });
+  });
+});
