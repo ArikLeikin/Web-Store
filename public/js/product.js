@@ -1,107 +1,107 @@
-/*$(function () {
-  // Price range slider initialization
-   $("#price-range-slider").slider({
-    range: true,
-    min: 1,
-    max: 300,
-    values: [1, 300],
-    slide: function (event, ui) {
-      $("#price-range-values").html("$" + ui.values[0] + " - $" + ui.values[1]);
+// /*$(function () {
+//   // Price range slider initialization
+//    $("#price-range-slider").slider({
+//     range: true,
+//     min: 1,
+//     max: 300,
+//     values: [1, 300],
+//     slide: function (event, ui) {
+//       $("#price-range-values").html("$" + ui.values[0] + " - $" + ui.values[1]);
 
-      // Calculate the position of the dot
-      var sliderWidth = $("#price-range-slider").width();
-      var minValue = $("#price-range-slider").slider("option", "min");
-      var maxValue = $("#price-range-slider").slider("option", "max");
-      var leftPosition1 =
-        ((ui.values[0] - minValue) / (maxValue - minValue)) * sliderWidth;
-      var leftPosition2 =
-        ((ui.values[1] - minValue) / (maxValue - minValue)) * sliderWidth;
+//       // Calculate the position of the dot
+//       var sliderWidth = $("#price-range-slider").width();
+//       var minValue = $("#price-range-slider").slider("option", "min");
+//       var maxValue = $("#price-range-slider").slider("option", "max");
+//       var leftPosition1 =
+//         ((ui.values[0] - minValue) / (maxValue - minValue)) * sliderWidth;
+//       var leftPosition2 =
+//         ((ui.values[1] - minValue) / (maxValue - minValue)) * sliderWidth;
 
-      // Update the position of the dots
-      $("#price-dot-min").css("left", leftPosition1 + "px");
-      $("#price-dot-max").css("left", leftPosition2 + "px");
-    },
-  });
+//       // Update the position of the dots
+//       $("#price-dot-min").css("left", leftPosition1 + "px");
+//       $("#price-dot-max").css("left", leftPosition2 + "px");
+//     },
+//   });
 
-  // Update the price range values container
-  $("#price-range-values").html(
-    "$" +
-      $("#price-range-slider").slider("values", 0) +
-      " - $" +
-      $("#price-range-slider").slider("values", 1)
-  );
-});*/
+//   // Update the price range values container
+//   $("#price-range-values").html(
+//     "$" +
+//       $("#price-range-slider").slider("values", 0) +
+//       " - $" +
+//       $("#price-range-slider").slider("values", 1)
+//   );
+// });*/
 
-function filterProducts() {
-  const selectedAgeRange = $("#age-filter").val();
-  const selectedGameType = $("#game-type-filter").val();
-  // const priceMin = $("#price-range-slider").slider("values", 0);
-  // const priceMax = $("#price-range-slider").slider("values", 1);
+// function filterProducts() {
+//   const selectedAgeRange = $("#age-filter").val();
+//   const selectedGameType = $("#game-type-filter").val();
+//   // const priceMin = $("#price-range-slider").slider("values", 0);
+//   // const priceMax = $("#price-range-slider").slider("values", 1);
 
-  // Loop through each product item
-  $(".product-item").each(function () {
-    const productAgeRange = $(this).data("age-range");
-    const productGameType = $(this).data("game-type");
-    // const productPrice = parseFloat($(this).data("price"));
+//   // Loop through each product item
+//   $(".product-item").each(function () {
+//     const productAgeRange = $(this).data("age-range");
+//     const productGameType = $(this).data("game-type");
+//     // const productPrice = parseFloat($(this).data("price"));
 
-    // Check if the product matches all selected filters
-    const ageMatch =
-      selectedAgeRange === "" || productAgeRange === selectedAgeRange;
-    const gameTypeMatch =
-      selectedGameType === "" || productGameType === selectedGameType;
-    //  const priceMatch =
-    //   isNaN(productPrice) ||
-    //  (productPrice >= priceMin && productPrice <= priceMax);
+//     // Check if the product matches all selected filters
+//     const ageMatch =
+//       selectedAgeRange === "" || productAgeRange === selectedAgeRange;
+//     const gameTypeMatch =
+//       selectedGameType === "" || productGameType === selectedGameType;
+//     //  const priceMatch =
+//     //   isNaN(productPrice) ||
+//     //  (productPrice >= priceMin && productPrice <= priceMax);
 
-    // Show or hide the product item based on the filter criteria
-    if (ageMatch && gameTypeMatch /*&& priceMatch*/) {
-      $(this).show(); // Product matches all selected filters, show the item
-    } else {
-      $(this).hide(); // Product does not match all selected filters, hide the item
-    }
-  });
-}
+//     // Show or hide the product item based on the filter criteria
+//     if (ageMatch && gameTypeMatch /*&& priceMatch*/) {
+//       $(this).show(); // Product matches all selected filters, show the item
+//     } else {
+//       $(this).hide(); // Product does not match all selected filters, hide the item
+//     }
+//   });
+// }
 
-$(function () {
-  // Price range slider initialization and event handler
-  /*$("#price-range-slider").slider({
-    range: true,
-    min: 1,
-    max: 300,
-    values: [1, 300],
-    slide: function (event, ui) {
-      $("#price-range-values").html("$" + ui.values[0] + " - $" + ui.values[1]);
+// $(function () {
+//   // Price range slider initialization and event handler
+//   /*$("#price-range-slider").slider({
+//     range: true,
+//     min: 1,
+//     max: 300,
+//     values: [1, 300],
+//     slide: function (event, ui) {
+//       $("#price-range-values").html("$" + ui.values[0] + " - $" + ui.values[1]);
 
-      // Calculate the position of the dot
-      var sliderWidth = $("#price-range-slider").width();
-      var minValue = $("#price-range-slider").slider("option", "min");
-      var maxValue = $("#price-range-slider").slider("option", "max");
-      var leftPosition1 =
-        ((ui.values[0] - minValue) / (maxValue - minValue)) * sliderWidth;
-      var leftPosition2 =
-        ((ui.values[1] - minValue) / (maxValue - minValue)) * sliderWidth;
+//       // Calculate the position of the dot
+//       var sliderWidth = $("#price-range-slider").width();
+//       var minValue = $("#price-range-slider").slider("option", "min");
+//       var maxValue = $("#price-range-slider").slider("option", "max");
+//       var leftPosition1 =
+//         ((ui.values[0] - minValue) / (maxValue - minValue)) * sliderWidth;
+//       var leftPosition2 =
+//         ((ui.values[1] - minValue) / (maxValue - minValue)) * sliderWidth;
 
-      // Update the position of the dots
-      $("#price-dot-min").css("left", leftPosition1 + "px");
-      $("#price-dot-max").css("left", leftPosition2 + "px");
+//       // Update the position of the dots
+//       $("#price-dot-min").css("left", leftPosition1 + "px");
+//       $("#price-dot-max").css("left", leftPosition2 + "px");
 
-      filterProducts(); // Call the filter function on slider change
-    },
-  });
-*/
-  // Add event listeners for age and game type filters
-  $("#age-filter, #game-type-filter").on("change", function () {
-    filterProducts(); // Call the filter function when age or game type filters change
-  });
+//       filterProducts(); // Call the filter function on slider change
+//     },
+//   });
+// */
+//   // Add event listeners for age and game type filters
+//   $("#age-filter, #game-type-filter").on("change", function () {
+//     filterProducts(); // Call the filter function when age or game type filters change
+//   });
 
-  // Update the price range values container
-  $("#price-range-values").html(
-    "$" +
-      $("#price-range-slider").slider("values", 0) +
-      " - $" +
-      $("#price-range-slider").slider("values", 1)
-  );
-});
+//   // Update the price range values container
+//   $("#price-range-values").html(
+//     "$" +
+//       $("#price-range-slider").slider("values", 0) +
+//       " - $" +
+//       $("#price-range-slider").slider("values", 1)
+//   );
+// });
 
 /*   new slider nofar*/
 // Requires jQuery
@@ -2206,3 +2206,98 @@ $(document).ready(function () {
   /** @export */
   window.wNumb = wNumb;
 })();
+
+
+
+//Michal
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const ageFilter = document.getElementById("age-filter");
+  const categoryFilter = document.getElementById("game-type-filter");
+  const minPriceInput = document.querySelector("[name='min-value']");
+  const maxPriceInput = document.querySelector("[name='max-value']");
+  const productItems = document.querySelectorAll(".product-item");
+
+  // Initialize price slider and trigger filter on change
+  $("#slider-range").slider({
+    range: true,
+    min: 0,
+    max: 500, // Adjust the max value as needed
+    values: [0, 500], // Initial min and max values
+    change: function (event, ui) {
+      $("#price-dot-min").text("$" + ui.values[0]);
+      $("#price-dot-max").text("$" + ui.values[1]);
+
+      minPriceInput.value = ui.values[0];
+      maxPriceInput.value = ui.values[1];
+
+      filterProducts(); // Call your filtering function here
+    },
+  });
+
+  // Initialize the text labels
+  $("#price-dot-min").text("$" + $("#slider-range").slider("values", 0));
+  $("#price-dot-max").text("$" + $("#slider-range").slider("values", 1));
+
+  // Attach event listeners to filters
+  ageFilter.addEventListener("change", filterProducts);
+  categoryFilter.addEventListener("change", filterProducts);
+  minPriceInput.addEventListener("input", filterProducts);
+  maxPriceInput.addEventListener("input", filterProducts);
+
+  // Filtering function
+  function filterProducts() {
+    const selectedAge = ageFilter.value;
+    const selectedCategory = categoryFilter.value;
+    const minPrice = parseFloat(minPriceInput.value) || 0;
+    const maxPrice = parseFloat(maxPriceInput.value) || Number.POSITIVE_INFINITY;
+
+    productItems.forEach((productItem) => {
+      const ageRange = productItem.getAttribute("data-age-range");
+      const gameType = productItem.getAttribute("data-game-type");
+      const productPrice = parseFloat(productItem.getAttribute("data-price"));
+
+      const ageFilterMatch = selectedAge === "" || ageRange === selectedAge;
+      const categoryFilterMatch =
+        selectedCategory === "" || gameType === selectedCategory;
+      const priceFilterMatch =
+        productPrice >= minPrice && productPrice <= maxPrice;
+
+      if (ageFilterMatch && categoryFilterMatch && priceFilterMatch) {
+        productItem.style.display = "block";
+      } else {
+        productItem.style.display = "none";
+      }
+    });
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const sortSelect = document.getElementById("Sortby-filter");
+  const productItems = document.querySelectorAll(".product-item");
+  // const productGrid = document.getElementById("product-grid");
+ 
+
+  sortSelect.addEventListener("change", function () {
+    const selectedValue = sortSelect.value;
+    productItems.forEach((productItem) => {
+      const sort = productItem.getAttribute("filter-by");
+
+ 
+
+      const FilterMatch = selectedValue === "" || sort === selectedValue;
+
+
+      if (FilterMatch) {
+        productItem.style.display = "block";
+      } else {
+        productItem.style.display = "none";
+      }
+    });
+
+    
+  });
+});

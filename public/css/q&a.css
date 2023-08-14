@@ -40,3 +40,83 @@
 }
 
 */
+
+p{
+  text-align: center;
+}
+
+/* .accordion {
+  display: flex;
+  flex-direction: column;
+  margin-top: 70px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.card-header {
+  background-color: #f1f1f1;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.card-body {
+  padding: 10px;
+  display: none;
+}
+
+.card.active .card-body {
+  display: block;
+} */
+
+
+.accordion {
+  width: 100%;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-left: 15px;
+}
+.card-content {
+  display: none;
+  padding: 15px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.card-header {
+  background-color: #f6f9fc;
+  padding: 10px;
+  border-radius: 5px;
+  color: #39424e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card-header:hover {
+  background-color: #eff1f4;
+}
+
+.accordion-icon {
+  font-size: 1.2rem;
+}
+
+.card.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.card.active .card-body {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}

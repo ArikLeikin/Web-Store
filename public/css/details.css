@@ -109,6 +109,7 @@ input.input-text {
   text-align: center;
 }
 .btn-add-to-cart {
+  margin-top: 10px;
   padding: 7px 15px;
   background-color: #007bff;
   color: #fff;
@@ -187,4 +188,13 @@ h4.productView-name {
   margin: 5px 0;
   font-weight: bold;
   cursor: pointer;
+}
+
+.productView-slick-slider {
+  list-style: none;
+  font-size: 0;
+  white-space: nowrap;
+  overflow: visible;
+  float: left;
+  margin-left: -30px; 
 }
