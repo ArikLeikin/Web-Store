@@ -2,22 +2,13 @@
 <html>
   <head>
     <title>Games For All|Registration</title>
-    <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
-    <link rel="stylesheet" href="../css/index.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
+    <link rel="icon" type="image/x-icon" href="../images/favicon.png"/>
+    <link rel="stylesheet" href="../css/index.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script src="../js/index.js"></script>
-
     <link rel="stylesheet" href="../css/register.css" />
-
     <script src="../js/register.js"></script>
     <style></style>
   </head>
@@ -27,8 +18,8 @@
         <nav class="navUser">
           <ul class="navUser-section">
             <li class="item__account" id="item__account">
-              <a aria-label="Account" href=""
-                ><img
+              <a aria-label="Account" href="">
+                <img
                   src="../images/white-icons/account-icon.png"
                   alt="account"
                   width="30"
@@ -184,8 +175,9 @@
       <!-- End Navigation Bar -->
     </header>
     <main style="margin-top: 150px">
+      <h1>Registration Page</h1>
+      <form method="POST" action="/register" class="reg-form" id="registration-form">
       <h1 class="page-title">Registration Page</h1>
-
       <form method="POST" action="/register" class="reg-form">
         <label class="reg-label" for="username">Username:</label>
         <input
@@ -194,16 +186,9 @@
           id="username"
           name="username"
           required
-        /><br />
+        />
+        <br/>
         <div id="username-error"></div>
-        <label class="reg-label" for="email">Email:</label>
-        <input
-          class="reg-input"
-          type="email"
-          id="email"
-          name="email"
-          required
-        /><br />
         <div class="password-field">
           <label class="reg-label" for="password">Password:</label>
           <input
@@ -232,7 +217,78 @@
         </div>
         <br />
         <div id="password-validation-error"></div>
+
+        <label class="reg-label" for="phone-number">Phone number:</label>
+        <input
+          class="reg-input"
+          type="phoneNumber"
+          id="phoneNumber"
+          name="phoneNumber"
+          required
+        /><br />
+
+        <h2>Address</h2>
+        <label class="reg-label" for="city">City:</label>
+        <input
+          class="reg-input"
+          type="city"
+          id="city"
+          name="city"
+          
+        /><br />
+        <label class="reg-label" for="country">Country:</label>
+        <input
+          class="reg-input"
+          type="country"
+          id="country"
+          name="country"          
+        />
+        <br />
+        <label class="reg-label" for="postalCode">Postal code:</label>
+        <input
+          class="reg-input"
+          type="postalCode"
+          id="postalCode"
+          name="postalCode"
+          
+        /><br />
+        <label class="reg-label" for="street">Street:</label>
+        <input
+          class="reg-input"
+          type="street"
+          id="street"
+          name="street"
+          
+        /><br />
+        <h2>Personal Info</h2>      
+        <label class="reg-label" for="firstName">First name:</label>
+        <input
+          class="reg-input"
+          type="firstName"
+          id="firstName"
+          name="firstName"
+          required
+        /><br />
+        
+        <label class="reg-label" for="lastName">Last name:</label>
+        <input
+          class="reg-input"
+          type="lastName"
+          id="lastName"
+          name="lastName"
+          required
+        /><br />
+        
+        <label class="reg-label" for="email">Email:</label>
+        <input
+          class="reg-input"
+          type="email"
+          id="email"
+          name="email"
+          required
+        /><br />
         <input class="reg-sub" type="submit" value="Register" />
+        
       </form>
       <p>Already a member? <a href="#" id="login-link">Log in here</a></p>
     </main>
