@@ -30,7 +30,7 @@ $(document).ready(function() {
                 if (xhr.status === 200) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Login successful',
+                        title: 'Login successful!',
                         showConfirmButton: false,
                         timer: 1500
                     });

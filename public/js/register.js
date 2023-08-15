@@ -122,7 +122,7 @@ $(document).ready(function () {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: errorMessage,
+          text: "Something went wrong",
         });
       },
     });
