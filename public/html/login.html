@@ -2,21 +2,15 @@
 <html>
   <head>
     <title>Games For All|Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../js/index.js"></script>
-
     <link rel="stylesheet" href="../css/login.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <script src="../js/login.js"></script>
     <style></style>
   </head>
@@ -44,7 +38,7 @@
               </a>
             </li>
             <li class="item__cart">
-              <a href="../html/cart.html" aria-label="Cart">
+              <a href="" aria-label="Cart">
                 <img
                   src="../images/white-icons/cart-icon.png"
                   alt="Cart"
@@ -208,8 +202,10 @@
         </div>
         <br />
         <input class="login-btn" type="submit" value="Login" />
+        <div id="error-message" class="text-danger mt-2"></div>
       </form>
-      <p>Not a member? <a href="register.html">Register here</a></p>
+      <p>Not a member? <a href="register">Register here</a></p>
+      <p>Not a member? <a href="passwordReset">Reset here</a></p>
     </main>
     <div id="myModal" class="modal">
       <div class="modal-content">
