@@ -72,10 +72,6 @@ exports.postRegister = async (req, res, next) => {
   const confirmPassword = req.body.confirmPassword;
 
   try {
-    if (password != confirmPassword) {
-      return res.status(400).json({ message: "Passwords don't match." });
-    }
-
     const userDoc = await User.findOne({ username: username });
     if (userDoc) {
       return res.status(400).json({ message: "Username already exists." });
@@ -182,7 +178,6 @@ exports.postNewPassword = async (req, res, next) => {
     return res
       .status(400)
       .json({ message: "error in reset password or token expired." });
-    //return res.redirect("/");
   }
 
   let resetUser = user;
