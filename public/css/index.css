@@ -1,6 +1,3 @@
-header {
-  position: absolute !important;
-}
 body {
   box-sizing: border-box !important;
   background: #edeff0 !important;
@@ -9,6 +6,7 @@ body {
   display: flex !important;
   flex-direction: column !important;
   min-height: 100vh !important;
+  margin: 0;
 }
 .page-title {
   text-align: center;
@@ -160,8 +158,8 @@ li:hover a.hasDropdown:after {
   left: 0;
   right: 0;
   width: 100%;
-  border-bottom: 1px solid #dfdfdf;
-  position: fixed;
+  /* border-bottom: 1px solid #dfdfdf; */
+  position: absolute !important;
 }
 .container {
   padding: 30px !important;
@@ -226,6 +224,11 @@ li:hover a.hasDropdown:after {
   margin: 0;
   padding: 0.7rem 1.8rem;
   width: 100%;
+  cursor: pointer;
+}
+.form-input:active,
+.form-input:focus {
+  cursor: default;
 }
 .form-container .button {
   height: auto;
@@ -233,6 +236,7 @@ li:hover a.hasDropdown:after {
   border-radius: 0px 6px 6px 0px;
   border-width: 0;
   background-color: #ffa659;
+  cursor: pointer;
 }
 :focus-visible {
   outline: none;
@@ -410,4 +414,20 @@ login-btn:hover {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  box-sizing: border-box;
+}
+.btn-ns-hot:hover {
+  background-color: #007bff;
+  /* border: 1px solid #0066d3;*/
+  outline: solid 3px #0066d3;
+  outline-offset: -3px;
+}
+.center {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  display: inline-block;
+}
+main {
+  margin-bottom: 50px;
 }

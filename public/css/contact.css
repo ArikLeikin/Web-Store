@@ -57,23 +57,15 @@ main {
 }
 
 .con-input {
-  width: 100%;
+  width: 96%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 .con-btn {
-  background-color: coral;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
   cursor: pointer;
-}
-
-.con-btn:hover {
-  background-color: rgb(212, 71, 19);
+  float: right;
 }
 
 .address-map-container {

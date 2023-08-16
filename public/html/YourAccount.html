@@ -3,6 +3,8 @@
   <head>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/YourAccount.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -12,6 +14,13 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
     <script src="../js/index.js"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../js/YourAccount.js"></script>
+    <title>Client Personal Area</title>
+  </head>
+  <body>
     <header class="header" role="banner">
       <div class="container">
         <nav class="navUser">
@@ -167,77 +176,92 @@
             <a href="#">Yad2</a>
           </li>
           <li>
-            <a href="#">Gift Finder</a>
+            <a href="GiftFinder.html">Gift Finder</a>
           </li>
         </ul>
       </nav>
       <!-- End Navigation Bar -->
     </header>
+    <main style="margin-top: 200px">
+      <nav class="navBar navBar--sub navBar--account">
+        <ul class="navBar-section">
+          <li class="navBar-item">
+            <a class="navBar-action" href="#">Personal Details</a>
+          </li>
+          <li class="navBar-item">
+            <a class="navBar-action" href="#">Order History</a>
+          </li>
+          <li class="navBar-item is-active">
+            <a class="navBar-action" href="#">Addresses</a>
+          </li>
+          <li class="navBar-item">
+            <a class="navBar-action" href="#">Wish List</a>
+          </li>
+          <li class="navBar-item">
+            <a class="navBar-action" href="#">Account Settings</a
+            ><!--/account.php?action=account_details-->
+          </li>
+        </ul>
+      </nav>
+      <h1>Welcome, [Client Name]!</h1>
+      <p>Username: [Username]</p>
+      <p>Email: [Client Email]</p>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/YourAccount.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../js/YourAccount.js"></script>
-    <title>Client Personal Area</title>
-  </head>
-  <body>
-    <main style="margin-top: 200px"></main>
+      <h2>Update Email:</h2>
+      <form id="updateEmailForm">
+        <input type="email" id="newEmail" placeholder="Enter new email" />
+        <button type="submit">Update Email</button>
+      </form>
 
-    <h1>Welcome, [Client Name]!</h1>
-    <p>Username: [Username]</p>
-    <p>Email: [Client Email]</p>
+      <h2>My Order History:</h2>
+      <div class="accordion mt-4" id="orderHistoryAccordion">
+        <div class="card">
+          <div class="card-header" data-toggle="collapse" data-target="#order1">
+            Order example
+          </div>
+          <div class="card-content collapse" id="order1">
+            <p><strong>User Information:</strong></p>
+            <p>Name: John Doe</p>
+            <p>Address: 123 Main Street, City</p>
+            <p>Contact: john@example.com | 123-456-7890</p>
 
-    <h2>Update Email:</h2>
-    <form id="updateEmailForm">
-      <input type="email" id="newEmail" placeholder="Enter new email" />
-      <button type="submit">Update Email</button>
-    </form>
+            <p><strong>Products:</strong></p>
+            <p>Product 1 x 2</p>
+            <p>Product 2 x 3</p>
+            <p>Product 3 x 1</p>
 
-    <h2>My Order History:</h2>
-    <div class="accordion mt-4" id="orderHistoryAccordion">
-      <div class="card">
-        <div class="card-header" data-toggle="collapse" data-target="#order1">
-          Order example
-        </div>
-        <div class="card-content collapse" id="order1">
-          <p><strong>User Information:</strong></p>
-          <p>Name: John Doe</p>
-          <p>Address: 123 Main Street, City</p>
-          <p>Contact: john@example.com | 123-456-7890</p>
-
-          <p><strong>Products:</strong></p>
-          <p>Product 1 x 2</p>
-          <p>Product 2 x 3</p>
-          <p>Product 3 x 1</p>
-
-          <p><strong>Total Price:</strong> $245.00</p>
-          <p><strong>Order Date:</strong> July 15, 2023</p>
-          <p><strong>Status:</strong> Delivered</p>
-        </div>
-      </div>
-    </div>
-
-    <h2>My Yad2 Uploads History:</h2>
-    <div class="accordion mt-4" id="yad2HistoryAccordion">
-      <div class="card">
-        <div class="card-header" data-toggle="collapse" data-target="#upload1">
-          Yad2 Upload example
-        </div>
-        <div class="card-content collapse" id="upload1">
-          <p><strong>Category:</strong> Card GameS</p>
-          <p><strong>Creation Time:</strong> August 5, 2023</p>
-          <p><strong>Title:</strong> Card game</p>
-          <p><strong>Age Range:</strong> 3-5 years</p>
-          <p>
-            <strong>Description:</strong> Gently used Card game,in great
-            condition.
-          </p>
-          <p><strong>Price:</strong> $50.00</p>
-          <p><strong>Serial Number:</strong> ABC12345</p>
+            <p><strong>Total Price:</strong> $245.00</p>
+            <p><strong>Order Date:</strong> July 15, 2023</p>
+            <p><strong>Status:</strong> Delivered</p>
+          </div>
         </div>
       </div>
-    </div>
+
+      <h2>My Yad2 Uploads History:</h2>
+      <div class="accordion mt-4" id="yad2HistoryAccordion">
+        <div class="card">
+          <div
+            class="card-header"
+            data-toggle="collapse"
+            data-target="#upload1"
+          >
+            Yad2 Upload example
+          </div>
+          <div class="card-content collapse" id="upload1">
+            <p><strong>Category:</strong> Card GameS</p>
+            <p><strong>Creation Time:</strong> August 5, 2023</p>
+            <p><strong>Title:</strong> Card game</p>
+            <p><strong>Age Range:</strong> 3-5 years</p>
+            <p>
+              <strong>Description:</strong> Gently used Card game,in great
+              condition.
+            </p>
+            <p><strong>Price:</strong> $50.00</p>
+            <p><strong>Serial Number:</strong> ABC12345</p>
+          </div>
+        </div>
+      </div>
+    </main>
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
