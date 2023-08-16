@@ -1,85 +1,15 @@
-/*.t-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  overflow-y: auto;
+main {
+  margin-bottom: 100px;
 }
-
-.card {
-  margin-bottom: 10px;
-}
-
-.card-header button {
-  width: 100%;
-  text-align: left;
-  background-color: #f8f9fa;
-  color: #716156;
-  font-weight: bold;
-  border: none;
-}
-
-.card-header button:hover {
-  background-color: #e9ecef;
-}
-
-.card-body {
-  padding: 10px 15px;
-  background-color: #f8f9fa;
-}
-
-.card-body p {
-  margin: 0;
-}
-
-.card-body a {
-  color: #007bff;
-}
-
-.card-body a:hover {
-  text-decoration: underline;
-}
-
-*/
-
-p{
-  text-align: center;
-}
-
-/* .accordion {
-  display: flex;
-  flex-direction: column;
-  margin-top: 70px;
-}
-
-.card {
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-}
-
-.card-header {
-  background-color: #f1f1f1;
-  padding: 10px;
-  cursor: pointer;
-}
-
-.card-body {
-  padding: 10px;
-  display: none;
-}
-
-.card.active .card-body {
-  display: block;
-} */
-
-
 .accordion {
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .card {
   background-color: #ffffff;
-  padding: 15px;
-  margin-bottom: 15px;
+  padding: 5px;
+  margin-bottom: 10px;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   margin-left: 15px;
@@ -119,4 +49,7 @@ p{
 
 .hidden {
   display: none;
+}
+.card-body {
+  padding: 10px;
 }

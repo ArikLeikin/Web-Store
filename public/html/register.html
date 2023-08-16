@@ -4,20 +4,14 @@
     <title>Games For All|Registration</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script src="../js/index.js"></script>
-
     <link rel="stylesheet" href="../css/register.css" />
-
     <script src="../js/register.js"></script>
     <style></style>
   </head>
@@ -27,8 +21,8 @@
         <nav class="navUser">
           <ul class="navUser-section">
             <li class="item__account" id="item__account">
-              <a aria-label="Account" href=""
-                ><img
+              <a aria-label="Account" href="">
+                <img
                   src="../images/white-icons/account-icon.png"
                   alt="account"
                   width="30"
@@ -177,7 +171,7 @@
             <a href="#">Yad2</a>
           </li>
           <li>
-            <a href="#">Gift Finder</a>
+            <a href="GiftFinder.html">Gift Finder</a>
           </li>
         </ul>
       </nav>
@@ -185,56 +179,115 @@
     </header>
     <main style="margin-top: 150px">
       <h1 class="page-title">Registration Page</h1>
+      <div class="t-container">
+        <form
+          method="POST"
+          action="/register"
+          class="form"
+          id="registration-form"
+        >
+          <fieldset class="fieldset fieldset-firstName">
+            <label class="reg-label" for="firstName">First name</label>
+            <input
+              class="reg-input"
+              type="firstName"
+              id="firstName"
+              name="firstName"
+              required
+            />
+          </fieldset>
+          <fieldset class="fieldset fieldset-lastName">
+            <label class="reg-label" for="lastName">Last name</label>
+            <input
+              class="reg-input"
+              type="lastName"
+              id="lastName"
+              name="lastName"
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <label class="reg-label" for="phoneNumber">Phone number</label>
+            <input
+              class="reg-input"
+              type="phoneNumber"
+              id="phoneNumber"
+              name="phoneNumber"
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <label class="reg-label" for="email">Email</label>
+            <input
+              class="reg-input"
+              type="email"
+              id="email"
+              name="email"
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <div class="password-field">
+              <label class="reg-label" for="password">Password</label>
+              <input
+                class="reg-input"
+                type="password"
+                id="password"
+                name="password"
+                required
+              />
+              <span class="toggle-password"><i class="fas fa-eye"></i></span>
+            </div>
+            <div id="password-error"></div>
+          </fieldset>
+          <fieldset>
+            <div class="password-field">
+              <label class="reg-label" for="password-validation"
+                >Password validation</label
+              >
+              <input
+                class="reg-input"
+                type="password"
+                id="password-validation"
+                name="password-validation"
+                required
+              />
+              <span class="toggle-password"><i class="fas fa-eye"></i></span>
+            </div>
+            <br />
+            <div id="password-validation-error"></div>
+          </fieldset>
 
-      <form method="POST" action="/register" class="reg-form">
-        <label class="reg-label" for="username">Username:</label>
+          <!-- <h2>Address</h2>
+        <label class="reg-label" for="city">City:</label>
+        <input class="reg-input" type="city" id="city" name="city" /><br />
+        <label class="reg-label" for="country">Country:</label>
+        <input class="reg-input" type="country" id="country" name="country" />
+        <br />
+        <label class="reg-label" for="postalCode">Postal code:</label>
         <input
           class="reg-input"
-          type="text"
-          id="username"
-          name="username"
-          required
+          type="postalCode"
+          id="postalCode"
+          name="postalCode"
         /><br />
-        <div id="username-error"></div>
-        <label class="reg-label" for="email">Email:</label>
+        <label class="reg-label" for="street">Street:</label>
         <input
           class="reg-input"
-          type="email"
-          id="email"
-          name="email"
-          required
-        /><br />
-        <div class="password-field">
-          <label class="reg-label" for="password">Password:</label>
-          <input
-            class="reg-input"
-            type="password"
-            id="password"
-            name="password"
-            required
-          />
-          <span class="toggle-password"><i class="fas fa-eye"></i></span>
-        </div>
-        <br />
-        <div id="password-error"></div>
-        <div class="password-field">
-          <label class="reg-label" for="password-validation"
-            >Password validation:</label
-          >
-          <input
-            class="reg-input"
-            type="password"
-            id="password-validation"
-            name="password-validation"
-            required
-          />
-          <span class="toggle-password"><i class="fas fa-eye"></i></span>
-        </div>
-        <br />
-        <div id="password-validation-error"></div>
-        <input class="reg-sub" type="submit" value="Register" />
-      </form>
-      <p>Already a member? <a href="#" id="login-link">Log in here</a></p>
+          type="street"
+          id="street"
+          name="street"
+        /><br /> -->
+          <fieldset class="fieldset-footer">
+            <div class="form-footer">
+              <button class="btn-ns-hot" type="submit">Register</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <p class="center">
+        Already a member? <a href="#" id="login-link">Log in here</a>
+      </p>
     </main>
     <div id="myModal" class="modal">
       <div class="modal-content">

@@ -1,5 +1,3 @@
-
- src="https://code.jquery.com/jquery-3.6.0.min.js"
 $(document).ready(function () {
   // Use the correct ID selector '#item__account'
   $("#item__account").click(function (event) {
@@ -9,8 +7,8 @@ $(document).ready(function () {
     const urlParams = new URLSearchParams(queryString);
     const modalContent = `
  <form method="POST" action="/login" class="login-form">
-    <label  class="login-user" for="username">Username:</label>
-    <input class="input-user" type="text" id="username" name="username" required />
+    <label  class="login-user" for="username">Email:</label>
+    <input class="input-user" type="email" id="username" name="username" required />
     <br />
     <div class="password-field">
       <label class="login-pass" for="password">Password:</label>
@@ -27,8 +25,8 @@ $(document).ready(function () {
 
     $("#myModal").show();
 
-    $(".toggle-password").click(function() {
-      $(this).toggleClass('active');
+    $(".toggle-password").click(function () {
+      $(this).toggleClass("active");
       var passwordInput = $(this).prev("input");
       if (passwordInput.attr("type") === "password") {
         passwordInput.attr("type", "text");

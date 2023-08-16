@@ -74,20 +74,20 @@ $(document).ready(function () {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const modalContent = `
-   <form method="POST" action="/login" class="login-form">
-      <label  class="login-user" for="username">Username:</label>
-      <input class="input-user" type="text" id="username" name="username" required />
-      <br />
-      <div class="password-field">
-        <label class="login-pass" for="password">Password:</label>
-        <input class="input-pass" type="password" id="password" name="password" required />
-        <span class="toggle-password"><i class="fas fa-eye"></i></span>
-      </div>
-      <br />
-      <input class="login-btn" type="submit" value="Login" />
-    </form>
-    <p>Not a member? <a href="register.html">Register here</a></p>
-  `;
+    <form method="POST" action="/login" class="login-form">
+    <label  class="login-user" for="username">Email:</label>
+    <input class="input-user" type="email" id="username" name="username" required />
+    <br />
+    <div class="password-field">
+      <label class="login-pass" for="password">Password:</label>
+      <input class="input-pass" type="password" id="password" name="password" required />
+      <span class="toggle-password"><i class="fas fa-eye"></i></span>
+    </div>
+    <br />
+    <input class="login-btn" type="submit" value="Login" />
+  </form>
+  <p class="sign-note">Not a member? <a href="register.html">Register here</a></p>
+`;
 
     $("#modal-content").html(modalContent);
 
@@ -96,5 +96,35 @@ $(document).ready(function () {
 
   $(".close").click(function () {
     $("#myModal").hide();
+  });
+});
+
+$(document).ready(function () {
+  $(".reg-form").submit(function (event) {
+    event.preventDefault(); // Prevent the form from submitting traditionally
+
+    const formData = new FormData(this); // Gather form data
+
+    $.ajax({
+      type: "POST",
+      url: "/register", // Update with your server endpoint
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (data) {
+        // Registration successful, redirect to login page
+        window.location.href = "/login";
+      },
+      error: function (xhr) {
+        const errorMessage = JSON.parse(xhr.responseText).message;
+
+        // Display error message using SweetAlert
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong",
+        });
+      },
+    });
   });
 });
