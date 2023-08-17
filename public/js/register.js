@@ -10,7 +10,7 @@ $(document).ready(function () {
   });
 });
 
-$(document).ready(function () {
+/*$(document).ready(function () {
   $("form").on("submit", function (event) {
     var username = $("#username").val();
     var password = $("#password").val();
@@ -64,7 +64,7 @@ $(document).ready(function () {
       }
     }
   });
-});
+});*/
 
 $(document).ready(function () {
   // Use the correct ID selector '#item__account'
@@ -99,30 +99,57 @@ $(document).ready(function () {
   });
 });
 
-$(document).ready(function () {
-  $(".reg-form").submit(function (event) {
-    event.preventDefault(); // Prevent the form from submitting traditionally
+$(document).ready(function() {
+  $("#registration-form").submit(function(e) {
+    e.preventDefault(); // Prevent the default form submission
 
-    const formData = new FormData(this); // Gather form data
+    // Get the input values
+    var password = $("#password").val();
+    var confirmPassword = $("#password-validation").val();
 
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      Swal.fire({
+        icon: "error",
+        title: "Passwords Do Not Match",
+        text: "Please make sure the passwords match.",
+      });
+      return; // Exit the function if passwords don't match
+    }
+
+    // Check password strength
+    var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
+    if (!passwordPattern.test(password)) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Password",
+        text: "Password must contain at least 8 characters, including 1 number, 1 uppercase letter, 1 lowercase letter, and 1 special character.",
+      });
+      return; // Exit the function if password is invalid
+    }
+
+    // Serialize the form data
+    var formData = $(this).serialize();
+
+    // Make the AJAX POST request
     $.ajax({
       type: "POST",
-      url: "/register", // Update with your server endpoint
+      url: "/register", // Replace with the actual endpoint URL
       data: formData,
-      processData: false,
-      contentType: false,
-      success: function (data) {
-        // Registration successful, redirect to login page
-        window.location.href = "/login";
+      success: function(response) {
+        // Show a success message using SweetAlert2
+        Swal.fire({
+          icon: "success",
+          title: "Registration Successful",
+          text: response.message, // Assuming the response contains a "message" field
+        });
       },
-      error: function (xhr) {
-        const errorMessage = JSON.parse(xhr.responseText).message;
-
-        // Display error message using SweetAlert
+      error: function(error) {
+        // Show an error message using SweetAlert2
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "Something went wrong",
+          title: "Registration Failed",
+          text: error.responseJSON.message, // Assuming the response contains an "message" field
         });
       },
     });
