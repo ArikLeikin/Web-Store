@@ -23,11 +23,7 @@ router.get("/about", shopController.getAboutPage);
 
 router.get("/contact", shopController.getContactPage);
 
-router.get("/product/:productId", shopController.getProduct);
-
-router.get("/product", shopController.getAllProducts);
-
-router.post("/product/:productId/", shopController.addProductToCart);
+router.post("/product/:productId/addCart", shopController.addProductToCart);
 
 // router.get("/payment/cart", shopController.cartCheckout);
 
@@ -35,9 +31,14 @@ router.post("/product/:productId/", shopController.addProductToCart);
 
 // router.post("/payment/submit", shopController.processPayment);
 
-router.get("/cart", isAuth, shopController.getCart);
+router.get("/payment", shopController.getPayment);
+router.post("/payment", shopController.postPayment);
 
-router.post("/cart", isAuth, shopController.postCart);
+router.post("/cart/add", shopController.postCartAdd);
+router.post("/cart/delete", shopController.postCartDelete);
+router.post("/cart/update", shopController.updateCartProductQuantity);
+
+router.get("/cart", isAuth, shopController.getCart);
 
 router.get("/category/:category", shopController.getCategory);
 

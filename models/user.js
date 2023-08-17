@@ -10,7 +10,7 @@ const userSchema = new Schema({
     enum: permissionEnum,
     default: "user",
   },
-  username: { type: String, required: true },
+  username: { type: String, required: true }, // remove
   password: { type: String, required: true },
   email: { type: String, required: true },
   name: {
@@ -55,6 +55,16 @@ const userSchema = new Schema({
       image: { type: String, required: true }, // You can use a URL or a file path to the image
       condition: { type: String, required: true }, // E.g., "used", "like new", etc.
       // Add any other properties specific to used products that you want to store
+    },
+  ],
+  wishlist: [
+    {
+      product: {
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+        required: true,
+      },
+      quantity: { type: Number, required: true },
     },
   ],
 });
