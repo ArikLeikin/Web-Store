@@ -29,7 +29,7 @@ router.get("/creditCardUpdate", shopController.getCreditCardUpdate);
 
 router.get("/product-details", shopController.getProductDetails);
 
-router.get("/giftFinder", shopController.getGiftFinder);
+router.get("/gift-finder", shopController.getGiftFinder);
 
 router.get("/login", shopController.getLogin);
 
@@ -49,6 +49,6 @@ router.get("/uploadYad2", shopController.getUploadYad2);
 
 router.get("/Yad2Update", shopController.getYad2Update);
 
-router.get("/YourAccount", shopController.getYourAccount);
+router.get("/my-account", shopController.getYourAccount);
 
 module.exports = router;
