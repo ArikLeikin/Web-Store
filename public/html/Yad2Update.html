@@ -4,7 +4,7 @@
     <title>Games For All</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" type="text/css" href="../css/uploadYad2.css" />
+    <link rel="stylesheet" type="text/css" href="../css/Yad2Update.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <link
@@ -16,7 +16,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
     <script src="../js/index.js"></script>
-    <script src="../js/uploadYad2.js"></script>
+    <script src="../js/Yad2Update.js"></script>
   </head>
   <body>
     <header class="header" role="banner">
@@ -181,46 +181,55 @@
       <!-- End Navigation Bar -->
     </header>
     <main style="margin-top: 160px">
-      <h1 class="page-title">Upload a Yad 2 Product</h1>
+      <h1 class="page-title">Update a Yad 2 Product</h1>
 
-      <!-- multistep form -->
-      <form class="msform" id="msform">
-        <!-- progressbar -->
-        <ul id="progressbar">
-          <li class="active">Product information</li>
-          <li>Your Details</li>
-          <li>Summary</li>
-        </ul>
-        <!-- fieldsets -->
-        <fieldset>
-          <h2 class="fs-title">Product information</h2>
-          <h3 class="fs-subtitle">step 1</h3>
-          <input
-            type="text"
-            id="productName"
-            name="productName"
-            placeholder="Product Name"
-            required
-          />
-          <input
-            class="half-input"
-            type="text"
-            id="price"
-            name="price"
-            required
-            placeholder="Price"
-          />
-          <select
+
+      <div class="t-container">
+        <form
+          method="POST"
+          action="/updateYad2"
+          class="form"
+          id="UpdateYad2-form"
+        >
+        <fieldset class="fieldset fieldset-productName">
+            <label class="reg-label" for="productName">Product name</label>
+            <input
+              class="reg-input"
+              type="productName"
+              id="productName"
+              name="productName"
+              required
+            />
+          </fieldset>
+          <fieldset class="fieldset fieldset-price">
+            <label class="reg-label" for="price">Price</label>
+            <input
+              class="half-input"
+              type="price"
+              id="price"
+              name="price"
+              required
+            />
+            <div id="price-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset fieldset-condition">
+            <label class="reg-label" for="condition">Condition</label>
+            <select
             class="half-input form-select"
             id="condition"
             name="condition"
             required
           >
-            <option value="" disabled selected hidden>Condition</option>
             <option value="new">New</option>
             <option value="used">Used</option>
           </select>
-          <input
+            
+          </fieldset>
+
+          <fieldset>
+            <fieldset class="fieldset fieldset-image">
+                <label class="reg-label" for="image">Image</label>
+            <input
             type="file"
             id="productPhoto"
             name="productPhoto"
@@ -228,146 +237,37 @@
             placeholder="Image"
             required
           />
-          <input
-            type="button"
-            name="next"
-            class="next action-button"
-            value="Next"
-          />
-        </fieldset>
-        <fieldset>
-          <h2 class="fs-title">Your Personal Details</h2>
-          <h3 class="fs-subtitle">step 2</h3>
-
-          <input
-            type="text"
-            id="bankAccount"
-            name="bankAccount"
-            placeholder="Bank Account Number"
-            required
-          />
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email Address"
-            required
-          />
-          <input
-            type="button"
-            name="previous"
-            class="previous action-button"
-            value="Previous"
-          />
-          <input
-            type="button"
-            name="next"
-            class="next action-button"
-            value="Next"
-          />
-        </fieldset>
-        <fieldset>
-          <h2 class="fs-title">Summary</h2>
-          <h3 class="fs-subtitle">step 3</h3>
-          <p class="summary-form">
-            After submission, our team will then review your submission, and
-            upon approval, your product will be made available for purchase by
-            our customers.<br />
-            Thank you for partnering with PLAYTOPIA, and we look forward to
-            showcasing your amazing product to the world!
-          </p>
-          <input
-            type="button"
-            name="previous"
-            class="previous action-button"
-            value="Previous"
-          />
-          <a href="#" class="submit action-button" target="_top">Submit</a>
-        </fieldset>
-      </form>
-      <!--  <p class="intro">
-        Welcome to our game selling platform!<br />
-        Here, you can upload your own games and toys to reach a wide audience of
-        kids and parents.<br />
-        To get started, please fill out the form below with all the necessary
-        details about your product.<br />
-        Make sure to provide accurate information and an attractive photo of the
-        item.<br />
-        We have various categories and age ranges to cater to different
-        interests and developmental stages.<br />
-        Once you submit the form, your product will be available for potential
-        buyers to explore and purchase.<br />
-        Don't forget to include your bank account and email, so we can transfer
-        your earnings and contact you if needed.<br />
-        Happy selling!
-      </p>
-
-      <form
-        action="your_server_upload_handler.php"
-        method="post"
-        enctype="multipart/form-data"
-      >
-        <label for="productName">Product Name:</label>
-        <input type="text" id="productName" name="productName" required /><br />
-
-        <label for="category">Category:</label>
-        <select id="category" name="category" required>
-          <option value="board">Board Games</option>
-          <option value="riding">Riding Toys</option>
-          <option value="book">Books</option>
-          <option value="science">Science</option>
-          <option value="puzzle">Puzzle Games</option>
-          <option value="lego">Lego</option>
-          <option value="games">Games</option>
-          <option value="music & karaoke">Music & Karaoke</option>
-          <option value="dolls">Dolls</option>
-          <option value="10$ & bellow">10$ & Bellow</option>
-          <option value="Yad 2">Yad 2</option></select
-        ><br />
-
-        <label for="productId">Product ID:</label>
-        <input type="text" id="productId" name="productId" required /><br />
-
-        <label for="ages">Appropriate Ages:</label>
-        <select id="ages" name="ages" required>
-          <option value="0-12 months">0-12 months</option>
-          <option value="12-24 months">12-24 months</option>
-          <option value="2-4">2-4 Years</option>
-          <option value="5-7">5-7 Years</option>
-          <option value="8-99">8-99 Years</option></select
-        ><br />
-
-        <label for="productPhoto">Product Photo:</label>
-        <input
-          type="file"
-          id="productPhoto"
-          name="productPhoto"
-          accept="image/*"
-          required
-        /><br />
-
-        <label for="price">Price:</label>
-        <input type="text" id="price" name="price" required /><br />
-        <div id="price-error" class="error-message"></div>
-
-        <label for="condition">Condition:</label>
-        <select id="condition" name="condition" required>
-          <option value="new">New</option>
-          <option value="used">Used</option>
-          <option value="refurbished">Refurbished</option></select
-        ><br />
-
-        <label for="bankAccount">Bank Account:</label>
-        <input type="text" id="bankAccount" name="bankAccount" required /><br />
-        <div id="bankAccount-error" class="error-message"></div>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required /><br />
-
-        <input type="submit" value="Upload Product" />
-      </form>
-      -->
+          </fieldset>
+          <fieldset>
+              <label class="reg-label" for="bankAccount">Bank Account Number</label>
+              <input
+                class="reg-input"
+                type="bankAccount"
+                id="bankAccount"
+                name="bankAccount"
+                required
+              />
+              <div id="bankAccount-error" class="error-message"></div>
+          </fieldset>
+          <fieldset>
+            <label class="reg-label" for="email">Email</label>
+            <input
+              class="reg-input"
+              type="email"
+              id="email"
+              name="email"
+              required
+            />
+          </fieldset>
+          <fieldset class="fieldset-footer">
+            <div class="form-footer">
+              <button class="btn-ns-hot" type="submit">Update</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
     </main>
+
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>

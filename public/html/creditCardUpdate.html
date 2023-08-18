@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Games For All|Purchase</title>
+    <title>Games For All|Credit Details Update</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/payment.css" />
+    <link rel="stylesheet" href="../css/creditCardUpdate.css" />
 
     <link
       rel="stylesheet"
@@ -18,7 +18,7 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../js/payment.js"></script>
+    <script src="../js/creditCardUpdate.js"></script>
     <script src="../js/index.js"></script>
   </head>
   <body>
@@ -185,40 +185,10 @@
     </header>
 
     <main style="margin-top: 150px">
-      <div class="centered-link">
-        <a href="cart.html">Go back to cart...</a>
-      </div>
-
+        <p class="bold-text">Update your Credit Catd details and save it for your next purchases:</p>
       <div class="checkout">
-        <form method="POST" action="/payment" class="form" id="purchase-form">
-          <fieldset>
-            <label class="pay-label" for="phone">Phone Number</label>
-            <input type="tel" id="phone" required />
-            <div id="phone-error" class="error-message"></div>
-          </fieldset>
-          <fieldset>
-            <label class="pay-label" for="city">City</label>
-            <input type="text" id="city" required />
-            <div id="city-error" class="error-message"></div>
-          </fieldset>
-          <fieldset class="fieldset-street">
-            <label class="pay-label" for="street">Street</label>
-            <input type="text" id="street" required />
-            <div id="street-error" class="error-message"></div>
-          </fieldset>
-          <fieldset class="fieldset-streetNo">
-            <label class="pay-label" for="street_number">Street No.</label>
-            <input type="number" id="street_number" required min="1" />
-            <div id="street-number-error" class="error-message"></div>
-          </fieldset>
-          <fieldset>
-
-            <label class="custom-checkbox">
-              Save address for future purchases
-              <input type="checkbox" />
-              <span class="checkmark"></span>
-            </label>
-
+        <form method="POST" action="/creditcard" class="form" id="creditCardUpdate-form">
+            <fieldset>
             <label class="pay-label" for="card-number">Card Number</label>
             <input
               type="num"
@@ -249,9 +219,7 @@
               maxlength="4"
               required
             />
-
           </fieldset>
-
           <div id="card-number-error" class="error-message"></div>
           <fieldset>
             <label class="pay-label" for="card-holder">Card holder</label>
@@ -300,18 +268,11 @@
             <input type="num" id="card-ccv" maxlength="3" required />
             <div id="cvv-number-error" class="error-message"></div>
           </fieldset>
-          <label class="custom-checkbox">
-            Save Credit Card details for future purchases
-            <input type="checkbox" />
-            <span class="checkmark"></span>
-          </label>
-
+          
           <fieldset class="fieldset-footer">
             <div class="form-footer">
-              <p id="total-price">Total(USD) $0</p>
-
-              <button class="btn-ns-hot" type="submit" id="purchase-button">
-                Purchase
+              <button class="btn-ns-hot" type="submit" id="update-button">
+                Update
               </button>
             </div>
           </fieldset>

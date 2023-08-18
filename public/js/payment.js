@@ -81,6 +81,7 @@ $(document).ready(function () {
       const street = $("#street").val();
       const streetNumber = $("#street_number").val();
       const cardHolder = $("#card-holder").val();
+      const lastFourDigits= $("#card-number-3").val();
       const expirationMonth = $("#card-expiration-month").val();
       const expirationYear = $("#card-expiration-year").val();
 
@@ -103,6 +104,7 @@ $(document).ready(function () {
           <p><strong>Street:</strong> ${street}</p>
           <p><strong>Street Number:</strong> ${streetNumber}</p>
           <p><strong>Card Holder:</strong> ${cardHolder}</p>
+          <p><strong>Last Four Digits of Credit Card:</strong> ${lastFourDigits}</p>
           <p><strong>Expiration Date:</strong> ${expirationMonth}/${expirationYear}</p>
           <p><strong>Total Amount:</strong> $${cartTotal}</p>
           
@@ -140,7 +142,7 @@ function validateCardNumber(cardNumber) {
 }
 
 function validateCardHolder(cardHolder) {
-  return /^[A-Za-z\s]+$/.test(cardHolder);
+  return cardHolder.length === 9 && /^[0-9]+$/.test(cardHolder);
 }
 
 function validateExpirationDate(expirationMonth, expirationYear) {

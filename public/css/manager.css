@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+main {
+    padding: 2rem;
+}
+h1{
+    text-align: center;
+    color:chocolate;
+}
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+
+#user-management,
+#content-management {
+    margin-bottom: 2rem;
+}
+
+#user-management h2,
+#content-management h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+
+#supplier-management {
+    margin-bottom: 2rem;
+}
+
+#supplier-management h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+
+/* table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+td button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+} */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  .add-user-form {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+  }
+  
+  .add-user-form h2 {
+    margin-bottom: 10px;
+  }

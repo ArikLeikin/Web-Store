@@ -1,0 +1,175 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .prc-btn {
+    font-size: 18px;
+    padding: 7px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+  
+    cursor: pointer;
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: -10%;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+  
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .modal-content h2 {
+    text-align: center;
+  }
+  
+  .prc-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  #total-price {
+    font-weight: bold;
+  }
+
+  .form fieldset .select select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: absolute;
+    padding: 0;
+    border: none;
+    width: 100%;
+    outline: none !important;
+    top: 6px;
+    left: 6px;
+    background: none;
+  }
+  .form fieldset input.input-cart-number,
+  .form fieldset .select.input-cart-number {
+    width: 15%;
+    display: inline-block;
+    margin-right: 8px;
+  }
+  
+  .form fieldset input,
+  .form fieldset .select {
+    width: 100%;
+    height: 20px;
+    color: #333333;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    outline: none !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .form fieldset.fieldset-expiration .select {
+    width: 84px;
+    margin-right: 12px;
+    float: left;
+  }
+  .form fieldset .select {
+    position: relative;
+  }
+  .form fieldset .select::after {
+    content: "";
+    border-top: 8px solid #222;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    position: absolute;
+    z-index: 2;
+    top: 14px;
+    right: 10px;
+    pointer-events: none;
+  }
+  .form fieldset {
+    border: none;
+    padding: 0;
+    padding: 10px 0;
+  
+    clear: both;
+  }
+  
+  .pay-label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: hsla(0, 0, 0, 0.6);
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .checkout {
+    margin: 0 auto;
+    /*  position: relative;*/
+    width: 460px;
+    background: white;
+    padding: 30px 30px 20px 10px;
+    box-shadow: 0 10px 40px hsla(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  .form fieldset.fieldset-ccv {
+    clear: none;
+    float: right;
+    width: 86px;
+  }
+  .form fieldset.fieldset-expiration {
+    float: left;
+    width: 60%;
+  }
+
+  .form-footer {
+    float: right;
+  }
+  
+  
+  p {
+    text-align: center;
+  }
+
+  .bold-text {
+    font-weight: bold;
+  }
+
+  
+  .modal {
+    position: fixed; /* Positioning and size */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.5); /* color */
+    display: none; 
+  }
+  
+  .modal-content {
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    height: 200px;
+    width: 500px;
+    background-color: white;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+  }
+  

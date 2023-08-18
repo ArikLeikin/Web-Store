@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Games For All|Purchase</title>
+    <title>Games For All|Adress Update</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/payment.css" />
+    <link rel="stylesheet" href="../css/adressUpdate.css" />
 
     <link
       rel="stylesheet"
@@ -18,7 +18,7 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../js/payment.js"></script>
+    <script src="../js/adressUpdate.js"></script>
     <script src="../js/index.js"></script>
   </head>
   <body>
@@ -185,17 +185,10 @@
     </header>
 
     <main style="margin-top: 150px">
-      <div class="centered-link">
-        <a href="cart.html">Go back to cart...</a>
-      </div>
-
+        <p class="bold-text">Update your delivery address and save it for your next purchases:</p>
       <div class="checkout">
-        <form method="POST" action="/payment" class="form" id="purchase-form">
-          <fieldset>
-            <label class="pay-label" for="phone">Phone Number</label>
-            <input type="tel" id="phone" required />
-            <div id="phone-error" class="error-message"></div>
-          </fieldset>
+        <form method="POST" action="/address" class="form" id="addressUpdate-form">
+          
           <fieldset>
             <label class="pay-label" for="city">City</label>
             <input type="text" id="city" required />
@@ -210,108 +203,12 @@
             <label class="pay-label" for="street_number">Street No.</label>
             <input type="number" id="street_number" required min="1" />
             <div id="street-number-error" class="error-message"></div>
-          </fieldset>
-          <fieldset>
-
-            <label class="custom-checkbox">
-              Save address for future purchases
-              <input type="checkbox" />
-              <span class="checkmark"></span>
-            </label>
-
-            <label class="pay-label" for="card-number">Card Number</label>
-            <input
-              type="num"
-              id="card-number"
-              class="input-cart-number"
-              maxlength="4"
-              required
-            />
-            <input
-              type="num"
-              id="card-number-1"
-              class="input-cart-number"
-              maxlength="4"
-            />
-            <input
-              type="num"
-              id="card-number-2"
-              class="input-cart-number"
-              max="9999"
-              maxlength="4"
-              required
-            />
-            <input
-              type="num"
-              id="card-number-3"
-              class="input-cart-number"
-              max="9999"
-              maxlength="4"
-              required
-            />
-
-          </fieldset>
-
-          <div id="card-number-error" class="error-message"></div>
-          <fieldset>
-            <label class="pay-label" for="card-holder">Card holder</label>
-            <input type="text" id="card-holder" required />
-            <div id="card-holder-error" class="error-message"></div>
-          </fieldset>
-          <fieldset class="fieldset-expiration">
-            <label class="pay-label" for="card-expiration-month"
-              >Expiration date</label
-            >
-            <div class="select">
-              <select id="card-expiration-month" required>
-                <option></option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>
-                <option>08</option>
-                <option>09</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-              </select>
-            </div>
-            <div id="expiration-month-error" class="error-message"></div>
-            <div class="select">
-              <select id="card-expiration-year" required>
-                <option></option>
-                <option>2023</option>
-                <option>2024</option>
-                <option>2025</option>
-                <option>2026</option>
-                <option>2027</option>
-                <option>2028</option>
-                <option>2029</option>
-                <option>2030</option>
-              </select>
-            </div>
-            <div id="expiration-year-error" class="error-message"></div>
-          </fieldset>
-          <fieldset class="fieldset-ccv">
-            <label class="pay-label" for="card-ccv">CCV</label>
-            <input type="num" id="card-ccv" maxlength="3" required />
-            <div id="cvv-number-error" class="error-message"></div>
-          </fieldset>
-          <label class="custom-checkbox">
-            Save Credit Card details for future purchases
-            <input type="checkbox" />
-            <span class="checkmark"></span>
-          </label>
-
+          </fieldset> 
+          
           <fieldset class="fieldset-footer">
             <div class="form-footer">
-              <p id="total-price">Total(USD) $0</p>
-
-              <button class="btn-ns-hot" type="submit" id="purchase-button">
-                Purchase
+              <button class="btn-ns-hot" type="submit" id="update-button">
+                Update
               </button>
             </div>
           </fieldset>
