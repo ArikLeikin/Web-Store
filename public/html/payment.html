@@ -212,6 +212,13 @@
             <div id="street-number-error" class="error-message"></div>
           </fieldset>
           <fieldset>
+
+            <label class="custom-checkbox">
+              Save address for future purchases
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+
             <label class="pay-label" for="card-number">Card Number</label>
             <input
               type="num"
@@ -242,7 +249,9 @@
               maxlength="4"
               required
             />
+
           </fieldset>
+
           <div id="card-number-error" class="error-message"></div>
           <fieldset>
             <label class="pay-label" for="card-holder">Card holder</label>
@@ -291,6 +300,12 @@
             <input type="num" id="card-ccv" maxlength="3" required />
             <div id="cvv-number-error" class="error-message"></div>
           </fieldset>
+          <label class="custom-checkbox">
+            Save Credit Card details for future purchases
+            <input type="checkbox" />
+            <span class="checkmark"></span>
+          </label>
+
           <fieldset class="fieldset-footer">
             <div class="form-footer">
               <p id="total-price">Total(USD) $0</p>
