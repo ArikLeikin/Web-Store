@@ -65,7 +65,7 @@ exports.getProductDetails = (req, res, next) => {
 };
 
 exports.getGiftFinder = (req, res, next) => {
-  const file = path.join(__dirname, "../public/html/GiftFinder.html");
+  const file = path.join(__dirname, "../public/html/gift-finder.html");
   res.sendFile(file, (err) => {
     if (err) {
       console.error(err);
@@ -165,7 +165,7 @@ exports.getYad2Update = (req, res, next) => {
 };
 
 exports.getYourAccount = (req, res, next) => {
-  const file = path.join(__dirname, "../public/html/YourAccount.html");
+  const file = path.join(__dirname, "../public/html/my-account.html");
   res.sendFile(file, (err) => {
     if (err) {
       console.error(err);
