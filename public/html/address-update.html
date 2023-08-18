@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Gift Finder</title>
+    <title>Games For All|Adress Update</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/GiftFinder.css" />
+    <link rel="stylesheet" href="../css/address-update.css" />
 
     <link
       rel="stylesheet"
@@ -16,12 +16,11 @@
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="../js/index.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../js/GiftFinder.js"></script>
+    <script src="../js/address-update.js"></script>
+    <script src="../js/index.js"></script>
   </head>
-
   <body>
     <header class="header" role="banner">
       <div class="container">
@@ -175,7 +174,7 @@
             <a href="#">Outdoor</a>
           </li>
           <li>
-            <a href="">Yad2</a>
+            <a href="#">Yad2</a>
           </li>
           <li>
             <a href="GiftFinder.html">Gift Finder</a>
@@ -184,52 +183,45 @@
       </nav>
       <!-- End Navigation Bar -->
     </header>
-    <main style="padding-top: 200px">
-      <img class="gift-finder-logo" src="../images/gift-finder-logo.png" />
 
-      <div class="t-container">
-        <label class="gift-finder-label"
-          >I would like a gift for someone aged between:</label
+    <main style="margin-top: 150px">
+      <p class="bold-text">
+        Update your delivery address and save it for your next purchases:
+      </p>
+      <div class="checkout">
+        <form
+          method="POST"
+          action="/address"
+          class="form"
+          id="addressUpdate-form"
         >
-        <select class="form-select" id="age" name="age" required>
-          <option value="" disabled selected hidden>Please select age</option>
-          <option value="0-12 months">0-12 months</option>
-          <option value="12-24 months">12-24 months</option>
-          <option value="2-4">2-4 Years</option>
-          <option value="5-7">5-7 Years</option>
-          <option value="8-99">8-99 Years</option>
-        </select>
+          <fieldset>
+            <label class="pay-label" for="city">City</label>
+            <input type="text" id="city" required />
+            <div id="city-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset-street">
+            <label class="pay-label" for="street">Street</label>
+            <input type="text" id="street" required />
+            <div id="street-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset-streetNo">
+            <label class="pay-label" for="street_number">Street No.</label>
+            <input type="number" id="street_number" required min="1" />
+            <div id="street-number-error" class="error-message"></div>
+          </fieldset>
 
-        <label class="gift-finder-label">I would like to spend up to:</label>
-
-        <div class="price-options" id="price-options">
-          <div class="price-option active" data-price="0">$20</div>
-          <div class="price-option" data-price="50">$50</div>
-          <div class="price-option" data-price="100">$70</div>
-          <div class="price-option" data-price="500">$100+</div>
-        </div>
-
-        <label class="gift-finder-label">I know he prefers:</label>
-        <select class="form-select" id="category">
-          <option value="">All</option>
-          <option value="board">Board Games</option>
-          <option value="riding">Riding Toys</option>
-          <option value="book">Books</option>
-          <option value="science">Science</option>
-          <option value="puzzle">Puzzle Games</option>
-          <option value="lego">Lego</option>
-          <option value="games">Games</option>
-          <option value="music-karaoke">Music & Karaoke</option>
-          <option value="dolls">Dolls</option>
-        </select>
-
-        <button class="btn-ns-hot stretch" id="searchbutton">
-          Find Your Gift
-        </button>
-
-        <div id="results"></div>
+          <fieldset class="fieldset-footer">
+            <div class="form-footer">
+              <button class="btn-ns-hot" type="submit" id="update-button">
+                Update
+              </button>
+            </div>
+          </fieldset>
+        </form>
       </div>
     </main>
+
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
