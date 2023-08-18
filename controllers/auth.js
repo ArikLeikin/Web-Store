@@ -150,9 +150,7 @@ exports.postResetPassword = async (req, res, next) => {
 
 exports.getNewPassword = async (req, res, next) => {
   try {
-    const resetPasswordPagePath = path.join(
-      __dirname + "../public/html/new-password.html"
-    );
+    const resetPasswordPagePath = path.join(__dirname ,"../public/html/new-password.html");
     return res.status(200).sendFile(resetPasswordPagePath);
   } catch (err) {
     console.log(err);
