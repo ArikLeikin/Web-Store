@@ -3,6 +3,7 @@ const Supplier = require("../models/supplier");
 const Order = require("../models/order");
 const Product = require("../models/product");
 const User = require("../models/user");
+const StoreLocations = require("../models/store-locations");
 
 module.exports = {
   getUser: async (req, res) => {
@@ -166,6 +167,19 @@ module.exports = {
           message: "Product not found",
         });
       }
+    } catch (err) {
+      res.status(500).json({
+        message: "Internal server error",
+      });
+    }
+  },
+
+  getSotreLocations: async (req, res, next) => {
+    try {
+      const locations = StoreLocations.find();
+      res.status(200).json({
+        data: locations,
+      });
     } catch (err) {
       res.status(500).json({
         message: "Internal server error",
