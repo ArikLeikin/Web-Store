@@ -1,6 +1,8 @@
 main {
   background: url("../images/gift-finder-back.png") no-repeat;
   background-size: cover;
+  margin-bottom: 0;
+  padding-bottom: 100px;
 }
 
 .result {
