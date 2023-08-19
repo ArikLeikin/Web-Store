@@ -35,13 +35,13 @@ exports.getLogin = (req, res, next) => {
 };
 
 exports.postLogin = async (req, res, next) => {
-  const username = req.body.username;
+  const email = req.body.email;
   const password = req.body.password;
 
   try {
-    const user = await User.findOne({ username: username });
+    const user = await User.findOne({ email: email });
     if (!user) {
-      return res.status(401).json({ message: "Invalid username or password." });
+      return res.status(401).json({ message: "Invalid email or password." });
     }
     const doMatch = await bcrypt.compare(password, user.password);
     if (doMatch) {
@@ -67,19 +67,19 @@ exports.postLogout = (req, res, next) => {
 };
 
 exports.postRegister = async (req, res, next) => {
-  const username = req.body.username;
+  const email = req.body.email;
   const password = req.body.password;
-  const confirmPassword = req.body.confirmPassword;
+  //const confirmPassword = req.body.confirmPassword;
 
   try {
-    const userDoc = await User.findOne({ username: username });
+    const userDoc = await User.findOne({ email: email });
     if (userDoc) {
-      return res.status(400).json({ message: "Username already exists." });
+      return res.status(400).json({ message: "Email already exists." });
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
     const user = new User({
-      username: username,
+      email: req.body.email,
       password: hashedPassword,
       cart: { items: [] }, // Initialize the cart as an empty array
       phoneNumber: req.body.phoneNumber,
@@ -96,7 +96,6 @@ exports.postRegister = async (req, res, next) => {
       },
       usedProducts: [], // Initialize usedProducts as an empty array
       orderHistory: [],
-      email: req.body.email,
     });
 
     await user.save();
@@ -128,7 +127,7 @@ exports.postResetPassword = async (req, res, next) => {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
       //req.flash("error", "No account with that email found.");
-      return res.status(400).json({ message: "Username already exists." });
+      return res.status(400).json({ message: "Email already exists." });
       // return res.redirect("/reset");
     }
     user.resetToken = token;
@@ -150,7 +149,10 @@ exports.postResetPassword = async (req, res, next) => {
 
 exports.getNewPassword = async (req, res, next) => {
   try {
-    const resetPasswordPagePath = path.join(__dirname ,"../public/html/new-password.html");
+    const resetPasswordPagePath = path.join(
+      __dirname,
+      "../public/html/new-password.html"
+    );
     return res.status(200).sendFile(resetPasswordPagePath);
   } catch (err) {
     console.log(err);
