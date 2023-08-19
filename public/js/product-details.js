@@ -63,7 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const productId = "64d0c13b1b865c48c367f6d8"; // Replace with your product ID
-const url = `http://127.0.0.1:8080/product/${productId}`;
+const url = `http://127.0.0.1:8080/api/product/:${productId}`;
+;
 
 $.ajax({
   url: url,
