@@ -184,33 +184,33 @@ exports.getYourAccount = (req, res, next) => {
   });
 };
 
-exports.postPayment = async (req, res, next) => {
-  const phone = req.body.phone;
-  const city = req.body.city;
-  const street = req.body.street;
-  const streetNumber = req.body.street_number;
-  const saveAddress = req.body.save_address; // Assuming 'save_address' is the name of the checkbox field
-  const cardNumber = req.body.card_number; // Combine card number parts if necessary
-  const cardHolder = req.body.card_holder;
-  const cardExpirationMonth = req.body.card_expiration_month;
-  const cardExpirationYear = req.body.card_expiration_year;
-  const cardCCV = req.body.card_ccv;
-  const saveCreditCard = req.body.save_credit_card;
-  const user = req.session.user;
-  const products = req.products;
-  let totalPrice = 0;
-  await products.forEach((element) => {
-    price += parseDouble(element.price);
-  });
+// exports.postPayment = async (req, res, next) => {
+//   const phone = req.body.phone;
+//   const city = req.body.city;
+//   const street = req.body.street;
+//   const streetNumber = req.body.street_number;
+//   const saveAddress = req.body.save_address; // Assuming 'save_address' is the name of the checkbox field
+//   const cardNumber = req.body.card_number; // Combine card number parts if necessary
+//   const cardHolder = req.body.card_holder;
+//   const cardExpirationMonth = req.body.card_expiration_month;
+//   const cardExpirationYear = req.body.card_expiration_year;
+//   const cardCCV = req.body.card_ccv;
+//   const saveCreditCard = req.body.save_credit_card;
+//   const user = req.session.user;
+//   const products = req.products;
+//   let totalPrice = 0;
+//   await products.forEach((element) => {
+//     price += parseDouble(element.price);
+//   });
 
-  const order = new Order({
-    user: user,
-    products: products,
-    total_price: totalPrice,
-    order_date: new Date(),
-    status: "Pending",
-  });
-};
+//   const order = new Order({
+//     user: user,
+//     products: products,
+//     total_price: totalPrice,
+//     order_date: new Date(),
+//     status: "Pending",
+//   });
+// };
 
 exports.postPayment = async (req, res, next) => {
   try {
