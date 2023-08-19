@@ -17,52 +17,6 @@ h2 {
     margin-bottom: 1rem;
 }
 
-
-#user-management,
-#content-management {
-    margin-bottom: 2rem;
-}
-
-#user-management h2,
-#content-management h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-
-#supplier-management {
-    margin-bottom: 2rem;
-}
-
-#supplier-management h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-
-/* table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    border: 1px solid #ccc;
-    padding: 0.5rem;
-    text-align: center;
-}
-
-th {
-    background-color: #f0f0f0;
-}
-
-td button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 0.3rem 0.6rem;
-    cursor: pointer;
-} */
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -90,4 +44,19 @@ table {
   
   .add-user-form h2 {
     margin-bottom: 10px;
+  } */
+
+  #data-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+  }
+  #data-table th,
+  #data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  #data-table th {
+    background-color: #f2f2f2;
   }

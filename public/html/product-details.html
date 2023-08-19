@@ -323,8 +323,8 @@
 
       <div id="product-details"></div>
       <script>
-       const productId = "64d0c13b1b865c48c367f6d8"; // Replace with your product ID
-        const url = `http://127.0.0.1:8080/api/product/:${productId}`;
+          const productId = "64d0a26b2e852944de35e012"; // Replace with your product ID
+        const url = `http://127.0.0.1:8080/api/product/${productId}`;
         ;
 
         $.ajax({
@@ -447,6 +447,9 @@
                               <button class="btn-ns-hot">
                                 <a href="#">ADD TO CART</a>
                               </button>
+                                <button class="favorite-button" aria-label="Add to favorites">
+                                  <i class="far fa-heart"></i>
+                                </button>
                             </section>
                             <section class="productView-details">
                               <span class="productView-details-title">Product Description</span>
@@ -484,7 +487,6 @@
         });
 
       </script>
-
 
 
     </main>
