@@ -1,28 +1,216 @@
 const path = require("path");
-const rootPath = path.resolve(__dirname);
 const fs = require("fs");
 const Product = require("../models/product");
 const Order = require("../models/order");
-const User = require("../models/user");
+const Supplier = require("../models/supplier");
 
 exports.getHomePage = (req, res, next) => {
-  const mainPage = path.join(rootPath, "..", "/public/html/main.html");
-  res.status(200).sendFile(mainPage);
+  const file = path.join(__dirname, "../public/html/main.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
 };
 
 exports.getAboutPage = (req, res, next) => {
-  const aboutPage = path.join(rootPath, "..", "/public/html/about.html");
-  res.status(200).sendFile(aboutPage);
+  const file = path.join(__dirname, "../public/html/about.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
 };
 
 exports.getContactPage = (req, res, next) => {
-  const contactPage = path.join(rootPath, "..", "/public/html/contact.html");
-  res.status(200).sendFile(contactPage);
+  const file = path.join(__dirname, "../public/html/contact.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
 };
+
+exports.getaddressUpdate = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/addressUpdate.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.getCreditCardUpdate = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/creditCardUpdate.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.getProductDetails = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/product-details.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.getGiftFinder = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/gift-finder.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.getLogin = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/login.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.getManager = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/manager.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
 exports.getPayment = (req, res, next) => {
-  const paymentPage = path.join(rootPath, "..", "/public/html/payment.html");
-  res.status(200).sendFile(paymentPage);
+  const file = path.join(__dirname, "../public/html/payment.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
 };
+
+exports.getProducts = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/products.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.getQA = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/q&a.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.getStatistics = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/statistics.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.getSupplier = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/supplier.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.getUploadYad2 = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/uploadYad2.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.uploadYad2 = async (req, res, next) => {
+  const newProduct = new Product({
+    title: req.body.productName,
+    price: req.body.price,
+    description: req.body.description,
+    image: req.body.productPhoto,
+    condition: req.body.condition,
+  });
+};
+
+exports.getYad2Update = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/Yad2Update.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.getYourAccount = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/my-account.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+// exports.postPayment = async (req, res, next) => {
+//   const phone = req.body.phone;
+//   const city = req.body.city;
+//   const street = req.body.street;
+//   const streetNumber = req.body.street_number;
+//   const saveAddress = req.body.save_address; // Assuming 'save_address' is the name of the checkbox field
+//   const cardNumber = req.body.card_number; // Combine card number parts if necessary
+//   const cardHolder = req.body.card_holder;
+//   const cardExpirationMonth = req.body.card_expiration_month;
+//   const cardExpirationYear = req.body.card_expiration_year;
+//   const cardCCV = req.body.card_ccv;
+//   const saveCreditCard = req.body.save_credit_card;
+//   const user = req.session.user;
+//   const products = req.products;
+//   let totalPrice = 0;
+//   await products.forEach((element) => {
+//     price += parseDouble(element.price);
+//   });
+
+//   const order = new Order({
+//     user: user,
+//     products: products,
+//     total_price: totalPrice,
+//     order_date: new Date(),
+//     status: "Pending",
+//   });
+// };
 
 exports.postPayment = async (req, res, next) => {
   try {
@@ -61,42 +249,33 @@ exports.postPayment = async (req, res, next) => {
     req.session.user = user;
     req.session.cart = { items: [] };
     await req.session.save();
+
     return res.status(200).json({ message: "Order created successfully" });
   } catch (error) {
     res.status(500).json({ message: "An error occurred" });
   }
 };
 
-// exports.getAllProducts = async (req, res) => {
-//   try {
-//     const products = await Product.find(); // Retrieve all products from the database
-//     res.status(200).json(products); // Send the products as a JSON response
-//   } catch (error) {
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// };
+exports.postBuyItNow = async (req, res, next) => {
+  try {
+    const user = req.session.user;
+    const productId = req.session.productId;
+    const product = Product.find(productId);
+    const newOrder = new Order({
+      user_info: user._id,
+      products: product.id,
+      total_price: product.price,
+      order_date: new Date(),
+      status: "Pending", // Set the initial status as desired
+    });
+    await newOrder.save();
+    await user.push(newOrder.id);
 
-// exports.getProduct = async (req, res, next) => {
-//   try {
-//     const prodId = req.params.productId;
-//     console.log(prodId);
-//     const product = await Product.findById(prodId);
-//     console.log(product);
-//     if (product != null)
-//       res.status(200).json({
-//         data: product,
-//       });
-//     else {
-//       res.status(400).json({
-//         message: "Product not found",
-//       });
-//     }
-//   } catch (err) {
-//     res.status(500).json({
-//       message: "Internal server error",
-//     });
-//   }
-// };
+    return res.status(200).json({ message: "Order created successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "An error occurred" });
+  }
+};
 
 exports.addProductToCart = async (req, res, next) => {
   try {
@@ -234,46 +413,6 @@ exports.updateCartProductQuantity = async (req, res, next) => {
   }
 };
 
-exports.getCategory = async (req, res, next) => {
-  try {
-    const category = req.body.category;
-    const categoryData = await Product.find({ category: category });
-    res.status(200).json({
-      data: categoryData,
-    });
-  } catch (err) {
-    res.status(500).json({
-      message: "Internal server error",
-    });
-  }
-};
-
-exports.getFaq = (req, res, next) => {
-  try {
-    const faqPage = path.join(rootPath, "..", "/public/html/q&a.html");
-    res.status(200).sendFile(faqPage);
-  } catch (err) {
-    res.status(500).json({
-      message: "Internal server error",
-    });
-  }
-};
-
-exports.getSuppplierPage = (req, res, next) => {
-  try {
-    const supplierPage = path.join(
-      rootPath,
-      "..",
-      "/public/html/supplier.html"
-    );
-    res.status(200).sendFile(supplierPage);
-  } catch (err) {
-    res.status(500).json({
-      message: "Internal server error",
-    });
-  }
-};
-
 exports.submitSuplliersItem = async (req, res, next) => {
   try {
     const supplier = req.session.user;
@@ -321,27 +460,44 @@ exports.submitSuplliersItem = async (req, res, next) => {
       message: "Product submitted successfully",
       product: savedProduct,
     });
-  } catch (err) {
+  } catch (error) {
     res.status(500).json({
       message: "Internal server error",
     });
   }
 };
 
-exports.getYad2 = async (req, res) => {
+exports.postAddress = async (req, res) => {
   try {
-    const yad2Page = path.join(rootPath, "..", "/public/html/uploadYad2.html");
-    res.status(200).sendFile(yad2Page);
-  } catch (err) {
+    const user = req.session.user;
+    user.address.city = req.body.city;
+    user.address.street = req.body.street + req.street_number;
+    user.address.country = req.body.country;
+    user.address.postalCode = req.body.postalCode;
+    user.save();
+    res.status(200).json({
+      message: "Address updated successfully",
+    });
+  } catch (error) {
     res.status(500).json({
       message: "Internal server error",
     });
   }
 };
 
-exports.submitYad2 = async (req, res) => {
+exports.creditCardUpdate = async (req, res) => {
   try {
-  } catch (err) {
+    const user = req.session.user;
+    user.creditCard.card_number = req.body.creditCardNumber;
+    user.creditCard.card_number = req.body.creditCard;
+    user.creditCard.holdr_name = req.body.card_holder; // NEED TO FIX AND ADJUST WITH FRONTEND
+    user.creditCard.expiration_date = req.body.expiration_date; // NEED TO ADJUST BY FRONT
+    user.creditCard.ccv = req.body.ccv;
+    await user.save();
+    user.res.status(200).json({
+      message: "Credit card updated successfully",
+    });
+  } catch (error) {
     res.status(500).json({
       message: "Internal server error",
     });

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Games For All|Product Details</title>
+    <title>Games For All|Credit Details Update</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/creditCardUpdate.css" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -13,9 +15,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../js/creditCardUpdate.js"></script>
     <script src="../js/index.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/details.css" />
-    <script src="../js/details.js"></script>
   </head>
   <body>
     <header class="header" role="banner">
@@ -180,145 +184,102 @@
       <!-- End Navigation Bar -->
     </header>
 
-    <main style="margin-top: 170px">
-      <div class="productView">
-        <div class="productView-images">
-          <div style="height: 350px">
-            <img
-              src="https://i5.walmartimages.com/asr/87ae6e55-34c8-4474-b25e-776cbc4f8d66.4e7a5736a91ebfa9e6a2ad4d90364653.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF"
-              alt=" Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces"
-              title=" Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces"
-              data-sizes="auto"
-              class="productView-image"
+    <main style="margin-top: 150px">
+        <p class="bold-text">Update your Credit Catd details and save it for your next purchases:</p>
+      <div class="checkout">
+        <form method="POST" action="/creditcard" class="form" id="creditCardUpdate-form">
+            <fieldset>
+            <label class="pay-label" for="card-number">Card Number</label>
+            <input
+              type="num"
+              id="card-number"
+              class="input-cart-number"
+              maxlength="4"
+              required
             />
-          </div>
-          <ul class="productView-slick-slider">
-            <div class="slick-track">
-              <li
-                class="productView-imageSlick active"
-                data-slick-index="0"
-                aria-hidden="false"
-                tabindex="0"
-              >
-                <img
-                  src="https://i5.walmartimages.com/asr/87ae6e55-34c8-4474-b25e-776cbc4f8d66.4e7a5736a91ebfa9e6a2ad4d90364653.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF"
-                  alt=" LEGO DUPLO 10840 BIG FAIR"
-                  title=" LEGO DUPLO 10840 BIG FAIR"
-                  data-sizes="auto"
-                  class="productView-image-option"
-                />
-              </li>
-              <li
-                class="productView-imageSlick"
-                data-slick-index="1"
-                aria-hidden="false"
-                tabindex="0"
-              >
-                <img
-                  src="https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6783/10840__44648.1684056186.jpg?c=2"
-                  alt=" LEGO DUPLO 10840 BIG FAIR"
-                  title=" LEGO DUPLO 10840 BIG FAIR"
-                  data-sizes="auto"
-                  class="productView-image-option"
-                />
-              </li>
-              <li
-                class="productView-imageSlick"
-                data-slick-index="2"
-                aria-hidden="false"
-                tabindex="0"
-              >
-                <img
-                  src="https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6784/10840_alt2__86991.1684056189.jpg?c=2"
-                  alt=" LEGO DUPLO 10840 BIG FAIR"
-                  title=" LEGO DUPLO 10840 BIG FAIR"
-                  data-sizes="auto"
-                  class="productView-image-option"
-                />
-              </li>
-              <li
-                class="productView-imageSlick"
-                data-slick-index="3"
-                aria-hidden="false"
-                tabindex="0"
-              >
-                <img
-                  src="https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6785/10840_alt16__63979.1684056193.jpg?c=2"
-                  alt=" LEGO DUPLO 10840 BIG FAIR"
-                  title=" LEGO DUPLO 10840 BIG FAIR"
-                  data-sizes="auto"
-                  class="productView-image-option"
-                />
-              </li>
-            </div>
-          </ul>
-        </div>
-        <div class="productView-info">
-          <section class="productView-title">
-            <h4 class="productView-name">
-              Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces
-            </h4>
-            <span class="productView-price">$52.00</span>
-          </section>
-          <section class="productView-qty">
-            <div class="quantity-input">
-              <input class="minus btn" type="button" value="-" />
-              <input
-                id="text_tribulus"
-                value="1"
-                class="input-text qty text"
-                size="4"
-                id="quantity"
-              />
-              <input class="plus btn" type="button" value="+" />
-            </div>
-          </section>
-          <section class="add-to-cart-section">
-            <button class="btn-ns-hot">
-              <a href="#">ADD TO CART</a>
-            </button>
-          </section>
-          <section class="productView-details">
-            <span class="productView-details-title">Product Description</span>
-            <span class="productView-details-description">
-              Experience the realism of WWII tanks in this new IMEX Oxford brick
-              building kit. This replica is hyper-realistic and the tight fit
-              bricks are compatible with all major brands and will work with
-              your existing collection. This is part of a new series of WWII
-              models which will soon include the release of several other tanks
-              and ships. Kit comes complete with decals. Our high-quality
-              replica is made from ABS plastic, is safe, durable, and made for
-              long term use. Box contains 100 percent compatible pieces and a
-              detailed color instruction manual. A great building set for any
-              boy, girl, teen, or adult. Help promote an interest in history,
-              real life events, and all things military with this enjoyable set.
-              The finished product is a fantastic static model for hobby
-              enthusiasts, teachers, historians, or just plain funs of military
-              tanks and ships.
-            </span>
-          </section>
-        </div>
-      </div>
-      <div class="suggested-products">
-        <section><h1>Customers Also Viewed</h1></section>
-        <div class="item">
-          <img
-            src="http://img1.exportersindia.com/product_images/bc-small/dir_55/1620613/cannondale-jekyll-1-2011-mountain-bike-309779.jpg"
-            alt="item"
-          />
-          <section class="title">
-            <span class="title-desc"
-              ><a href="#">Cannondale Jekyll 3 - Mountain</a></span
+            <input
+              type="num"
+              id="card-number-1"
+              class="input-cart-number"
+              maxlength="4"
+            />
+            <input
+              type="num"
+              id="card-number-2"
+              class="input-cart-number"
+              max="9999"
+              maxlength="4"
+              required
+            />
+            <input
+              type="num"
+              id="card-number-3"
+              class="input-cart-number"
+              max="9999"
+              maxlength="4"
+              required
+            />
+          </fieldset>
+          <div id="card-number-error" class="error-message"></div>
+          <fieldset>
+            <label class="pay-label" for="card-holder">Card holder</label>
+            <input type="text" id="card-holder" required />
+            <div id="card-holder-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset-expiration">
+            <label class="pay-label" for="card-expiration-month"
+              >Expiration date</label
             >
-
-            <span class="title-price"> $130</span>
-          </section>
-          <button class="add-to-cart" type="button">Add to cart</button>
-        </div>
+            <div class="select">
+              <select id="card-expiration-month" required>
+                <option></option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>
+                <option>08</option>
+                <option>09</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+              </select>
+            </div>
+            <div id="expiration-month-error" class="error-message"></div>
+            <div class="select">
+              <select id="card-expiration-year" required>
+                <option></option>
+                <option>2023</option>
+                <option>2024</option>
+                <option>2025</option>
+                <option>2026</option>
+                <option>2027</option>
+                <option>2028</option>
+                <option>2029</option>
+                <option>2030</option>
+              </select>
+            </div>
+            <div id="expiration-year-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset-ccv">
+            <label class="pay-label" for="card-ccv">CCV</label>
+            <input type="num" id="card-ccv" maxlength="3" required />
+            <div id="cvv-number-error" class="error-message"></div>
+          </fieldset>
+          
+          <fieldset class="fieldset-footer">
+            <div class="form-footer">
+              <button class="btn-ns-hot" type="submit" id="update-button">
+                Update
+              </button>
+            </div>
+          </fieldset>
+        </form>
       </div>
-
-      <div id="product-details"></div>
     </main>
+
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>

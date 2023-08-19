@@ -202,6 +202,7 @@
             placeholder="Product Name"
             required
           />
+          <div id="productName-error" class="error-message"></div>
           <input
             class="half-input"
             type="text"
@@ -210,6 +211,7 @@
             required
             placeholder="Price"
           />
+          <div id="price-error" class="error-message"></div>
           <select
             class="half-input form-select"
             id="condition"
@@ -219,7 +221,6 @@
             <option value="" disabled selected hidden>Condition</option>
             <option value="new">New</option>
             <option value="used">Used</option>
-            <option value="refurbished">Refurbished</option>
           </select>
           <input
             type="file"
@@ -232,7 +233,7 @@
           <input
             type="button"
             name="next"
-            class="next action-button"
+            class="next1 next action-button"
             value="Next"
           />
         </fieldset>
@@ -247,6 +248,7 @@
             placeholder="Bank Account Number"
             required
           />
+          <div id="bankAccount-error" class="error-message"></div>
           <input
             type="email"
             id="email"
@@ -254,16 +256,17 @@
             placeholder="Email Address"
             required
           />
+          <div id="email-error" class="error-message"></div>
           <input
             type="button"
             name="previous"
-            class="previous action-button"
+            class="previous2 previous action-button"
             value="Previous"
           />
           <input
             type="button"
             name="next"
-            class="next action-button"
+            class="next2 next action-button"
             value="Next"
           />
         </fieldset>
@@ -280,94 +283,17 @@
           <input
             type="button"
             name="previous"
-            class="previous action-button"
+            class="previous3 previous action-button"
             value="Previous"
           />
-          <a href="#" class="submit action-button" target="_top">Submit</a>
+          <input
+            type="button"
+            name="submit"
+            class="submit action-button"
+            value="Submit"
+          />
         </fieldset>
       </form>
-      <!--  <p class="intro">
-        Welcome to our game selling platform!<br />
-        Here, you can upload your own games and toys to reach a wide audience of
-        kids and parents.<br />
-        To get started, please fill out the form below with all the necessary
-        details about your product.<br />
-        Make sure to provide accurate information and an attractive photo of the
-        item.<br />
-        We have various categories and age ranges to cater to different
-        interests and developmental stages.<br />
-        Once you submit the form, your product will be available for potential
-        buyers to explore and purchase.<br />
-        Don't forget to include your bank account and email, so we can transfer
-        your earnings and contact you if needed.<br />
-        Happy selling!
-      </p>
-
-      <form
-        action="your_server_upload_handler.php"
-        method="post"
-        enctype="multipart/form-data"
-      >
-        <label for="productName">Product Name:</label>
-        <input type="text" id="productName" name="productName" required /><br />
-
-        <label for="category">Category:</label>
-        <select id="category" name="category" required>
-          <option value="board">Board Games</option>
-          <option value="riding">Riding Toys</option>
-          <option value="book">Books</option>
-          <option value="science">Science</option>
-          <option value="puzzle">Puzzle Games</option>
-          <option value="lego">Lego</option>
-          <option value="games">Games</option>
-          <option value="music & karaoke">Music & Karaoke</option>
-          <option value="dolls">Dolls</option>
-          <option value="10$ & bellow">10$ & Bellow</option>
-          <option value="Yad 2">Yad 2</option></select
-        ><br />
-
-        <label for="productId">Product ID:</label>
-        <input type="text" id="productId" name="productId" required /><br />
-
-        <label for="ages">Appropriate Ages:</label>
-        <select id="ages" name="ages" required>
-          <option value="0-12 months">0-12 months</option>
-          <option value="12-24 months">12-24 months</option>
-          <option value="2-4">2-4 Years</option>
-          <option value="5-7">5-7 Years</option>
-          <option value="8-99">8-99 Years</option></select
-        ><br />
-
-        <label for="productPhoto">Product Photo:</label>
-        <input
-          type="file"
-          id="productPhoto"
-          name="productPhoto"
-          accept="image/*"
-          required
-        /><br />
-
-        <label for="price">Price:</label>
-        <input type="text" id="price" name="price" required /><br />
-        <div id="price-error" class="error-message"></div>
-
-        <label for="condition">Condition:</label>
-        <select id="condition" name="condition" required>
-          <option value="new">New</option>
-          <option value="used">Used</option>
-          <option value="refurbished">Refurbished</option></select
-        ><br />
-
-        <label for="bankAccount">Bank Account:</label>
-        <input type="text" id="bankAccount" name="bankAccount" required /><br />
-        <div id="bankAccount-error" class="error-message"></div>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required /><br />
-
-        <input type="submit" value="Upload Product" />
-      </form>
-      -->
     </main>
     <div id="myModal" class="modal">
       <div class="modal-content">

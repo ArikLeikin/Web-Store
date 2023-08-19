@@ -17,6 +17,30 @@ $(document).ready(function () {
 
     let isValid = true;
 
+    const FirstName = $("#firstname").val();
+      if (!validateName(FirstName)) {
+        showError("#firstname-error", "First name can only contain letters.");
+        isValid = false;
+      }
+
+      const LastName = $("#lastname").val();
+      if (!validateName(LastName)) {
+        showError("#lastname-error", "Last name can only contain letters.");
+        isValid = false;
+      }
+
+      const country = $("#country").val();
+      if (!validateName(country)) {
+        showError("#country-error", "Country name can only contain letters.");
+        isValid = false;
+      }
+
+      const zipcode = $("#zipcode").val();
+      if (!validateZipCode(zipcode)) {
+        showError("#zipcode-error", "Zipcode can only contain only 5 digits.");
+        isValid = false;
+      }
+
     const phone = $("#phone").val();
     if (!validatePhoneNumber(phone)) {
       showError("#phone-error", "Phone number must be 10 digits.");
@@ -76,11 +100,16 @@ $(document).ready(function () {
     }
 
     if (isValid) {
+      const FirstName = $("#firstname").val();
+      const LastName = $("#lastname").val();
+      const country = $("#country").val();
+       const zipcode = $("#zipcode").val();
       const phone = $("#phone").val();
       const city = $("#city").val();
       const street = $("#street").val();
       const streetNumber = $("#street_number").val();
       const cardHolder = $("#card-holder").val();
+      const lastFourDigits= $("#card-number-3").val();
       const expirationMonth = $("#card-expiration-month").val();
       const expirationYear = $("#card-expiration-year").val();
 
@@ -98,11 +127,16 @@ $(document).ready(function () {
       }</style>
           <h2>Thank you for your purchase! We hope you will visit us again.</h2>
           <h2>Your Purchase Details:</h2>
+          <p><strong>First Name:</strong> ${FirstName}</p>
+           <p><strong>Last Name:</strong> ${LastName}</p>
+          <p><strong>Country:</strong> ${country}</p>
+          <p><strong>Zipcode:</strong> ${zipcode}</p>
           <p><strong>Phone Number:</strong> ${phone}</p>
           <p><strong>City:</strong> ${city}</p>
           <p><strong>Street:</strong> ${street}</p>
           <p><strong>Street Number:</strong> ${streetNumber}</p>
           <p><strong>Card Holder:</strong> ${cardHolder}</p>
+          <p><strong>Last Four Digits of Credit Card:</strong> ${lastFourDigits}</p>
           <p><strong>Expiration Date:</strong> ${expirationMonth}/${expirationYear}</p>
           <p><strong>Total Amount:</strong> $${cartTotal}</p>
           
@@ -119,6 +153,13 @@ $(document).ready(function () {
   });
 });
 
+function validateName(city) {
+  return /^[A-Za-z\s]+$/.test(city);
+}
+
+function validateZipCode(phone) {
+  return /^\d{5}$/.test(phone);
+}
 function validatePhoneNumber(phone) {
   return /^\d{10}$/.test(phone);
 }
@@ -140,7 +181,7 @@ function validateCardNumber(cardNumber) {
 }
 
 function validateCardHolder(cardHolder) {
-  return /^[A-Za-z\s]+$/.test(cardHolder);
+  return cardHolder.length === 9 && /^[0-9]+$/.test(cardHolder);
 }
 
 function validateExpirationDate(expirationMonth, expirationYear) {
@@ -168,3 +209,4 @@ function showError(element, message) {
 function clearErrorMessages() {
   $(".error-message").text("");
 }
+

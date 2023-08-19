@@ -1,0 +1,139 @@
+.btn-ns-hot {
+    float: right;
+    font-size: 17px;
+  }
+  
+  .t-container {
+    margin: 0 auto;
+    /*  position: relative;*/
+    width: 460px;
+    background: white;
+    padding: 30px 30px 20px 10px;
+    box-shadow: 0 10px 40px hsla(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  /*form*/
+  .form fieldset .select select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: absolute;
+    padding: 0;
+    border: none;
+    width: 100%;
+    outline: none !important;
+    top: 6px;
+    left: 6px;
+    background: none;
+  }
+  .form fieldset input.input-cart-number,
+  .form fieldset .select.input-cart-number {
+    width: 15%;
+    display: inline-block;
+    margin-right: 8px;
+  }
+  
+  .form fieldset input,
+  .form fieldset .select {
+    width: 100%;
+    height: 20px;
+    color: #333333;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    outline: none !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+  .form fieldset {
+    border: none;
+    padding: 0;
+    padding: 10px 0;
+    border: none;
+    clear: both;
+  }
+  .reg-label,
+  .reg-input {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .reg-label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: hsla(0, 0, 0, 0.6);
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .fieldset-productName,
+  .fieldset-price
+   {
+    clear: none !important;
+    float: left;
+    width: 40%;
+  }
+  .fieldset-price {
+    float: right;
+    width: 45%;
+  }
+ 
+  .form-footer {
+    float: right;
+  }
+  
+  fieldset.fieldset-footer {
+    padding-top: 0;
+    width: 100%;
+  }
+  
+  .error-message {
+    color: red;
+  }
+  
+  /* Apply styles to the condition field */
+.fieldset-condition {
+    clear: none !important;
+    float: left;
+    width: 40%;
+    margin-right: 100px;
+  }
+
+  .fieldset-age {
+    clear: none !important;
+    float: left;
+    width: 40%;
+    margin-right: 100px;
+  }
+  
+  /* Apply styles to the select element within the condition field */
+  .fieldset-condition select,
+  .fieldset-age select
+   {
+    width: 100%;
+    height: 40px;
+    color: #333333;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    outline: none !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Apply styles to the label of the condition field */
+  .fieldset-condition .reg-label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: hsla(0, 0, 0, 0.6);
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .fieldset-condition .error-message {
+    color: red;
+  }
+  

@@ -191,15 +191,35 @@
 
       <div class="checkout">
         <form method="POST" action="/payment" class="form" id="purchase-form">
-          <fieldset>
+          <fieldset class="fieldset-firstname">
+            <label class="pay-label" for="firstname">First Name</label>
+            <input type="text" id="firstname" required />
+            <div id="firstname-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset-lastname">
+            <label class="pay-label" for="lastname">Last Name</label>
+            <input type="text" id="lastname" required />
+            <div id="lastname-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset-phone">
             <label class="pay-label" for="phone">Phone Number</label>
             <input type="tel" id="phone" required />
             <div id="phone-error" class="error-message"></div>
           </fieldset>
-          <fieldset>
+          <fieldset class="fieldset-country">
+            <label class="pay-label" for="county">Country</label>
+            <input type="text" id="country" required />
+            <div id="country-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset-city">
             <label class="pay-label" for="city">City</label>
             <input type="text" id="city" required />
             <div id="city-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset-zipcode">
+            <label class="pay-label" for="zipcode">Zip Code</label>
+            <input type="text" id="zipcode" required />
+            <div id="zipcode-error" class="error-message"></div>
           </fieldset>
           <fieldset class="fieldset-street">
             <label class="pay-label" for="street">Street</label>
@@ -211,7 +231,14 @@
             <input type="number" id="street_number" required min="1" />
             <div id="street-number-error" class="error-message"></div>
           </fieldset>
-          <fieldset>
+          
+          <label class="cl-checkbox">
+            <input checked="" type="checkbox">
+            <span></span>
+            Save address for future purchases
+          </label>
+
+          <fieldset>  
             <label class="pay-label" for="card-number">Card Number</label>
             <input
               type="num"
@@ -243,6 +270,7 @@
               required
             />
           </fieldset>
+
           <div id="card-number-error" class="error-message"></div>
           <fieldset>
             <label class="pay-label" for="card-holder">Card holder</label>
@@ -291,6 +319,14 @@
             <input type="num" id="card-ccv" maxlength="3" required />
             <div id="cvv-number-error" class="error-message"></div>
           </fieldset>
+
+          <label class="cl-checkbox">
+            <input checked="" type="checkbox">
+            <span></span>
+            Save Credit Card details for future purchases
+          </label> 
+
+
           <fieldset class="fieldset-footer">
             <div class="form-footer">
               <p id="total-price">Total(USD) $0</p>

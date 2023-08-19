@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/my-account.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <script src="../js/index.js"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../js/my-account.js"></script>
+    <title>Client Personal Area</title>
+  </head>
+  <body>
+    <header class="header" role="banner" id="head-of-page">
+      <div class="container">
+        <nav class="navUser">
+          <ul class="navUser-section">
+            <li class="item__account" id="item__account">
+              <a aria-label="Account" href=""
+                ><img
+                  src="../images/white-icons/account-icon.png"
+                  alt="account"
+                  width="30"
+                />
+              </a>
+            </li>
+            <li class="item__wishlist">
+              <a aria-label="Wishlist" href="">
+                <img
+                  src="../images/white-icons/wishlist-icon.png"
+                  alt="Cart"
+                  width="30"
+                />
+              </a>
+            </li>
+            <li class="item__cart">
+              <a href="../html/cart.html" aria-label="Cart">
+                <img
+                  src="../images/white-icons/cart-icon.png"
+                  alt="Cart"
+                  width="30"
+                />
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-logo">
+          <a href="#" data-instantload='{"page":"home"}'>
+            <div class="header-logo-image-container">
+              <img
+                class="header-logo-image"
+                src="../images/logo.png"
+                width="180"
+                height="auto"
+              />
+            </div>
+          </a>
+        </div>
+
+        <div class="quickSearch">
+          <form class="form">
+            <div class="form-container">
+              <input
+                class="form-input"
+                data-search-quick
+                name="search_query"
+                id="search_query"
+                data-error-message="Search field cannot be empty."
+                placeholder="Search the store"
+                autocomplete="off"
+              />
+              <button
+                type="submit"
+                class="button search-button"
+                id="searchButton"
+              >
+                <img
+                  src="../images/white-icons/search-icon.png"
+                  alt="Search"
+                  width="25"
+                  height="auto"
+                />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Start Navigation Bar -->
+      <nav class="navbar">
+        <ul class="menu">
+          <li>
+            <a class="hasDropdown" href="#"
+              >Categories <i class="fa fa-angle-down"></i
+            ></a>
+
+            <ul class="nav_container">
+              <div class="container__list">
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Board Games</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Science</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Games</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Riding Toys</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Puzzles</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Music&Karaoke</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Books</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Lego</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">Dolls</div>
+                </div>
+                <div class="container__listItem"></div>
+                <div class="container__listItem"></div>
+
+                <div class="container__listItem">
+                  <div class="container__listItem_title bold no-underline">
+                    $10 & Below
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a class="hasDropdown" href="#"
+              >Ages<i class="fa fa-angle-down"></i
+            ></a>
+            <ul class="nav_container">
+              <div class="container__list">
+                <div class="container__listItem">
+                  <div class="container__listItem_title">0-12 MONTHS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">12-24 MONTHS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">2-4 YEARS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">5-7 YEARS</div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">8-99 YEARS</div>
+                </div>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Outdoor</a>
+          </li>
+          <li>
+            <a href="#">Yad2</a>
+          </li>
+          <li>
+            <a href="GiftFinder.html">Gift Finder</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- End Navigation Bar -->
+    </header>
+    <main style="margin-top: 200px">
+      <div class="fixed-icon">
+        <a href="#head-of-page"><i class="fa fa-arrow-up"></i></a>
+      </div>
+      <div class="t-container">
+        <div class="sidebar">
+          <div class="top-sidebar">
+            <div class="top-sidebar_inner">
+              <p>
+                <span class="top-sidebar-title">Hi,</span><br />
+                <span class="top-sidebar-title bold">[first name || last]</span>
+              </p>
+            </div>
+          </div>
+          <div class="nav-sidebar">
+            <div class="sidebar_inner">
+              <ul>
+                <li>
+                  <a rel="noopener" href="#order-history">
+                    <span class="icon"
+                      ><i class="fa fa-shopping-cart"></i
+                    ></span>
+                    <span class="text">Order History</span>
+                  </a>
+                </li>
+                <li>
+                  <a rel="noopener" href="#personal-details">
+                    <span class="icon"><i class="fa fa-id-card"></i></span>
+                    <span class="text">Personal Details</span>
+                  </a>
+                </li>
+                <li>
+                  <a rel="noopener" target="_blank" href="#change-password">
+                    <span class="icon"><i class="fa fa-lock"></i></span>
+                    <span class="text">Change Password</span>
+                  </a>
+                </li>
+                <li>
+                  <a rel="noopener" href="#addresses">
+                    <span class="icon"><i class="fa fa-home"></i></span>
+                    <span class="text">Addresses</span>
+                  </a>
+                </li>
+                <li>
+                  <a rel="noopener" href="#wish-list">
+                    <span class="icon"><i class="fa fa-heart"></i></span>
+                    <span class="text">Wish List</span>
+                  </a>
+                </li>
+                <li>
+                  <a rel="noopener" href="#yad2-list">
+                    <span class="icon"><i class="fa fa-th-list"></i></span>
+                    <span class="text">Yad2 List</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="q&a.html">
+                    <span class="icon"
+                      ><i class="fa fa-question-circle"></i
+                    ></span>
+                    <span class="text">Needs Help?</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="t-content">
+          <!--ORDERS-->
+          <div class="order-history" id="order-history">
+            <div class="box">
+              <span class="box-icon-title"
+                ><i class="fa fa-shopping-cart"></i
+              ></span>
+              <span class="box-text-title">Order History</span>
+            </div>
+            <div class="box">
+              <div class="alertBox alertBox--info">
+                <div class="alertBox-column alertBox-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+                    ></path>
+                  </svg>
+                </div>
+
+                <span class="alertBox-column alertBox-message"
+                  >You haven't placed any orders with us. When you do, their
+                  status will appear on this page.</span
+                >
+              </div>
+            </div>
+            <div class="box">
+              <div class="my-card-header" data-target="#order1">
+                <h4 class="order-sub-title">ORDER STATUS:</h4>
+                <h4 class="order-info">IT'S DELIVERED!</h4>
+                <h5 class="order-sub-info">
+                  Order Date <span>July 15, 2023</span>
+                </h5>
+                <div class="cart-products">
+                  <div class="item">
+                    <img
+                      src="http://img1.exportersindia.com/product_images/bc-small/dir_55/1620613/cannondale-jekyll-1-2011-mountain-bike-309779.jpg"
+                      alt="item"
+                    />
+                  </div>
+                  <div class="item">
+                    <img
+                      src="https://i5.walmartimages.com/asr/87ae6e55-34c8-4474-b25e-776cbc4f8d66.4e7a5736a91ebfa9e6a2ad4d90364653.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF"
+                      alt=" Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces"
+                      title=" Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces"
+                      data-sizes="auto"
+                      class="productView-image"
+                    />
+                  </div>
+                </div>
+                <div class="order-footer">
+                  <div class="order-sammary">
+                    <h4 class="order-sub-title">
+                      ORDER NO.: <span class="order-sub-info">123456</span>
+                    </h4>
+                    <h4 class="order-sub-title">
+                      TOTAL PRICE: <span class="order-sub-info">76$</span>
+                    </h4>
+                  </div>
+                  <button class="btn-account-page">View Order</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="personal-details" id="personal-details">
+            <!-- personal details-->
+            <div class="box">
+              <span class="box-icon-title"><i class="fa fa-id-card"></i></span>
+              <span class="box-text-title">Personal Details</span>
+              <p>
+                Feel free to edit any of your details below so your PLAYTOPIA
+                account is totally up to date.
+              </p>
+            </div>
+            <div class="box">
+              <form
+                method="POST"
+                action="#"
+                class="t-form"
+                id="update-details-form"
+              >
+                <fieldset class="fieldset fieldset-firstName">
+                  <label class="reg-label" for="firstName">First name</label>
+                  <input
+                    class="reg-input"
+                    type="firstName"
+                    id="firstName"
+                    name="firstName"
+                    required
+                  />
+                </fieldset>
+                <fieldset class="fieldset fieldset-lastName">
+                  <label class="reg-label" for="lastName">Last name</label>
+                  <input
+                    class="reg-input"
+                    type="lastName"
+                    id="lastName"
+                    name="lastName"
+                    required
+                  />
+                </fieldset>
+                <fieldset class="fieldset-phoneNumber">
+                  <label class="reg-label" for="phoneNumber"
+                    >Phone number</label
+                  >
+                  <input
+                    class="reg-input"
+                    type="phoneNumber"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    required
+                  />
+                </fieldset>
+                <fieldset class="fieldset-email">
+                  <label class="reg-label" for="email">Email</label>
+                  <input
+                    class="reg-input"
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                  />
+                </fieldset>
+              </form>
+              <button class="btn-account-page" type="submit">
+                Save Changes
+              </button>
+            </div>
+          </div>
+
+          <!-- change password-->
+          <div class="change-password" id="change-password">
+            <div class="box">
+              <span class="box-icon-title"><i class="fa fa-lock"></i></span>
+              <span class="box-text-title">Change Password</span>
+            </div>
+            <div class="box">
+              <div class="pass-container">
+                <label class="reg-label" for="currpassword"
+                  >Current Password</label
+                >
+                <input
+                  class="reg-input"
+                  type="password"
+                  id="currpassword"
+                  name="currpassword"
+                  required
+                />
+                <label class="reg-label" for="newpassword">New Password</label>
+                <input
+                  class="reg-input"
+                  type="password"
+                  id="newpassword"
+                  name="newpassword"
+                  required
+                />
+              </div>
+              <button class="btn-account-page">Save password</button>
+            </div>
+          </div>
+
+          <!-- address-->
+          <div class="addresses" id="addresses">
+            <div class="box">
+              <span class="box-icon-title"><i class="fa fa-home"></i></span>
+              <span class="box-text-title">Addresses</span><br />
+              <button class="collapsible-div btn-account-page" type="button">
+                ADD NEW ADDERSS
+              </button>
+              <div class="add-new-address-content" id="add-new-address-content">
+                <div class="box add-new-address-box">
+                  <form
+                    method="POST"
+                    action="#"
+                    class="t-form"
+                    id="new-address-form"
+                  >
+                    <fieldset class="fieldset fieldset-firstName">
+                      <label class="reg-label" for="firstName"
+                        >First name</label
+                      >
+                      <input
+                        class="reg-input"
+                        type="firstName"
+                        id="firstName"
+                        name="firstName"
+                        required
+                      />
+                    </fieldset>
+                    <fieldset class="fieldset fieldset-lastName">
+                      <label class="reg-label" for="lastName">Last name</label>
+                      <input
+                        class="reg-input"
+                        type="lastName"
+                        id="lastName"
+                        name="lastName"
+                        required
+                      />
+                    </fieldset>
+                    <fieldset class="fieldset-phoneNumber">
+                      <label class="reg-label" for="phoneNumber"
+                        >Phone number</label
+                      >
+                      <input
+                        class="reg-input"
+                        type="phoneNumber"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        required
+                      />
+                    </fieldset>
+                    <fieldset class="fieldset-country">
+                      <label class="reg-label" for="country">Country</label>
+                      <input
+                        class="reg-input"
+                        type="text"
+                        id="country"
+                        name="country"
+                        required
+                      />
+                    </fieldset>
+                    <fieldset class="fieldset-city">
+                      <label class="reg-label" for="city">City</label>
+                      <input
+                        class="reg-input"
+                        type="text"
+                        id="city"
+                        name="city"
+                        required
+                      />
+                    </fieldset>
+                    <div class="street">
+                      <fieldset class="fieldset-street">
+                        <label class="reg-label" for="street">Street</label>
+                        <input
+                          class="reg-input"
+                          type="text"
+                          id="street"
+                          name="street"
+                          required
+                        />
+                      </fieldset>
+                      <fieldset class="fieldset-streetno">
+                        <label class="reg-label" for="streetno"
+                          >Street NO.</label
+                        >
+                        <input
+                          class="reg-input"
+                          type="number"
+                          id="streetno"
+                          name="streetno"
+                          required
+                        />
+                      </fieldset>
+                    </div>
+                  </form>
+                  <button class="btn-account-page" type="submit">
+                    Save Address
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- there is no address-->
+            <div class="box">
+              <div class="alertBox alertBox--info">
+                <div class="alertBox-column alertBox-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+                    ></path>
+                  </svg>
+                </div>
+
+                <span class="alertBox-column alertBox-message"
+                  >No address is registered in our system. To enter an address
+                  please click "Add new address".</span
+                >
+              </div>
+            </div>
+
+            <!-- addresses book-->
+            <div class="box">
+              <div aria-label="Edit" class="address-edit">
+                <span>Edit</span>
+                <i class="fa fa-pencil-square-o"></i>
+              </div>
+
+              <h4 class="address-label" id="address-name">John Doe</h4>
+              <p>
+                <span class="address-label sub" id="address-street"
+                  >Main Street</span
+                >
+                <span class="address-label sub" id="address-streetno">123</span>
+                <span class="address-label sub">,</span>
+                <span class="address-label sub" id="address-city">City</span>
+                <br />
+                <span class="address-label sub" id="address-country"
+                  >Country</span
+                >
+              </p>
+              <h4 class="address-label" id="address-phone">050-111-2222</h4>
+              <div aria-label="Delete" class="address-delete">
+                <i class="fa fa-trash"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- wish list-->
+          <div class="wish-list" id="wish-list">
+            <div class="box">
+              <span class="box-icon-title"><i class="fa fa-heart"></i></span>
+              <span class="box-text-title">Wish List</span>
+            </div>
+
+            <!-- no item in wish list-->
+            <div class="box">
+              <div class="alertBox alertBox--info">
+                <div class="alertBox-column alertBox-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+                    ></path>
+                  </svg>
+                </div>
+
+                <span class="alertBox-column alertBox-message"
+                  >No items have been added to your wish list yet. To add,
+                  scroll through our site and mark the items you liked.</span
+                >
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="wish-item">
+                <div aria-label="wish-delete" class="wish-delete">
+                  <i class="fa fa-trash"></i>
+                </div>
+
+                <img
+                  src="http://img1.exportersindia.com/product_images/bc-small/dir_55/1620613/cannondale-jekyll-1-2011-mountain-bike-309779.jpg"
+                  alt="item"
+                />
+                <section class="title">
+                  <span class="title-desc center"
+                    ><a href="#">Cannondale Jekyll 3 - Mountain</a></span
+                  >
+                  <br />
+                  <span class="title-price center"> $130</span>
+                </section>
+                <button class="add-to-cart" type="button">Move to cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- yad2 list-->
+          <div class="yad2-list" id="yad2-list">
+            <div class="box">
+              <span class="box-icon-title"><i class="fa fa-th-list"></i></span>
+              <span class="box-text-title">Yad2 List</span><br />
+              <a href="uploadYad2.html"
+                ><button class="collapsible-div btn-account-page" type="button">
+                  ADD YAD2 ITEM
+                </button></a
+              >
+            </div>
+            <div class="box">
+              <div class="wish-item">
+                <div class="wish-option">
+                  <div aria-label="wish-delete left" class="wish-delete">
+                    <i class="fa fa-trash"></i>
+                  </div>
+                  <div aria-label="wish-edit right" class="wish-edit">
+                    <i class="fa fa-edit"></i>
+                  </div>
+                </div>
+                <img
+                  src="https://4.imimg.com/data4/RG/WO/MY-25400969/used-washing-machine-500x500.jpg"
+                  alt="item"
+                />
+                <section class="title">
+                  <span class="title-desc center"
+                    ><a href="#">Wash Machine 2019</a></span
+                  >
+                  <br />
+                  <span class="title-price center"> $130</span>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p><strong>Products:</strong></p>
+      <p>Product 1 x 2</p>
+      <p>Product 2 x 3</p>
+      <p>Product 3 x 1</p>
+
+      <p><strong>Total Price:</strong> $245.00</p>
+      <p><strong>Order Date:</strong> July 15, 2023</p>
+      <p><strong>Status:</strong> Delivered</p>
+
+      <h2>My Yad2 Uploads History:</h2>
+      <div class="accordion mt-4" id="yad2HistoryAccordion">
+        <div class="card">
+          <div
+            class="card-header"
+            data-toggle="collapse"
+            data-target="#upload1"
+          >
+            Yad2 Upload example
+          </div>
+          <div class="card-content collapse" id="upload1">
+            <p><strong>Category:</strong> Card GameS</p>
+            <p><strong>Creation Time:</strong> August 5, 2023</p>
+            <p><strong>Title:</strong> Card game</p>
+            <p><strong>Age Range:</strong> 3-5 years</p>
+            <p>
+              <strong>Description:</strong> Gently used Card game,in great
+              condition.
+            </p>
+            <p><strong>Price:</strong> $50.00</p>
+            <p><strong>Serial Number:</strong> ABC12345</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-content"></div>
+      </div>
+    </div>
+  </body>
+</html>

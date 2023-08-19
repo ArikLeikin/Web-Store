@@ -10,61 +10,91 @@ $(document).ready(function () {
   });
 });
 
-/*$(document).ready(function () {
-  $("form").on("submit", function (event) {
-    var username = $("#username").val();
+
+
+
+$(document).ready(function () {
+  $("#registration-form").submit(function (event) {
+    event.preventDefault();
+    clearErrorMessages();
+
+    let isValid = true;
+    var username = $("#firstName").val();
+    var username = $("#lastName").val();
+    var username = $("#phoneNumber").val();
     var password = $("#password").val();
     var passwordValidation = $("#password-validation").val();
 
-    if (
-      username.length < 5 ||
-      password.length < 5 ||
-      passwordValidation.length < 5 ||
-      password !== passwordValidation
-    ) {
-      event.preventDefault(); // Prevent form submission
 
-      if (username.length < 5) {
-        $("#username-error")
-          .addClass("error-message")
-          .text(
-            "Username must be at least 5 characters long (including numbers)."
-          ); //For Example, will be changed
-      } else {
-        $("#username-error").removeClass("error-message").text("");
-      }
-
-      if (password.length < 5) {
-        $("#password-error")
-          .addClass("error-message")
-          .text(
-            "Password must be at least 5 characters long (including numbers)."
-          );
-      } else {
-        $("#password-error").removeClass("error-message").text("");
-      }
-
-      if (passwordValidation.length < 5) {
-        $("#password-validation-error")
-          .addClass("error-message")
-          .text(
-            "Password validation must be at least 5 characters long (including numbers)."
-          );
-      } else {
-        $("#password-validation-error").removeClass("error-message").text("");
-      }
-
-      if (password !== passwordValidation) {
-        event.preventDefault(); // Prevent form submission
-        $("#password-validation-error")
-          .addClass("error-message")
-          .text("Passwords do not match.");
-      } else {
-        $("#password-validation-error").removeClass("error-message").text("");
-      }
+    const city = $("#firstName").val();
+    if (!validateName(city)) {
+      showError("#firstName-error", "First name can only contain letters.");
+      isValid = false;
     }
+
+    const street = $("#lastName").val();
+    if (!validateName(street)) {
+      showError("#lastName-error", "Last name can only contain letters.");
+      isValid = false;
+    }
+
+    const phone = $("#phoneNumber").val();
+    if (!validatePhoneNumber(phone)) {
+      showError("#phoneNumber-error", "Phone number must be 10 digits.");
+      isValid = false;
+    }
+
+    if (password.length < 5) {
+      $("#password-error")
+        .addClass("error-message")
+        .text(
+          "Password must be at least 5 characters long (including numbers)."
+        );
+    } else {
+      $("#password-error").removeClass("error-message").text("");
+    }
+
+    if (passwordValidation.length < 5) {
+      $("#password-validation-error")
+        .addClass("error-message")
+        .text(
+          "Password validation must be at least 5 characters long (including numbers)."
+        );
+    } else {
+      $("#password-validation-error").removeClass("error-message").text("");
+    }
+
+    if (password !== passwordValidation) {
+      event.preventDefault(); // Prevent form submission
+      $("#password-validation-error")
+        .addClass("error-message")
+        .text("Passwords do not match.");
+    } else {
+      $("#password-validation-error").removeClass("error-message").text("");
+    }
+    
+
   });
-});*/
+});
+
+
+function validateName(city) {
+  return /^[A-Za-z\s]+$/.test(city);
+}
+
+function validatePhoneNumber(phone) {
+  return /^\d{10}$/.test(phone);
+}
+
+
+function showError(element, message) {
+  $(element).text(message).css("color", "red");
+}
+
+function clearErrorMessages() {
+  $(".error-message").text("");
+}
+
 
 $(document).ready(function () {
   // Use the correct ID selector '#item__account'
@@ -92,6 +122,16 @@ $(document).ready(function () {
     $("#modal-content").html(modalContent);
 
     $("#myModal").show();
+
+    $(".toggle-password").click(function () {
+      $(this).toggleClass("active");
+      var passwordInput = $(this).prev("input");
+      if (passwordInput.attr("type") === "password") {
+        passwordInput.attr("type", "text");
+      } else {
+        passwordInput.attr("type", "password");
+      }
+    });
   });
 
   $(".close").click(function () {

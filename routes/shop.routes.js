@@ -21,39 +21,49 @@ router.get("/", shopController.getHomePage);
 
 router.get("/about", shopController.getAboutPage);
 
+router.get("/addressUpdate", shopController.getaddressUpdate);
+
 router.get("/contact", shopController.getContactPage);
 
-router.post("/product/:productId/addCart", shopController.addProductToCart);
+router.get("/creditCardUpdate", shopController.getCreditCardUpdate);
 
-// router.get("/payment/cart", shopController.cartCheckout);
+router.get("/product-details", shopController.getProductDetails);
 
-// router.get("/payment/:productId", shopController.singleProductCheckout);
+router.get("/gift-finder", shopController.getGiftFinder);
 
-// router.post("/payment/submit", shopController.processPayment);
+router.get("/login", shopController.getLogin);
+
+router.get("/manager", shopController.getManager);
 
 router.get("/payment", shopController.getPayment);
-router.post("/payment", shopController.postPayment);
 
+router.get("/products", shopController.getProducts);
+
+router.get("/q&a", shopController.getQA);
+
+router.get("/statistics", shopController.getStatistics);
+
+router.get("/supplier", shopController.getSupplier);
+
+router.get("/uploadYad2", isAuth, shopController.getUploadYad2);
+router.post("/uploadYad2", isAuth, shopController.uploadYad2);
+
+router.get("/Yad2Update", shopController.getYad2Update);
+
+router.get("/my-account", shopController.getYourAccount);
+
+router.post("/submit-payment", isAuth, shopController.postPayment);
+
+router.get("/cart", isAuth, shopController.getCart);
 router.post("/cart/add", shopController.postCartAdd);
 router.post("/cart/delete", shopController.postCartDelete);
 router.post("/cart/update", shopController.updateCartProductQuantity);
 
-router.get("/cart", isAuth, shopController.getCart);
+router.get("/payment", shopController.getPayment);
+router.post("/payment", isAuth, shopController.postPayment);
+router.post("/buy-it-now/:productId", isAuth, shopController.postBuyItNow);
 
-router.get("/category/:category", shopController.getCategory);
-
-router.get("/faq", shopController.getFaq);
-
-router.get("/supplier", shopController.getSuppplierPage);
-
-router.post(
-  "/supplier",
-  upload.single("image"),
-  shopController.submitSuplliersItem
-);
-
-router.get("/uploadYad2", shopController.getYad2);
-
-router.post("/uploadYad2", shopController.submitYad2);
+router.post("/address-update", isAuth, shopController.postAddress);
+router.post("/credit-card-update", isAuth, shopController.creditCardUpdate);
 
 module.exports = router;

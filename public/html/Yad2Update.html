@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <title>Gift Finder</title>
+    <title>Games For All</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/GiftFinder.css" />
-
+    <link rel="stylesheet" type="text/css" href="../css/Yad2Update.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -14,14 +15,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script src="../js/index.js"></script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../js/GiftFinder.js"></script>
+    <script src="../js/Yad2Update.js"></script>
   </head>
-
   <body>
     <header class="header" role="banner">
       <div class="container">
@@ -175,7 +171,7 @@
             <a href="#">Outdoor</a>
           </li>
           <li>
-            <a href="">Yad2</a>
+            <a href="#">Yad2</a>
           </li>
           <li>
             <a href="GiftFinder.html">Gift Finder</a>
@@ -184,52 +180,121 @@
       </nav>
       <!-- End Navigation Bar -->
     </header>
-    <main style="padding-top: 200px">
-      <img class="gift-finder-logo" src="../images/gift-finder-logo.png" />
+    <main style="margin-top: 160px">
+      <h1 class="page-title">Update a Yad 2 Product</h1>
+
 
       <div class="t-container">
-        <label class="gift-finder-label"
-          >I would like a gift for someone aged between:</label
+        <form
+          method="POST"
+          action="/updateYad2"
+          class="form"
+          id="UpdateYad2-form"
         >
-        <select class="form-select" id="age" name="age" required>
-          <option value="" disabled selected hidden>Please select age</option>
+        <fieldset class="fieldset fieldset-productName">
+            <label class="reg-label" for="productName">Product name</label>
+            <input
+              class="reg-input"
+              type="productName"
+              id="productName"
+              name="productName"
+              required
+            />
+            <div id="productName-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset fieldset-price">
+            <label class="reg-label" for="price">Price</label>
+            <input
+              class="half-input"
+              type="price"
+              id="price"
+              name="price"
+              required
+            />
+            <div id="price-error" class="error-message"></div>
+          </fieldset>
+          <fieldset class="fieldset fieldset-condition">
+            <label class="reg-label" for="condition">Condition</label>
+            <select
+            class="half-input form-select"
+            id="condition"
+            name="condition"
+            required
+          >
+            <option value="new">New</option>
+            <option value="used">Used</option>
+          </select>
+            
+          </fieldset>
+
+          <fieldset>
+            <fieldset class="fieldset fieldset-image">
+                <label class="reg-label" for="image">Image</label>
+            <input
+            type="file"
+            id="productPhoto"
+            name="productPhoto"
+            accept="image/*"
+            placeholder="Image"
+            required
+          />
+          </fieldset>
+          <fieldset>
+              <label class="reg-label" for="bankAccount">Bank Account Number</label>
+              <input
+                class="reg-input"
+                type="bankAccount"
+                id="bankAccount"
+                name="bankAccount"
+                required
+              />
+              <div id="bankAccount-error" class="error-message"></div>
+          </fieldset>
+          <fieldset>
+            <label class="reg-label" for="email">Email</label>
+            <input
+              class="reg-input"
+              type="email"
+              id="email"
+              name="email"
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <label class="reg-label" for="descriprion">Description about the product:</label>
+            <input
+              class="reg-input"
+              type="descriprion"
+              id="descriprion"
+              name="descriprion"
+              required
+            />
+          </fieldset>
+          <fieldset class="fieldset fieldset-age">
+            <label class="reg-label" for="age">Appropriate Ages </label>
+            <select
+            class="half-input form-select"
+            id="age"
+            name="age"
+            required
+          >
           <option value="0-12 months">0-12 months</option>
           <option value="12-24 months">12-24 months</option>
           <option value="2-4">2-4 Years</option>
           <option value="5-7">5-7 Years</option>
           <option value="8-99">8-99 Years</option>
-        </select>
-
-        <label class="gift-finder-label">I would like to spend up to:</label>
-
-        <div class="price-options" id="price-options">
-          <div class="price-option active" data-price="0">$20</div>
-          <div class="price-option" data-price="50">$50</div>
-          <div class="price-option" data-price="100">$70</div>
-          <div class="price-option" data-price="500">$100+</div>
-        </div>
-
-        <label class="gift-finder-label">I know he prefers:</label>
-        <select class="form-select" id="category">
-          <option value="">All</option>
-          <option value="board">Board Games</option>
-          <option value="riding">Riding Toys</option>
-          <option value="book">Books</option>
-          <option value="science">Science</option>
-          <option value="puzzle">Puzzle Games</option>
-          <option value="lego">Lego</option>
-          <option value="games">Games</option>
-          <option value="music-karaoke">Music & Karaoke</option>
-          <option value="dolls">Dolls</option>
-        </select>
-
-        <button class="btn-ns-hot stretch" id="searchbutton">
-          Find Your Gift
-        </button>
-
-        <div id="results"></div>
+          </select>
+          </fieldset>
+          
+          <fieldset class="fieldset-footer">
+            <div class="form-footer">
+              <button class="btn-ns-hot" type="submit">Update</button>
+            </div>
+          </fieldset>
+        </form>
       </div>
     </main>
+
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
