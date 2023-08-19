@@ -36,7 +36,12 @@ const userSchema = new Schema({
     country: { type: String },
     postalCode: { type: String },
   },
-  creditCard: { type: String },
+  creditCard: {
+    card_number: { type: String },
+    holder_name: { type: String },
+    expiration_date: { type: String },
+    ccv: { type: String },
+  },
   resetToken: { type: String },
   resetTokenExpiration: { type: Date },
   usedProducts: [
