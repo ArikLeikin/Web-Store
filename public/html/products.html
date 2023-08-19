@@ -248,10 +248,37 @@
                     <form>
                       <input type="hidden" name="min-value" value="" />
                       <input type="hidden" name="max-value" value="" />
+                      <button type="button" class="button filter-button">Apply Filter</button>
                     </form>
                   </div>
                 </div>
               </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="select-label">Price Range</span>
+            </td>
+            <td>
+              <input
+                type="number"
+                id="min-price-input"
+                class="price-input"
+                placeholder="Min Price"
+              />
+              <input
+                type="number"
+                id="max-price-input"
+                class="price-input"
+                placeholder="Max Price"
+              />
+              <button
+                type="button"
+                class="button filter-button"
+                id="price-filter-button"
+              >
+                Apply Price Filter
+              </button>
             </td>
           </tr>
           <tr></tr>

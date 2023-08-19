@@ -134,7 +134,7 @@ $(document).ready(function () {
     document.getElementById("price-dot-max").innerHTML = values[1]; //slider-range-value2
     document.getElementsByName("min-value").value = moneyFormat.from(values[0]);
     document.getElementsByName("max-value").value = moneyFormat.from(values[1]);
-  });
+  }); 
 });
 
 (function (factory) {
@@ -2299,5 +2299,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     
+  });
+});
+
+$(document).ready(function () {
+  $("#price-filter-button").click(function () {
+    var minPrice = parseFloat($("#min-price-input").val());
+    var maxPrice = parseFloat($("#max-price-input").val());
+
+    $(".product-item").each(function () {
+      var productPrice = parseFloat($(this).data("price"));
+
+      if ((isNaN(minPrice) || productPrice >= minPrice) &&
+          (isNaN(maxPrice) || productPrice <= maxPrice)) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
   });
 });
