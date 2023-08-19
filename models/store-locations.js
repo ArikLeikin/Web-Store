@@ -16,5 +16,5 @@ const StoreLocationsSchema = {
   },
 };
 
-const Order = mongoose.model("StoreLocations", StoreLocationsSchema);
-module.exports = Order;
+const StoreLocations = mongoose.model("StoreLocations", StoreLocationsSchema);
+module.exports = StoreLocations;
