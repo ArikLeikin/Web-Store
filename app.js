@@ -21,6 +21,7 @@ app.set("views", "views");
 const shopRoutes = require("./routes/shop.routes");
 const connectRoutes = require("./routes/auth.routes");
 const errorRoutes = require("./routes/error.routes");
+const apiRoutes = require("./routes/api.routes");
 
 //middleware for each request
 app.use(express.static("public"));
@@ -57,6 +58,7 @@ app.use((req, res, next) => {
 });
 
 //routing request
+app.use(apiRoutes);
 app.use(shopRoutes);
 app.use(connectRoutes);
 app.use(errorRoutes);

@@ -174,12 +174,30 @@ exports.getYourAccount = (req, res, next) => {
   });
 };
 
-exports.postPayment = (req, res, next) => {
-  const file = path.join(__dirname, "../public/html/my-account.html");
-  res.sendFile(file, (err) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ message: "Internal server error" });
-    }
+exports.postPayment = async (req, res, next) => {
+  const phone = req.body.phone;
+  const city = req.body.city;
+  const street = req.body.street;
+  const streetNumber = req.body.street_number;
+  const saveAddress = req.body.save_address; // Assuming 'save_address' is the name of the checkbox field
+  const cardNumber = req.body.card_number; // Combine card number parts if necessary
+  const cardHolder = req.body.card_holder;
+  const cardExpirationMonth = req.body.card_expiration_month;
+  const cardExpirationYear = req.body.card_expiration_year;
+  const cardCCV = req.body.card_ccv;
+  const saveCreditCard = req.body.save_credit_card;
+  const user = req.session.user;
+  const products = req.products;
+  let totalPrice = 0;
+  await products.forEach((element) => {
+    price += parseDouble(element.price);
+  });
+
+  const order = new Order({
+    user: user,
+    products: products,
+    total_price: totalPrice,
+    order_date: new Date(),
+    status: "Pending",
   });
 };
