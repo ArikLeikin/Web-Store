@@ -174,7 +174,7 @@ module.exports = {
     }
   },
 
-  getSotreLocations: async (req, res, next) => {
+  getStoreLocations: async (req, res, next) => {
     try {
       const locations = StoreLocations.find();
       res.status(200).json({

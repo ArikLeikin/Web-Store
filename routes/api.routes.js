@@ -23,6 +23,6 @@ router.get("/api/orders", apiController.getAllOrders);
 router.get("/api/supplier/:supplierId", apiController.getSupplier);
 router.get("/api/suppliers", apiController.getAllSuppliers);
 
-router.get("/api/store-locations", apiController.getSotreLocations);
+router.get("/api/store-locations", apiController.getStoreLocations);
 
 module.exports = router;
