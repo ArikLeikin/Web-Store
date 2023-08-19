@@ -183,17 +183,17 @@ Checkout
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 200vh;
   background-color: rgba(128, 128, 128, 0.5); /* color */
   display: none; /* making it hidden by default */
 }
 
 .modal-content {
   position: fixed;
-  top: 50vh;
+  top: 49vh;
   left: 50vw;
   transform: translate(-50%, -50%);
-  height: 400px;
+  height: 600px;
   width: 500px;
   background-color: white;
   padding: 5px;
