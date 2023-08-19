@@ -22,6 +22,7 @@ const shopRoutes = require("./routes/shop.routes");
 const connectRoutes = require("./routes/auth.routes");
 const errorRoutes = require("./routes/error.routes");
 const apiRoutes = require("./routes/api.routes");
+const adminRoutes = require("./routes/admin.routes");
 
 //middleware for each request
 app.use(express.static("public"));
@@ -62,6 +63,7 @@ app.use(apiRoutes);
 app.use(shopRoutes);
 app.use(connectRoutes);
 app.use(errorRoutes);
+app.use(adminRoutes);
 
 //when something went wrong
 app.use((req, res, next) => {
