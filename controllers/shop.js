@@ -55,7 +55,7 @@ exports.getCreditCardUpdate = (req, res, next) => {
 };
 
 exports.getProductDetails = (req, res, next) => {
-  const file = path.join(__dirname, "../public/html/details.html");
+  const file = path.join(__dirname, "../public/html/product-details.html");
   res.sendFile(file, (err) => {
     if (err) {
       console.error(err);
@@ -165,6 +165,16 @@ exports.getYad2Update = (req, res, next) => {
 };
 
 exports.getYourAccount = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/my-account.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.postPayment = (req, res, next) => {
   const file = path.join(__dirname, "../public/html/my-account.html");
   res.sendFile(file, (err) => {
     if (err) {

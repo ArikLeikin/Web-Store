@@ -51,4 +51,6 @@ router.get("/Yad2Update", shopController.getYad2Update);
 
 router.get("/my-account", shopController.getYourAccount);
 
+router.post("/submit-payment", shopController.postPayment);
+
 module.exports = router;
