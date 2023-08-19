@@ -166,12 +166,3 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 
-  const accordions = document.querySelectorAll('.accordion');
-  accordions.forEach((accordion) => {
-    const button = accordion.querySelector('.accordion-btn');
-    const content = accordion.querySelector('.accordion-content');
-    button.addEventListener('click', () => {
-      content.classList.toggle('active');
-    });
-  });
-

@@ -11,6 +11,8 @@ $(document).ready(function () {
 });
 
 
+
+
 $(document).ready(function () {
   $("#registration-form").submit(function (event) {
     event.preventDefault();
@@ -70,9 +72,6 @@ $(document).ready(function () {
     } else {
       $("#password-validation-error").removeClass("error-message").text("");
     }
-
-
-  
     
 
   });
@@ -123,6 +122,16 @@ $(document).ready(function () {
     $("#modal-content").html(modalContent);
 
     $("#myModal").show();
+
+    $(".toggle-password").click(function () {
+      $(this).toggleClass("active");
+      var passwordInput = $(this).prev("input");
+      if (passwordInput.attr("type") === "password") {
+        passwordInput.attr("type", "text");
+      } else {
+        passwordInput.attr("type", "password");
+      }
+    });
   });
 
   $(".close").click(function () {
