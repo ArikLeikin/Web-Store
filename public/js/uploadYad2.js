@@ -40,6 +40,40 @@ $(document).ready(function () {
   var animating; //flag to prevent quick multi-click glitches
 
   $(".next1").click(function () {
+    $("#productName-error").text("");
+    $("#price-error").text("");
+
+    var productName = $("#productName").val();
+    var price = $("#price").val();
+   
+    let isValid = true;
+    
+    if (!validateNumber(price)) {
+      $("#price-error").text("Price name should only contain digits.");
+      isValid= false; // Prevent proceeding to the next step
+    }
+    if ( price==='0') {
+      $("#price-error").text("Price name should be greater than 0.");
+      isValid= false; // Prevent proceeding to the next step
+    }
+
+     if (!validateLettersOrDigits(productName)) {
+      $("#productName-error").text("Product name should be only letters or digits.");
+      isValid= false; // Prevent proceeding to the next step
+    }
+
+    function validateNumber(str) {
+      return /^\d+$/.test(str);
+    }
+    function validateLettersOrDigits(str) {
+      return /^[a-zA-Z0-9]+$/.test(str);
+    }
+    
+    if(!isValid)
+    {
+      return false;
+    }
+
     var $form = $(this).parentsUntil("msform");
     if (animating) return false;
     animating = true;
@@ -82,6 +116,39 @@ $(document).ready(function () {
   });
 
   $(".next2").click(function () {
+    $("#bankAccount-error").text("");
+    $("#email-error").text("");
+    
+    var bankAccount = $("#bankAccount").val();
+    var email = $("#email").val();
+   
+    let isValid = true;
+    
+    if (!validateBankAccount(bankAccount)) {
+      $("#bankAccount-error").text("Bank Account name should contain 14 digits.");
+      isValid= false; // Prevent proceeding to the next step
+    }
+
+    if ( !containsAtSymbol(email)) {
+      $("#email-error").text("Email should contain @.");
+      isValid= false; // Prevent proceeding to the next step
+    }
+
+
+    function validateBankAccount(str) {
+      return /^\d{14}$/.test(str);
+    }
+
+    function containsAtSymbol(str) {
+      return str.includes("@");
+    }
+    
+
+    if(!isValid)
+    {
+      return false;
+    }
+
     var $form = $(this).parentsUntil("msform");
     if (animating) return false;
     animating = true;

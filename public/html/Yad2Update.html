@@ -200,6 +200,7 @@
               name="productName"
               required
             />
+            <div id="productName-error" class="error-message"></div>
           </fieldset>
           <fieldset class="fieldset fieldset-price">
             <label class="reg-label" for="price">Price</label>
@@ -259,6 +260,32 @@
               required
             />
           </fieldset>
+          <fieldset>
+            <label class="reg-label" for="descriprion">Description about the product:</label>
+            <input
+              class="reg-input"
+              type="descriprion"
+              id="descriprion"
+              name="descriprion"
+              required
+            />
+          </fieldset>
+          <fieldset class="fieldset fieldset-age">
+            <label class="reg-label" for="age">Appropriate Ages </label>
+            <select
+            class="half-input form-select"
+            id="age"
+            name="age"
+            required
+          >
+          <option value="0-12 months">0-12 months</option>
+          <option value="12-24 months">12-24 months</option>
+          <option value="2-4">2-4 Years</option>
+          <option value="5-7">5-7 Years</option>
+          <option value="8-99">8-99 Years</option>
+          </select>
+          </fieldset>
+          
           <fieldset class="fieldset-footer">
             <div class="form-footer">
               <button class="btn-ns-hot" type="submit">Update</button>

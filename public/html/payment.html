@@ -231,13 +231,14 @@
             <input type="number" id="street_number" required min="1" />
             <div id="street-number-error" class="error-message"></div>
           </fieldset>
-          <fieldset>
-            <label class="custom-checkbox">
-              Save address for future purchases
-              <input type="checkbox" />
-              <span class="checkmark"></span>
-            </label>
+          
+          <label class="cl-checkbox">
+            <input checked="" type="checkbox">
+            <span></span>
+            Save address for future purchases
+          </label>
 
+          <fieldset>  
             <label class="pay-label" for="card-number">Card Number</label>
             <input
               type="num"
@@ -318,11 +319,13 @@
             <input type="num" id="card-ccv" maxlength="3" required />
             <div id="cvv-number-error" class="error-message"></div>
           </fieldset>
-          <label class="custom-checkbox">
+
+          <label class="cl-checkbox">
+            <input checked="" type="checkbox">
+            <span></span>
             Save Credit Card details for future purchases
-            <input type="checkbox" />
-            <span class="checkmark"></span>
-          </label>
+          </label> 
+
 
           <fieldset class="fieldset-footer">
             <div class="form-footer">

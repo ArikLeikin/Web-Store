@@ -209,3 +209,4 @@ function showError(element, message) {
 function clearErrorMessages() {
   $(".error-message").text("");
 }
+
