@@ -102,7 +102,7 @@ input.input-text {
   font-size: 18px;
   text-align: center;
 }
-/* .btn-add-to-cart {
+.btn-add-to-cart {
   margin-top: 30px;
   padding: 7px 15px;
   background-color: #007bff;
@@ -117,7 +117,7 @@ input.input-text {
   text-decoration: none;
   color: white;
   font-weight: bold;
-} */
+}
 
 .productView-details {
   font-size: 14px;

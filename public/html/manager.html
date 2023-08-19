@@ -184,47 +184,6 @@
     </header>
     <main style="margin-top: 150px">
         <h1>Manager Dashboard</h1>
-        <section id="user-management">
-            <h2>Users Management:</h2>
-            <!-- Add or remove website users from a list of all of the users -->
-            <table id="userTable">
-                <tr>
-                  <th>Email</th>
-                  <th>Password</th>
-                  <th>Action</th>
-                </tr>
-                <!-- Table rows will be added dynamically using JavaScript -->
-              </table>
-              <div class="add-user-form">
-                <h3>Add New User</h3>
-                <input type="email" id="newEmail" placeholder="Email">
-                <input type="password" id="newPassword" placeholder="Password">
-                <div id="passwordUser-error" class="error-message"></div>
-                <button id="addUserBtn">Add User</button>
-              </div>
-        </section>
-
-
-
-        <section id="supplier-management">
-            <h2>Supplier Management:</h2>
-            <table id="supplierTable">
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Action</th>
-                </tr>
-                <!-- Table rows will be added dynamically using JavaScript -->
-              </table>
-              <div class="add-supplier-form">
-                <h3>Add New Supplier</h3>
-                <input type="email" id="newEmail" placeholder="Email">
-                <input type="password" id="newPassword" placeholder="Password">
-                <div id="passwordSupplier-error" class="error-message"></div>
-                <button id="addSupplierBtn">Add Supplier</button>
-              </div>
-        </section>
-
 
         <section id="content-management">
             <h2>Content Management:</h2>
@@ -233,8 +192,122 @@
 
         </section>
 
+        <h2>Users Management:</h2>       
+        <table id="data-table">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>City</th>
+              <th>Street</th>
+              <th>Country</th>
+              <th>Postal Code</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Credit Card</th>
+              <th>ID</th>
+              <th>Password</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      
+        <script>
+          $(document).ready(function () {
+            const url = 'http://127.0.0.1:8080/api/users'; // Replace with the actual URL
+            const tableBody = $('#data-table tbody');
+      
+            $.ajax({
+              url: url,
+              method: 'GET',
+              dataType: 'json',
+              success: function (data) {
+                const users = data; // Assuming the array is directly in the response
+      
+                users.forEach(function (user) {
+                  const row = createTableRow(user);
+                  tableBody.append(row);
+                });
+              },
+              error: function (error) {
+                console.error('Error:', error);
+              }
+            });
+      
+            function createTableRow(data) {
+              const row = $('<tr>');
+              row.append($('<td>').text(data.name.firstName));
+              row.append($('<td>').text(data.name.lastName));
+              row.append($('<td>').text(data.address.city));
+              row.append($('<td>').text(data.address.street));
+              row.append($('<td>').text(data.address.country));
+              row.append($('<td>').text(data.address.postalCode));
+              row.append($('<td>').text(data.username));
+              row.append($('<td>').text(data.email || '-'));
+              row.append($('<td>').text(data.phoneNumber || '-'));
+              row.append($('<td>').text(data.creditCard || '-'));
+              row.append($('<td>').text(data._id));
+              row.append($('<td>').text(data.password || '-'));
+              return row;
+            }
+          });
+        </script>
+
+        <h2>Supplier Management:</h2>
+
+        <table id="data-table1">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Available Products</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <script>
+          $(document).ready(function () {
+            const url = 'http://127.0.0.1:8080/api/suppliers'; // Replace with the actual URL
+            const tableBody = $('#data-table1 tbody');
+
+            $.ajax({
+              url: url,
+              method: 'GET',
+              dataType: 'json',
+              success: function (data) {
+                const companies = data; // Assuming the array is directly in the response
+
+                companies.forEach(function (company) {
+                  const row = createTableRowsupplier(company);
+                  tableBody.append(row);
+                });
+              },
+              error: function (error) {
+                console.error('Error:', error);
+              }
+            });
+
+            function createTableRowsupplier(data) {
+              const row = $('<tr>');
+              row.append($('<td>').text(data._id));
+              row.append($('<td>').text(data.name));
+              row.append($('<td>').text(data.availableProducts.join(', ') || '-'));
+              return row;
+            }
+          });
+        </script>
+
+
+      </body>
+
 
     </main>
+
+
+
+
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
