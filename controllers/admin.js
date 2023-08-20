@@ -146,7 +146,7 @@ exports.deleteProduct = async (req, res) => {
         break;
     }
     res.status(200).json({
-      message: "Deleted successfully",
+      message: "Deleted successfully.",
     });
   } catch (error) {
     console.log(error);
