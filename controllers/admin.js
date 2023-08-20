@@ -78,24 +78,80 @@ exports.get = async (req, res) => {
   }
 };
 
-exports.edit = async (req, res) => {
+exports.update = async (req, res) => {
   try {
-    const updatedProduct = req.body;
-    const product = await Product.findByIdAndUpdate(productId, updatedProduct, {
-      new: true,
-    });
-    if (!product) {
-      res.code(404).json({ error: "Product not found" });
-    } else {
-      res.code(200).json({
-        message: "Edited product successfully",
-      });
+    const updated = req.body;
+    const id = req.id;
+    const url = req.url;
+    const model = url.split("/");
+    const expression = model[2];
+    console.log(expression);
+    switch (expression) {
+      case "product":
+        await Product.findOneAndUpdate(id, updated);
+        break;
+      case "order":
+        await Order.findOneAndUpdate(id, updated);
+        break;
+      case "store-locations":
+        await StoreLocations.findOneAndUpdate(id, updated);
+        break;
+      case "user":
+        await User.findOneAndUpdate(id, updated);
+        break;
+      default:
+        // Handle cases where the expression doesn't match any of the expected values
+        return res.status(400).json({
+          message: "Error with query",
+        });
+        break;
     }
+    res.status(200).json({
+      message: "Updated successfully",
+    });
   } catch (error) {
-    res.code(500).json({
+    console.log(error);
+    res.status(500).json({
       message: "Internal server error",
     });
   }
 };
 
-exports.deleteProduct = async (req, res) => {};
+exports.deleteProduct = async (req, res) => {
+  try {
+    const updated = req.body;
+    const id = req.id;
+    const url = req.url;
+    const model = url.split("/");
+    const expression = model[2];
+    console.log(expression);
+    switch (expression) {
+      case "product":
+        await Product.findOneAndDelete(id);
+        break;
+      case "order":
+        await Order.findOneAndDelete(id);
+        break;
+      case "store-locations":
+        await StoreLocations.findOneAndDelete(id);
+        break;
+      case "user":
+        await User.findOneAndDelete(id);
+        break;
+      default:
+        // Handle cases where the expression doesn't match any of the expected values
+        return res.status(400).json({
+          message: "Error with query",
+        });
+        break;
+    }
+    res.status(200).json({
+      message: "Deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
