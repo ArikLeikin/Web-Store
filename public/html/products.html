@@ -235,6 +235,7 @@
                   type="number"
                   id="min-price-input"
                   min="0"
+                  value="0"
                   class="price-input center"
                 /><span>-</span>
 
@@ -244,18 +245,9 @@
                   min="0"
                   class="price-input center"
                 />
-
-                <!-- <button
-                type="button"
-                class="button filter-button"
-                id="price-filter-button"
-              >
-                Apply Price Filter
-              </button> -->
               </div>
             </td>
           </tr>
-          <tr></tr>
           <tr>
             <td>
               <span class="select-label">Sort By</span>
@@ -271,19 +263,13 @@
           </tr>
         </table>
 
-        <button type="button" class="button filter-button" id="filter-button">
+        <button type="button" class="btn-ns-hot center" id="filter-button">
           Apply Filters
         </button>
-        <!--      <br /><br /><br /><br />
-        <label for="price-filter">Price:</label>
-        <div id="price-range-slider"></div>
-        <div id="price-range-values"></div>
-        <div id="price-dot-min" class="price-dot"></div>
-        <div id="price-dot-max" class="price-dot"></div>-->
       </div>
 
       <!-- Product Grid -->
-      <!-- <div class="product-grid-section">
+      <div class="product-grid-section">
         <h1 class="category-title" id="category-title">BOARD GAMES</h1>
         <div class="sort-select">
           <label class="sort-select-label" for="sort">Sort By:</label>
@@ -314,74 +300,24 @@
               >
             </section>
             <section class="product-price">
-              <span class="product-title-price"> $130</span>
-            </section>
-          </div>
-
-          <div
-            class="product-item"
-            data-age-range="12-24 months"
-            data-game-type="puzzle"
-            data-price="7000.00"
-            filter-by="book"
-          >
-            <a class="product-img" href="#">
-              <img src="path_to_your_image1.jpg" alt="item" />
-            </a>
-            <section class="product-title">
-              <span class="product-title-desc"
-                ><a href="#">Colorful Puzzle Set</a></span
-              >
-            </section>
-            <section class="product-price">
-              <span class="product-title-price">$7000</span>
-            </section>
-          </div>
-
-          <div
-            class="product-item"
-            data-age-range="5-7"
-            data-game-type="games"
-            data-price="1500.99"
-            filter-by="book"
-          >
-            <a class="product-img" href="#">
-              <img src="path_to_your_image2.jpg" alt="item" />
-            </a>
-            <section class="product-title">
-              <span class="product-title-desc"
-                ><a href="#">Adventure Board Game</a></span
-              >
-            </section>
-            <section class="product-price">
-              <span class="product-title-price">$1500.99</span>
-            </section>
-          </div>
-
-          <div
-            class="product-item"
-            data-age-range="8-99"
-            data-game-type="music & karaoke"
-            data-price="6000.00"
-            filter-by="board"
-          >
-            <a class="product-img" href="#">
-              <img src="path_to_your_image3.jpg" alt="item" />
-            </a>
-            <section class="product-title">
-              <span class="product-title-desc"
-                ><a href="#">Karaoke Party Set</a></span
-              >
-            </section>
-            <section class="product-price">
-              <span class="product-title-price">$6000.00</span>
+              <span class="product-title-price center"> $130</span>
             </section>
           </div>
         </div>
-      </div> -->
-
-      <div id="productGrid"></div>
-
+      </div>
+      <div class="product-grid-section">
+        <h1 class="category-title" id="category-title">BOARD GAMES</h1>
+        <div class="sort-select">
+          <label class="sort-select-label" for="sort">Sort By:</label>
+          <select class="sort-select-filter" id="Sortby-filter">
+            <option value="">Recommended</option>
+            <option value="book">Best selling</option>
+            <option value="board">Price high to low</option>
+            <option value="board">Price low to high</option>
+          </select>
+        </div>
+        <div id="productGrid"></div>
+      </div>
       <script>
         const productGrid = document.getElementById("productGrid");
 
