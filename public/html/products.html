@@ -211,17 +211,17 @@
             <td>
               <select class="select-filter" id="game-type-filter">
                 <option value="">All</option>
-                <option value="board">Board Games</option>
-                <option value="riding">Riding Toys</option>
-                <option value="book">Books</option>
-                <option value="sience">Sience</option>
-                <option value="puzzle">Puzzle Games</option>
-                <option value="Lego">Leggo</option>
+                <option value="boardgames">Board Games</option>
+                <option value="ridingtoys">Riding Toys</option>
+                <option value="books">Books</option>
+                <option value="science">Science</option>
+                <option value="puzzles">Puzzle Games</option>
+                <option value="Lego">Lego</option>
                 <option value="games">Games</option>
-                <option value="music & karaoke">Music & Karaoke</option>
+                <option value="musickaraoke">Music & Karaoke</option>
                 <option value="dolls">Dolls</option>
-                <option value="10$ & bellow">10$ & Bellow</option>
-                <option value="Yad 2">Yad 2</option>
+                <option value="10andbellow">10$ & Bellow</option>
+                <option value="Yad2">Yad 2</option>
                 <option value="sale">SALE</option>
               </select>
             </td>
@@ -259,33 +259,6 @@
 
       <!-- Product Grid -->
       <div class="product-grid-section">
-        <h1 class="category-title" id="category-title">BOARD GAMES</h1>       
-        <div class="product-grid" id="product-grid">
-          <div
-            class="product-item"
-            data-age-range="0-12 months"
-            data-game-type="board"
-            data-price="100.00"
-            filter-by=""
-          >
-            <a class="product-img" href="#">
-              <img
-                src="http://img1.exportersindia.com/product_images/bc-small/dir_55/1620613/cannondale-jekyll-1-2011-mountain-bike-309779.jpg"
-                alt="item"
-              />
-            </a>
-            <section class="product-title">
-              <span class="product-title-desc"
-                ><a href="#">Cannondale Jekyll 3 - Mountain</a></span
-              >
-            </section>
-            <section class="product-price">
-              <span class="product-title-price center"> $130</span>
-            </section>
-          </div>
-        </div>
-      </div>
-      <div class="product-grid-section">
         <h1 class="category-title" id="category-title">BOARD GAMES</h1>
         <div class="sort-select">
           <label class="sort-select-label" for="sort">Sort By:</label>
@@ -299,170 +272,143 @@
           <div id="productGrid"></div>
           </div>
           <script>
-            const productGrid = document.getElementById("productGrid");
 
-            // Function to create the product HTML structure
-       function createProductHTML(product) {
-      const productItem = document.createElement("div");
-      productItem.className = "product-item";
-      productItem.setAttribute("data-age-range", product.ageRange);
-      productItem.setAttribute("data-game-type", product.gameType);
-      productItem.setAttribute("data-price", product.price);
-      productItem.setAttribute("filter-by", "");
+            $(document).ready(function() {
+              const productGrid = $("#productGrid");
 
-      const productLink = document.createElement("a");
-      productLink.className = "product-img";
-      productLink.href = "#";
-      const productImage = document.createElement("img");
-      productImage.src = product.image;
-      productImage.alt = "item";
-      productLink.appendChild(productImage);
+              // Function to create the product HTML structure
+              function createProductHTML(product) {
+                const productItem = document.createElement("div");
+                productItem.className = "product-item";
+                productItem.setAttribute("data-age-range", product.ageRange);
+                productItem.setAttribute("data-game-type", product.gameType);
+                productItem.setAttribute("data-price", product.price);
+                productItem.setAttribute("filter-by", "");
+                const productLink = document.createElement("a");
+                productLink.className = "product-img";
+                productLink.href = "/product-details?id=" + product._id;
+                const productImage = document.createElement("img");
+                productImage.src = product.image;
+                productImage.alt = "item";
+                productLink.appendChild(productImage);
+                const productTitleSection = document.createElement("section");
+                productTitleSection.className = "product-title";
+                const productTitleDesc = document.createElement("span");
+                productTitleDesc.className = "product-title-desc";
+                const productTitleLink = document.createElement("a");
+                productTitleLink.href = "#";
+                productTitleLink.textContent = product.title;
+                productTitleDesc.appendChild(productTitleLink);
+                productTitleSection.appendChild(productTitleDesc);
+                const productPriceSection = document.createElement("section");
+                productPriceSection.className = "product-price";
+                const productTitlePrice = document.createElement("span");
+                productTitlePrice.className = "product-title-price center"; // Adding 'center' class
+                productTitlePrice.textContent = `$${product.price}`;
+                productPriceSection.appendChild(productTitlePrice);
 
-      const productTitleSection = document.createElement("section");
-      productTitleSection.className = "product-title";
-      const productTitleDesc = document.createElement("span");
-      productTitleDesc.className = "product-title-desc";
-      const productTitleLink = document.createElement("a");
-      productTitleLink.href = "#";
-      productTitleLink.textContent = product.title;
-      productTitleDesc.appendChild(productTitleLink);
-      productTitleSection.appendChild(productTitleDesc);
+                productItem.appendChild(productLink);
+                productItem.appendChild(productTitleSection);
+                productItem.appendChild(productPriceSection);
+                return productItem;
+              }
 
-      const productPriceSection = document.createElement("section");
-      productPriceSection.className = "product-price";
-      const productTitlePrice = document.createElement("span");
-      productTitlePrice.className = "product-title-price center"; // Adding 'center' class
-      productTitlePrice.textContent = `$${product.price}`;
-      productPriceSection.appendChild(productTitlePrice);
+              function applyFilters(products) {
+                const selectedGameType = $("#game-type-filter").val();
+                const minPrice = parseFloat($("#min-price-input").val());
+                const maxPrice = parseFloat($("#max-price-input").val());
+                const selectedSorting = $("#Sortbyfilter").val();
+                
 
-      productItem.appendChild(productLink);
-      productItem.appendChild(productTitleSection);
-      productItem.appendChild(productPriceSection);
+                const filteredProducts = products.filter(product => {
+                  const filterCategory = urlCategory !== null ? urlCategory : selectedGameType;
+                  const isGameTypeMatch = !filterCategory || product.category.toLowerCase() === filterCategory.toLowerCase();
+                  const isPriceInRange = (!minPrice || product.price >= minPrice) && (!maxPrice || product.price <= maxPrice);
+                  return isGameTypeMatch && isPriceInRange;
+                });
+                
+                sortProductsByPrice(filteredProducts, selectedSorting);
 
-      return productItem;
-    }
-    
+                productGrid.empty();
+                filteredProducts.forEach(product => {
+                  const productHTML = createProductHTML(product);
+                  productGrid.append(productHTML);
+                });
+              }
 
+              function sortProductsByPrice(products, sortOrder) {
+                products.sort((a, b) => {
+                  const priceDifference = a.price - b.price;
+                  return sortOrder === "highToLow" ? -priceDifference : priceDifference;
+                });
+              }
 
-        function fetchAndDisplayProducts() {
-          const apiUrl = "http://127.0.0.1:8080/api/products";
+              function fetchAndDisplayProducts() {
+                const apiUrl = "http://127.0.0.1:8080/api/products";
+                
+                $.get(apiUrl, function(data, status) {
+                  if (status === "success") {
+                    applyFilters(data);
+                  } else {
+                    console.error("Error fetching products:", status);
+                  }
+                }).fail(function() {
+                  console.error("Network error occurred");
+                });
+              }
 
-          // Creating a new AJAX request
-          const xhr = new XMLHttpRequest();
-          xhr.open("GET", apiUrl, true);
+              // Function to extract URL parameters
+              function getUrlParameter(name) {
+                const results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                if (results == null) {
+                  return null;
+                } else {
+                  return decodeURI(results[1]) || 0;
+                }
+              }
+              
+              // Extract 'category' parameter from the URL
+              const urlCategory = getUrlParameter('category');
+              if (urlCategory) {
+                const optionValues = [
+                  { value: "", label: "All" },
+                  { value: "boardgames", label: "Board Games" },
+                  { value: "ridingtoys", label: "Riding Toys" },
+                  { value: "books", label: "Books" },
+                  { value: "science", label: "Sience" },
+                  { value: "puzzles", label: "Puzzle Games" },
+                  { value: "Lego", label: "Lego" },
+                  { value: "games", label: "Games" },
+                  { value: "musickaraoke", label: "Music & Karaoke" },
+                  { value: "dolls", label: "Dolls" },
+                  { value: "10andbellow", label: "10$ & Bellow" },
+                  { value: "Yad2", label: "Yad 2" },
+                  { value: "sale", label: "SALE" }
+                ];
+                const selectedOption = optionValues.find(option => option.value.toLowerCase() === urlCategory.toLowerCase());
 
-          xhr.onload = function () {
-            if (xhr.status === 200) {
-              const products = JSON.parse(xhr.responseText);
-              products.forEach((product) => {
-                const productHTML = createProductHTML(product);
-                productGrid.appendChild(productHTML);
+                $("#game-type-filter").val(selectedOption.value);
+                $("#game-type-filter").prop('disabled', true);
+                fetchAndDisplayProducts();
+              }
+
+              $("#filter-button").click(function() {
+                fetchAndDisplayProducts();
               });
-            } else {
-              console.error("Error fetching products:", xhr.statusText);
-            }
-          };
 
-          xhr.onerror = function () {
-            console.error("Network error occurred");
-          };
+              $("#Sortbyfilter").change(function() {
+                fetchAndDisplayProducts();
+              });
 
-          // Sending the AJAX request
-          xhr.send();
-
-        }
-
-        // Call the function to fetch and display products
-        fetchAndDisplayProducts();
-
-        function applyFilters(products) {
-          const selectedCategory =
-            document.getElementById("game-type-filter").value;
-          const minPrice = parseFloat(
-            document.getElementById("min-price-input").value
-          );
-          const maxPrice = parseFloat(
-            document.getElementById("max-price-input").value
-          );
-          const selectedSorting =
-            document.getElementById("Sortbyfilter").value;
-
-          const filteredProducts = products.filter((product) => {
-            const isCategoryMatch =
-              selectedCategory === "" || product.category === selectedCategory;
-            const isPriceInRange =
-              (isNaN(minPrice) || product.price >= minPrice) &&
-              (isNaN(maxPrice) || product.price <= maxPrice);
-
-            return isCategoryMatch && isPriceInRange;
-          });
-
-          // Sort the filtered products based on selected sorting criteria
-          sortProductsByPrice(filteredProducts, selectedSorting);
-
-          // Clear the existing products and display the filtered ones
-          productGrid.innerHTML = ""; // Clear existing products
-          filteredProducts.forEach((product) => {
-            const productHTML = createProductHTML(product);
-            productGrid.appendChild(productHTML);
-          });
-        }
-        function sortProductsByPrice(products, sortOrder) {
-          products.sort((a, b) => {
-            const priceDifference = a.price - b.price;
-            return sortOrder === "highToLow"
-              ? -priceDifference
-              : priceDifference;
-          });
-        }
-
-        // Fetch and display products
-        function fetchAndDisplayProducts() {
-          const apiUrl = "http://127.0.0.1:8080/api/products";
-
-          // Creating a new AJAX request
-          const xhr = new XMLHttpRequest();
-          xhr.open("GET", apiUrl, true);
-
-          xhr.onload = function () {
-            if (xhr.status === 200) {
-              const products = JSON.parse(xhr.responseText);
-              applyFilters(products); // Apply filters to the fetched products
-            } else {
-              console.error("Error fetching products:", xhr.statusText);
-            }
-          };
-
-          xhr.onerror = function () {
-            console.error("Network error occurred");
-          };
-
-          // Sending the AJAX request
-          xhr.send();
-        }
-
-        // Attach the filter button's click event handler for category filter
-        const FilterButton = document.getElementById("filter-button");
-        FilterButton.addEventListener("click", function () {
-          fetchAndDisplayProducts(); // Fetch and display products when category filter button is clicked
-        });
-
- 
-        const sortDropdown = $("#Sortbyfilter");
-        sortDropdown.on("change", function() {
-          fetchAndDisplayProducts(); // Fetch and display products when sorting option is changed
-        });
-
-
-        // Call the function initially to display products
-        fetchAndDisplayProducts();
-      </script>
-    </main>
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <div id="modal-content"></div>
-      </div>
+              fetchAndDisplayProducts();  // Initial fetch and display
+            });
+          </script>
+        </main>
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-content"></div>
+          </div>
     </div>
   </body>
 </html>
