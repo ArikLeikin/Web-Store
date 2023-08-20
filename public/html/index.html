@@ -1,7 +1,7 @@
-class Header extends HTMLElement { constructor() { super(); }
-connectedCallback() { this.innerHTML = `
-<header>
-  <div class="container">
+<!DOCTYPE html>
+<html>
+  <header>
+    <div class="container">
     <nav class="navUser">
       <ul class="navUser-section">
         <li class="item__account" id="item__account">
@@ -83,7 +83,7 @@ connectedCallback() { this.innerHTML = `
         <ul class="nav_container">
           <div class="container__list">
             <div class="container__listItem">
-              <div class="container__listItem_title">Board Games</div>
+              <div class="container__listItem_title" href="http://127.0.0.1:8080/products?category=boardgames">Board Games</div>
             </div>
             <div class="container__listItem">
               <div class="container__listItem_title">Science</div>
@@ -114,7 +114,7 @@ connectedCallback() { this.innerHTML = `
 
             <div class="container__listItem">
               <div class="container__listItem_title bold no-underline">
-                $10 & Below
+                Up to 10$
               </div>
             </div>
           </div>
@@ -155,4 +155,4 @@ connectedCallback() { this.innerHTML = `
   </nav>
   <!-- End Navigation Bar -->
 </header>
-`; } } customElements.define('header-component', Header);
+</html>
