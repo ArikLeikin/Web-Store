@@ -106,7 +106,9 @@
             <ul class="nav_container">
               <div class="container__list">
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Board Games</div>
+                  <div class="container__listItem_title" >
+                    <a href="">Board Games</a>
+                  </div>                  
                 </div>
                 <div class="container__listItem">
                   <div class="container__listItem_title">Science</div>
@@ -248,19 +250,6 @@
               </div>
             </td>
           </tr>
-          <tr>
-            <td>
-              <span class="select-label">Sort By</span>
-            </td>
-            <td>
-              <select class="select-filter" id="Sortby-filter">
-                <option value="recommended">Recommended</option>
-                <option value="bestSelling">Best selling</option>
-                <option value="highToLow">Price high to low</option>
-                <option value="lowToHigh">Price low to high</option>
-              </select>
-            </td>
-          </tr>
         </table>
 
         <button type="button" class="btn-ns-hot center" id="filter-button">
@@ -270,16 +259,7 @@
 
       <!-- Product Grid -->
       <div class="product-grid-section">
-        <h1 class="category-title" id="category-title">BOARD GAMES</h1>
-        <!-- <div class="sort-select">
-          <label class="sort-select-label" for="sort">Sort By:</label>
-          <select class="sort-select-filter" id="Sortby-filter">
-            <option value="">Recommended</option>
-            <option value="book">Best selling</option>
-            <option value="board">Price high to low</option>
-            <option value="board">Price low to high</option>
-          </select>
-        </div> -->
+        <h1 class="category-title" id="category-title">BOARD GAMES</h1>       
         <div class="product-grid" id="product-grid">
           <div
             class="product-item"
@@ -309,17 +289,17 @@
         <h1 class="category-title" id="category-title">BOARD GAMES</h1>
         <div class="sort-select">
           <label class="sort-select-label" for="sort">Sort By:</label>
-          <select class="sort-select-filter" id="Sortby-filter">
+          <select class="sort-select-filter" id="Sortbyfilter">
             <option value="recommended">Recommended</option>
-            <option value="bestSelling">Best selling</option>
-            <option value="highToLow">Price high to low</option>
-            <option value="lowToHigh">Price low to high</option>
+            <option value="best-selling">Best Selling</option>
+            <option value="highToLow">Price: High to Low</option>
+            <option value="lowToHigh">Price: Low to High</option>
           </select>
-        </div>
-        <div id="productGrid"></div>
-      </div>
-      <script>
-        const productGrid = document.getElementById("productGrid");
+          </div>
+          <div id="productGrid"></div>
+          </div>
+          <script>
+            const productGrid = document.getElementById("productGrid");
 
             // Function to create the product HTML structure
        function createProductHTML(product) {
@@ -405,7 +385,7 @@
             document.getElementById("max-price-input").value
           );
           const selectedSorting =
-            document.getElementById("Sortby-filter").value;
+            document.getElementById("Sortbyfilter").value;
 
           const filteredProducts = products.filter((product) => {
             const isCategoryMatch =
@@ -465,6 +445,12 @@
         const FilterButton = document.getElementById("filter-button");
         FilterButton.addEventListener("click", function () {
           fetchAndDisplayProducts(); // Fetch and display products when category filter button is clicked
+        });
+
+ 
+        const sortDropdown = $("#Sortbyfilter");
+        sortDropdown.on("change", function() {
+          fetchAndDisplayProducts(); // Fetch and display products when sorting option is changed
         });
 
 
