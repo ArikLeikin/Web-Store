@@ -1,11 +1,10 @@
-body {
-  font-family: Arial, sans-serif;
+main {
   margin: 0;
   padding: 20px;
 }
 
-h1,
-h2 {
+.category-title,
+.filter-title {
   color: #3f3e39;
   text-align: left;
   font-family: math;
@@ -44,43 +43,6 @@ h2 {
 .product-grid-section {
   width: 70%;
 }
-/*
-#price-range-slider {
-  height: 10px;
-  background-color: #ddd;
-  position: relative;
-}
-
-#price-range-values {
-  margin-top: 5px;
-  text-align: center;
-}
-
-#price-range-values span {
-  display: inline-block;
-  width: 50px;
-  text-align: center;
-}
-
-.price-dot {
-  position: absolute;
-  top: -5px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #333;
-}
-
-#price-dot-min {
-  left: 10;
-  top: 193px;
-}
-
-#price-dot-max {
-  right: 0;
-  top: 193px;
-}
-*/
 .filter-option {
   margin-bottom: 50px;
 }
@@ -135,162 +97,8 @@ h2 {
 .filter-container tr {
   height: 25px;
 }
-/* slider*/
-/* This line can be removed it was just for display on CodePen: */
-.slider-container {
-  margin-top: 25px;
-}
-
-.slider-labels {
-  margin-top: 10px;
-  display: flex;
-}
-
-/* Functional styling;
-   * These styles are required for noUiSlider to function.
-   * You don't need to change these rules to apply your design.
-   */
-.noUi-target,
-.noUi-target * {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -ms-touch-action: none;
-  touch-action: none;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.noUi-target {
-  position: relative;
-  direction: ltr;
-}
-
-.noUi-base {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 1;
-  /* Fix 401 */
-}
-
-.noUi-origin {
-  position: absolute;
-  right: 0;
-  top: 0;
-  left: 0;
-  bottom: 0;
-}
-
-.noUi-handle {
-  position: relative;
-  z-index: 1;
-}
-
-.noUi-stacking .noUi-handle {
-  /* This class is applied to the lower origin when
-     its values is > 50%. */
-  z-index: 10;
-}
-
-.noUi-state-tap .noUi-origin {
-  -webkit-transition: left 0.3s, top 0.3s;
-  transition: left 0.3s, top 0.3s;
-}
-
-.noUi-state-drag * {
-  cursor: inherit !important;
-}
-
-/* Painting and performance;
-   * Browsers can paint handles in their own layer.
-   */
-.noUi-base,
-.noUi-handle {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-
-/* Slider size and handle placement;
-   */
-.noUi-horizontal {
-  height: 4px;
-}
-
-.noUi-horizontal .noUi-handle {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  left: -7px;
-  top: -7px;
-  background-color: #345dbb;
-}
-
-/* Styling;
-   */
-.noUi-background {
-  background: #d6d7d9;
-}
-
-.noUi-connect {
-  background: #345dbb;
-  -webkit-transition: background 450ms;
-  transition: background 450ms;
-}
-
-.noUi-origin {
-  border-radius: 2px;
-}
-
-.noUi-target {
-  border-radius: 2px;
-}
-/* Handles and cursors;
-   */
-.noUi-draggable {
-  cursor: w-resize;
-}
-
-.noUi-vertical .noUi-draggable {
-  cursor: n-resize;
-}
-
-.noUi-handle {
-  cursor: default;
-  -webkit-box-sizing: content-box !important;
-  -moz-box-sizing: content-box !important;
-  box-sizing: content-box !important;
-}
-
-.noUi-handle:active {
-  border: 8px solid #345dbb;
-  border: 8px solid rgba(53, 93, 187, 0.38);
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  left: -14px;
-  top: -14px;
-}
-
-/* Disabled state;
-   */
-[disabled].noUi-connect,
-[disabled] .noUi-connect {
-  background: #b8b8b8;
-}
-
-[disabled].noUi-origin,
-[disabled] .noUi-handle {
-  cursor: not-allowed;
-}
-.col-xs-6 {
-  font-size: 10px;
-  flex: 1;
-}
-span#slider-range-value2,
-span#price-dot-max {
-  float: right;
+.filter-container .price-title {
+  width: 45%;
 }
 /* product item grid*/
 .product-item {
@@ -304,11 +112,6 @@ span#price-dot-max {
   border: 1px solid #dfdfdf;
   border-radius: 4px;
 }
-/*
-.product-item {
-  text-align: center;
-  margin-bottom: 15px;
-}*/
 
 .product-img img {
   display: block;
@@ -372,7 +175,19 @@ span#price-dot-max {
   width: auto;
   margin-right: 6px;
 }
-
+.price-input {
+  border: 0;
+  box-shadow: none;
+  padding: 0px 5px;
+  width: 40%;
+  color: black;
+  border-bottom: 1px solid grey;
+  cursor: pointer;
+}
+.price-container {
+  display: flex;
+  flex: 3;
+}
 
 #productGrid {
   display: grid;
@@ -417,11 +232,11 @@ span#price-dot-max {
 
 .select-label {
   font-weight: bold;
-  color: #333; 
+  color: #333;
 }
 
 .price-input {
-  width: 100px; 
+  width: 100px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
