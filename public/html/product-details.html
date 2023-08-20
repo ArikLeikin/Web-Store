@@ -180,8 +180,8 @@
       <!-- End Navigation Bar -->
     </header>
 
-    <main style="margin-top: 170px">
-      <!-- <div class="productView">
+    <main style="margin-top: 190px">
+      <div class="productView">
         <div class="productView-images">
           <div style="height: 350px">
             <img
@@ -318,15 +318,12 @@
           </section>
           <button class="add-to-cart" type="button">Add to cart</button>
         </div>
-      </div> -->
-
+      </div>
 
       <div id="product-details"></div>
       <script>
         const productId = "64d0a26b2e852944de35e012"; // Replace with your product ID
         const url = `http://127.0.0.1:8080/api/product/${productId}`;
-        ;
-
         $.ajax({
           url: url,
           method: "GET",
