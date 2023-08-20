@@ -477,12 +477,82 @@
                       `;
 
             productDetailsDiv.html(productHTML);
+            
           },
           error: function (error) {
             console.error("Error fetching data:", error);
           },
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const minusButtons = document.querySelectorAll(".minus");
+            const plusButtons = document.querySelectorAll(".plus");
+            const quantityInputs = document.querySelectorAll(".input-text.qty");
+
+            minusButtons.forEach((minusButton) => {
+              minusButton.addEventListener("click", function () {
+                const input = minusButton.nextElementSibling;
+                let quantity = parseInt(input.value);
+                if (quantity > 1) {
+                  quantity--;
+                  input.value = quantity;
+                }
+              });
+            });
+
+            plusButtons.forEach((plusButton) => {
+              plusButton.addEventListener("click", function () {
+                const input = plusButton.previousElementSibling;
+                let quantity = parseInt(input.value);
+                quantity++;
+                input.value = quantity;
+              });
+            });
+          });
+
+          document.addEventListener("DOMContentLoaded", function () {
+            const imageSlickItems = document.querySelectorAll(".productView-imageSlick");
+            const mainImage = document.querySelector(".productView-image");
+
+            imageSlickItems.forEach(function (imageSlickItem, index) {
+              imageSlickItem.addEventListener("click", function () {
+                // Remove active class from all images
+                imageSlickItems.forEach(function (item) {
+                  item.classList.remove("active");
+                });
+
+                // Add active class to the clicked image
+                imageSlickItem.classList.add("active");
+
+                // Update the main image source
+                const imageSource = imageSlickItem.querySelector("img").src;
+                mainImage.src = imageSource;
+              });
+            });
+          });
+
+          document.addEventListener("DOMContentLoaded", function () {
+            const favoriteButton = document.querySelector(".favorite-button");
+            favoriteButton.addEventListener("click", function () {
+              const heartIcon = favoriteButton.querySelector("i");
+
+              if (heartIcon.classList.contains("far")) {
+                heartIcon.classList.remove("far");
+                heartIcon.classList.add("fas"); // Change to filled heart icon
+                favoriteButton.setAttribute("aria-label", "Remove from favorites");
+              } else {
+                heartIcon.classList.remove("fas");
+                heartIcon.classList.add("far"); // Change back to empty heart icon
+                favoriteButton.setAttribute("aria-label", "Add to favorites");
+              }
+            });
+          });
+
+
       </script>
+
+
+
     </main>
 
     <div id="myModal" class="modal">
