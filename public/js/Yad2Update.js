@@ -6,6 +6,13 @@ $(document).ready(function () {
     let isValid = true;
     var price = $("#price").val();
     var bankAccount = $("#bankAccount").val();
+    var productName = $("#productName").val();
+
+    if (!validateLettersOrDigits(productName)) {
+      $("#productName-error").text("Product name should be only letters or digits.");
+      isValid= false; 
+    }
+
 
     if (!containsOnlyNumbers(price)) {
       showError(
@@ -31,6 +38,11 @@ function containsOnlyNumbers(str) {
 function ValidBankAccount(str) {
   return bankAccount.length === 14 && /^[0-9]+$/.test(str);
 }
+
+function validateLettersOrDigits(str) {
+  return /^[a-zA-Z0-9]+$/.test(str);
+}
+
 
 function showError(element, message) {
   $(element).text(message).css("color", "red");

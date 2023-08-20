@@ -202,10 +202,11 @@
             placeholder="Company's Name"
             required
           />
+          <div id="companyName-error" class="error-message"></div>
           <select class="form-select" id="category" name="category" required>
-            <option value="" disabled selected hidden>
+            <!-- <option value="" disabled selected hidden>
               Product's Category
-            </option>
+            </option> -->
             <option value="board">Board Games</option>
             <option value="riding">Riding Toys</option>
             <option value="book">Books</option>
@@ -217,14 +218,17 @@
             <option value="dolls">Dolls</option>
             <option value="10$ & bellow">10$ & Bellow</option>
           </select>
+          
+          <div id="category-error" class="error-message"></div>
           <select class="form-select" id="ages" name="ages" required>
-            <option value="" disabled selected hidden>Appropriate Ages</option>
+            <!-- <option value="" disabled selected hidden>Appropriate Ages</option> -->
             <option value="0-12 months">0-12 months</option>
             <option value="12-24 months">12-24 months</option>
             <option value="2-4">2-4 Years</option>
             <option value="5-7">5-7 Years</option>
             <option value="8-99">8-99 Years</option>
           </select>
+          <div id="ages-error" class="error-message"></div>
           <input
             type="button"
             name="next"
@@ -242,6 +246,7 @@
             placeholder="Product Name"
             required
           />
+          <div id="productName-error" class="error-message"></div>
           <input
             class="half-input"
             type="text"
@@ -250,16 +255,16 @@
             required
             placeholder="Price"
           />
+          <div id="price-error" class="error-message"></div>
           <select
             class="half-input form-select"
             id="condition"
             name="condition"
             required
           >
-            <option value="" disabled selected hidden>Condition</option>
+            <!-- <option value="" disabled selected hidden>Condition</option> -->
             <option value="new">New</option>
             <option value="used">Used</option>
-            <option value="refurbished">Refurbished</option>
           </select>
           <input
             type="file"
@@ -269,6 +274,7 @@
             placeholder="Image"
             required
           />
+          <div id="productPhoto-error" class="error-message"></div>
           <input
             type="button"
             name="previous"

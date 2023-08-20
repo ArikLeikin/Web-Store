@@ -99,9 +99,18 @@
     width: 40%;
     margin-right: 100px;
   }
+
+  .fieldset-age {
+    clear: none !important;
+    float: left;
+    width: 40%;
+    margin-right: 100px;
+  }
   
   /* Apply styles to the select element within the condition field */
-  .fieldset-condition select {
+  .fieldset-condition select,
+  .fieldset-age select
+   {
     width: 100%;
     height: 40px;
     color: #333333;

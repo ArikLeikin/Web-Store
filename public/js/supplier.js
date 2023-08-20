@@ -1,8 +1,5 @@
-function containsOnlyNumbers(str) {
-  return /^\d+$/.test(str);
-}
 
-/*nofar*/
+
 /*nofar*/
 
 //jQuery time
@@ -14,6 +11,23 @@ $(document).ready(function () {
   var animating; //flag to prevent quick multi-click glitches
 
   $(".next1").click(function () {
+    var currentSubtitle = $(this).parentsUntil(".msform").find(".fs-subtitle").text().trim();
+    if (currentSubtitle !== "step 1") {
+      return false; // Prevent proceeding to the next step
+    }
+  
+    // Check if the required fields are filled correctly
+    var companyName = $("#companyName").val().trim();
+    var category = $("#category").val();
+    var ages = $("#ages").val();
+    
+    if (!/^[a-zA-Z\s]+$/.test(companyName)) {
+      $("#companyName-error").text("Company name should only contain letters");
+      return false; // Prevent proceeding to the next step
+    }
+
+    $("#companyName-error").text("");
+
     var $form = $(this).parentsUntil("msform");
     if (animating) return false;
     animating = true;
@@ -56,6 +70,41 @@ $(document).ready(function () {
   });
 
   $(".next2").click(function () {
+    $("#price-error").text("");
+    $("#productName-error").text("");
+    $("#productPhoto-error").text("");
+
+    var price = $("#price").val();
+    var productName = $("#productName").val();
+    var productPhoto = $("#productPhoto").val();
+    let isValid = true;
+    
+    if (!validateNumber(price)) {
+      $("#price-error").text("Price name should only contain digits.");
+      isValid= false; // Prevent proceeding to the next step
+    }
+    if ( price==='0') {
+      $("#price-error").text("Price name should be greater than 0.");
+      isValid= false; // Prevent proceeding to the next step
+    }
+
+     if (!validateLettersOrDigits(productName)) {
+      $("#productName-error").text("Product name should be only letters or digits.");
+      isValid= false; // Prevent proceeding to the next step
+    }
+
+    function validateNumber(str) {
+      return /^\d+$/.test(str);
+    }
+    function validateLettersOrDigits(str) {
+      return /^[a-zA-Z0-9]+$/.test(str);
+    }
+    
+    if(!isValid)
+    {
+      return false;
+    }
+
     var $form = $(this).parentsUntil("msform");
     if (animating) return false;
     animating = true;
@@ -182,126 +231,6 @@ $(document).ready(function () {
     );
   });
 });
+
 // Michal
 
-// function validate($form) {
-//   // Reset previous error messages
-//   $form.find(".error-message").text("");
-
-//   // Validate Company Name (only letters)
-//   var companyNameInput = $form.find("#companyName");
-//   if (!/^[a-zA-Z\s]+$/.test(companyNameInput.val())) {
-//     companyNameInput.siblings(".error-message").text("Only letters allowed.");
-
-//     return false;
-//   }
-
-//         // Validate Product Name (only letters)
-//     var productNameInput = $form.find("#productName");
-//     if (!/^[a-zA-Z\s]+$/.test(productNameInput.val())) {
-//       productNameInput.siblings(".error-message").text("Only letters allowed.");
-//       return false;
-//     }
-
-//     // Validate Price (only numbers)
-//     var priceInput = $form.find("#price");
-//     if (!/^\d+$/.test(priceInput.val())) {
-//       priceInput.siblings(".error-message").text("Only numbers allowed.");
-//       return false;
-//     }
-
-//   // Other validation checks if needed...
-
-//   return true; // All validation checks passed
-// }
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   const companyNameInput = document.getElementById("companyName");
-//   const productNameInput = document.getElementById("productName");
-//   const priceInput = document.getElementById("price");
-//   const nextButton = document.querySelector(".next");
-
-//   companyNameInput.addEventListener("input", validateCompanyName);
-//   productNameInput.addEventListener("input", validateProductName);
-//   priceInput.addEventListener("input", validatePrice);
-
-//   function validateCompanyName() {
-//     const companyName = companyNameInput.value.trim();
-//     const regex = /^[A-Za-z\s]+$/;
-//     const companyNameError = document.getElementById("companyName-error");
-
-//     if (regex.test(companyName)) {
-//       companyNameInput.classList.remove("error");
-//       companyNameError.textContent = "";
-//       enableNextButtonIfValid();
-//       return true;
-//     } else {
-//       companyNameInput.classList.add("error");
-//       companyNameError.textContent = "Company name must contain only letters.";
-//       disableNextButton();
-//       return false;
-//     }
-//   }
-
-//   function validateProductName() {
-//     const productName = productNameInput.value.trim();
-//     const regex = /^[A-Za-z\s]+$/;
-//     const productNameError = document.getElementById("productName-error");
-
-//     if (regex.test(productName)) {
-//       productNameInput.classList.remove("error");
-//       productNameError.textContent = "";
-//       enableNextButtonIfValid();
-//       return true;
-//     } else {
-//       productNameInput.classList.add("error");
-//       productNameError.textContent = "Product name must contain only letters.";
-//       disableNextButton();
-//       return false;
-//     }
-//   }
-
-//   function validatePrice() {
-//     const price = priceInput.value.trim();
-//     const regex = /^\d+$/;
-//     const priceError = document.getElementById("price-error");
-
-//     if (regex.test(price)) {
-//       priceInput.classList.remove("error");
-//       priceError.textContent = "";
-//       enableNextButtonIfValid();
-//       return true;
-//     } else {
-//       priceInput.classList.add("error");
-//       priceError.textContent = "Price must contain only numbers.";
-//       disableNextButton();
-//       return false;
-//     }
-//   }
-
-//   function enableNextButtonIfValid() {
-//     if (validateCompanyName() && validateProductName() && validatePrice()) {
-//       nextButton.disabled = false;
-//     } else {
-//       nextButton.disabled = true;
-//     }
-//   }
-
-//   function disableNextButton() {
-//     nextButton.disabled = true;
-//   }
-
-//   nextButton.addEventListener("click", function (event) {
-//     if (nextButton.disabled) {
-//       // Revalidate inputs if the button was previously disabled
-//       validateCompanyName();
-//       validateProductName();
-//       validatePrice();
-//       if (!nextButton.disabled) {
-//         // Allow the button to proceed when inputs are now valid
-//         return;
-//       }
-//       event.preventDefault();
-//     }
-//   });
-// });
