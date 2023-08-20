@@ -250,19 +250,6 @@
               </div>
             </td>
           </tr>
-          <tr>
-            <td>
-              <span class="select-label">Sort By</span>
-            </td>
-            <td>
-              <select class="select-filter" id="Sortby-filter">
-                <option value="">Recommended</option>
-                <option value="bestSelling">Best selling</option>
-                <option value="highToLow">Price high to low</option>
-                <option value="lowToHigh">Price low to high</option>
-              </select>
-            </td>
-          </tr>
         </table>
 
         <button type="button" class="btn-ns-hot center" id="filter-button">
@@ -272,17 +259,8 @@
 
       <!-- Product Grid -->
       <div class="product-grid-section">
-        <h1 class="category-title" id="category-title">BOARD GAMES</h1>
-        <div class="sort-select">
-          <label class="sort-select-label" for="sort">Sort By:</label>
-          <select class="select-filter" id="Sortby-filter2">
-            <option value="recommended">Recommended</option>
-            <option value="bestSelling">Best selling</option>
-            <option value="highToLow">Price high to low</option>
-            <option value="lowToHigh">Price low to high</option>
-          </select>          
-        </div>
-        
+        <h1 class="category-title" id="category-title">BOARD GAMES</h1>       
+        <div class="product-grid" id="product-grid">
           <div
             class="product-item"
             data-age-range="0-12 months"
@@ -316,48 +294,55 @@
             <option value="best-selling">Best Selling</option>
             <option value="highToLow">Price: High to Low</option>
             <option value="lowToHigh">Price: Low to High</option>
-          </select>          
-        </div>
-        <div id="productGrid"></div>
-      </div>
-      <script>
-        const productGrid = document.getElementById("productGrid");
+          </select>
+          </div>
+          <div id="productGrid"></div>
+          </div>
+          <script>
+            const productGrid = document.getElementById("productGrid");
 
-        // Function to create the product HTML structure
-        function createProductHTML(product) {
-          const productContainer = document.createElement("div");
-          productContainer.className = "product-container";
+            // Function to create the product HTML structure
+       function createProductHTML(product) {
+      const productItem = document.createElement("div");
+      productItem.className = "product-item";
+      productItem.setAttribute("data-age-range", product.ageRange);
+      productItem.setAttribute("data-game-type", product.gameType);
+      productItem.setAttribute("data-price", product.price);
+      productItem.setAttribute("filter-by", "");
 
-          const productTitleSection = document.createElement("section");
-          productTitleSection.className = "product-title";
-          const productTitleDesc = document.createElement("span");
-          productTitleDesc.className = "product-title-desc";
-          const productLink = document.createElement("a");
-          productLink.href = "#";
-          productLink.textContent = product.title;
-          productTitleDesc.appendChild(productLink);
-          productTitleSection.appendChild(productTitleDesc);
+      const productLink = document.createElement("a");
+      productLink.className = "product-img";
+      productLink.href = "#";
+      const productImage = document.createElement("img");
+      productImage.src = product.image;
+      productImage.alt = "item";
+      productLink.appendChild(productImage);
 
-          const productPriceSection = document.createElement("section");
-          productPriceSection.className = "product-price";
-          const productTitlePrice = document.createElement("span");
-          productTitlePrice.className = "product-title-price";
-          productTitlePrice.textContent = `$${product.price}`;
-          productPriceSection.appendChild(productTitlePrice);
+      const productTitleSection = document.createElement("section");
+      productTitleSection.className = "product-title";
+      const productTitleDesc = document.createElement("span");
+      productTitleDesc.className = "product-title-desc";
+      const productTitleLink = document.createElement("a");
+      productTitleLink.href = "#";
+      productTitleLink.textContent = product.title;
+      productTitleDesc.appendChild(productTitleLink);
+      productTitleSection.appendChild(productTitleDesc);
 
-          const productImageSection = document.createElement("section");
-          productImageSection.className = "product-image";
-          const productImage = document.createElement("img");
-          productImage.src = product.image;
-          productImage.alt = product.title;
-          productImageSection.appendChild(productImage);
+      const productPriceSection = document.createElement("section");
+      productPriceSection.className = "product-price";
+      const productTitlePrice = document.createElement("span");
+      productTitlePrice.className = "product-title-price center"; // Adding 'center' class
+      productTitlePrice.textContent = `$${product.price}`;
+      productPriceSection.appendChild(productTitlePrice);
 
-          productContainer.appendChild(productTitleSection);
-          productContainer.appendChild(productPriceSection);
-          productContainer.appendChild(productImageSection);
+      productItem.appendChild(productLink);
+      productItem.appendChild(productTitleSection);
+      productItem.appendChild(productPriceSection);
 
-          return productContainer;
-        }
+      return productItem;
+    }
+    
+
 
         function fetchAndDisplayProducts() {
           const apiUrl = "http://127.0.0.1:8080/api/products";
@@ -384,12 +369,12 @@
 
           // Sending the AJAX request
           xhr.send();
+
         }
 
         // Call the function to fetch and display products
         fetchAndDisplayProducts();
 
-        // Function to apply filters and display filtered products
         function applyFilters(products) {
           const selectedCategory =
             document.getElementById("game-type-filter").value;
@@ -462,10 +447,12 @@
           fetchAndDisplayProducts(); // Fetch and display products when category filter button is clicked
         });
 
+ 
         const sortDropdown = $("#Sortbyfilter");
         sortDropdown.on("change", function() {
           fetchAndDisplayProducts(); // Fetch and display products when sorting option is changed
         });
+
 
         // Call the function initially to display products
         fetchAndDisplayProducts();
