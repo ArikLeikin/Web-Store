@@ -2217,4 +2217,143 @@ $(document).ready(function () {
 // });
 
 
+// $(document).ready(function() {
+//   const productGrid = document.getElementById("productGrid");
+    
+//         // Function to create the product HTML structure
+//         function createProductHTML(product) {
+//           const productContainer = document.createElement("div");
+//           productContainer.className = "product-container";
+    
+//           const productTitleSection = document.createElement("section");
+//           productTitleSection.className = "product-title";
+//           const productTitleDesc = document.createElement("span");
+//           productTitleDesc.className = "product-title-desc";
+//           const productLink = document.createElement("a");
+//           productLink.href = "#";
+//           productLink.textContent = product.title;
+//           productTitleDesc.appendChild(productLink);
+//           productTitleSection.appendChild(productTitleDesc);
+    
+//           const productPriceSection = document.createElement("section");
+//           productPriceSection.className = "product-price";
+//           const productTitlePrice = document.createElement("span");
+//           productTitlePrice.className = "product-title-price";
+//           productTitlePrice.textContent = `$${product.price}`;
+//           productPriceSection.appendChild(productTitlePrice);
+    
+//           const productImageSection = document.createElement("section");
+//           productImageSection.className = "product-image";
+//           const productImage = document.createElement("img");
+//           productImage.src = product.image;
+//           productImage.alt = product.title;
+//           productImageSection.appendChild(productImage);
+    
+//           productContainer.appendChild(productTitleSection);
+//           productContainer.appendChild(productPriceSection);
+//           productContainer.appendChild(productImageSection);
+    
+//           return productContainer;
+//         }
+    
+//       function fetchAndDisplayProducts() {
+//       const apiUrl = "http://127.0.0.1:8080/api/products";
 
+//       // Creating a new AJAX request
+//       const xhr = new XMLHttpRequest();
+//       xhr.open("GET", apiUrl, true);
+
+//       xhr.onload = function () {
+//         if (xhr.status === 200) {
+//           const products = JSON.parse(xhr.responseText);
+//           products.forEach(product => {
+//             const productHTML = createProductHTML(product);
+//             productGrid.appendChild(productHTML);
+//           });
+//         } else {
+//           console.error("Error fetching products:", xhr.statusText);
+//         }
+//       };
+
+//       xhr.onerror = function () {
+//         console.error("Network error occurred");
+//       };
+
+//       // Sending the AJAX request
+//       xhr.send();
+//     }
+
+//     // Call the function to fetch and display products
+//     fetchAndDisplayProducts();
+
+
+// // Function to apply filters and display filtered products
+// function applyFilters(products) {
+//   const selectedCategory = document.getElementById("game-type-filter").value;
+//   const minPrice = parseFloat(document.getElementById("min-price-input").value);
+//   const maxPrice = parseFloat(document.getElementById("max-price-input").value);
+//   const selectedSorting = document.getElementById("Sortby-filter").value;
+
+
+
+//   const filteredProducts = products.filter(product => {
+//     const isCategoryMatch = selectedCategory === "" || product.category === selectedCategory;
+//     const isPriceInRange = (isNaN(minPrice) || product.price >= minPrice) && 
+//                           (isNaN(maxPrice) || product.price <= maxPrice);
+
+//     return isCategoryMatch && isPriceInRange;
+//   });
+
+//     // Sort the filtered products based on selected sorting criteria
+//     sortProductsByPrice(filteredProducts, selectedSorting);
+
+//   // Clear the existing products and display the filtered ones
+//   productGrid.innerHTML = ""; // Clear existing products
+//   filteredProducts.forEach(product => {
+//     const productHTML = createProductHTML(product);
+//     productGrid.appendChild(productHTML);
+//   });
+// }
+// function sortProductsByPrice(products, sortOrder) {
+//   products.sort((a, b) => {
+//     const priceDifference = a.price - b.price;
+//     return sortOrder === "highToLow" ? -priceDifference : priceDifference;
+//   });
+// }
+
+
+// // Fetch and display products
+// function fetchAndDisplayProducts() {
+//   const apiUrl = "http://127.0.0.1:8080/api/products";
+
+//   // Creating a new AJAX request
+//   const xhr = new XMLHttpRequest();
+//   xhr.open("GET", apiUrl, true);
+
+//   xhr.onload = function () {
+//     if (xhr.status === 200) {
+//       const products = JSON.parse(xhr.responseText);
+//       applyFilters(products); // Apply filters to the fetched products
+//     } else {
+//       console.error("Error fetching products:", xhr.statusText);
+//     }
+//   };
+
+//   xhr.onerror = function () {
+//     console.error("Network error occurred");
+//   };
+
+//   // Sending the AJAX request
+//   xhr.send();
+// }
+
+// // Attach the filter button's click event handler for category filter
+// const FilterButton = document.getElementById("filter-button");
+// FilterButton.addEventListener("click", function () {
+//   fetchAndDisplayProducts(); // Fetch and display products when category filter button is clicked
+// });
+
+// // Call the function initially to display products
+// fetchAndDisplayProducts();
+
+// });
