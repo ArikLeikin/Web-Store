@@ -203,39 +203,47 @@
             required
           />
           <div id="productName-error" class="error-message"></div>
-          <input
-            class="half-input"
-            type="text"
-            id="price"
-            name="price"
-            required
-            placeholder="Price"
-          />
-          <div id="price-error" class="error-message"></div>
-          <select
-            class="half-input form-select"
-            id="condition"
-            name="condition"
-            required
-          >
-            <!-- <option value="" disabled selected hidden>Condition</option> -->
-            <option value="new">New</option>
-            <option value="used">Used</option>
-          </select>
-          <input
-            type="file"
-            id="productPhoto"
-            name="productPhoto"
-            accept="image/*"
-            placeholder="Image"
-            required
-          />
+          <div style="display: flex; gap: 15px">
+            <input
+              class="third-input"
+              type="text"
+              id="price"
+              name="price"
+              required
+              placeholder="Price"
+            />
+
+            <select
+              class="third-input form-select"
+              id="condition"
+              name="condition"
+              required
+            >
+              <!-- <option value="" disabled selected hidden>Condition</option> -->
+              <option value="new">New</option>
+              <option value="used">Used</option>
+            </select>
+
+            <select
+              class="third-input form-select"
+              id="age"
+              name="age"
+              required
+            >
+              <option value="0-12 months">0-12 months</option>
+              <option value="12-24 months">12-24 months</option>
+              <option value="2-4">2-4 Years</option>
+              <option value="5-7">5-7 Years</option>
+              <option value="8-99">8-99 Years</option>
+            </select>
+          </div>
           <input
             type="button"
             name="next"
             class="next1 next action-button"
             value="Next"
           />
+          <div id="price-error" class="error-message"></div>
         </fieldset>
         <fieldset>
           <h2 class="fs-title">Your Personal Details</h2>
@@ -250,13 +258,13 @@
           />
           <div id="bankAccount-error" class="error-message"></div>
           <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email Address"
+            type="file"
+            id="productPhoto"
+            name="productPhoto"
+            accept="image/*"
+            placeholder="Image"
             required
           />
-          <div id="email-error" class="error-message"></div>
           <input
             type="button"
             name="previous"
