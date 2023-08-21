@@ -192,7 +192,7 @@
 
         </section>
 
-        <h2>Users Management:</h2>       
+        <!-- <h2>Users Management:</h2>       
         <table id="data-table">
           <thead>
             <tr>
@@ -250,12 +250,143 @@
               return row;
             }
           });
+        </script> -->
+
+        <h2>Users Management:</h2>
+        <form id="add-user-form">
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" name="firstName" required><br>
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" name="lastName" required><br>
+          <label for="city">City:</label>
+          <input type="text" id="city" name="city" required><br>
+          <label for="street">Street:</label>
+          <input type="text" id="street" name="street" required><br>
+          <label for="country">Country:</label>
+          <input type="text" id="country" name="country" required><br>
+          <label for="postalCode">Postal Code:</label>
+          <input type="text" id="postalCode" name="postalCode" required><br>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required><br>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email"><br>
+          <label for="phoneNumber">Phone Number:</label>
+          <input type="tel" id="phoneNumber" name="phoneNumber"><br>
+          <label for="creditCard">Credit Card:</label>
+          <input type="text" id="creditCard" name="creditCard"><br>
+          <button type="submit">Add User</button>
+        </form>
+        
+        <table id="data-table">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>City</th>
+              <th>Street</th>
+              <th>Country</th>
+              <th>Postal Code</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Credit Card</th>
+              <th>ID</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        
+        <script>
+          $(document).ready(function () {
+            const url = 'http://127.0.0.1:8080/api/users';
+            const tableBody = $('#data-table tbody');
+            const addUserForm = $('#add-user-form');
+      
+            function fetchUsers() {
+              $.ajax({
+                url: url,
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                  tableBody.empty();
+                  data.forEach(function (user) {
+                    const row = createTableRow(user);
+                    tableBody.append(row);
+                  });
+                },
+                error: function (error) {
+                  console.error('Error:', error);
+                }
+              });
+            }
+      
+            addUserForm.on('submit', function (event) {
+              event.preventDefault();
+      
+              const newUser = {
+                firstName: $('#firstName').val(),
+                lastName: $('#lastName').val(),
+                address: {
+                  city: $('#city').val(),
+                  street: $('#street').val(),
+                  country: $('#country').val(),
+                  postalCode: $('#postalCode').val()
+                },
+                username: $('#username').val(),
+                email: $('#email').val(),
+                phoneNumber: $('#phoneNumber').val(),
+                creditCard: $('#creditCard').val()
+              };
+      
+              $.ajax({
+                url: '/crud/user',
+                method: 'POST',
+                data: JSON.stringify(newUser),
+                contentType: 'application/json',
+                success: function () {
+                  fetchUsers();
+                  addUserForm[0].reset();
+                },
+                error: function (error) {
+                  console.error('Error:', error);
+                }
+              });
+            });
+      
+            function createTableRow(data) {
+              const row = $('<tr>');
+              row.append($('<td>').text(data.firstName));
+              row.append($('<td>').text(data.lastName));
+              row.append($('<td>').text(data.address.city));
+              row.append($('<td>').text(data.address.street));
+              row.append($('<td>').text(data.address.country));
+              row.append($('<td>').text(data.address.postalCode));
+              row.append($('<td>').text(data.username));
+              row.append($('<td>').text(data.email || '-'));
+              row.append($('<td>').text(data.phoneNumber || '-'));
+              row.append($('<td>').text(data.creditCard || '-'));
+              row.append($('<td>').text(data._id));
+              return row;
+            }
+      
+            fetchUsers();
+          });
         </script>
 
+
+
+        
+
+      
+
+
+
+
+
+
+
+
     <h2>Products Management:</h2>
-
-
-
     <table id="productTable" border="1">
       <thead>
           <tr>
@@ -319,12 +450,6 @@
       // Call the fetchProducts function to start the process
       fetchProducts();
   </script>
-
-
-
-
-
-
 
 
 
