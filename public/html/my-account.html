@@ -176,7 +176,7 @@
             <a href="#">Yad2</a>
           </li>
           <li>
-            <a href="GiftFinder.html">Gift Finder</a>
+            <a href="Gift-Finder.html">Gift Finder</a>
           </li>
         </ul>
       </nav>
@@ -508,10 +508,22 @@
                         />
                       </fieldset>
                     </div>
+                    <fieldset class="fieldset-zipcode">
+                      <label class="reg-label" for="zipcode">Zip Code</label>
+                      <input
+                        class="reg-input"
+                        type="text"
+                        id="zipcode"
+                        name="zipcode"
+                        required
+                      />
+                    </fieldset>
+                    <div class="footer-button">
+                      <button class="btn-account-page" type="submit">
+                        Save Address
+                      </button>
+                    </div>
                   </form>
-                  <button class="btn-account-page" type="submit">
-                    Save Address
-                  </button>
                 </div>
               </div>
             </div>
@@ -542,8 +554,11 @@
             <!-- addresses book-->
             <div class="box">
               <div aria-label="Edit" class="address-edit">
-                <span>Edit</span>
-                <i class="fa fa-pencil-square-o"></i>
+                <a href="address-update.html" class="inside-link">
+                  <span>Edit</span>
+
+                  <i class="fa fa-pencil-square-o"></i
+                ></a>
               </div>
 
               <h4 class="address-label" id="address-name">John Doe</h4>
@@ -557,6 +572,10 @@
                 <br />
                 <span class="address-label sub" id="address-country"
                   >Country</span
+                ><br />
+                <span class="address-label sub2">Zip Code </span
+                ><span class="address-label sub2" id="address-zipcode"
+                  >45678</span
                 >
               </p>
               <h4 class="address-label" id="address-phone">050-111-2222</h4>
@@ -652,39 +671,6 @@
                 </section>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <p><strong>Products:</strong></p>
-      <p>Product 1 x 2</p>
-      <p>Product 2 x 3</p>
-      <p>Product 3 x 1</p>
-
-      <p><strong>Total Price:</strong> $245.00</p>
-      <p><strong>Order Date:</strong> July 15, 2023</p>
-      <p><strong>Status:</strong> Delivered</p>
-
-      <h2>My Yad2 Uploads History:</h2>
-      <div class="accordion mt-4" id="yad2HistoryAccordion">
-        <div class="card">
-          <div
-            class="card-header"
-            data-toggle="collapse"
-            data-target="#upload1"
-          >
-            Yad2 Upload example
-          </div>
-          <div class="card-content collapse" id="upload1">
-            <p><strong>Category:</strong> Card GameS</p>
-            <p><strong>Creation Time:</strong> August 5, 2023</p>
-            <p><strong>Title:</strong> Card game</p>
-            <p><strong>Age Range:</strong> 3-5 years</p>
-            <p>
-              <strong>Description:</strong> Gently used Card game,in great
-              condition.
-            </p>
-            <p><strong>Price:</strong> $50.00</p>
-            <p><strong>Serial Number:</strong> ABC12345</p>
           </div>
         </div>
       </div>
