@@ -562,35 +562,103 @@
 
             <!-- addresses book-->
             <div class="box">
-              <div aria-label="Edit" class="address-edit">
-                <a href="address-update.html" class="inside-link">
-                  <span>Edit</span>
-
-                  <i class="fa fa-pencil-square-o"></i
-                ></a>
-              </div>
-
-              <h4 class="address-label" id="address-name">John Doe</h4>
-              <p>
-                <span class="address-label sub" id="address-street"
-                  >Main Street</span
-                >
-                <span class="address-label sub" id="address-streetno">123</span>
-                <span class="address-label sub">,</span>
-                <span class="address-label sub" id="address-city">City</span>
-                <br />
-                <span class="address-label sub" id="address-country"
-                  >Country</span
-                ><br />
-                <span class="address-label sub2">Zip Code </span
-                ><span class="address-label sub2" id="address-zipcode"
-                  >45678</span
-                >
-              </p>
-              <h4 class="address-label" id="address-phone">050-111-2222</h4>
               <div aria-label="Delete" class="address-delete">
                 <i class="fa fa-trash"></i>
               </div>
+              <form
+                method="POST"
+                action="#"
+                class="t-form"
+                id="new-address-form"
+              >
+                <fieldset class="fieldset fieldset-firstName">
+                  <label class="reg-label" for="firstName">First name</label>
+                  <input
+                    class="reg-input"
+                    type="firstName"
+                    id="firstName"
+                    name="firstName"
+                    required
+                  />
+                </fieldset>
+                <fieldset class="fieldset fieldset-lastName">
+                  <label class="reg-label" for="lastName">Last name</label>
+                  <input
+                    class="reg-input"
+                    type="lastName"
+                    id="lastName"
+                    name="lastName"
+                    required
+                  />
+                </fieldset>
+                <fieldset class="fieldset-phoneNumber">
+                  <label class="reg-label" for="phoneNumber"
+                    >Phone number</label
+                  >
+                  <input
+                    class="reg-input"
+                    type="phoneNumber"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    required
+                  />
+                </fieldset>
+                <fieldset class="fieldset-country">
+                  <label class="reg-label" for="country">Country</label>
+                  <input
+                    class="reg-input"
+                    type="text"
+                    id="country"
+                    name="country"
+                    required
+                  />
+                </fieldset>
+                <fieldset class="fieldset-city">
+                  <label class="reg-label" for="city">City</label>
+                  <input
+                    class="reg-input"
+                    type="text"
+                    id="city"
+                    name="city"
+                    required
+                  />
+                </fieldset>
+                <div class="street">
+                  <fieldset class="fieldset-street">
+                    <label class="reg-label" for="street">Street</label>
+                    <input
+                      class="reg-input"
+                      type="text"
+                      id="street"
+                      name="street"
+                      required
+                    />
+                  </fieldset>
+                  <fieldset class="fieldset-streetno">
+                    <label class="reg-label" for="streetno">Street NO.</label>
+                    <input
+                      class="reg-input"
+                      type="number"
+                      id="streetno"
+                      name="streetno"
+                      required
+                    />
+                  </fieldset>
+                </div>
+                <fieldset class="fieldset-zipcode">
+                  <label class="reg-label" for="zipcode">Zip Code</label>
+                  <input
+                    class="reg-input"
+                    type="text"
+                    id="zipcode"
+                    name="zipcode"
+                    required
+                  />
+                </fieldset>
+                <button class="btn-account-page" type="submit">
+                  Save Changes
+                </button>
+              </form>
             </div>
           </div>
 
@@ -805,23 +873,27 @@
             </div>
 
             <div class="box">
-              <div class="wish-item">
-                <div aria-label="wish-delete" class="wish-delete">
-                  <i class="fa fa-trash"></i>
-                </div>
+              <div class="wish-items">
+                <div class="wish-item">
+                  <div aria-label="wish-delete" class="wish-delete">
+                    <i class="fa fa-trash"></i>
+                  </div>
 
-                <img
-                  src="http://img1.exportersindia.com/product_images/bc-small/dir_55/1620613/cannondale-jekyll-1-2011-mountain-bike-309779.jpg"
-                  alt="item"
-                />
-                <section class="title">
-                  <span class="title-desc center"
-                    ><a href="#">Cannondale Jekyll 3 - Mountain</a></span
-                  >
-                  <br />
-                  <span class="title-price center"> $130</span>
-                </section>
-                <button class="add-to-cart" type="button">Move to cart</button>
+                  <img
+                    src="http://img1.exportersindia.com/product_images/bc-small/dir_55/1620613/cannondale-jekyll-1-2011-mountain-bike-309779.jpg"
+                    alt="item"
+                  />
+                  <section class="title">
+                    <span class="title-desc center"
+                      ><a href="#">Cannondale Jekyll 3 - Mountain</a></span
+                    >
+                    <br />
+                    <span class="title-price center"> $130</span>
+                  </section>
+                  <button class="add-to-cart" type="button">
+                    Move to cart
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -838,26 +910,28 @@
               >
             </div>
             <div class="box">
-              <div class="wish-item">
-                <div class="wish-option">
-                  <div aria-label="wish-delete left" class="wish-delete">
-                    <i class="fa fa-trash"></i>
+              <div class="yad2-items">
+                <div class="wish-item">
+                  <div class="wish-option">
+                    <div aria-label="wish-delete left" class="wish-delete">
+                      <i class="fa fa-trash"></i>
+                    </div>
+                    <div aria-label="wish-edit right" class="wish-edit">
+                      <i class="fa fa-edit"></i>
+                    </div>
                   </div>
-                  <div aria-label="wish-edit right" class="wish-edit">
-                    <i class="fa fa-edit"></i>
-                  </div>
+                  <img
+                    src="https://4.imimg.com/data4/RG/WO/MY-25400969/used-washing-machine-500x500.jpg"
+                    alt="item"
+                  />
+                  <section class="title">
+                    <span class="title-desc center"
+                      ><a href="#">Wash Machine 2019</a></span
+                    >
+                    <br />
+                    <span class="title-price center"> $130</span>
+                  </section>
                 </div>
-                <img
-                  src="https://4.imimg.com/data4/RG/WO/MY-25400969/used-washing-machine-500x500.jpg"
-                  alt="item"
-                />
-                <section class="title">
-                  <span class="title-desc center"
-                    ><a href="#">Wash Machine 2019</a></span
-                  >
-                  <br />
-                  <span class="title-price center"> $130</span>
-                </section>
               </div>
             </div>
           </div>
