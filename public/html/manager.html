@@ -207,7 +207,6 @@
               <th>Phone Number</th>
               <th>Credit Card</th>
               <th>ID</th>
-              <th>Password</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -248,13 +247,91 @@
               row.append($('<td>').text(data.phoneNumber || '-'));
               row.append($('<td>').text(data.creditCard || '-'));
               row.append($('<td>').text(data._id));
-              row.append($('<td>').text(data.password || '-'));
               return row;
             }
           });
         </script>
 
-        <h2>Supplier Management:</h2>
+    <h2>Products Management:</h2>
+
+
+
+    <table id="productTable" border="1">
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Description</th>
+              <th>Image</th>
+              <th>Condition</th>
+              <th>Category</th>
+              <th>Manufacture Date</th>
+              <th>Supplier</th>
+              <th>Quantity</th>
+              <th>Age Range (From)</th>
+              <th>Age Range (To)</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- Products will be displayed here -->
+      </tbody>
+  </table>
+
+  <script>
+      // Function to fetch and display products
+      function fetchProducts() {
+          const url = "http://127.0.0.1:8080/api/products";
+
+          // Make an AJAX request
+          const xhr = new XMLHttpRequest();
+          xhr.open("GET", url, true);
+          xhr.onreadystatechange = function() {
+              if (xhr.readyState === 4 && xhr.status === 200) {
+                  const products = JSON.parse(xhr.responseText);
+                  displayProducts(products);
+              }
+          };
+          xhr.send();
+      }
+
+      // Function to display products in the table
+      function displayProducts(products) {
+          const tableBody = document.querySelector("#productTable tbody");
+
+          products.forEach(product => {
+              const row = tableBody.insertRow();
+              row.insertCell(0).textContent = product._id;
+              row.insertCell(1).textContent = product.title;
+              row.insertCell(2).textContent = product.price;
+              row.insertCell(3).textContent = product.description;
+              row.insertCell(4).textContent = product.image;
+              row.insertCell(5).textContent = product.condition;
+              row.insertCell(6).textContent = product.category;
+              row.insertCell(7).textContent = product.manufacture_date;
+              row.insertCell(8).textContent = product.supplier;
+              row.insertCell(9).textContent = product.quantity;
+              row.insertCell(10).textContent = product.age_range.from;
+              row.insertCell(11).textContent = product.age_range.to;
+          });
+      }
+
+      // Call the fetchProducts function to start the process
+      fetchProducts();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <h2>Supplier Management:</h2>
 
         <table id="data-table1">
           <thead>
@@ -297,7 +374,7 @@
               return row;
             }
           });
-        </script>
+        </script> -->
 
 
       </body>
