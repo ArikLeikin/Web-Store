@@ -11,7 +11,7 @@ Form
   border: none;
   width: 100%;
   outline: none !important;
-  top: 6px;
+  top: 10px;
   left: 6px;
   background: none;
 }
@@ -49,10 +49,6 @@ Form
   clear: none !important;
 }
 
-.pay-label {
-  display: block;
-  margin-bottom: 10px;
-}
 .form fieldset.fieldset-expiration .select {
   width: 84px;
   margin-right: 12px;
@@ -77,7 +73,6 @@ Form
   padding: 10px 0;
   clear: both;
 }
-
 .pay-label {
   display: block;
   text-transform: uppercase;
