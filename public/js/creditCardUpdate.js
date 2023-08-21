@@ -1,51 +1,51 @@
 $(document).ready(function () {
-    $("#creditCardUpdate-form").submit(function (event) {
-      event.preventDefault();
-      clearErrorMessages();
-  
-      let isValid = true;
-  
-  
-      const cardNumber = $("#card-number").val();
-      const cardNumber1 = $("#card-number-1").val();
-      const cardNumber2 = $("#card-number-2").val();
-      const cardNumber3 = $("#card-number-3").val();
-  
-      if (
-        !validateCardNumber(cardNumber) ||
-        !validateCardNumber(cardNumber1) ||
-        !validateCardNumber(cardNumber2) ||
-        !validateCardNumber(cardNumber3)
-      ) {
-        showError("#card-number-error", "Card number must have 4 digits each.");
-        isValid = false;
-      }
-  
-      const cardHolder = $("#card-holder").val();
-      if (!validateCardHolder(cardHolder)) {
-        showError("#card-holder-error", "Card holder name must have 9 digits.");
-        isValid = false;
-      }
-  
-      const expirationMonth = $("#card-expiration-month").val();
-      const expirationYear = $("#card-expiration-year").val();
-      if (!validateExpirationDate(expirationMonth, expirationYear)) {
-        showError("#expiration-month-error", "Invalid expiration date.");
-        isValid = false;
-      }
-  
-      const cvv = $("#card-ccv").val();
-      if (!validateCVV(cvv)) {
-        showError("#cvv-number-error", "CVV must be 3 digits.");
-        isValid = false;
-      }
-  
-   
+  $("#creditCardUpdate-form").submit(function (event) {
+    event.preventDefault();
+    clearErrorMessages();
+
+    let isValid = true;
+
+
+    const cardNumber = $("#card-number").val();
+    const cardNumber1 = $("#card-number-1").val();
+    const cardNumber2 = $("#card-number-2").val();
+    const cardNumber3 = $("#card-number-3").val();
+
+    if (
+      !validateCardNumber(cardNumber) ||
+      !validateCardNumber(cardNumber1) ||
+      !validateCardNumber(cardNumber2) ||
+      !validateCardNumber(cardNumber3)
+    ) {
+      showError("#card-number-error", "Card number must have 4 digits each.");
+      isValid = false;
+    }
+
+    const cardHolder = $("#card-holder").val();
+    if (!validateCardHolder(cardHolder)) {
+      showError("#card-holder-error", "Card holder name must have 9 digits.");
+      isValid = false;
+    }
+
+    const expirationMonth = $("#card-expiration-month").val();
+    const expirationYear = $("#card-expiration-year").val();
+    if (!validateExpirationDate(expirationMonth, expirationYear)) {
+      showError("#expiration-month-error", "Invalid expiration date.");
+      isValid = false;
+    }
+
+    const cvv = $("#card-ccv").val();
+    if (!validateCVV(cvv)) {
+      showError("#cvv-number-error", "CVV must be 3 digits.");
+      isValid = false;
+    }
+
+
 
     if (isValid) {
-  
+
       const cardHolder = $("#card-holder").val();
-      const lastFourDigits= $("#card-number-3").val();
+      const lastFourDigits = $("#card-number-3").val();
       const expirationMonth = $("#card-expiration-month").val();
       const expirationYear = $("#card-expiration-year").val();
       const modalContent = `
@@ -65,46 +65,46 @@ $(document).ready(function () {
   });
 
 
-    $(".close").click(function () {
-      $("#myModal").hide();
-    });
+  $(".close").click(function () {
+    $("#myModal").hide();
   });
- 
-  
+});
 
-  
+
+
+
 
 function validateCardNumber(cardNumber) {
-    return /^\d{4}$/.test(cardNumber);
-  }
-  
-  function validateCardHolder(cardHolder) {
-    return cardHolder.length === 9 && /^[0-9]+$/.test(cardHolder);
-  }
-  
-  function validateExpirationDate(expirationMonth, expirationYear) {
-    const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth() + 1;
-    const enteredYear = parseInt(expirationYear, 10);
-    const enteredMonth = parseInt(expirationMonth, 10);
-  
-    if (enteredYear < currentYear) {
-      return false;
-    } else if (enteredYear === currentYear && enteredMonth < currentMonth) {
-      return false;
-    }
-    return true;
-  }
-  
-  function validateCVV(cvv) {
-    return /^\d{3}$/.test(cvv);
-  }
+  return /^\d{4}$/.test(cardNumber);
+}
 
-  function showError(element, message) {
-    $(element).text(message).css("color", "red");
+function validateCardHolder(cardHolder) {
+  return cardHolder.length === 9 && /^[0-9]+$/.test(cardHolder);
+}
+
+function validateExpirationDate(expirationMonth, expirationYear) {
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth() + 1;
+  const enteredYear = parseInt(expirationYear, 10);
+  const enteredMonth = parseInt(expirationMonth, 10);
+
+  if (enteredYear < currentYear) {
+    return false;
+  } else if (enteredYear === currentYear && enteredMonth < currentMonth) {
+    return false;
   }
-  
-  function clearErrorMessages() {
-    $(".error-message").text("");
-  }
+  return true;
+}
+
+function validateCVV(cvv) {
+  return /^\d{3}$/.test(cvv);
+}
+
+function showError(element, message) {
+  $(element).text(message).css("color", "red");
+}
+
+function clearErrorMessages() {
+  $(".error-message").text("");
+}
 
