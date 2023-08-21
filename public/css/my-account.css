@@ -188,25 +188,6 @@ a.inside-link:active {
 .t-form {
   width: 95%;
 }
-.t-form fieldset .select select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  position: absolute;
-  padding: 0;
-  border: none;
-  width: 100%;
-  outline: none !important;
-  top: 6px;
-  left: 6px;
-  background: none;
-}
-.t-form fieldset input.input-cart-number,
-.t-form fieldset .select.input-cart-number {
-  width: 15%;
-  display: inline-block;
-  margin-right: 8px;
-}
 
 .t-form fieldset input,
 .t-form fieldset .select,
@@ -343,6 +324,81 @@ i.fa.fa-arrow-up:hover {
 }
 .address-edit,
 .address-delete {
+  float: right;
+  cursor: pointer;
+}
+
+/*payment*/
+.add-new-payment-content {
+  float: left;
+  display: none;
+  margin-top: 10px;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+.box.add-new-payment-box {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.t-form fieldset input.input-cart-number,
+.t-form fieldset .select.input-cart-number {
+  width: 18%;
+  display: inline-block;
+  margin-right: 7px;
+}
+.t-form fieldset.fieldset-ccv {
+  clear: none;
+  float: right;
+  width: 86px;
+}
+.t-form fieldset.fieldset-expiration {
+  float: left;
+  width: 40%;
+  padding-right: 0;
+}
+
+.t-form fieldset.fieldset-expiration .exp-select {
+  width: 84px;
+  margin-right: 12px;
+  float: left;
+}
+.t-form fieldset .exp-select {
+  position: relative;
+}
+
+.t-form fieldset .exp-select::after {
+  content: "";
+  border-top: 8px solid #222;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  right: 10px;
+  pointer-events: none;
+}
+.t-form fieldset .exp-select select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: absolute;
+  padding: 0;
+  border: none;
+  width: 100%;
+  outline: none !important;
+  top: 10px;
+  left: 6px;
+  background: none;
+}
+.payment-label.sub {
+  margin-bottom: 5px;
+}
+.payment-label.sub2 {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+.payment-edit,
+.payment-delete {
   float: right;
   cursor: pointer;
 }
