@@ -176,6 +176,10 @@ input[type="submit"]:hover {
   width: 45% !important;
   float: left;
 }
+.third-input {
+  min-width: 30% !important;
+  /* float: left; */
+}
 select#condition {
   float: right;
 }
