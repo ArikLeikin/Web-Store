@@ -2218,3 +2218,38 @@ $(document).ready(function () {
 
 
 
+$(document).ready(function() {
+  // Function to handle sorting
+  function sortProducts() {
+    var $productGrid = $(".product-grid");
+    var selectedSortValue = $("#Sortby-filter").val();
+    
+    var $productItems = $productGrid.find(".product-item");
+    
+    // Sort the product items based on the selected value
+    if (selectedSortValue === "best-selling") {
+      // Implement your best-selling sorting logic here
+    } else if (selectedSortValue === "price-high-to-low") {
+      $productItems.sort(function(a, b) {
+        var priceA = parseFloat($(a).data("price"));
+        var priceB = parseFloat($(b).data("price"));
+        return priceB - priceA;
+      });
+    } else if (selectedSortValue === "price-low-to-high") {
+      $productItems.sort(function(a, b) {
+        var priceA = parseFloat($(a).data("price"));
+        var priceB = parseFloat($(b).data("price"));
+        return priceA - priceB;
+      });
+    }
+    
+    // Empty the grid and append sorted product items back to it
+    $productGrid.empty();
+    $productItems.appendTo($productGrid);
+  }
+  
+  // Attach event handler to the dropdown change event
+  $("#Sortby-filter").on("change", function() {
+    sortProducts();
+  });
+});

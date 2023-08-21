@@ -6,6 +6,7 @@ const Supplier = require("../models/supplier");
 
 exports.getHomePage = (req, res, next) => {
   const file = path.join(__dirname, "../public/html/main.html");
+
   res.sendFile(file, (err) => {
     if (err) {
       console.error(err);
@@ -259,7 +260,7 @@ exports.postPayment = async (req, res, next) => {
 exports.postBuyItNow = async (req, res, next) => {
   try {
     const user = req.session.user;
-    const productId = req.body.productId;
+    const productId = req.session.productId;
     const product = await Product.find(productId);
     const newOrder = new Order({
       user_info: user._id,
