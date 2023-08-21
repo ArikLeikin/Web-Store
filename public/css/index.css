@@ -76,8 +76,9 @@ body {
   font-weight: 600;
 }
 
+
 /* done nofar new */
-.navbar .menu a>.fa {
+.navbar .menu a > .fa {
   font-weight: bold;
   margin-left: 8px;
 }
@@ -355,12 +356,8 @@ li:hover a.hasDropdown:after {
   top: 50vh;
   left: 50vw;
   transform: translate(-50%, -50%);
-  min-height: 40%
-    /*400px*/
-  ;
-  width: 30%
-    /*410px*/
-  ;
+  min-height: 40% /*400px*/;
+  width: 30% /*410px*/;
   background-color: white;
   padding: 5px;
   border: 1px solid #ccc;

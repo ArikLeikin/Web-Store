@@ -17,7 +17,7 @@ $(document).ready(function () {
     }
 
     // Check if the required fields are filled correctly
-    var companyName = $("#companyName").val().trim();
+    // var companyName = $("#companyName").val().trim();
     var category = $("#category").val();
     var ages = $("#ages").val();
 
@@ -30,7 +30,7 @@ $(document).ready(function () {
       return false; // Prevent proceeding to the next step
     }
 
-    $("#companyName-error").text("");
+    // $("#companyName-error").text("");
 
     var $form = $(this).parentsUntil("msform");
     if (animating) return false;
@@ -113,7 +113,7 @@ $(document).ready(function () {
         title: 'Validation Error',
         text: 'Price should be greater than 0.',
       });
-      isValid = false;
+      isValid = false;    
     }
 
     if (!validateLettersDigitsAndSpaces(productName)) {
@@ -141,6 +141,7 @@ $(document).ready(function () {
         text: 'You can upload a maximum of 4 photos.',
       });
       isValid = false;
+
     }
 
     function validateNumber(str) {
@@ -151,6 +152,7 @@ $(document).ready(function () {
     }
 
     if (!isValid) {
+
       return false;
     }
 
