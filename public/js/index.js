@@ -41,4 +41,39 @@ $(document).ready(function () {
   });
 });
 
+$(document).ready(function () {
+  $(document).ready(function () {
+    $(".login-form").submit(function (event) {
+      event.preventDefault(); // Prevent default form submission
 
+      const username = $("#username").val();
+      const password = $("#password").val();
+
+      $.ajax({
+        type: "POST",
+        url: "/login", // Adjust the URL to match your server's endpoint
+        data: {
+          username: username,
+          password: password,
+        },
+        success: function (response) {
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: response.message,
+          }).then(() => {
+            // Redirect or perform further actions upon successful login
+            window.location.href = "/dashboard"; // Example redirection
+          });
+        },
+        error: function (error) {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: error.responseJSON.message,
+          });
+        },
+      });
+    });
+  });
+});

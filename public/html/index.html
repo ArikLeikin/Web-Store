@@ -1,173 +1,217 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Games For All</title>
+    <title>Playtopia|</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" type="text/css" href="../css/products.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../js/index.js"></script>
-    <script src="../js/products.js"></script>
   </head>
-  <header>
-    <div class="container">
-    <nav class="navUser">
-      <ul class="navUser-section">
-        <li class="item__account" id="item__account">
-          <a aria-label="Account" href=""
-            ><img
-              src="../images/white-icons/account-icon.png"
-              alt="account"
-              width="30"
-            />
-          </a>
-        </li>
-        <li class="item__wishlist">
-          <a aria-label="Wishlist" href="">
-            <img
-              src="../images/white-icons/wishlist-icon.png"
-              alt="Cart"
-              width="30"
-            />
-          </a>
-        </li>
-        <li class="item__cart">
-          <a href="../html/cart.html" aria-label="Cart">
-            <img
-              src="../images/white-icons/cart-icon.png"
-              alt="Cart"
-              width="30"
-            />
-          </a>
-        </li>
-      </ul>
-    </nav>
+  <body>
+    <header class="header" role="banner">
+      <div class="container">
+        <nav class="navUser">
+          <ul class="navUser-section">
+            <li class="item__account" id="item__account">
+              <a aria-label="Account" href=""
+                ><img
+                  src="../images/white-icons/account-icon.png"
+                  alt="account"
+                  width="30"
+                />
+              </a>
+            </li>
+            <li class="item__wishlist">
+              <a aria-label="Wishlist" href="">
+                <img
+                  src="../images/white-icons/wishlist-icon.png"
+                  alt="Cart"
+                  width="30"
+                />
+              </a>
+            </li>
+            <li class="item__cart">
+              <a href="../html/cart.html" aria-label="Cart">
+                <img
+                  src="../images/white-icons/cart-icon.png"
+                  alt="Cart"
+                  width="30"
+                />
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-    <div class="header-logo">
-      <a href="#" data-instantload='{"page":"home"}'>
-        <div class="header-logo-image-container">
-          <img
-            class="header-logo-image"
-            src="../images/logo.png"
-            width="180"
-            height="auto"
-          />
+        <div class="header-logo">
+          <a href="#" data-instantload='{"page":"home"}'>
+            <div class="header-logo-image-container">
+              <img
+                class="header-logo-image"
+                src="../images/logo.png"
+                width="180"
+                height="auto"
+              />
+            </div>
+          </a>
         </div>
-      </a>
-    </div>
 
-    <div class="quickSearch">
-      <form class="form">
-        <div class="form-container">
-          <input
-            class="form-input"
-            data-search-quick
-            name="search_query"
-            id="search_query"
-            data-error-message="Search field cannot be empty."
-            placeholder="Search the store"
-            autocomplete="off"
-          />
-          <button type="submit" class="button search-button" id="searchButton">
-            <img
-              src="../images/white-icons/search-icon.png"
-              alt="Search"
-              width="25"
-              height="auto"
-            />
-          </button>
+        <div class="quickSearch">
+          <form class="form">
+            <div class="form-container">
+              <input
+                class="form-input"
+                data-search-quick
+                name="search_query"
+                id="search_query"
+                data-error-message="Search field cannot be empty."
+                placeholder="Search the store"
+                autocomplete="off"
+              />
+              <button
+                type="submit"
+                class="button search-button"
+                id="searchButton"
+              >
+                <img
+                  src="../images/white-icons/search-icon.png"
+                  alt="Search"
+                  width="25"
+                  height="auto"
+                />
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
-  </div>
+      </div>
 
-  <!-- Start Navigation Bar -->
-  <nav class="navbar">
-    <ul class="menu">
-      <li>
-        <a class="hasDropdown" href="#"
-          >Categories <i class="fa fa-angle-down"></i
-        ></a>
+      <!-- Start Navigation Bar -->
+      <nav class="navbar">
+        <ul class="menu">
+          <li>
+            <a class="hasDropdown header-title" href="#"
+              >Categories <i class="fa fa-angle-down"></i
+            ></a>
 
-        <ul class="nav_container">
-          <div class="container__list">
-            <div class="container__listItem">
-              <div class="container__listItem_title">Board Games</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Science</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Games</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Riding Toys</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Puzzles</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Music&Karaoke</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Books</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Lego</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">Dolls</div>
-            </div>
-            <div class="container__listItem"></div>
-            <div class="container__listItem"></div>
+            <ul class="nav_container">
+              <div class="container__list">
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Board Games</a>
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Science</a>
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Games</a>
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Riding Toys</a>
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Puzzles</a>
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Music & Karaoke</a>
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Books</a>
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Lego</a>
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Dolls</a>
+                  </div>
+                </div>
+                <div class="container__listItem"></div>
+                <div class="container__listItem"></div>
 
-            <div class="container__listItem">
-              <div class="container__listItem_title bold no-underline">
-                Up to 10$
+                <div class="container__listItem">
+                  <div class="container__listItem_title bold no-underline">
+                    <a href="#" class="sub-label-menu">$10 & Below</a>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </ul>
+          </li>
+          <li>
+            <a class="hasDropdown header-title" href="#"
+              >Ages<i class="fa fa-angle-down"></i
+            ></a>
+            <ul class="nav_container">
+              <div class="container__list">
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">0-12 MONTHS</a>
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">12-24 MONTHS</a>
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">2-4 YEARS</a>
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">5-7 YEARS</a>
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">8-99 YEARS</a>
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="header-title">Outdoor</a>
+          </li>
+          <li>
+            <a href="#" class="header-title">Yad2</a>
+          </li>
+          <li>
+            <a href="Gift-Finder.html" class="header-title">Gift Finder</a>
+          </li>
         </ul>
-      </li>
-      <li>
-        <a class="hasDropdown" href="#">Ages<i class="fa fa-angle-down"></i></a>
-        <ul class="nav_container">
-          <div class="container__list">
-            <div class="container__listItem">
-              <div class="container__listItem_title">0-12 MONTHS</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">12-24 MONTHS</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">2-4 YEARS</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">5-7 YEARS</div>
-            </div>
-            <div class="container__listItem">
-              <div class="container__listItem_title">8-99 YEARS</div>
-            </div>
-          </div>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Outdoor</a>
-      </li>
-      <li>
-        <a href="#">Yad2</a>
-      </li>
-      <li>
-        <a href="GiftFinder.html">Gift Finder</a>
-      </li>
-    </ul>
-  </nav>
-  <!-- End Navigation Bar -->
-</header>
+      </nav>
+      <!-- End Navigation Bar -->
+    </header>
+    <main style="margin-top: 170px"></main>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-content"></div>
+      </div>
+    </div>
+  </body>
 </html>
