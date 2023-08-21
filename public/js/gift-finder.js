@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-$(document).ready(function() {
-  $("#searchbutton").click(function(event) {
+$(document).ready(function () {
+  $("#searchbutton").click(function (event) {
     event.preventDefault(); // Prevent the form from submitting
 
     // Get selected values from the form
@@ -53,7 +53,7 @@ $(document).ready(function() {
       url += "category=" + encodeURIComponent(category) + "&";
     }
 
-    url = url.slice(0,-1);
+    url = url.slice(0, -1);
 
     // Redirect to the products page with filter parameters
     window.location.href = url;

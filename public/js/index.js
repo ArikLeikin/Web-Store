@@ -6,7 +6,7 @@ $(document).ready(function () {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const modalContent = `
- <form method="POST" action="/login" class="login-form">
+    <form method="POST" action="/login" class="login-form">
     <label  class="login-user" for="username">Email:</label>
     <input class="input-user" type="email" id="username" name="username" required />
     <br />
@@ -20,6 +20,7 @@ $(document).ready(function () {
   </form>
   <p class="sign-note">Not a member? <a href="register.html">Register here</a></p>
 `;
+
 
     $("#modal-content").html(modalContent);
 
@@ -44,10 +45,10 @@ $(document).ready(function () {
 $(document).ready(function () {
   $(".login-form").submit(function (event) {
     event.preventDefault(); // Prevent default form submission
-    
+
     const username = $("#username").val();
     const password = $("#password").val();
-    
+
     $.ajax({
       type: "POST",
       url: "/login", // Adjust the URL to match your server's endpoint

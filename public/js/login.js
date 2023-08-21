@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  $(".toggle-password").click(function() {
+$(document).ready(function () {
+  $(".toggle-password").click(function () {
     $(this).toggleClass('active');
     var passwordInput = $(this).prev("input");
     if (passwordInput.attr("type") === "password") {
@@ -13,10 +13,10 @@ $(document).ready(function() {
 $(document).ready(function () {
   $(".login-form").submit(function (event) {
     event.preventDefault(); // Prevent default form submission
-    
+
     const username = $("#username").val();
     const password = $("#password").val();
-    
+
     $.ajax({
       type: "POST",
       url: "/login", // Adjust the URL to match your server's endpoint
@@ -44,6 +44,6 @@ $(document).ready(function () {
     });
   });
 });
- 
+
 
 
