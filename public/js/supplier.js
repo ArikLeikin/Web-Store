@@ -17,16 +17,16 @@ $(document).ready(function () {
     }
   
     // Check if the required fields are filled correctly
-    var companyName = $("#companyName").val().trim();
+    // var companyName = $("#companyName").val().trim();
     var category = $("#category").val();
     var ages = $("#ages").val();
     
-    if (!/^[a-zA-Z\s]+$/.test(companyName)) {
-      $("#companyName-error").text("Company name should only contain letters");
-      return false; // Prevent proceeding to the next step
-    }
+    // if (!/^[a-zA-Z\s]+$/.test(companyName)) {
+    //   $("#companyName-error").text("Company name should only contain letters");
+    //   return false; // Prevent proceeding to the next step
+    // }
 
-    $("#companyName-error").text("");
+    // $("#companyName-error").text("");
 
     var $form = $(this).parentsUntil("msform");
     if (animating) return false;
@@ -80,7 +80,7 @@ $(document).ready(function () {
     let isValid = true;
     
     if (!validateNumber(price)) {
-      $("#price-error").text("Price name should only contain digits.");
+      $("#price-error").text("Price should be greater than +0 and only digits.");
       isValid= false; // Prevent proceeding to the next step
     }
     if ( price==='0') {
@@ -88,17 +88,18 @@ $(document).ready(function () {
       isValid= false; // Prevent proceeding to the next step
     }
 
-     if (!validateLettersOrDigits(productName)) {
-      $("#productName-error").text("Product name should be only letters or digits.");
+     if (!validateLettersDigitsAndSpaces(productName)) {
+      $("#productName-error").text("Product name should be only letters or digits, and at least 4 characters.");
       isValid= false; // Prevent proceeding to the next step
     }
 
     function validateNumber(str) {
       return /^\d+$/.test(str);
     }
-    function validateLettersOrDigits(str) {
-      return /^[a-zA-Z0-9]+$/.test(str);
+    function validateLettersDigitsAndSpaces(str) {
+      return /^[a-zA-Z0-9 ]{4,}$/.test(str);
     }
+    
     
     if(!isValid)
     {
