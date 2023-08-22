@@ -1,256 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Games For All|About Us</title>
-    <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
-    <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/manager.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-    <script src="../js/index.js"></script>
-    <script src="../js/manager.js"></script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
 
-  <body>
-    <header class="header" role="banner">
-      <div class="container">
-        <nav class="navUser">
-          <ul class="navUser-section">
-            <li class="item__account" id="item__account">
-              <a aria-label="Account" href=""
-                ><img
-                  src="../images/white-icons/account-icon.png"
-                  alt="account"
-                  width="30"
-                />
-              </a>
-            </li>
-            <li class="item__wishlist">
-              <a aria-label="Wishlist" href="">
-                <img
-                  src="../images/white-icons/wishlist-icon.png"
-                  alt="Cart"
-                  width="30"
-                />
-              </a>
-            </li>
-            <li class="item__cart">
-              <a href="../html/cart.html" aria-label="Cart">
-                <img
-                  src="../images/white-icons/cart-icon.png"
-                  alt="Cart"
-                  width="30"
-                />
-              </a>
-            </li>
-          </ul>
-        </nav>
+<head>
+  <title>Games For All|About Us</title>
+  <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
+  <link rel="stylesheet" href="../css/index.css" />
+  <link rel="stylesheet" href="../css/manager.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <script src="../js/index.js"></script>
+  <script src="../js/manager.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
 
-        <div class="header-logo">
-          <a href="#" data-instantload='{"page":"home"}'>
-            <div class="header-logo-image-container">
-              <img
-                class="header-logo-image"
-                src="../images/logo.png"
-                width="180"
-                height="auto"
-              />
-            </div>
-          </a>
-        </div>
-
-        <div class="quickSearch">
-          <form class="form">
-            <div class="form-container">
-              <input
-                class="form-input"
-                data-search-quick
-                name="search_query"
-                id="search_query"
-                data-error-message="Search field cannot be empty."
-                placeholder="Search the store"
-                autocomplete="off"
-              />
-              <button
-                type="submit"
-                class="button search-button"
-                id="searchButton"
-              >
-                <img
-                  src="../images/white-icons/search-icon.png"
-                  alt="Search"
-                  width="25"
-                  height="auto"
-                />
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <!-- Start Navigation Bar -->
-      <nav class="navbar">
-        <ul class="menu">
-          <li>
-            <a class="hasDropdown" href="#"
-              >Categories <i class="fa fa-angle-down"></i
-            ></a>
-
-            <ul class="nav_container">
-              <div class="container__list">
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Board Games</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Science</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Games</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Riding Toys</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Puzzles</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Music&Karaoke</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Books</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Lego</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">Dolls</div>
-                </div>
-                <div class="container__listItem"></div>
-                <div class="container__listItem"></div>
-
-                <div class="container__listItem">
-                  <div class="container__listItem_title bold no-underline">
-                    $10 & Below
-                  </div>
-                </div>
-              </div>
-            </ul>
+<body>
+  <header class="header" role="banner">
+    <div class="container">
+      <nav class="navUser">
+        <ul class="navUser-section">
+          <li class="item__account" id="item__account">
+            <a aria-label="Account" href=""><img src="../images/white-icons/account-icon.png" alt="account"
+                width="30" />
+            </a>
           </li>
-          <li>
-            <a class="hasDropdown" href="#"
-              >Ages<i class="fa fa-angle-down"></i
-            ></a>
-            <ul class="nav_container">
-              <div class="container__list">
-                <div class="container__listItem">
-                  <div class="container__listItem_title">0-12 MONTHS</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">12-24 MONTHS</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">2-4 YEARS</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">5-7 YEARS</div>
-                </div>
-                <div class="container__listItem">
-                  <div class="container__listItem_title">8-99 YEARS</div>
-                </div>
-              </div>
-            </ul>
+          <li class="item__wishlist">
+            <a aria-label="Wishlist" href="">
+              <img src="../images/white-icons/wishlist-icon.png" alt="Cart" width="30" />
+            </a>
           </li>
-          <li>
-            <a href="#">Outdoor</a>
-          </li>
-          <li>
-            <a href="#">Yad2</a>
-          </li>
-          <li>
-            <a href="GiftFinder.html">Gift Finder</a>
+          <li class="item__cart">
+            <a href="../html/cart.html" aria-label="Cart">
+              <img src="../images/white-icons/cart-icon.png" alt="Cart" width="30" />
+            </a>
           </li>
         </ul>
       </nav>
-      <!-- End Navigation Bar -->
-    </header>
-    <main style="margin-top: 150px">
-        <h1>Manager Dashboard</h1>
 
-        <section id="content-management">
-            <h2>Content Management:</h2>
-            <p>In order to learn abou the statistice of different age ranges in the countey according to areas - go to:  <a href="statistics.html">Statistics Page</a></p>
-            <!-- Need to add websocket managment -->
+      <div class="header-logo">
+        <a href="#" data-instantload='{"page":"home"}'>
+          <div class="header-logo-image-container">
+            <img class="header-logo-image" src="../images/logo.png" width="180" height="auto" />
+          </div>
+        </a>
+      </div>
 
-        </section>
+      <div class="quickSearch">
+        <form class="form">
+          <div class="form-container">
+            <input class="form-input" data-search-quick name="search_query" id="search_query"
+              data-error-message="Search field cannot be empty." placeholder="Search the store" autocomplete="off" />
+            <button type="submit" class="button search-button" id="searchButton">
+              <img src="../images/white-icons/search-icon.png" alt="Search" width="25" height="auto" />
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-        <h2>Users Management:</h2>       
-        <table id="data-table">
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>City</th>
-              <th>Street</th>
-              <th>Country</th>
-              <th>Postal Code</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Phone Number</th>
-              <th>Credit Card</th>
-              <th>ID</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      
-        <script>
-          $(document).ready(function () {
-            const url = 'http://127.0.0.1:8080/api/users'; // Replace with the actual URL
-            const tableBody = $('#data-table tbody');
-      
-            $.ajax({
-              url: url,
-              method: 'GET',
-              dataType: 'json',
-              success: function (data) {
-                const users = data; // Assuming the array is directly in the response
-      
-                users.forEach(function (user) {
-                  const row = createTableRow(user);
-                  tableBody.append(row);
-                });
-              },
-              error: function (error) {
-                console.error('Error:', error);
-              }
+    <!-- Start Navigation Bar -->
+    <nav class="navbar">
+      <ul class="menu">
+        <li>
+          <a class="hasDropdown" href="#">Categories <i class="fa fa-angle-down"></i></a>
+
+          <ul class="nav_container">
+            <div class="container__list">
+              <div class="container__listItem">
+                <div class="container__listItem_title">Board Games</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Science</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Games</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Riding Toys</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Puzzles</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Music&Karaoke</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Books</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Lego</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Dolls</div>
+              </div>
+              <div class="container__listItem"></div>
+              <div class="container__listItem"></div>
+
+              <div class="container__listItem">
+                <div class="container__listItem_title bold no-underline">
+                  $10 & Below
+                </div>
+              </div>
+            </div>
+          </ul>
+        </li>
+        <li>
+          <a class="hasDropdown" href="#">Ages<i class="fa fa-angle-down"></i></a>
+          <ul class="nav_container">
+            <div class="container__list">
+              <div class="container__listItem">
+                <div class="container__listItem_title">0-12 MONTHS</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">12-24 MONTHS</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">2-4 YEARS</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">5-7 YEARS</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">8-99 YEARS</div>
+              </div>
+            </div>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Outdoor</a>
+        </li>
+        <li>
+          <a href="#">Yad2</a>
+        </li>
+        <li>
+          <a href="GiftFinder.html">Gift Finder</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- End Navigation Bar -->
+  </header>
+  <main style="margin-top: 150px">
+    <h1>Manager Dashboard</h1>
+
+    <section id="content-management">
+      <h2>Content Management:</h2>
+      <p>In order to learn abou the statistice of different age ranges in the countey according to areas - go to: <a
+          href="statistics.html">Statistics Page</a></p>
+      <!-- Need to add websocket managment -->
+
+    </section>
+
+    <h2>Users Management:</h2>
+    <table id="data-table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>City</th>
+          <th>Street</th>
+          <th>Country</th>
+          <th>Postal Code</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Credit Card</th>
+          <th>ID</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script>
+      $(document).ready(function () {
+        const url = 'http://127.0.0.1:8080/api/users'; // Replace with the actual URL
+        const tableBody = $('#data-table tbody');
+
+        $.ajax({
+          url: url,
+          method: 'GET',
+          dataType: 'json',
+          success: function (data) {
+            const users = data; // Assuming the array is directly in the response
+
+            users.forEach(function (user) {
+              const row = createTableRow(user);
+              tableBody.append(row);
             });
-      
-            function createTableRow(data) {
-              const row = $('<tr>');
-              row.append($('<td>').text(data.name.firstName));
-              row.append($('<td>').text(data.name.lastName));
-              row.append($('<td>').text(data.address.city));
-              row.append($('<td>').text(data.address.street));
-              row.append($('<td>').text(data.address.country));
-              row.append($('<td>').text(data.address.postalCode));
-              row.append($('<td>').text(data.username));
-              row.append($('<td>').text(data.email || '-'));
-              row.append($('<td>').text(data.phoneNumber || '-'));
-              row.append($('<td>').text(data.creditCard || '-'));
-              row.append($('<td>').text(data._id));
-              return row;
-            }
-          });
-        </script>
+          },
+          error: function (error) {
+            console.error('Error:', error);
+          }
+        });
+
+        function createTableRow(data) {
+          const row = $('<tr>');
+          row.append($('<td>').text(data.name.firstName));
+          row.append($('<td>').text(data.name.lastName));
+          row.append($('<td>').text(data.address.city));
+          row.append($('<td>').text(data.address.street));
+          row.append($('<td>').text(data.address.country));
+          row.append($('<td>').text(data.address.postalCode));
+          row.append($('<td>').text(data.username));
+          row.append($('<td>').text(data.email || '-'));
+          row.append($('<td>').text(data.phoneNumber || '-'));
+          row.append($('<td>').text(data.creditCard || '-'));
+          row.append($('<td>').text(data._id));
+          return row;
+        }
+      });
+    </script>
 
     <h2>Products Management:</h2>
 
@@ -258,80 +217,185 @@
 
     <table id="productTable" border="1">
       <thead>
-          <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Description</th>
-              <th>Image</th>
-              <th>Condition</th>
-              <th>Category</th>
-              <th>Manufacture Date</th>
-              <th>Supplier</th>
-              <th>Quantity</th>
-              <th>Age Range (From)</th>
-              <th>Age Range (To)</th>
-          </tr>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Condition</th>
+          <th>Category</th>
+          <th>Manufacture Date</th>
+          <th>Supplier</th>
+          <th>Quantity</th>
+          <th>Age Range (From)</th>
+          <th>Age Range (To)</th>
+        </tr>
       </thead>
       <tbody>
-          <!-- Products will be displayed here -->
+        <!-- Products will be displayed here -->
       </tbody>
-  </table>
+    </table>
 
-  <script>
+    <script>
       // Function to fetch and display products
       function fetchProducts() {
-          const url = "http://127.0.0.1:8080/api/products";
+        const url = "http://127.0.0.1:8080/api/products";
 
-          // Make an AJAX request
-          const xhr = new XMLHttpRequest();
-          xhr.open("GET", url, true);
-          xhr.onreadystatechange = function() {
-              if (xhr.readyState === 4 && xhr.status === 200) {
-                  const products = JSON.parse(xhr.responseText);
-                  displayProducts(products);
-              }
-          };
-          xhr.send();
+        // Make an AJAX request
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            const products = JSON.parse(xhr.responseText);
+            displayProducts(products);
+          }
+        };
+        xhr.send();
       }
 
       // Function to display products in the table
       function displayProducts(products) {
-          const tableBody = document.querySelector("#productTable tbody");
+        const tableBody = document.querySelector("#productTable tbody");
 
-          products.forEach(product => {
-              const row = tableBody.insertRow();
-              row.insertCell(0).textContent = product._id;
-              row.insertCell(1).textContent = product.title;
-              row.insertCell(2).textContent = product.price;
-              row.insertCell(3).textContent = product.description;
-              row.insertCell(4).textContent = product.image;
-              row.insertCell(5).textContent = product.condition;
-              row.insertCell(6).textContent = product.category;
-              row.insertCell(7).textContent = product.manufacture_date;
-              row.insertCell(8).textContent = product.supplier;
-              row.insertCell(9).textContent = product.quantity;
-              row.insertCell(10).textContent = product.age_range.from;
-              row.insertCell(11).textContent = product.age_range.to;
+        products.forEach(product => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${product._id}</td>
+            <td>${product.title}</td>
+            <td>${product.price}</td>
+            <td>${product.description}</td>
+            <td>${product.image}</td>
+            <td>${product.condition}</td>
+            <td>${product.category}</td>
+            <td>${product.manufacture_date}</td>
+            <td>${product.supplier}</td>
+            <td>${product.quantity}</td>
+            <td>${product.age_range.from}</td>
+            <td>${product.age_range.to}</td>
+            <td><button class="edit-button">Edit</button></td>
+        `;
+
+          tableBody.appendChild(row);
+        });
+
+
+
+        // Attach the event listener for "Edit" buttons after displaying products
+
+        const editModal = document.getElementById("editModal");
+        const modalContent = editModal.querySelector(".modal-content");
+        const saveChangesButton = editModal.querySelector("#saveChangesButton");
+        const closeModalButton = editModal.querySelector("#closeModalButton");
+        // Attach click event listener to "Edit" buttons
+        const editButtons = document.querySelectorAll(".edit-button");
+        editButtons.forEach(button => {
+          button.addEventListener("click", function () {
+            const row = this.closest("tr");
+            const productId = row.querySelector("td:first-child").textContent; // Assuming ID is in the first cell
+
+            // Gather data from the row for editing
+            const title = row.querySelector("td:nth-child(2)").textContent;
+            const price = parseFloat(row.querySelector("td:nth-child(3)").textContent);
+            const description = row.querySelector("td:nth-child(4)").textContent;
+            const image = row.querySelector("td:nth-child(5)").textContent;
+            const condition = row.querySelector("td:nth-child(6)").textContent;
+            const category = row.querySelector("td:nth-child(7)").textContent;
+            const manufacture_date = row.querySelector("td:nth-child(8)").textContent;
+            const supplier = row.querySelector("td:nth-child(9)").textContent;
+            const quantity = parseInt(row.querySelector("td:nth-child(10)").textContent);
+            const age_range_from = parseInt(row.querySelector("td:nth-child(11)").textContent);
+            const age_range_to = parseInt(row.querySelector("td:nth-child(12)").textContent);
+
+            // Populate the modal with the product data
+            modalContent.innerHTML = `
+            <h2>Edit Product</h2>
+            <label for="editTitle">Title:</label>
+            <input type="text" id="editTitle" value="${title}">
+            <label for="editPrice">Price:</label>
+            <input type="number" id="editPrice" value="${price}">
+            <label for="editDescription">Description:</label>
+            <textarea id="editDescription">${description}</textarea>
+            <label for="editImage">Image URL:</label>
+            <input type="text" id="editImage" value="${image}">
+            <label for="editCondition">Condition:</label>
+            <input type="text" id="editCondition" value="${condition}">
+            <label for="editCategory">Category:</label>
+            <input type="text" id="editCategory" value="${category}">
+            <label for="editManufactureDate">Manufacture Date:</label>
+            <input type="text" id="editManufactureDate" value="${manufacture_date}">
+            <label for="editSupplier">Supplier:</label>
+            <input type="text" id="editSupplier" value="${supplier}">
+            <label for="editQuantity">Quantity:</label>
+            <input type="number" id="editQuantity" value="${quantity}">
+            <label for="editAgeFrom">Age Range (From):</label>
+            <input type="number" id="editAgeFrom" value="${age_range_from}">
+            <label for="editAgeTo">Age Range (To):</label>
+            <input type="number" id="editAgeTo" value="${age_range_to}">
+        `;
+
+            // Show the modal
+            editModal.style.display = "block";
+
+            // Attach click event listener to Save Changes button
+            saveChangesButton.addEventListener("click", function () {
+              // Gather the updated data from the modal inputs
+              const updatedProduct = {
+                _id: productId, // Include the product ID in the request body
+                title: document.getElementById("editTitle").value,
+                price: parseFloat(document.getElementById("editPrice").value),
+                description: document.getElementById("editDescription").value,
+                image: document.getElementById("editImage").value,
+                condition: document.getElementById("editCondition").value,
+                category: document.getElementById("editCategory").value,
+                manufacture_date: document.getElementById("editManufactureDate").value,
+                supplier: document.getElementById("editSupplier").value,
+                quantity: parseInt(document.getElementById("editQuantity").value),
+                age_range: {
+                  from: parseInt(document.getElementById("editAgeFrom").value),
+                  to: parseInt(document.getElementById("editAgeTo").value)
+                }
+              };
+
+              // Send the updated data using a fetch POST request similar to the previous example
+              // Send the updated product data using a fetch POST request
+              fetch(`http://127.0.0.1:8080/crud/product/:${productId}`, {
+                method: 'PUT',
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(updatedProduct)
+              })
+                .then(response => response.json())
+                .then(data => {
+                  console.log(data.message); // Successfully updated
+                  // You might want to update the displayed data or take other actions
+                })
+                .catch(error => {
+                  console.error("Error updating product:", error);
+                });
+
+              // Close the modal
+              editModal.style.display = "none";
+            });
+
+            // Attach click event listener to Close button
+            closeModalButton.addEventListener("click", function () {
+              // Close the modal
+              editModal.style.display = "none";
+            });
           });
+        });
+
+
       }
 
       // Call the fetchProducts function to start the process
       fetchProducts();
-  </script>
+    </script>
 
 
-
-
-
-
-
-
-
-
-
-
-        <!-- <h2>Supplier Management:</h2>
+    <!-- <h2>Supplier Management:</h2>
 
         <table id="data-table1">
           <thead>
@@ -377,19 +441,32 @@
         </script> -->
 
 
-      </body>
+</body>
 
 
-    </main>
+</main>
 
 
 
 
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <div id="modal-content"></div>
-      </div>
-    </div>
-  </body>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <!-- Populate this section with the form for editing product data -->
+    <!-- Include input fields for each attribute you want to edit -->
+  </div>
+  <div class="modal-footer">
+    <button id="saveChangesButton">Save Changes</button>
+    <button id="closeModalButton">Close</button>
+  </div>
+</div>
+
+</body>
+
 </html>
