@@ -23,7 +23,7 @@ const ProductSchema = new Schema({
   },
   image: {
     // NEED TO CHECK if url/file
-    type: String,
+    type: [Buffer],
     required: true,
   },
   condition: {
@@ -36,27 +36,18 @@ const ProductSchema = new Schema({
     type: String,
     required: true,
   },
-  manufacture_date: {
+  added_date: {
     type: Date,
-    required: true,
   },
-  supplier: {
-    type: ObjectId, // check if worth adding a prefix for user - U/ supplier - S
-    required: true,
-  },
+  // supplier: {
+  //   type: ObjectId, // check if worth adding a prefix for user - U/ supplier - S
+  //   required: true,
+  // },
   quantity: {
     type: Number,
-    required: true,
   },
   age_range: {
-    from: {
-      type: Number,
-      required: true,
-    },
-    to: {
-      type: Number,
-      required: true,
-    },
+    type: String,
   },
 });
 

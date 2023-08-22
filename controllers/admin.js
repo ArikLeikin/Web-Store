@@ -8,9 +8,10 @@ exports.create = async (req, res) => {
   try {
     const url = req.url;
     const model = url.split("/");
-    const expression = model[1];
+    const expression = model[2];
     console.log(expression);
     const newDocument = req.body;
+    // Assuming passed all required params in body
     switch (expression) {
       case "product":
         await Product.create(newDocument);
@@ -25,7 +26,7 @@ exports.create = async (req, res) => {
         await User.create(newDocument);
         break;
     }
-    const product = res.status(201).json({
+    return res.status(200).json({
       message: "Created successfully",
     });
   } catch (error) {
@@ -37,7 +38,7 @@ exports.create = async (req, res) => {
 
 exports.get = async (req, res) => {
   try {
-    const id = req.id;
+    const id = req.params.id;
     const url = req.url;
     const model = url.split("/");
     const expression = model[2];
@@ -63,7 +64,7 @@ exports.get = async (req, res) => {
     }
     console.log(returnedObject);
     if (returnedObject) {
-      res.status(201).json({
+      res.status(200).json({
         data: returnedObject,
         message: "Retrieved successfully",
       });
@@ -81,11 +82,12 @@ exports.get = async (req, res) => {
 exports.update = async (req, res) => {
   try {
     const updated = req.body;
-    const id = req.id;
+    const id = req.params.id;
     const url = req.url;
     const model = url.split("/");
     const expression = model[2];
     console.log(expression);
+    // Assuming passed same names as written in schema
     switch (expression) {
       case "product":
         await Product.findOneAndUpdate(id, updated);
@@ -104,7 +106,6 @@ exports.update = async (req, res) => {
         return res.status(400).json({
           message: "Error with query",
         });
-        break;
     }
     res.status(200).json({
       message: "Updated successfully",
@@ -117,10 +118,9 @@ exports.update = async (req, res) => {
   }
 };
 
-exports.deleteProduct = async (req, res) => {
+exports.delete = async (req, res) => {
   try {
-    const updated = req.body;
-    const id = req.id;
+    const id = req.params.id;
     const url = req.url;
     const model = url.split("/");
     const expression = model[2];
