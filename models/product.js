@@ -39,19 +39,15 @@ const ProductSchema = new Schema({
   added_date: {
     type: Date,
   },
-  supplier: {
-    type: ObjectId, // check if worth adding a prefix for user - U/ supplier - S
-    required: true,
-  },
+  // supplier: {
+  //   type: ObjectId, // check if worth adding a prefix for user - U/ supplier - S
+  //   required: true,
+  // },
   quantity: {
     type: Number,
   },
   age_range: {
     type: String,
-  },
-  isActive: {
-    type: Boolean,
-    default: "false",
   },
 });
 

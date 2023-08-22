@@ -231,6 +231,10 @@ exports.postPayment = async (req, res, next) => {
       (total, item) => total + item.product.price * item.quantity,
       0
     );
+
+    // assuming passed a param -> 0---allPointsOfUser
+    total_price -= req.body.points;
+    req.session.user.points -= req.body.points;
     //console.log(total_price);
 
     const newOrder = new Order({
@@ -240,6 +244,7 @@ exports.postPayment = async (req, res, next) => {
       order_date: new Date(),
       status: "Pending", // Set the initial status as desired
     });
+    req.session.user.points += total_price * 0.1;
 
     await newOrder.save();
 

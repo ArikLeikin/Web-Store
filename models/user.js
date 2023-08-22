@@ -71,6 +71,10 @@ const userSchema = new Schema({
       quantity: { type: Number, required: true },
     },
   ],
+  points: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const User = mongoose.model("User", userSchema);
