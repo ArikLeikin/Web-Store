@@ -215,13 +215,13 @@ exports.getYourAccount = (req, res, next) => {
 
 exports.postPayment = async (req, res, next) => {
   try {
-    req.session.user = await User.find({ username: "admin" }).populate(
-      "cart.items.product"
-    ); // FIND -> RETURNS ARRAY!
-    req.session.user = req.session.user[0];
+    // req.session.user = await User.find({ username: "admin" }).populate(
+    //   "cart.items.product"
+    // ); // FIND -> RETURNS ARRAY!
+    // req.session.user = req.session.user[0];
     const user = req.session.user;
     const cartItems = user.cart.items;
-    console.log(cartItems);
+    //console.log(cartItems);
 
     if (cartItems.length === 0) {
       return res.status(400).json({ message: "Cart is empty" });
@@ -231,7 +231,11 @@ exports.postPayment = async (req, res, next) => {
       (total, item) => total + item.product.price * item.quantity,
       0
     );
-    console.log(total_price);
+
+    // assuming passed a param -> 0---allPointsOfUser
+    total_price -= req.body.points;
+    req.session.user.points -= req.body.points;
+    //console.log(total_price);
 
     const newOrder = new Order({
       user_info: user._id,
@@ -240,6 +244,7 @@ exports.postPayment = async (req, res, next) => {
       order_date: new Date(),
       status: "Pending", // Set the initial status as desired
     });
+    req.session.user.points += total_price * 0.1;
 
     await newOrder.save();
 
@@ -247,8 +252,8 @@ exports.postPayment = async (req, res, next) => {
     user.cart.items = [];
 
     await user.save();
-    req.session.user = user;
-    req.session.cart = { items: [] };
+    // req.session.user = user;
+    // req.session.cart = { items: [] };
     await req.session.save();
 
     return res.status(200).json({ message: "Order created successfully" });
@@ -288,15 +293,16 @@ exports.addProductToCart = async (req, res, next) => {
     if (productToAdd == null) {
       throw new Error("Product not found");
     }
-    const cart = req.session.cart || [];
+    const cart = req.session.user.cart.items || [];
 
     // Add the product to the cart array
     cart.push(productToAdd);
 
     // Update the cart in the session
-    req.session.cart = cart;
-    user.cart = cart;
+    // req.session.cart = cart;
+    //user.cart = cart;
     await user.save();
+    await req.session.save();
 
     res.status(200).json("Product added to cart successfully");
   } catch (err) {
@@ -308,12 +314,12 @@ exports.addProductToCart = async (req, res, next) => {
 
 exports.getCart = async (req, res, next) => {
   const user = req.session.user;
-  const cart = req.session.cart || user.cart;
   if (user == undefined) {
     return res.status(401).json("Log in required");
   }
+  const cart = user.cart || [];
   if (cart.items.length === 0) return res.status(401).json("Cart is Empty");
-  console.log(cart.items);
+  //console.log(cart.items);
   res.status(200).json({
     data: cart.items,
   });
@@ -324,11 +330,11 @@ exports.postCartAdd = async (req, res, next) => {
     // req.session.user = await User.find({ username: "admin" }); // FIND -> RETURNS ARRAY!
     // req.session.user = req.session.user[0];  --> For testing
     const productIdToSave = req.body.productId;
-    const quantityToSave = parseInt(req.body.quantity);
+    let quantityToSave = parseInt(req.body.quantity);
     if (quantityToSave <= 0)
       return res.status(400).json({ message: "Non positive quantity" });
     const user = req.session.user;
-    const cart = req.session.cart !== undefined ? req.session.cart : user.cart;
+    const cart = user.cart || [];
     if (cart.items.length > 0) {
       const existingCartItem = cart.items.find(
         (item) => item.product.toString() === productIdToSave
@@ -348,8 +354,9 @@ exports.postCartAdd = async (req, res, next) => {
         quantity: quantityToSave,
       });
     }
-    req.session.user.cart = cart;
-    req.session.cart = cart;
+
+    // req.session.user.cart = cart;
+    // req.session.cart = cart;
     await req.session.save();
     await user.save();
     res.status(200).json({ message: "Product added successfully to cart!" });
@@ -364,7 +371,7 @@ exports.postCartDelete = async (req, res, next) => {
 
   const productId = req.body.productId;
   const user = req.session.user;
-  const cart = req.session.cart !== undefined ? req.session.cart : user.cart;
+  const cart = user.cart;
 
   try {
     const cartItemIndex = cart.items.findIndex(
@@ -373,8 +380,8 @@ exports.postCartDelete = async (req, res, next) => {
     if (cartItemIndex !== -1) {
       cart.items.splice(cartItemIndex, 1); // Remove the item from the cart
       user.cart.items.splice(cartItemIndex, 1);
-      req.session.user.cart = cart;
-      req.session.cart = cart;
+      // req.session.user.cart = cart;
+      // req.session.cart = cart;
       // Save changes to both the user and the session
       await user.save();
       await req.session.save();
@@ -393,7 +400,7 @@ exports.updateCartProductQuantity = async (req, res, next) => {
   const productId = req.body.productId;
   const newQuantity = parseInt(req.body.quantity);
   const user = req.session.user;
-  const cart = req.session.cart !== undefined ? req.session.cart : user.cart;
+  const cart = user.cart;
 
   try {
     const cartItem = cart.items.findIndex(
@@ -401,8 +408,8 @@ exports.updateCartProductQuantity = async (req, res, next) => {
     );
     if (cartItem != -1) {
       cart.items[cartItem].quantity = newQuantity;
-      req.session.user.cart = cart;
-      req.session.cart = cart;
+      // req.session.user.cart = cart;
+      // req.session.cart = cart;
       await user.save(); // Save changes to the database
       await req.session.save();
       return res.status(200).json({ message: "Cart item quantity updated" });
@@ -503,4 +510,25 @@ exports.creditCardUpdate = async (req, res) => {
       message: "Internal server error",
     });
   }
+};
+
+exports.postSupplier = async (req, res) => {
+  const { price, ages, category, companyName, productName, condition } =
+    req.body;
+  const images = req.files.map((file) => file.buffer);
+  const checkIfProductExist = await Product.find({ title: productName });
+  if (checkIfProductExist) {
+    return res.status(401).json({ message: "Product name already in use." });
+  }
+  req.session.user.availableProducts.push(
+    new Product({
+      category: category,
+      condition: condition,
+      price: price,
+      supplier: companyName, // need to check if need : req.session.user.name
+      title: productName,
+      age_range: ages,
+      image: images,
+    })
+  );
 };

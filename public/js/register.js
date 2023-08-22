@@ -64,6 +64,7 @@ $(document).ready(function () {
     //   $("#password-validation-error").removeClass("error-message").text("");
     // }
 
+<<<<<<< HEAD
     // if (password !== passwordValidation) {
     //   event.preventDefault(); // Prevent form submission
     //   $("#password-validation-error")
@@ -73,6 +74,17 @@ $(document).ready(function () {
     //   $("#password-validation-error").removeClass("error-message").text("");
     // }
     
+=======
+    if (password !== passwordValidation) {
+      event.preventDefault(); // Prevent form submission
+      $("#password-validation-error")
+        .addClass("error-message")
+        .text("Passwords do not match.");
+    } else {
+      $("#password-validation-error").removeClass("error-message").text("");
+    }
+
+>>>>>>> main
 
   });
 });
@@ -139,8 +151,8 @@ $(document).ready(function () {
   });
 });
 
-$(document).ready(function() {
-  $("#registration-form").submit(function(e) {
+$(document).ready(function () {
+  $("#registration-form").submit(function (e) {
     e.preventDefault(); // Prevent the default form submission
 
     // Get the input values
@@ -217,15 +229,16 @@ $(document).ready(function() {
       type: "POST",
       url: "/register", // Replace with the actual endpoint URL
       data: formData,
-      success: function(response) {
+      success: function (response) {
         // Show a success message using SweetAlert2
         Swal.fire({
           icon: "success",
           title: "Registration Successful",
-          text: response.message, // Assuming the response contains a "message" field
+          text: response.message, // Assuming the response contains a "message" field          
         });
+        window.location.href = '/login';
       },
-      error: function(error) {
+      error: function (error) {
         // Show an error message using SweetAlert2
         Swal.fire({
           icon: "error",
