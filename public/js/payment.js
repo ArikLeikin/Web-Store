@@ -210,3 +210,39 @@ function clearErrorMessages() {
   $(".error-message").text("");
 }
 
+
+
+let selectedPoints = 0;
+
+function checkPoints() {
+  const inputValue = parseInt(document.getElementById("inputPoints").value);
+  const selectElement = document.getElementById("pointsSelect");
+  const useButton = document.getElementById("useButton");
+
+  if (!isNaN(inputValue) && inputValue >= 100) {
+    enableOptions(inputValue);
+    selectElement.disabled = false;
+    useButton.disabled = true;
+    alert("Points checked successfully. Now select points to use.");
+  } else {
+    disableOptions();
+    selectElement.disabled = true;
+    useButton.disabled = true;
+    alert("Please enter a value of at least 100 points.");
+  }
+}
+
+function enableOptions(maxValue) {
+  const options = document.querySelectorAll("#pointsSelect option");
+  options.forEach(option => {
+    const value = parseInt(option.value);
+    option.disabled = isNaN(value) || value > maxValue;
+  });
+}
+
+function disableOptions() {
+  const options = document.querySelectorAll("#pointsSelect option");
+  options.forEach(option => {
+    option.disabled = true;
+  });
+}

@@ -117,7 +117,7 @@ $(document).ready(function () {
 
   $(".next2").click(function () {
     $("#bankAccount-error").text("");
-    $("#email-error").text("");
+    
     
     var bankAccount = $("#bankAccount").val();
     var email = $("#email").val();
@@ -129,19 +129,11 @@ $(document).ready(function () {
       isValid= false; // Prevent proceeding to the next step
     }
 
-    if ( !containsAtSymbol(email)) {
-      $("#email-error").text("Email should contain @.");
-      isValid= false; // Prevent proceeding to the next step
-    }
-
 
     function validateBankAccount(str) {
       return /^\d{14}$/.test(str);
     }
 
-    function containsAtSymbol(str) {
-      return str.includes("@");
-    }
     
 
     if(!isValid)
