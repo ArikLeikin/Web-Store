@@ -1,99 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Games For All</title>
-    <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
-    <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" type="text/css" href="../css/products.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-    <script src="../js/index.js"></script>
-    <script src="../js/products.js"></script>
-  </head>
-  <body>
-    <header class="header" role="banner">
-      <div class="container">
-        <nav class="navUser">
-          <ul class="navUser-section">
-            <li class="item__account" id="item__account">
-              <a aria-label="Account" href=""
-                ><img
-                  src="../images/white-icons/account-icon.png"
-                  alt="account"
-                  width="30"
-                />
-              </a>
-            </li>
-            <li class="item__wishlist">
-              <a aria-label="Wishlist" href="">
-                <img
-                  src="../images/white-icons/wishlist-icon.png"
-                  alt="Cart"
-                  width="30"
-                />
-              </a>
-            </li>
-            <li class="item__cart">
-              <a href="../html/cart.html" aria-label="Cart">
-                <img
-                  src="../images/white-icons/cart-icon.png"
-                  alt="Cart"
-                  width="30"
-                />
-              </a>
-            </li>
-          </ul>
-        </nav>
 
-        <div class="header-logo">
-          <a href="#" data-instantload='{"page":"home"}'>
-            <div class="header-logo-image-container">
-              <img
-                class="header-logo-image"
-                src="../images/logo.png"
-                width="180"
-                height="auto"
-              />
-            </div>
-          </a>
-        </div>
+<head>
+  <title>Games For All</title>
+  <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
+  <link rel="stylesheet" href="../css/index.css" />
+  <link rel="stylesheet" type="text/css" href="../css/products.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+  <script src="../js/index.js"></script>
+  <script src="../js/products.js"></script>
+</head>
 
-        <div class="quickSearch">
-          <form class="form">
-            <div class="form-container">
-              <input
-                class="form-input"
-                data-search-quick
-                name="search_query"
-                id="search_query"
-                data-error-message="Search field cannot be empty."
-                placeholder="Search the store"
-                autocomplete="off"
-              />
-              <button
-                type="submit"
-                class="button search-button"
-                id="searchButton"
-              >
-                <img
-                  src="../images/white-icons/search-icon.png"
-                  alt="Search"
-                  width="25"
-                  height="auto"
-                />
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
+<body>
+  <header class="header" role="banner">
+    <div class="container">
+      <nav class="navUser">
+        <ul class="navUser-section">
+          <li class="item__account" id="item__account">
+            <a aria-label="Account" href=""><img src="../images/white-icons/account-icon.png" alt="account"
+                width="30" />
+            </a>
+          </li>
+          <li class="item__wishlist">
+            <a aria-label="Wishlist" href="">
+              <img src="../images/white-icons/wishlist-icon.png" alt="Cart" width="30" />
+            </a>
+          </li>
+          <li class="item__cart">
+            <a href="../html/cart.html" aria-label="Cart">
+              <img src="../images/white-icons/cart-icon.png" alt="Cart" width="30" />
+            </a>
+          </li>
+        </ul>
+      </nav>
 
       <!-- Start Navigation Bar -->
       <nav class="navbar">
@@ -254,10 +198,23 @@
           </tr>
         </table>
 
-        <button type="button" class="btn-ns-hot center" id="filter-button">
-          Apply Filters
-        </button>
+      <div class="header-logo">
+        <a href="#" data-instantload='{"page":"home"}'>
+          <div class="header-logo-image-container">
+            <img class="header-logo-image" src="../images/logo.png" width="180" height="auto" />
+          </div>
+        </a>
       </div>
+
+
+      <div class="quickSearch">
+        <form class="form">
+          <div class="form-container">
+            <input class="form-input" data-search-quick name="search_query" id="search_query"
+              data-error-message="Search field cannot be empty." placeholder="Search the store" autocomplete="off" />
+            <button type="submit" class="button search-button" id="searchButton">
+              <img src="../images/white-icons/search-icon.png" alt="Search" width="25" height="auto" />
+            </button>
 
       <!-- Product Grid -->
       <div class="product-grid-section">
@@ -455,6 +412,352 @@
             <span class="close">&times;</span>
             <div id="modal-content"></div>
           </div>
+        </form>
+      </div>
     </div>
-  </body>
-</html>
+
+    <!-- Start Navigation Bar -->
+    <nav class="navbar">
+      <ul class="menu">
+        <li>
+          <a class="hasDropdown" href="#">Categories <i class="fa fa-angle-down"></i></a>
+
+          <ul class="nav_container">
+            <div class="container__list">
+              <div class="container__listItem">
+                <div class="container__listItem_title">
+                  Board Games
+                </div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Science</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Games</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Riding Toys</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Puzzles</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Music&Karaoke</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Books</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Lego</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">Dolls</div>
+              </div>
+              <div class="container__listItem"></div>
+              <div class="container__listItem"></div>
+
+              <div class="container__listItem">
+                <div class="container__listItem_title bold no-underline">
+                  $10 & Below
+                </div>
+              </div>
+            </div>
+          </ul>
+        </li>
+        <li>
+          <a class="hasDropdown" href="#">Ages<i class="fa fa-angle-down"></i></a>
+          <ul class="nav_container">
+            <div class="container__list">
+              <div class="container__listItem">
+                <div class="container__listItem_title">0-12 MONTHS</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">12-24 MONTHS</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">2-4 YEARS</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">5-7 YEARS</div>
+              </div>
+              <div class="container__listItem">
+                <div class="container__listItem_title">8-99 YEARS</div>
+              </div>
+            </div>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Outdoor</a>
+        </li>
+        <li>
+          <a href="#">Yad2</a>
+        </li>
+        <li>
+          <a href="GiftFinder.html">Gift Finder</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- End Navigation Bar -->
+  </header>
+  <main style="margin-top: 170px">
+    <!-- Filter Sidebar -->
+
+    <div class="filter-sidebar" id="filter-sidebar">
+      <h2 class="filter-title">Filters</h2>
+
+      <table class="filter-container">
+        <tr>
+          <td>
+            <span class="select-label">Age</span>
+          </td>
+          <td>
+            <select class="select-filter" id="age-filter">
+              <option value="">All</option>
+              <option value="0-12 months">0-12 months</option>
+              <option value="12-24 months">12-24 months</option>
+              <option value="2-4">2-4 Years</option>
+              <option value="5-7">5-7 Years</option>
+              <option value="8-99">8-99 Years</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="select-label">Category</span>
+          </td>
+          <td>
+            <select class="select-filter" id="game-type-filter">
+              <option value="">All</option>
+              <option value="boardgames">Board Games</option>
+              <option value="ridingtoys">Riding Toys</option>
+              <option value="books">Books</option>
+              <option value="science">Science</option>
+              <option value="puzzles">Puzzle Games</option>
+              <option value="Lego">Lego</option>
+              <option value="games">Games</option>
+              <option value="musickaraoke">Music & Karaoke</option>
+              <option value="dolls">Dolls</option>
+              <!-- <option value="10andbellow">10$ & Bellow</option>
+                <option value="Yad2">Yad 2</option>
+                <option value="sale">SALE</option> -->
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="price-title">
+            <span class="select-label">Price Range</span>
+          </td>
+          <td>
+            <div class="price-container">
+              <input type="number" id="min-price-input" min="0" value="0" class="price-input center" /><span>-</span>
+
+              <input type="number" id="max-price-input" min="0" class="price-input center" />
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <button type="button" class="btn-ns-hot center" id="filter-button">
+        Apply Filters
+      </button>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid-section">
+      <h1 class="category-title" id="category-title">BOARD GAMES</h1>
+      <div class="sort-select">
+        <label class="sort-select-label" for="sort">Sort By:</label>
+        <select class="sort-select-filter" id="Sortbyfilter">
+          <option value="recommended">Recommended</option>
+          <option value="best-selling">Best Selling</option>
+          <option value="highToLow">Price: High to Low</option>
+          <option value="lowToHigh">Price: Low to High</option>
+        </select>
+      </div>
+      <div id="productGrid"></div>
+    </div>
+    <script>
+      var max = 0;
+
+      $(document).ready(function () {
+        const productGrid = $("#productGrid");
+
+        // Function to create the product HTML structure
+        function createProductHTML(product) {
+          const productItem = document.createElement("div");
+          productItem.className = "product-item";
+          productItem.setAttribute("data-age-range", product.ageRange);
+          productItem.setAttribute("data-game-type", product.gameType);
+          productItem.setAttribute("data-price", product.price);
+          productItem.setAttribute("filter-by", "");
+          const productLink = document.createElement("a");
+          productLink.className = "product-img";
+          productLink.href = "/product-details?id=" + product._id;
+          const productImage = document.createElement("img");
+          productImage.src = product.image;
+          productImage.alt = "item";
+          productLink.appendChild(productImage);
+          const productTitleSection = document.createElement("section");
+          productTitleSection.className = "product-title";
+          const productTitleDesc = document.createElement("span");
+          productTitleDesc.className = "product-title-desc";
+          const productTitleLink = document.createElement("a");
+          productTitleLink.href = "#";
+          productTitleLink.textContent = product.title;
+          productTitleDesc.appendChild(productTitleLink);
+          productTitleSection.appendChild(productTitleDesc);
+          const productPriceSection = document.createElement("section");
+          productPriceSection.className = "product-price";
+          const productTitlePrice = document.createElement("span");
+          productTitlePrice.className = "product-title-price center"; // Adding 'center' class
+          productTitlePrice.textContent = `$${product.price}`;
+          productPriceSection.appendChild(productTitlePrice);
+
+          productItem.appendChild(productLink);
+          productItem.appendChild(productTitleSection);
+          productItem.appendChild(productPriceSection);
+          if (max < product.price) {
+            max = product.price;
+          }
+          updatemaxprices();
+          return productItem;
+        }
+
+        // Add an event listener to the min input field
+        $('#min-price-input').on('input', function () {
+          var minValue = parseFloat($(this).val()) || 0;
+          var currentMaxValue = parseFloat($('#max-price-input').val()) || initialMaxValue;
+
+          // Update the max attribute of the max input field
+          $('#max-price-input').attr('min', currentMaxValue < minValue ? currentMaxValue : minValue);
+        });
+
+        // Add an event listener to the max input field
+        $('#max-price-input').on('input', function () {
+          var maxValue = parseFloat($(this).val()) || initialMaxValue;
+          var currentMinValue = parseFloat($('#min-price-input').val()) || 0;
+
+          // Update the max attribute of the min input field
+          $('#min-price-input').attr('max', maxValue > currentMinValue ? maxValue : currentMinValue);
+        });
+
+        function updatemaxprices() {
+          $('#max-price-input').attr('max', max + 1);
+          $('#max-price-input').val(parseInt(max + 1));
+          $('#min-price-input').attr('max', parseInt($("#max-price-input").val()) - 1);
+        }
+
+
+        $('#min-price-input, #max-price-input').on('keydown', function (event) {
+          if (event.keyCode !== 38 && event.keyCode !== 40 && event.keyCode !== 13) {
+            event.preventDefault();
+          }
+        });
+
+
+
+
+
+        function applyFilters(products) {
+          const selectedGameType = $("#game-type-filter").val();
+          const minPrice = parseFloat($("#min-price-input").val());
+          const maxPrice = parseFloat($("#max-price-input").val());
+          const selectedSorting = $("#Sortbyfilter").val();
+
+          if (minPrice > maxPrice) {
+
+          }
+
+
+          const filteredProducts = products.filter(product => {
+            const filterCategory = urlCategory !== null ? urlCategory : selectedGameType;
+            const isGameTypeMatch = !filterCategory || product.category.toLowerCase() === filterCategory.toLowerCase();
+            const isPriceInRange = (!minPrice || product.price >= minPrice) && (!maxPrice || product.price <= maxPrice);
+            return isGameTypeMatch && isPriceInRange;
+          });
+
+          sortProductsByPrice(filteredProducts, selectedSorting);
+
+          productGrid.empty();
+          filteredProducts.forEach(product => {
+            const productHTML = createProductHTML(product);
+            productGrid.append(productHTML);
+          });
+        }
+
+        function sortProductsByPrice(products, sortOrder) {
+          products.sort((a, b) => {
+            const priceDifference = a.price - b.price;
+            return sortOrder === "highToLow" ? -priceDifference : priceDifference;
+          });
+        }
+
+        function fetchAndDisplayProducts() {
+          const apiUrl = "http://127.0.0.1:8080/api/products";
+
+          $.get(apiUrl, function (data, status) {
+            if (status === "success") {
+              applyFilters(data);
+            } else {
+              console.error("Error fetching products:", status);
+            }
+          }).fail(function () {
+            console.error("Network error occurred");
+          });
+        }
+
+        // Function to extract URL parameters
+        function getUrlParameter(name) {
+          const results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+          if (results == null) {
+            return null;
+          } else {
+            return decodeURI(results[1]) || 0;
+          }
+        }
+
+        // Extract 'category' parameter from the URL
+        const urlCategory = getUrlParameter('category');
+        if (urlCategory) {
+          const optionValues = [
+            { value: "", label: "All" },
+            { value: "boardgames", label: "Board Games" },
+            { value: "ridingtoys", label: "Riding Toys" },
+            { value: "books", label: "Books" },
+            { value: "science", label: "Sience" },
+            { value: "puzzles", label: "Puzzle Games" },
+            { value: "Lego", label: "Lego" },
+            { value: "games", label: "Games" },
+            { value: "musickaraoke", label: "Music & Karaoke" },
+            { value: "dolls", label: "Dolls" },
+            // { value: "10andbellow", label: "10$ & Bellow" },
+            // { value: "Yad2", label: "Yad 2" },
+            // { value: "sale", label: "SALE" }
+          ];
+          const selectedOption = optionValues.find(option => option.value.toLowerCase() === urlCategory.toLowerCase());
+
+          $("#game-type-filter").val(selectedOption.value);
+          $("#game-type-filter").prop('disabled', true);
+          fetchAndDisplayProducts();
+        }
+
+        $("#filter-button").click(function () {
+          fetchAndDisplayProducts();
+        });
+
+        $("#Sortbyfilter").change(function () {
+          fetchAndDisplayProducts();
+        });
+
+        fetchAndDisplayProducts();  // Initial fetch and display
+      });
+    </script>
+  </main>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+</body>html>

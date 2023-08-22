@@ -15,16 +15,20 @@ $(document).ready(function () {
     if (currentSubtitle !== "step 1") {
       return false; // Prevent proceeding to the next step
     }
-  
+
     // Check if the required fields are filled correctly
     // var companyName = $("#companyName").val().trim();
     var category = $("#category").val();
     var ages = $("#ages").val();
-    
-    // if (!/^[a-zA-Z\s]+$/.test(companyName)) {
-    //   $("#companyName-error").text("Company name should only contain letters");
-    //   return false; // Prevent proceeding to the next step
-    // }
+
+    if (!/^[a-zA-Z\s]+$/.test(companyName)) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: "Company's name should only contain letters",
+      });
+      return false; // Prevent proceeding to the next step
+    }
 
     // $("#companyName-error").text("");
 
@@ -37,6 +41,22 @@ $(document).ready(function () {
 
     //activate next step on progressbar using the index of next_fs
     $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      }
+    });
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Step 1 completed successfully!'
+    });
 
     //show the next fieldset
     next_fs.show();
@@ -78,19 +98,50 @@ $(document).ready(function () {
     var productName = $("#productName").val();
     var productPhoto = $("#productPhoto").val();
     let isValid = true;
-    
+
     if (!validateNumber(price)) {
-      $("#price-error").text("Price should be greater than +0 and only digits.");
-      isValid= false; // Prevent proceeding to the next step
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Price should only contain digits.',
+      });
+      isValid = false;
     }
-    if ( price==='0') {
-      $("#price-error").text("Price name should be greater than 0.");
-      isValid= false; // Prevent proceeding to the next step
+    if (price === '0') {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Price should be greater than 0.',
+      });
+      isValid = false;    
     }
 
-     if (!validateLettersDigitsAndSpaces(productName)) {
-      $("#productName-error").text("Product name should be only letters or digits, and at least 4 characters.");
-      isValid= false; // Prevent proceeding to the next step
+    if (!validateLettersDigitsAndSpaces(productName)) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: "Product name should be only letters or digits, and at least 4 characters.",
+      });
+      isValid = false;
+    }
+
+
+    var productPhotos = $("#productPhotos")[0].files;
+    if (productPhotos.length === 0) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Please upload at least 1 photo.',
+      });
+      isValid = false;
+    } else if (productPhotos.length > 4) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'You can upload a maximum of 4 photos.',
+      });
+      isValid = false;
+
     }
 
     function validateNumber(str) {
@@ -99,10 +150,9 @@ $(document).ready(function () {
     function validateLettersDigitsAndSpaces(str) {
       return /^[a-zA-Z0-9 ]{4,}$/.test(str);
     }
-    
-    
-    if(!isValid)
-    {
+
+    if (!isValid) {
+
       return false;
     }
 
@@ -115,6 +165,22 @@ $(document).ready(function () {
 
     //activate next step on progressbar using the index of next_fs
     $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      }
+    });
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Step 2 completed successfully!'
+    });
 
     //show the next fieldset
     next_fs.show();
@@ -232,6 +298,40 @@ $(document).ready(function () {
     );
   });
 });
+
+$(document).ready(function () {
+  $("#uploadForm").submit(function (event) {
+    const inputElement = $("#productPhotos")[0];
+    const selectedFiles = inputElement.files;
+
+    // Check if at least one photo is uploaded
+    if (selectedFiles.length < 1) {
+      event.preventDefault();
+      Swal.fire("Error", "Please upload at least one photo.", "error");
+      return;
+    }
+
+    // Check if the number of photos exceeds the maximum limit
+    if (selectedFiles.length > 4) {
+      event.preventDefault();
+      Swal.fire("Error", "You can upload a maximum of four photos.", "error");
+      return;
+    }
+
+    // Check file types for each selected photo
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const file = selectedFiles[i];
+      const fileType = file.type;
+
+      if (fileType !== "image/jpeg" && fileType !== "image/png" && fileType !== "image/gif") {
+        event.preventDefault();
+        Swal.fire("Error", "Unsupported file type. Please upload JPG, PNG, or GIF images.", "error");
+        return;
+      }
+    }
+  });
+});
+
 
 // Michal
 
