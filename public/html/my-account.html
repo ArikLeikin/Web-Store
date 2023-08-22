@@ -20,8 +20,8 @@
     <script src="../js/my-account.js"></script>
     <title>Client Personal Area</title>
   </head>
-  <body>
-    <header class="header" role="banner" id="head-of-page">
+  <body id="head-of-page">
+    <header class="header" role="banner">
       <div class="container">
         <nav class="navUser">
           <ul class="navUser-section">
@@ -101,7 +101,7 @@
       <nav class="navbar">
         <ul class="menu">
           <li>
-            <a class="hasDropdown" href="#"
+            <a class="hasDropdown header-title" href="#"
               >Categories <i class="fa fa-angle-down"></i
             ></a>
 
@@ -146,7 +146,7 @@
             </ul>
           </li>
           <li>
-            <a class="hasDropdown" href="#"
+            <a class="hasDropdown header-title" href="#"
               >Ages<i class="fa fa-angle-down"></i
             ></a>
             <ul class="nav_container">
@@ -170,19 +170,19 @@
             </ul>
           </li>
           <li>
-            <a href="#">Outdoor</a>
+            <a href="#" class="header-title">Outdoor</a>
           </li>
           <li>
-            <a href="#">Yad2</a>
+            <a href="#" class="header-title">Yad2</a>
           </li>
           <li>
-            <a href="GiftFinder.html">Gift Finder</a>
+            <a href="Gift-Finder.html" class="header-title">Gift Finder</a>
           </li>
         </ul>
       </nav>
       <!-- End Navigation Bar -->
     </header>
-    <main style="margin-top: 200px">
+    <main style="margin-top: 180px">
       <div class="fixed-icon">
         <a href="#head-of-page"><i class="fa fa-arrow-up"></i></a>
       </div>
@@ -200,7 +200,7 @@
             <div class="sidebar_inner">
               <ul>
                 <li>
-                  <a rel="noopener" href="#order-history">
+                  <a rel="noopener" onclick="show('order-history')">
                     <span class="icon"
                       ><i class="fa fa-shopping-cart"></i
                     ></span>
@@ -208,31 +208,37 @@
                   </a>
                 </li>
                 <li>
-                  <a rel="noopener" href="#personal-details">
+                  <a rel="noopener" onclick="show('personal-details')">
                     <span class="icon"><i class="fa fa-id-card"></i></span>
                     <span class="text">Personal Details</span>
                   </a>
                 </li>
                 <li>
-                  <a rel="noopener" target="_blank" href="#change-password">
+                  <a rel="noopener" onclick="show('change-password')">
                     <span class="icon"><i class="fa fa-lock"></i></span>
                     <span class="text">Change Password</span>
                   </a>
                 </li>
                 <li>
-                  <a rel="noopener" href="#addresses">
+                  <a rel="noopener" onclick="show('addresses')">
                     <span class="icon"><i class="fa fa-home"></i></span>
                     <span class="text">Addresses</span>
                   </a>
                 </li>
                 <li>
-                  <a rel="noopener" href="#wish-list">
+                  <a rel="noopener" onclick="show('payment-methods')">
+                    <span class="icon"><i class="fa fa-credit-card"></i></span>
+                    <span class="text">Payment method</span>
+                  </a>
+                </li>
+                <li>
+                  <a rel="noopener" onclick="show('wish-list')">
                     <span class="icon"><i class="fa fa-heart"></i></span>
                     <span class="text">Wish List</span>
                   </a>
                 </li>
                 <li>
-                  <a rel="noopener" href="#yad2-list">
+                  <a rel="noopener" onclick="show('yad2-list')">
                     <span class="icon"><i class="fa fa-th-list"></i></span>
                     <span class="text">Yad2 List</span>
                   </a>
@@ -251,7 +257,7 @@
         </div>
         <div class="t-content">
           <!--ORDERS-->
-          <div class="order-history" id="order-history">
+          <div class="page-section order-history" id="order-history">
             <div class="box">
               <span class="box-icon-title"
                 ><i class="fa fa-shopping-cart"></i
@@ -317,8 +323,9 @@
               </div>
             </div>
           </div>
-          <div class="personal-details" id="personal-details">
-            <!-- personal details-->
+
+          <!-- personal details-->
+          <div class="page-section personal-details" id="personal-details">
             <div class="box">
               <span class="box-icon-title"><i class="fa fa-id-card"></i></span>
               <span class="box-text-title">Personal Details</span>
@@ -384,7 +391,7 @@
           </div>
 
           <!-- change password-->
-          <div class="change-password" id="change-password">
+          <div class="page-section change-password" id="change-password">
             <div class="box">
               <span class="box-icon-title"><i class="fa fa-lock"></i></span>
               <span class="box-text-title">Change Password</span>
@@ -415,10 +422,35 @@
           </div>
 
           <!-- address-->
-          <div class="addresses" id="addresses">
+          <div class="page-section addresses" id="addresses">
             <div class="box">
               <span class="box-icon-title"><i class="fa fa-home"></i></span>
               <span class="box-text-title">Addresses</span><br />
+            </div>
+
+            <!-- there is no address-->
+            <div class="box">
+              <div class="alertBox alertBox--info">
+                <div class="alertBox-column alertBox-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+                    ></path>
+                  </svg>
+                </div>
+
+                <span class="alertBox-column alertBox-message"
+                  >No address is registered in our system. To enter an address
+                  please click "Add new address".</span
+                >
+              </div>
+
+              <!-- add new address option -->
               <button class="collapsible-div btn-account-page" type="button">
                 ADD NEW ADDERSS
               </button>
@@ -508,15 +540,139 @@
                         />
                       </fieldset>
                     </div>
+                    <fieldset class="fieldset-zipcode">
+                      <label class="reg-label" for="zipcode">Zip Code</label>
+                      <input
+                        class="reg-input"
+                        type="text"
+                        id="zipcode"
+                        name="zipcode"
+                        required
+                      />
+                    </fieldset>
+                    <div class="footer-button">
+                      <button class="btn-account-page" type="submit">
+                        Save Address
+                      </button>
+                    </div>
                   </form>
-                  <button class="btn-account-page" type="submit">
-                    Save Address
-                  </button>
                 </div>
               </div>
             </div>
 
-            <!-- there is no address-->
+            <!-- addresses book-->
+            <div class="box">
+              <div aria-label="Delete" class="address-delete">
+                <i class="fa fa-trash"></i>
+              </div>
+              <form
+                method="POST"
+                action="#"
+                class="t-form"
+                id="new-address-form"
+              >
+                <fieldset class="fieldset fieldset-firstName">
+                  <label class="reg-label" for="firstName">First name</label>
+                  <input
+                    class="reg-input"
+                    type="firstName"
+                    id="firstName"
+                    name="firstName"
+                    required
+                  />
+                </fieldset>
+                <fieldset class="fieldset fieldset-lastName">
+                  <label class="reg-label" for="lastName">Last name</label>
+                  <input
+                    class="reg-input"
+                    type="lastName"
+                    id="lastName"
+                    name="lastName"
+                    required
+                  />
+                </fieldset>
+                <fieldset class="fieldset-phoneNumber">
+                  <label class="reg-label" for="phoneNumber"
+                    >Phone number</label
+                  >
+                  <input
+                    class="reg-input"
+                    type="phoneNumber"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    required
+                  />
+                </fieldset>
+                <fieldset class="fieldset-country">
+                  <label class="reg-label" for="country">Country</label>
+                  <input
+                    class="reg-input"
+                    type="text"
+                    id="country"
+                    name="country"
+                    required
+                  />
+                </fieldset>
+                <fieldset class="fieldset-city">
+                  <label class="reg-label" for="city">City</label>
+                  <input
+                    class="reg-input"
+                    type="text"
+                    id="city"
+                    name="city"
+                    required
+                  />
+                </fieldset>
+                <div class="street">
+                  <fieldset class="fieldset-street">
+                    <label class="reg-label" for="street">Street</label>
+                    <input
+                      class="reg-input"
+                      type="text"
+                      id="street"
+                      name="street"
+                      required
+                    />
+                  </fieldset>
+                  <fieldset class="fieldset-streetno">
+                    <label class="reg-label" for="streetno">Street NO.</label>
+                    <input
+                      class="reg-input"
+                      type="number"
+                      id="streetno"
+                      name="streetno"
+                      required
+                    />
+                  </fieldset>
+                </div>
+                <fieldset class="fieldset-zipcode">
+                  <label class="reg-label" for="zipcode">Zip Code</label>
+                  <input
+                    class="reg-input"
+                    type="text"
+                    id="zipcode"
+                    name="zipcode"
+                    required
+                  />
+                </fieldset>
+                <button class="btn-account-page" type="submit">
+                  Save Changes
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!--payment methods-->
+
+          <div class="page-section payment-methods" id="payment-methods">
+            <div class="box">
+              <span class="box-icon-title"
+                ><i class="fa fa-credit-card"></i
+              ></span>
+              <span class="box-text-title">Payment Method</span><br />
+            </div>
+
+            <!-- there is no payment method-->
             <div class="box">
               <div class="alertBox alertBox--info">
                 <div class="alertBox-column alertBox-icon">
@@ -533,41 +689,161 @@
                 </div>
 
                 <span class="alertBox-column alertBox-message"
-                  >No address is registered in our system. To enter an address
-                  please click "Add new address".</span
+                  >No payment method found on our system. to enter a payment
+                  method please click "Add new payment method".</span
                 >
+              </div>
+
+              <!-- add new payment method option -->
+              <button class="collapsible-div btn-account-page" type="button">
+                ADD NEW PAYMENT METHOD
+              </button>
+              <div class="add-new-payment-content" id="add-new-payment-content">
+                <div class="box add-new-payment-box">
+                  <form
+                    method="POST"
+                    action="#"
+                    class="t-form"
+                    id="new-payment-form"
+                  >
+                    <fieldset>
+                      <label class="reg-label" for="card-number"
+                        >Card Number</label
+                      >
+                      <input
+                        type="num"
+                        id="card-number"
+                        class="input-cart-number"
+                        maxlength="4"
+                        required
+                      />
+                      <input
+                        type="num"
+                        id="card-number-1"
+                        class="input-cart-number"
+                        maxlength="4"
+                      />
+                      <input
+                        type="num"
+                        id="card-number-2"
+                        class="input-cart-number"
+                        max="9999"
+                        maxlength="4"
+                        required
+                      />
+                      <input
+                        type="num"
+                        id="card-number-3"
+                        class="input-cart-number"
+                        max="9999"
+                        maxlength="4"
+                        required
+                      />
+                    </fieldset>
+
+                    <div id="card-number-error" class="error-message"></div>
+                    <fieldset>
+                      <label class="reg-label" for="card-holder"
+                        >Card holder</label
+                      >
+                      <input
+                        type="text"
+                        id="card-holder"
+                        class="reg-input"
+                        required
+                      />
+                      <div id="card-holder-error" class="error-message"></div>
+                    </fieldset>
+                    <div style="display: flex; gap: 10px">
+                      <fieldset class="fieldset-expiration">
+                        <label class="reg-label" for="card-expiration-month"
+                          >Expiration date</label
+                        >
+                        <div class="select exp-select">
+                          <select id="card-expiration-month" required>
+                            <option></option>
+                            <option>01</option>
+                            <option>02</option>
+                            <option>03</option>
+                            <option>04</option>
+                            <option>05</option>
+                            <option>06</option>
+                            <option>07</option>
+                            <option>08</option>
+                            <option>09</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                          </select>
+                        </div>
+                        <div
+                          id="expiration-month-error"
+                          class="error-message"
+                        ></div>
+                        <div class="select exp-select">
+                          <select id="card-expiration-year" required>
+                            <option></option>
+                            <option>2023</option>
+                            <option>2024</option>
+                            <option>2025</option>
+                            <option>2026</option>
+                            <option>2027</option>
+                            <option>2028</option>
+                            <option>2029</option>
+                            <option>2030</option>
+                          </select>
+                        </div>
+                        <div
+                          id="expiration-year-error"
+                          class="error-message"
+                        ></div>
+                      </fieldset>
+                      <fieldset class="fieldset-ccv">
+                        <label class="reg-label" for="card-ccv">CCV</label>
+                        <input
+                          type="num"
+                          id="card-ccv"
+                          maxlength="3"
+                          class="reg-input"
+                          required
+                        />
+                        <div id="cvv-number-error" class="error-message"></div>
+                      </fieldset>
+                      <fieldset class="t-form-footer">
+                        <button class="btn-account-page" type="submit">
+                          SAVE CARD
+                        </button>
+                      </fieldset>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
 
-            <!-- addresses book-->
+            <!-- payment card-->
             <div class="box">
               <div aria-label="Edit" class="address-edit">
-                <span>Edit</span>
-                <i class="fa fa-pencil-square-o"></i>
+                <a href="address-update.html" class="inside-link">
+                  <span>Edit</span>
+
+                  <i class="fa fa-pencil-square-o"></i
+                ></a>
               </div>
 
-              <h4 class="address-label" id="address-name">John Doe</h4>
-              <p>
-                <span class="address-label sub" id="address-street"
-                  >Main Street</span
-                >
-                <span class="address-label sub" id="address-streetno">123</span>
-                <span class="address-label sub">,</span>
-                <span class="address-label sub" id="address-city">City</span>
-                <br />
-                <span class="address-label sub" id="address-country"
-                  >Country</span
-                >
-              </p>
-              <h4 class="address-label" id="address-phone">050-111-2222</h4>
-              <div aria-label="Delete" class="address-delete">
+              <h4 class="payment-label" id="payment-name">Credit Card</h4>
+
+              <span class="payment-label sub" id="payment-number"
+                >••••-••••-••••-</span
+              >
+              <span class="payment-label sub" id="payment-4number">1234</span>
+
+              <div aria-label="Delete" class="payment-delete">
                 <i class="fa fa-trash"></i>
               </div>
             </div>
           </div>
-
           <!-- wish list-->
-          <div class="wish-list" id="wish-list">
+          <div class="page-section wish-list" id="wish-list">
             <div class="box">
               <span class="box-icon-title"><i class="fa fa-heart"></i></span>
               <span class="box-text-title">Wish List</span>
@@ -597,29 +873,33 @@
             </div>
 
             <div class="box">
-              <div class="wish-item">
-                <div aria-label="wish-delete" class="wish-delete">
-                  <i class="fa fa-trash"></i>
-                </div>
+              <div class="wish-items">
+                <div class="wish-item">
+                  <div aria-label="wish-delete" class="wish-delete">
+                    <i class="fa fa-trash"></i>
+                  </div>
 
-                <img
-                  src="http://img1.exportersindia.com/product_images/bc-small/dir_55/1620613/cannondale-jekyll-1-2011-mountain-bike-309779.jpg"
-                  alt="item"
-                />
-                <section class="title">
-                  <span class="title-desc center"
-                    ><a href="#">Cannondale Jekyll 3 - Mountain</a></span
-                  >
-                  <br />
-                  <span class="title-price center"> $130</span>
-                </section>
-                <button class="add-to-cart" type="button">Move to cart</button>
+                  <img
+                    src="http://img1.exportersindia.com/product_images/bc-small/dir_55/1620613/cannondale-jekyll-1-2011-mountain-bike-309779.jpg"
+                    alt="item"
+                  />
+                  <section class="title">
+                    <span class="title-desc center"
+                      ><a href="#">Cannondale Jekyll 3 - Mountain</a></span
+                    >
+                    <br />
+                    <span class="title-price center"> $130</span>
+                  </section>
+                  <button class="add-to-cart" type="button">
+                    Move to cart
+                  </button>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- yad2 list-->
-          <div class="yad2-list" id="yad2-list">
+          <div class="page-section yad2-list" id="yad2-list">
             <div class="box">
               <span class="box-icon-title"><i class="fa fa-th-list"></i></span>
               <span class="box-text-title">Yad2 List</span><br />
@@ -630,61 +910,30 @@
               >
             </div>
             <div class="box">
-              <div class="wish-item">
-                <div class="wish-option">
-                  <div aria-label="wish-delete left" class="wish-delete">
-                    <i class="fa fa-trash"></i>
+              <div class="yad2-items">
+                <div class="wish-item">
+                  <div class="wish-option">
+                    <div aria-label="wish-delete left" class="wish-delete">
+                      <i class="fa fa-trash"></i>
+                    </div>
+                    <div aria-label="wish-edit right" class="wish-edit">
+                      <i class="fa fa-edit"></i>
+                    </div>
                   </div>
-                  <div aria-label="wish-edit right" class="wish-edit">
-                    <i class="fa fa-edit"></i>
-                  </div>
+                  <img
+                    src="https://4.imimg.com/data4/RG/WO/MY-25400969/used-washing-machine-500x500.jpg"
+                    alt="item"
+                  />
+                  <section class="title">
+                    <span class="title-desc center"
+                      ><a href="#">Wash Machine 2019</a></span
+                    >
+                    <br />
+                    <span class="title-price center"> $130</span>
+                  </section>
                 </div>
-                <img
-                  src="https://4.imimg.com/data4/RG/WO/MY-25400969/used-washing-machine-500x500.jpg"
-                  alt="item"
-                />
-                <section class="title">
-                  <span class="title-desc center"
-                    ><a href="#">Wash Machine 2019</a></span
-                  >
-                  <br />
-                  <span class="title-price center"> $130</span>
-                </section>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <p><strong>Products:</strong></p>
-      <p>Product 1 x 2</p>
-      <p>Product 2 x 3</p>
-      <p>Product 3 x 1</p>
-
-      <p><strong>Total Price:</strong> $245.00</p>
-      <p><strong>Order Date:</strong> July 15, 2023</p>
-      <p><strong>Status:</strong> Delivered</p>
-
-      <h2>My Yad2 Uploads History:</h2>
-      <div class="accordion mt-4" id="yad2HistoryAccordion">
-        <div class="card">
-          <div
-            class="card-header"
-            data-toggle="collapse"
-            data-target="#upload1"
-          >
-            Yad2 Upload example
-          </div>
-          <div class="card-content collapse" id="upload1">
-            <p><strong>Category:</strong> Card GameS</p>
-            <p><strong>Creation Time:</strong> August 5, 2023</p>
-            <p><strong>Title:</strong> Card game</p>
-            <p><strong>Age Range:</strong> 3-5 years</p>
-            <p>
-              <strong>Description:</strong> Gently used Card game,in great
-              condition.
-            </p>
-            <p><strong>Price:</strong> $50.00</p>
-            <p><strong>Serial Number:</strong> ABC12345</p>
           </div>
         </div>
       </div>

@@ -99,91 +99,117 @@
       <nav class="navbar">
         <ul class="menu">
           <li>
-            <a class="hasDropdown" href="#"
+            <a class="hasDropdown header-title" href="#"
               >Categories <i class="fa fa-angle-down"></i
             ></a>
 
             <ul class="nav_container">
               <div class="container__list">
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Board Games</div>
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Board Games</a>
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Science</div>
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Science</a>
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Games</div>
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Games</a>
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Riding Toys</div>
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Riding Toys</a>
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Puzzles</div>
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Puzzles</a>
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Music&Karaoke</div>
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Music & Karaoke</a>
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Books</div>
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Books</a>
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Lego</div>
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Lego</a>
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Dolls</div>
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">Dolls</a>
+                  </div>
                 </div>
                 <div class="container__listItem"></div>
                 <div class="container__listItem"></div>
 
                 <div class="container__listItem">
                   <div class="container__listItem_title bold no-underline">
-                    $10 & Below
+                    <a href="#" class="sub-label-menu">$10 & Below</a>
                   </div>
                 </div>
               </div>
             </ul>
           </li>
           <li>
-            <a class="hasDropdown" href="#"
+            <a class="hasDropdown header-title" href="#"
               >Ages<i class="fa fa-angle-down"></i
             ></a>
             <ul class="nav_container">
               <div class="container__list">
                 <div class="container__listItem">
-                  <div class="container__listItem_title">0-12 MONTHS</div>
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">0-12 MONTHS</a>
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">12-24 MONTHS</div>
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">12-24 MONTHS</a>
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">2-4 YEARS</div>
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">2-4 YEARS</a>
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">5-7 YEARS</div>
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">5-7 YEARS</a>
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">8-99 YEARS</div>
+                  <div class="container__listItem_title">
+                    <a href="#" class="sub-label-menu">8-99 YEARS</a>
+                  </div>
                 </div>
               </div>
             </ul>
           </li>
           <li>
-            <a href="#">Outdoor</a>
+            <a href="#" class="header-title">Outdoor</a>
           </li>
           <li>
-            <a href="#">Yad2</a>
+            <a href="#" class="header-title">Yad2</a>
           </li>
           <li>
-            <a href="GiftFinder.html">Gift Finder</a>
+            <a href="Gift-Finder.html" class="header-title">Gift Finder</a>
           </li>
         </ul>
       </nav>
       <!-- End Navigation Bar -->
     </header>
     <main style="margin-top: 160px">
-      <h1 class="page-title">Update a Yad 2 Product</h1>
-
-
+      <h1 class="page-title">Update Your Yad2 Product</h1>
       <div class="t-container">
         <form
           method="POST"
@@ -191,7 +217,7 @@
           class="form"
           id="UpdateYad2-form"
         >
-        <fieldset class="fieldset fieldset-productName">
+          <fieldset class="fieldset fieldset-productName">
             <label class="reg-label" for="productName">Product name</label>
             <input
               class="reg-input"
@@ -202,90 +228,79 @@
             />
             <div id="productName-error" class="error-message"></div>
           </fieldset>
+
+          <fieldset class="fieldset fieldset-condition">
+            <label class="reg-label" for="condition">Condition</label>
+            <select
+              class="half-input form-select"
+              id="condition"
+              name="condition"
+              required
+            >
+              <option value="new">New</option>
+              <option value="used">Used</option>
+            </select>
+          </fieldset>
+
           <fieldset class="fieldset fieldset-price">
             <label class="reg-label" for="price">Price</label>
             <input
               class="half-input"
-              type="price"
+              type="number"
               id="price"
               name="price"
               required
             />
             <div id="price-error" class="error-message"></div>
           </fieldset>
-          <fieldset class="fieldset fieldset-condition">
-            <label class="reg-label" for="condition">Condition</label>
-            <select
-            class="half-input form-select"
-            id="condition"
-            name="condition"
-            required
-          >
-            <option value="new">New</option>
-            <option value="used">Used</option>
-          </select>
-            
-          </fieldset>
 
-          <fieldset>
-            <fieldset class="fieldset fieldset-image">
-                <label class="reg-label" for="image">Image</label>
-            <input
-            type="file"
-            id="productPhoto"
-            name="productPhoto"
-            accept="image/*"
-            placeholder="Image"
-            required
-          />
+          <fieldset class="fieldset fieldset-age">
+            <label class="reg-label" for="age">Appropriate Ages </label>
+            <select class="half-input form-select" id="age" name="age" required>
+              <option value="0-12 months">0-12 months</option>
+              <option value="12-24 months">12-24 months</option>
+              <option value="2-4">2-4 Years</option>
+              <option value="5-7">5-7 Years</option>
+              <option value="8-99">8-99 Years</option>
+            </select>
           </fieldset>
-          <fieldset>
-              <label class="reg-label" for="bankAccount">Bank Account Number</label>
-              <input
-                class="reg-input"
-                type="bankAccount"
-                id="bankAccount"
-                name="bankAccount"
-                required
-              />
-              <div id="bankAccount-error" class="error-message"></div>
-          </fieldset>
-          <fieldset>
-            <label class="reg-label" for="email">Email</label>
+          <fieldset class="fieldset fieldset-bankaccount">
+            <label class="reg-label" for="bankAccount"
+              >Bank Account Number</label
+            >
             <input
               class="reg-input"
-              type="email"
-              id="email"
-              name="email"
+              type="bankAccount"
+              id="bankAccount"
+              name="bankAccount"
               required
             />
+            <div id="bankAccount-error" class="error-message"></div>
           </fieldset>
-          <fieldset>
-            <label class="reg-label" for="descriprion">Description about the product:</label>
+
+          <fieldset class="fieldset-desc">
+            <label class="reg-label" for="descriprion"
+              >Description about the product:</label
+            >
             <input
               class="reg-input"
-              type="descriprion"
+              type="textarea"
               id="descriprion"
               name="descriprion"
               required
             />
           </fieldset>
-          <fieldset class="fieldset fieldset-age">
-            <label class="reg-label" for="age">Appropriate Ages </label>
-            <select
-            class="half-input form-select"
-            id="age"
-            name="age"
-            required
-          >
-          <option value="0-12 months">0-12 months</option>
-          <option value="12-24 months">12-24 months</option>
-          <option value="2-4">2-4 Years</option>
-          <option value="5-7">5-7 Years</option>
-          <option value="8-99">8-99 Years</option>
-          </select>
+          <fieldset class="fieldset fieldset-image">
+            <label class="reg-label" for="image">Image</label>
+            <input
+              type="file"
+              id="productPhoto"
+              name="productPhoto"
+              accept="image/*"
+              placeholder="Image"
+              required
+            />
           </fieldset>
-          
           <fieldset class="fieldset-footer">
             <div class="form-footer">
               <button class="btn-ns-hot" type="submit">Update</button>
@@ -294,7 +309,6 @@
         </form>
       </div>
     </main>
-
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>

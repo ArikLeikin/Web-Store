@@ -8,10 +8,12 @@ body {
   min-height: 100vh !important;
   margin: 0;
 }
+
 .page-title {
   text-align: center;
   color: coral;
 }
+
 .navbar {
   background-color: #384fb2 !important;
   color: #ffffff !important;
@@ -44,7 +46,19 @@ body {
   transition: background-color 0.4s ease;
 }
 
-.navbar .menu a {
+/* .navbar .menu a {
+  flex: 1;
+  justify-content: center;
+  display: inline-flex;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px;
+  position: relative;
+  font-size: 17px;
+  align-items: baseline;
+} */
+/*nofar new*/
+.navbar .menu .header-title {
   flex: 1;
   justify-content: center;
   display: inline-flex;
@@ -56,6 +70,14 @@ body {
   align-items: baseline;
 }
 
+.navbar .menu .sub-label-menu {
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+
+/* done nofar new */
 .navbar .menu a > .fa {
   font-weight: bold;
   margin-left: 8px;
@@ -99,7 +121,8 @@ a.hasDropdown:after {
 
 li:hover a.hasDropdown:after {
   content: "";
-  border-top-color: #ffa659; /*navigation bar little arrow*/
+  border-top-color: #ffa659;
+  /*navigation bar little arrow*/
 }
 
 /* End Navigation Bar */
@@ -119,7 +142,8 @@ li:hover a.hasDropdown:after {
   margin-bottom: 30px;
   border: 1px solid #eee;
   border-top: 0;
-  z-index: 99999; /* above all elements*/
+  z-index: 99999;
+  /* above all elements*/
 }
 
 .container__list {
@@ -137,13 +161,14 @@ li:hover a.hasDropdown:after {
   text-overflow: ellipsis;
 }
 
-.container__listItem > div {
+.container__listItem>div {
   color: black;
   cursor: pointer;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .container__listItem_title {
   border-bottom: 1px solid #e6e6e6;
 }
@@ -151,9 +176,11 @@ li:hover a.hasDropdown:after {
 .bold {
   font-weight: bold;
 }
+
 .no-underline {
   border-bottom: 0px;
 }
+
 /*header content*/
 .header {
   background-color: #384fb2;
@@ -164,6 +191,7 @@ li:hover a.hasDropdown:after {
   /* border-bottom: 1px solid #dfdfdf; */
   position: absolute !important;
 }
+
 .container {
   padding: 30px !important;
   display: flex !important;
@@ -184,6 +212,7 @@ li:hover a.hasDropdown:after {
   padding-right: 1.5rem;
   margin: 0;
 }
+
 .quickSearch {
   order: 2;
   display: block;
@@ -191,6 +220,7 @@ li:hover a.hasDropdown:after {
   padding: 0;
   width: 50%;
 }
+
 .navUser {
   order: 3;
   padding-right: 0;
@@ -199,6 +229,7 @@ li:hover a.hasDropdown:after {
   align-items: center;
   position: static;
 }
+
 .navUser-section {
   text-decoration: none;
   align-items: baseline;
@@ -209,12 +240,15 @@ li:hover a.hasDropdown:after {
   margin-bottom: 0;
   margin-top: 0;
 }
+
 .navUser-section li {
   margin-right: 20px;
 }
+
 .form-container {
   display: flex;
 }
+
 .form-input {
   appearance: none;
   background-color: #fff;
@@ -227,8 +261,8 @@ li:hover a.hasDropdown:after {
   margin: 0;
   padding: 0.7rem 1.8rem;
   width: 100%;
-  /* cursor: pointer; */
 }
+
 /* .form-input:active,
 .form-input:focus {
   cursor: default;
@@ -241,6 +275,7 @@ li:hover a.hasDropdown:after {
   background-color: #ffa659;
   cursor: pointer;
 }
+
 :focus-visible {
   outline: none;
 }
@@ -275,34 +310,43 @@ li:hover a.hasDropdown:after {
 }
 
 .btn-social-icon.btn-facebook:hover {
-  color: #3b5998; /* Facebook color */
+  color: #3b5998;
+  /* Facebook color */
 }
 
 .btn-social-icon.btn-twitter:hover {
-  color: #1da1f2; /* Twitter color */
+  color: #1da1f2;
+  /* Twitter color */
 }
 
 .btn-social-icon.btn-instagram:hover {
-  color: #e4405f; /* Instagram color */
+  color: #e4405f;
+  /* Instagram color */
 }
 
 .btn-social-icon.btn-youtube:hover {
-  color: #ff0000; /* YouTube color */
+  color: #ff0000;
+  /* YouTube color */
 }
 
 .btn-social-icon.btn-tiktok:hover {
-  color: #000000; /* TikTok color */
+  color: #000000;
+  /* TikTok color */
 }
+
 /*model dialog*/
 
 .modal {
-  position: fixed; /* Positioning and size */
+  position: fixed;
+  /* Positioning and size */
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(128, 128, 128, 0.5); /* color */
-  display: none; /* making it hidden by default */
+  background-color: rgba(128, 128, 128, 0.5);
+  /* color */
+  display: none;
+  /* making it hidden by default */
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.623);
   z-index: 99999;
 }
@@ -312,13 +356,14 @@ li:hover a.hasDropdown:after {
   top: 50vh;
   left: 50vw;
   transform: translate(-50%, -50%);
-  height: 60% /*400px*/;
+  min-height: 40% /*400px*/;
   width: 30% /*410px*/;
   background-color: white;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
 .close {
   position: absolute;
   top: 0;
@@ -326,9 +371,11 @@ li:hover a.hasDropdown:after {
   padding: 10px;
   cursor: pointer;
 }
+
 .modal-content h2 {
   text-align: center;
 }
+
 /*login*/
 
 .login-form {
@@ -348,7 +395,7 @@ li:hover a.hasDropdown:after {
 
 .input-user,
 .input-pass {
-  width: 95%;
+  min-width: 95%;
   padding: 8px;
   margin-top: 5px;
   font-size: 16px;
@@ -403,6 +450,7 @@ login-btn:hover {
 .toggle-password.active {
   color: blue;
 }
+
 /*hot button */
 .btn-ns-hot a {
   text-decoration: none;
@@ -410,6 +458,7 @@ login-btn:hover {
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .btn-ns-hot {
   font-size: 15px;
   padding: 7px 12px;
@@ -420,18 +469,21 @@ login-btn:hover {
   cursor: pointer;
   box-sizing: border-box;
 }
+
 .btn-ns-hot:hover {
   background-color: #007bff;
   /* border: 1px solid #0066d3;*/
   outline: solid 3px #0066d3;
   outline-offset: -3px;
 }
+
 .center {
   width: 100%;
   text-align: center;
   box-sizing: border-box;
   display: inline-block;
 }
+
 main {
   margin-bottom: 50px;
 }

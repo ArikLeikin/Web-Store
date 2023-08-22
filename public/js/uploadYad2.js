@@ -53,20 +53,20 @@ $(document).ready(function () {
       isValid= false; // Prevent proceeding to the next step
     }
     if ( price==='0') {
-      $("#price-error").text("Price name should be greater than 0.");
+      $("#price-error").text("Price should be greater than +0 and only digits.");
       isValid= false; // Prevent proceeding to the next step
     }
 
-     if (!validateLettersOrDigits(productName)) {
-      $("#productName-error").text("Product name should be only letters or digits.");
+     if (!validateLettersDigitsAndSpaces(productName)) {
+      $("#productName-error").text("Product name should be only letters or digits, and at least 4 characters.");
       isValid= false; // Prevent proceeding to the next step
     }
 
     function validateNumber(str) {
       return /^\d+$/.test(str);
     }
-    function validateLettersOrDigits(str) {
-      return /^[a-zA-Z0-9]+$/.test(str);
+    function validateLettersDigitsAndSpaces(str) {
+      return /^[a-zA-Z0-9 ]{4,}$/.test(str);
     }
     
     if(!isValid)

@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  $(".toggle-password").click(function() {
+$(document).ready(function () {
+  $(".toggle-password").click(function () {
     $(this).toggleClass('active');
     var passwordInput = $(this).prev("input");
     if (passwordInput.attr("type") === "password") {
@@ -13,15 +13,15 @@ $(document).ready(function() {
 $(document).ready(function () {
   $(".login-form").submit(function (event) {
     event.preventDefault(); // Prevent default form submission
-    
-    const username = $("#username").val();
+
+    const email = $("#username").val(); // Get the entered email
     const password = $("#password").val();
-    
+
     $.ajax({
       type: "POST",
       url: "/login", // Adjust the URL to match your server's endpoint
       data: {
-        username: username,
+        email: email, // Send the email instead of the username
         password: password
       },
       success: function (response) {
@@ -31,7 +31,7 @@ $(document).ready(function () {
           text: response.message
         }).then(() => {
           // Redirect or perform further actions upon successful login
-          window.location.href = "/dashboard"; // Example redirection
+          window.location.href = "/my-account"; // Example redirection
         });
       },
       error: function (error) {
@@ -44,6 +44,3 @@ $(document).ready(function () {
     });
   });
 });
- 
-
-
