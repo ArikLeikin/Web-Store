@@ -19,49 +19,89 @@ $(document).ready(function () {
 
     const FirstName = $("#firstname").val();
       if (!validateName(FirstName)) {
-        showError("#firstname-error", "First name can only contain letters.");
+        Swal.fire({
+          icon: 'warning',
+          title: 'Validation Error',
+          text: 'First name can only contain letters.',
+        });
+        // showError("#firstname-error", "First name can only contain letters.");
         isValid = false;
       }
 
       const LastName = $("#lastname").val();
       if (!validateName(LastName)) {
-        showError("#lastname-error", "Last name can only contain letters.");
+        Swal.fire({
+          icon: 'warning',
+          title: 'Validation Error',
+          text: 'Last name can only contain letters.',
+        });
+        // showError("#lastname-error", "Last name can only contain letters.");
         isValid = false;
       }
 
       const country = $("#country").val();
       if (!validateName(country)) {
-        showError("#country-error", "Country name can only contain letters.");
+        Swal.fire({
+          icon: 'warning',
+          title: 'Validation Error',
+          text: 'Country name can only contain letters.',
+        });
+        // showError("#country-error", "Country name can only contain letters.");
         isValid = false;
       }
 
       const zipcode = $("#zipcode").val();
       if (!validateZipCode(zipcode)) {
-        showError("#zipcode-error", "Zipcode can only contain only 5 digits.");
+        Swal.fire({
+          icon: 'warning',
+          title: 'Validation Error',
+          text: 'Zipcode can only contain only 5 digits.',
+        });
+        // showError("#zipcode-error", "Zipcode can only contain only 5 digits.");
         isValid = false;
       }
 
     const phone = $("#phone").val();
     if (!validatePhoneNumber(phone)) {
-      showError("#phone-error", "Phone number must be 10 digits.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Phone number must be 10 digits.',
+      });
+      // showError("#phone-error", "Phone number must be 10 digits.");
       isValid = false;
     }
 
     const city = $("#city").val();
     if (!validateCity(city)) {
-      showError("#city-error", "City name can only contain letters.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'City name can only contain letters.',
+      });
+      // showError("#city-error", "City name can only contain letters.");
       isValid = false;
     }
 
     const street = $("#street").val();
     if (!validateStreet(street)) {
-      showError("#street-error", "Street name can only contain letters.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Street name can only contain letters.',
+      });
+      // showError("#street-error", "Street name can only contain letters.");
       isValid = false;
     }
 
     const streetNumber = $("#street_number").val();
     if (!validateStreetNumber(streetNumber)) {
-      showError("#street-number-error", "Street number must be digits.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Street number must be digits.',
+      });
+      // showError("#street-number-error", "Street number must be digits.");
       isValid = false;
     }
 
@@ -76,26 +116,46 @@ $(document).ready(function () {
       !validateCardNumber(cardNumber2) ||
       !validateCardNumber(cardNumber3)
     ) {
-      showError("#card-number-error", "Card number must have 4 digits each.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Card number must have 4 digits each.',
+      });
+      // showError("#card-number-error", "Card number must have 4 digits each.");
       isValid = false;
     }
 
     const cardHolder = $("#card-holder").val();
     if (!validateCardHolder(cardHolder)) {
-      showError("#card-holder-error", "Card holder name must have 9 digits.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Card holder name must have 9 digits.',
+      });
+      // showError("#card-holder-error", "Card holder name must have 9 digits.");
       isValid = false;
     }
 
     const expirationMonth = $("#card-expiration-month").val();
     const expirationYear = $("#card-expiration-year").val();
     if (!validateExpirationDate(expirationMonth, expirationYear)) {
-      showError("#expiration-month-error", "Invalid expiration date.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Invalid expiration date.',
+      });
+      // showError("#expiration-month-error", "Invalid expiration date.");
       isValid = false;
     }
 
     const cvv = $("#card-ccv").val();
     if (!validateCVV(cvv)) {
-      showError("#cvv-number-error", "CVV must be 3 digits.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: '"CVV must be 3 digits.',
+      });
+      // showError("#cvv-number-error", "CVV must be 3 digits.");
       isValid = false;
     }
 

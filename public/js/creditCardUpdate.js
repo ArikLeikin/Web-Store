@@ -17,26 +17,46 @@ $(document).ready(function () {
       !validateCardNumber(cardNumber2) ||
       !validateCardNumber(cardNumber3)
     ) {
-      showError("#card-number-error", "Card number must have 4 digits each.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Card number must have 4 digits each.',
+      });
+      // showError("#card-number-error", "Card number must have 4 digits each.");
       isValid = false;
     }
 
     const cardHolder = $("#card-holder").val();
     if (!validateCardHolder(cardHolder)) {
-      showError("#card-holder-error", "Card holder name must have 9 digits.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Card holder name must have 9 digits.',
+      });
+      // showError("#card-holder-error", "Card holder name must have 9 digits.");
       isValid = false;
     }
 
     const expirationMonth = $("#card-expiration-month").val();
     const expirationYear = $("#card-expiration-year").val();
     if (!validateExpirationDate(expirationMonth, expirationYear)) {
-      showError("#expiration-month-error", "Invalid expiration date.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Invalid expiration date.',
+      });
+      // showError("#expiration-month-error", "Invalid expiration date.");
       isValid = false;
     }
 
     const cvv = $("#card-ccv").val();
     if (!validateCVV(cvv)) {
-      showError("#cvv-number-error", "CVV must be 3 digits.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'CVV must be 3 digits.',
+      });
+      // showError("#cvv-number-error", "CVV must be 3 digits.");
       isValid = false;
     }
 

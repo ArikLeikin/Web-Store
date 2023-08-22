@@ -48,19 +48,46 @@ $(document).ready(function () {
    
     let isValid = true;
     
+    // if (!validateNumber(price)) {
+    //   $("#price-error").text("Price name should only contain digits.");
+    //   isValid= false; // Prevent proceeding to the next step
+    // }
+    // if ( price==='0') {
+    //   $("#price-error").text("Price should be greater than +0 and only digits.");
+    //   isValid= false; // Prevent proceeding to the next step
+    // }
+
     if (!validateNumber(price)) {
-      $("#price-error").text("Price name should only contain digits.");
-      isValid= false; // Prevent proceeding to the next step
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Price should only contain digits.',
+      });
+      isValid = false;
     }
-    if ( price==='0') {
-      $("#price-error").text("Price should be greater than +0 and only digits.");
-      isValid= false; // Prevent proceeding to the next step
+    if (price === '0') {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Price should be greater than 0.',
+      });
+      isValid = false;    
     }
 
-     if (!validateLettersDigitsAndSpaces(productName)) {
-      $("#productName-error").text("Product name should be only letters or digits, and at least 4 characters.");
-      isValid= false; // Prevent proceeding to the next step
+
+    if (!validateLettersDigitsAndSpaces(productName)) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: "Product name should be only letters or digits, and at least 4 characters.",
+      });
+      isValid = false;
     }
+
+    //  if (!validateLettersDigitsAndSpaces(productName)) {
+    //   $("#productName-error").text("Product name should be only letters or digits, and at least 4 characters.");
+    //   isValid= false; // Prevent proceeding to the next step
+    // }
 
     function validateNumber(str) {
       return /^\d+$/.test(str);
@@ -83,6 +110,23 @@ $(document).ready(function () {
 
     //activate next step on progressbar using the index of next_fs
     $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      }
+    });
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Step 1 completed successfully!'
+    });
 
     //show the next fieldset
     next_fs.show();
@@ -117,16 +161,45 @@ $(document).ready(function () {
 
   $(".next2").click(function () {
     $("#bankAccount-error").text("");
+    $("#productPhoto-error").text("");
     
     
     var bankAccount = $("#bankAccount").val();
-    var email = $("#email").val();
+  
    
     let isValid = true;
     
+    // if (!validateBankAccount(bankAccount)) {
+    //   $("#bankAccount-error").text("Bank Account name should contain 14 digits.");
+    //   isValid= false; // Prevent proceeding to the next step
+    // }
+
     if (!validateBankAccount(bankAccount)) {
-      $("#bankAccount-error").text("Bank Account name should contain 14 digits.");
-      isValid= false; // Prevent proceeding to the next step
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: "Bank Account name should contain 14 digits.",
+      });
+      isValid = false;
+    }
+
+
+    var productPhotos = $("#productPhotos")[0].files;
+    if (productPhotos.length === 0) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Please upload at least 1 photo.',
+      });
+      isValid = false;
+    } else if (productPhotos.length > 4) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'You can upload a maximum of 4 photos.',
+      });
+      isValid = false;
+
     }
 
 
@@ -150,6 +223,23 @@ $(document).ready(function () {
 
     //activate next step on progressbar using the index of next_fs
     $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      }
+    });
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Step 2 completed successfully!'
+    });
 
     //show the next fieldset
     next_fs.show();

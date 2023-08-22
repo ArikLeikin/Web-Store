@@ -21,14 +21,14 @@ $(document).ready(function () {
     var category = $("#category").val();
     var ages = $("#ages").val();
 
-    if (!/^[a-zA-Z\s]+$/.test(companyName)) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: "Company's name should only contain letters",
-      });
-      return false; // Prevent proceeding to the next step
-    }
+    // if (!/^[a-zA-Z\s]+$/.test(companyName)) {
+    //   Swal.fire({
+    //     icon: 'warning',
+    //     title: 'Validation Error',
+    //     text: "Company's name should only contain letters",
+    //   });
+    //   return false; // Prevent proceeding to the next step
+    // }
 
     // $("#companyName-error").text("");
 
