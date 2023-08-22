@@ -141,6 +141,7 @@
     <!-- End Navigation Bar -->
   </header>
   <main style="margin-top: 150px">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <h1>Manager Dashboard</h1>
 
     <section id="content-management">
@@ -211,9 +212,154 @@
       });
     </script>
 
+    <h2>Users Management:</h2>
 
-
-        
+    <!-- Add User Form -->
+    <!-- <form id="add-user-form">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" required><br>
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" required><br>
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city" required><br>
+      <label for="street">Street:</label>
+      <input type="text" id="street" name="street" required><br>
+      <label for="country">Country:</label>
+      <input type="text" id="country" name="country" required><br>
+      <label for="postalCode">Postal Code:</label>
+      <input type="text" id="postalCode" name="postalCode" required><br>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email"><br>
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="text" id="phoneNumber" name="phoneNumber"><br>
+      <label for="creditCard">Credit Card:</label>
+      <input type="text" id="creditCard" name="creditCard"><br>
+      <button type="submit">Add User</button>
+    </form> -->
+  
+    <!-- Table for Users -->
+    <!-- <table id="data-table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>City</th>
+          <th>Street</th>
+          <th>Country</th>
+          <th>Postal Code</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Credit Card</th>
+          <th>ID</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table> -->
+  
+    <!-- <script>
+      $(document).ready(function () {
+        const baseUrl = 'http://127.0.0.1:8080'; // Base URL
+        const tableBody = $('#data-table tbody');
+  
+        // Function to fetch users from the server
+        function fetchUsers() {
+          $.ajax({
+            url: `${baseUrl}/api/users`,
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+              const users = data; // Assuming the array is directly in the response
+              tableBody.empty(); // Clear the table body before adding new rows
+  
+              users.forEach(function (user) {
+                const row = createTableRow(user);
+                tableBody.append(row);
+              });
+            },
+            error: function (error) {
+              console.error('Error:', error);
+            }
+          });
+        }
+  
+        // Initial fetching of users
+        fetchUsers();
+  
+        // Function to create a table row
+        function createTableRow(data) {
+          // ... (same as in your existing code)
+        }
+  
+        // Function to add a new user
+        function addUser(newUser) {
+          $.ajax({
+            url: `${baseUrl}/create/user`,
+            method: 'POST',
+            data: newUser,
+            dataType: 'json',
+            success: function () {
+              fetchUsers(); // Refresh the user list after adding
+            },
+            error: function (error) {
+              console.error('Error:', error);
+            }
+          });
+        }
+  
+        // // Function to delete a user by ID
+        // function deleteUser(userId) {
+        //   $.ajax({
+        //     url: `${baseUrl}/delete/user/${userId}`,
+        //     method: 'DELETE',
+        //     dataType: 'json',
+        //     success: function () {
+        //       fetchUsers(); // Refresh the user list after deletion
+        //     },
+        //     error: function (error) {
+        //       console.error('Error:', error);
+        //     }
+        //   });
+        // }
+  
+        // Add User Form submission event
+        $('#add-user-form').submit(function (event) {
+          event.preventDefault();
+  
+          const newUser = {
+            name: {
+              firstName: $('#firstName').val(),
+              lastName: $('#lastName').val()
+            },
+            address: {
+              city: $('#city').val(),
+              street: $('#street').val(),
+              country: $('#country').val(),
+              postalCode: $('#postalCode').val()
+            },
+            username: $('#username').val(),
+            email: $('#email').val(),
+            phoneNumber: $('#phoneNumber').val(),
+            creditCard: $('#creditCard').val()
+          };
+  
+          addUser(newUser);
+  
+          // Clear the form fields after submission
+          $(this).trigger('reset');
+        });
+  
+        // Delete user button click event
+        // tableBody.on('click', '.delete-button', function () {
+        //   const userId = $(this).data('userid');
+        //   deleteUser(userId);
+        // });
+      });
+    </script>
+         -->
 
       
 
@@ -293,115 +439,115 @@
 
         // Attach the event listener for "Edit" buttons after displaying products
 
-        const editModal = document.getElementById("editModal");
-        const modalContent = editModal.querySelector(".modal-content");
-        const saveChangesButton = editModal.querySelector("#saveChangesButton");
-        const closeModalButton = editModal.querySelector("#closeModalButton");
-        // Attach click event listener to "Edit" buttons
-        const editButtons = document.querySelectorAll(".edit-button");
-        editButtons.forEach(button => {
-          button.addEventListener("click", function () {
-            const row = this.closest("tr");
-            const productId = row.querySelector("td:first-child").textContent; // Assuming ID is in the first cell
+      //   const editModal = document.getElementById("editModal");
+      //   const modalContent = editModal.querySelector(".modal-content");
+      //   const saveChangesButton = editModal.querySelector("#saveChangesButton");
+      //   const closeModalButton = editModal.querySelector("#closeModalButton");
+      //   // Attach click event listener to "Edit" buttons
+      //   const editButtons = document.querySelectorAll(".edit-button");
+      //   editButtons.forEach(button => {
+      //     button.addEventListener("click", function () {
+      //       const row = this.closest("tr");
+      //       const productId = row.querySelector("td:first-child").textContent; // Assuming ID is in the first cell
 
-            // Gather data from the row for editing
-            const title = row.querySelector("td:nth-child(2)").textContent;
-            const price = parseFloat(row.querySelector("td:nth-child(3)").textContent);
-            const description = row.querySelector("td:nth-child(4)").textContent;
-            const image = row.querySelector("td:nth-child(5)").textContent;
-            const condition = row.querySelector("td:nth-child(6)").textContent;
-            const category = row.querySelector("td:nth-child(7)").textContent;
-            const manufacture_date = row.querySelector("td:nth-child(8)").textContent;
-            const supplier = row.querySelector("td:nth-child(9)").textContent;
-            const quantity = parseInt(row.querySelector("td:nth-child(10)").textContent);
-            const age_range_from = parseInt(row.querySelector("td:nth-child(11)").textContent);
-            const age_range_to = parseInt(row.querySelector("td:nth-child(12)").textContent);
+      //       // Gather data from the row for editing
+      //       const title = row.querySelector("td:nth-child(2)").textContent;
+      //       const price = parseFloat(row.querySelector("td:nth-child(3)").textContent);
+      //       const description = row.querySelector("td:nth-child(4)").textContent;
+      //       const image = row.querySelector("td:nth-child(5)").textContent;
+      //       const condition = row.querySelector("td:nth-child(6)").textContent;
+      //       const category = row.querySelector("td:nth-child(7)").textContent;
+      //       const manufacture_date = row.querySelector("td:nth-child(8)").textContent;
+      //       const supplier = row.querySelector("td:nth-child(9)").textContent;
+      //       const quantity = parseInt(row.querySelector("td:nth-child(10)").textContent);
+      //       const age_range_from = parseInt(row.querySelector("td:nth-child(11)").textContent);
+      //       const age_range_to = parseInt(row.querySelector("td:nth-child(12)").textContent);
 
-            // Populate the modal with the product data
-            modalContent.innerHTML = `
-            <h2>Edit Product</h2>
-            <label for="editTitle">Title:</label>
-            <input type="text" id="editTitle" value="${title}">
-            <label for="editPrice">Price:</label>
-            <input type="number" id="editPrice" value="${price}">
-            <label for="editDescription">Description:</label>
-            <textarea id="editDescription">${description}</textarea>
-            <label for="editImage">Image URL:</label>
-            <input type="text" id="editImage" value="${image}">
-            <label for="editCondition">Condition:</label>
-            <input type="text" id="editCondition" value="${condition}">
-            <label for="editCategory">Category:</label>
-            <input type="text" id="editCategory" value="${category}">
-            <label for="editManufactureDate">Manufacture Date:</label>
-            <input type="text" id="editManufactureDate" value="${manufacture_date}">
-            <label for="editSupplier">Supplier:</label>
-            <input type="text" id="editSupplier" value="${supplier}">
-            <label for="editQuantity">Quantity:</label>
-            <input type="number" id="editQuantity" value="${quantity}">
-            <label for="editAgeFrom">Age Range (From):</label>
-            <input type="number" id="editAgeFrom" value="${age_range_from}">
-            <label for="editAgeTo">Age Range (To):</label>
-            <input type="number" id="editAgeTo" value="${age_range_to}">
-        `;
+      //       // Populate the modal with the product data
+      //       modalContent.innerHTML = `
+      //       <h2>Edit Product</h2>
+      //       <label for="editTitle">Title:</label>
+      //       <input type="text" id="editTitle" value="${title}">
+      //       <label for="editPrice">Price:</label>
+      //       <input type="number" id="editPrice" value="${price}">
+      //       <label for="editDescription">Description:</label>
+      //       <textarea id="editDescription">${description}</textarea>
+      //       <label for="editImage">Image URL:</label>
+      //       <input type="text" id="editImage" value="${image}">
+      //       <label for="editCondition">Condition:</label>
+      //       <input type="text" id="editCondition" value="${condition}">
+      //       <label for="editCategory">Category:</label>
+      //       <input type="text" id="editCategory" value="${category}">
+      //       <label for="editManufactureDate">Manufacture Date:</label>
+      //       <input type="text" id="editManufactureDate" value="${manufacture_date}">
+      //       <label for="editSupplier">Supplier:</label>
+      //       <input type="text" id="editSupplier" value="${supplier}">
+      //       <label for="editQuantity">Quantity:</label>
+      //       <input type="number" id="editQuantity" value="${quantity}">
+      //       <label for="editAgeFrom">Age Range (From):</label>
+      //       <input type="number" id="editAgeFrom" value="${age_range_from}">
+      //       <label for="editAgeTo">Age Range (To):</label>
+      //       <input type="number" id="editAgeTo" value="${age_range_to}">
+      //   `;
 
-            // Show the modal
-            editModal.style.display = "block";
+      //       // Show the modal
+      //       editModal.style.display = "block";
 
-            // Attach click event listener to Save Changes button
-            saveChangesButton.addEventListener("click", function () {
-              // Gather the updated data from the modal inputs
-              const updatedProduct = {
-                _id: productId, // Include the product ID in the request body
-                title: document.getElementById("editTitle").value,
-                price: parseFloat(document.getElementById("editPrice").value),
-                description: document.getElementById("editDescription").value,
-                image: document.getElementById("editImage").value,
-                condition: document.getElementById("editCondition").value,
-                category: document.getElementById("editCategory").value,
-                manufacture_date: document.getElementById("editManufactureDate").value,
-                supplier: document.getElementById("editSupplier").value,
-                quantity: parseInt(document.getElementById("editQuantity").value),
-                age_range: {
-                  from: parseInt(document.getElementById("editAgeFrom").value),
-                  to: parseInt(document.getElementById("editAgeTo").value)
-                }
-              };
+      //       // Attach click event listener to Save Changes button
+      //       saveChangesButton.addEventListener("click", function () {
+      //         // Gather the updated data from the modal inputs
+      //         const updatedProduct = {
+      //           _id: productId, // Include the product ID in the request body
+      //           title: document.getElementById("editTitle").value,
+      //           price: parseFloat(document.getElementById("editPrice").value),
+      //           description: document.getElementById("editDescription").value,
+      //           image: document.getElementById("editImage").value,
+      //           condition: document.getElementById("editCondition").value,
+      //           category: document.getElementById("editCategory").value,
+      //           manufacture_date: document.getElementById("editManufactureDate").value,
+      //           supplier: document.getElementById("editSupplier").value,
+      //           quantity: parseInt(document.getElementById("editQuantity").value),
+      //           age_range: {
+      //             from: parseInt(document.getElementById("editAgeFrom").value),
+      //             to: parseInt(document.getElementById("editAgeTo").value)
+      //           }
+      //         };
 
-              // Send the updated data using a fetch POST request similar to the previous example
-              // Send the updated product data using a fetch POST request
-              fetch(`http://127.0.0.1:8080/crud/product/:${productId}`, {
-                method: 'PUT',
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify(updatedProduct)
-              })
-                .then(response => response.json())
-                .then(data => {
-                  console.log(data.message); // Successfully updated
-                  // You might want to update the displayed data or take other actions
-                })
-                .catch(error => {
-                  console.error("Error updating product:", error);
-                });
+      //         // Send the updated data using a fetch POST request similar to the previous example
+      //         // Send the updated product data using a fetch POST request
+      //         fetch(`http://127.0.0.1:8080/crud/product/:${productId}`, {
+      //           method: 'PUT',
+      //           headers: {
+      //             "Content-Type": "application/json"
+      //           },
+      //           body: JSON.stringify(updatedProduct)
+      //         })
+      //           .then(response => response.json())
+      //           .then(data => {
+      //             console.log(data.message); // Successfully updated
+      //             // You might want to update the displayed data or take other actions
+      //           })
+      //           .catch(error => {
+      //             console.error("Error updating product:", error);
+      //           });
 
-              // Close the modal
-              editModal.style.display = "none";
-            });
+      //         // Close the modal
+      //         editModal.style.display = "none";
+      //       });
 
-            // Attach click event listener to Close button
-            closeModalButton.addEventListener("click", function () {
-              // Close the modal
-              editModal.style.display = "none";
-            });
-          });
-        });
+      //       // Attach click event listener to Close button
+      //       closeModalButton.addEventListener("click", function () {
+      //         // Close the modal
+      //         editModal.style.display = "none";
+      //       });
+      //     });
+      //   });
 
 
       }
 
-      // Call the fetchProducts function to start the process
-      fetchProducts();
+      // // Call the fetchProducts function to start the process
+      // fetchProducts();
     </script>
 
 
