@@ -119,7 +119,7 @@ module.exports = {
       }
 
       const randomProducts = await Product.aggregate([
-        { $match: { isActive: true } }, // Filter only active products
+        // Filter only active products
         { $sample: { size: amount } }, // Randomly select 'amount' products
       ]);
 
@@ -133,7 +133,7 @@ module.exports = {
 
   getAllProducts: async (req, res) => {
     try {
-      const products = await Product.find({ isActive: true }); // Retrieve all products from the database
+      const products = await Product.find(); // Retrieve all products from the database
       res.status(200).json(products); // Send the products as a JSON response
     } catch (error) {
       res.status(500).json({ error: "Internal server error" });
@@ -145,7 +145,6 @@ module.exports = {
 
       const products = await Product.find({
         category: category,
-        isActive: true,
       });
 
       res.status(200).json(products);
