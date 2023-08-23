@@ -528,7 +528,7 @@ exports.postWishlistDelete = async (req, res, next) => {
   }
 };
 
-exports.updateCartProductQuantity = async (req, res, next) => {
+exports.postWishlistUpdate = async (req, res, next) => {
   // req.session.user = await User.find({ username: "admin" }); // FIND -> RETURNS ARRAY!
   // req.session.user = req.session.user[0]; --> For testing
   const productId = req.body.productId;
@@ -618,7 +618,7 @@ exports.postAddress = async (req, res) => {
     user.address.street = req.body.street + req.street_number;
     user.address.country = req.body.country;
     user.address.postalCode = req.body.postalCode;
-    user.save();
+    await user.save();
     res.status(200).json({
       message: "Address updated successfully",
     });
