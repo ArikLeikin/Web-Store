@@ -14,8 +14,10 @@ $(document).ready(function () {
         title: "Not Logged In",
         text: "You must be logged in to view the wishlist.",
         confirmButtonColor: "#3085d6",
-        confirmButtonText: "OK"
+        confirmButtonText: "OK",
       });
     }
   });
+
+  $("#logout").on("click", function (event) {});
 });

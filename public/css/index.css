@@ -8,7 +8,10 @@ body {
   min-height: 100vh !important;
   margin: 0;
 }
-
+.logout {
+  float: right;
+  color: white;
+}
 .page-title {
   text-align: center;
   color: coral;

@@ -21,6 +21,7 @@
 
   <body>
     <header class="header" role="banner">
+      <div style="cursor: pointer" class="logout" id="logout">log out</div>
       <div class="container">
         <nav class="navUser">
           <ul class="navUser-section">
@@ -34,7 +35,10 @@
               </a>
             </li>
             <li class="item__wishlist">
-              <a aria-label="Wishlist" href="">
+              <a
+                aria-label="Wishlist"
+                href="http://127.0.0.1:8080/my-account?show=wishlist"
+              >
                 <img
                   src="../images/white-icons/wishlist-icon.png"
                   alt="Cart"
@@ -283,7 +287,7 @@
       </nav>
       <!-- End Navigation Bar -->
     </header>
-    <main style="margin-top: 180px">
+    <main style="margin-top: 200px">
       <div class="fixed-icon">
         <a href="#head-of-page"><i class="fa fa-arrow-up"></i></a>
       </div>
@@ -293,7 +297,9 @@
             <div class="top-sidebar_inner">
               <p>
                 <span class="top-sidebar-title">Hi,</span><br />
-                <span class="top-sidebar-title bold">[first name || last]</span>
+                <span class="top-sidebar-title bold" id="full-user-name"
+                  >[first name || last]</span
+                >
               </p>
             </div>
           </div>
@@ -323,7 +329,7 @@
                 <li>
                   <a rel="noopener" onclick="show('addresses')">
                     <span class="icon"><i class="fa fa-home"></i></span>
-                    <span class="text">Addresses</span>
+                    <span class="text">Address</span>
                   </a>
                 </li>
                 <li>
@@ -345,7 +351,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="q&a.html">
+                  <a href="http://127.0.0.1:8080/q&a">
                     <span class="icon"
                       ><i class="fa fa-question-circle"></i
                     ></span>
@@ -424,111 +430,6 @@
               </div>
             </div>
           </div>
-
- 
-          <script>
-          function createProductItem(imageSrc) {
-              const item = document.createElement("div");
-              item.classList.add("item");
-              
-              const img = document.createElement("img");
-              img.src = imageSrc;
-              img.alt = "item";
-              
-              item.appendChild(img);
-              return item;
-          }
-
-          function createOrderElement(order) {
-              const orderDiv = document.createElement("div");
-              orderDiv.classList.add("box");
-              
-              const cardHeader = document.createElement("div");
-              cardHeader.classList.add("my-card-header");
-              cardHeader.setAttribute("data-target", "#order" + order._id);
-              
-              const orderStatus = document.createElement("h4");
-              orderStatus.classList.add("order-sub-title");
-              orderStatus.textContent = "ORDER STATUS:";
-              
-              const orderInfo = document.createElement("h4");
-              orderInfo.classList.add("order-info");
-              orderInfo.textContent = order.status;
-              
-              const orderDate = document.createElement("h5");
-              orderDate.classList.add("order-sub-info");
-              orderDate.innerHTML = `Order Date <span>${order.order_date}</span>`;
-              
-              const cartProducts = document.createElement("div");
-              cartProducts.classList.add("cart-products");
-              
-              order.products.forEach(product => {
-                  const productItem = createProductItem(product.imageSrc);
-                  cartProducts.appendChild(productItem);
-              });
-              
-              const orderFooter = document.createElement("div");
-              orderFooter.classList.add("order-footer");
-              
-              const orderSummary = document.createElement("div");
-              orderSummary.classList.add("order-sammary");
-              
-              const orderNumber = document.createElement("h4");
-              orderNumber.classList.add("order-sub-title");
-              orderNumber.innerHTML = `ORDER NO.: <span class="order-sub-info">${order._id}</span>`;
-              
-              const totalPrice = document.createElement("h4");
-              totalPrice.classList.add("order-sub-title");
-              totalPrice.innerHTML = `TOTAL PRICE: <span class="order-sub-info">${order.total_price}$</span>`;
-              
-              orderSummary.appendChild(orderNumber);
-              orderSummary.appendChild(totalPrice);
-              
-              const viewOrderBtn = document.createElement("button");
-              viewOrderBtn.classList.add("btn-account-page");
-              viewOrderBtn.textContent = "View Order";
-              
-              orderFooter.appendChild(orderSummary);
-              orderFooter.appendChild(viewOrderBtn);
-              
-              cardHeader.appendChild(orderStatus);
-              cardHeader.appendChild(orderInfo);
-              cardHeader.appendChild(orderDate);
-              cardHeader.appendChild(cartProducts);
-              cardHeader.appendChild(orderFooter);
-              
-              orderDiv.appendChild(cardHeader);
-              
-              return orderDiv;
-          }
-
-          function fetchOrders() {
-              const url = "http://127.0.0.1:8080/api/orders";
-              const orderHistoryContainer = document.getElementById("order-history");
-
-              fetch(url)
-                  .then(response => response.json())
-                  .then(orders => {
-                      if (orders.length === 0) {
-                          const alertBox = document.querySelector(".alertBox--info");
-                          alertBox.style.display = "block";
-                      } else {
-                          orders.forEach(order => {
-                              const orderElement = createOrderElement(order);
-                              orderHistoryContainer.appendChild(orderElement);
-                          });
-                      }
-                  })
-                  .catch(error => console.error("Error fetching orders:", error));
-          }
-
-          document.addEventListener("DOMContentLoaded", fetchOrders);
-
-
-  </script>
-
-
-          </script>
 
           <!-- personal details-->
           <div class="page-section personal-details" id="personal-details">
@@ -1033,7 +934,10 @@
             <!-- payment card-->
             <div class="box">
               <div aria-label="Edit" class="address-edit">
-                <a href="address-update.html" class="inside-link">
+                <a
+                  href="http://127.0.0.1:8080/creditCardUpdate"
+                  class="inside-link"
+                >
                   <span>Edit</span>
 
                   <i class="fa fa-pencil-square-o"></i
@@ -1105,7 +1009,9 @@
                   </button>
                   <div class="modal" id="cartModal">
                     <div class="modal-content">
-                      <p class="centered-text">Product added to cart! &#10003;</p>
+                      <p class="centered-text">
+                        Product added to cart! &#10003;
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1118,7 +1024,7 @@
             <div class="box">
               <span class="box-icon-title"><i class="fa fa-th-list"></i></span>
               <span class="box-text-title">Yad2 List</span><br />
-              <a href="uploadYad2.html"
+              <a href="http://127.0.0.1:8080/uploadYad2"
                 ><button class="collapsible-div btn-account-page" type="button">
                   ADD YAD2 ITEM
                 </button></a
@@ -1160,4 +1066,137 @@
       </div>
     </div>
   </body>
+  <script>
+    // show 'wishtlist' parameter from the URL
+    // Define the getUrlParameter function
+    function getUrlParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    $(document).ready(function () {
+      const urlPar = getUrlParameter("show");
+      if (urlPar && urlPar.toLowerCase() === "wishlist") {
+        $(".page-section").hide();
+        $("#wish-list").show();
+
+        fetchAndDisplayProducts();
+      }
+    });
+
+    function createProductItem(imageSrc) {
+      const item = document.createElement("div");
+      item.classList.add("item");
+
+      const img = document.createElement("img");
+      img.src = imageSrc;
+      img.alt = "item";
+
+      item.appendChild(img);
+      return item;
+    }
+
+    function createOrderElement(order) {
+      const orderDiv = document.createElement("div");
+      orderDiv.classList.add("box");
+
+      const cardHeader = document.createElement("div");
+      cardHeader.classList.add("my-card-header");
+      cardHeader.setAttribute("data-target", "#order" + order._id);
+
+      const orderStatus = document.createElement("h4");
+      orderStatus.classList.add("order-sub-title");
+      orderStatus.textContent = "ORDER STATUS: ";
+
+      const orderInfo = document.createElement("h4");
+      orderInfo.classList.add("order-info");
+      orderInfo.textContent = order.status;
+
+      const orderDate = document.createElement("h5");
+      orderDate.classList.add("order-sub-info");
+      orderDate.innerHTML = `Order Date <span>${order.order_date}</span>`;
+
+      const cartProducts = document.createElement("div");
+      cartProducts.classList.add("cart-products");
+
+      order.products.forEach((product) => {
+        const productItem = createProductItem(product.imageSrc);
+        cartProducts.appendChild(productItem);
+      });
+
+      const orderFooter = document.createElement("div");
+      orderFooter.classList.add("order-footer");
+
+      const orderSummary = document.createElement("div");
+      orderSummary.classList.add("order-sammary");
+
+      const orderNumber = document.createElement("h4");
+      orderNumber.classList.add("order-sub-title");
+      orderNumber.innerHTML = `ORDER NO. : <span class="order-sub-info">${order._id}</span>`;
+
+      const totalPrice = document.createElement("h4");
+      totalPrice.classList.add("order-sub-title");
+      totalPrice.innerHTML = `TOTAL PRICE: <span class="order-sub-info">${order.total_price}$</span>`;
+
+      orderSummary.appendChild(orderNumber);
+      orderSummary.appendChild(totalPrice);
+
+      const viewOrderBtn = document.createElement("button");
+      viewOrderBtn.classList.add("btn-account-page");
+      viewOrderBtn.textContent = "View Order";
+
+      orderFooter.appendChild(orderSummary);
+      orderFooter.appendChild(viewOrderBtn);
+
+      cardHeader.appendChild(orderStatus);
+      cardHeader.appendChild(orderInfo);
+      cardHeader.appendChild(orderDate);
+      cardHeader.appendChild(cartProducts);
+      cardHeader.appendChild(orderFooter);
+
+      orderDiv.appendChild(cardHeader);
+
+      return orderDiv;
+    }
+    // fetch current user deatils :
+    function fetchUserDetails() {
+      const url = "http://127.0.0.1:8080/api/user/current"; // Update the URL to your API route
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          const firstName = data.firstName; // Assuming the response contains a firstName field
+          const lastName = data.lastName;
+          document.getElementById("full-user-name").textContent =
+            firstName || " " || lastName;
+        })
+        .catch((error) => {
+          console.error("Error fetching user details:", error);
+        });
+    }
+
+    // Call the function to fetch and display user details
+    fetchUserDetails();
+
+    function fetchOrders() {
+      const url = "http://127.0.0.1:8080/api/orders";
+      const orderHistoryContainer = document.getElementById("order-history");
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((orders) => {
+          if (orders.length === 0) {
+            const alertBox = document.querySelector(".alertBox--info");
+            alertBox.style.display = "block";
+          } else {
+            orders.forEach((order) => {
+              const orderElement = createOrderElement(order);
+              orderHistoryContainer.appendChild(orderElement);
+            });
+          }
+        })
+        .catch((error) => console.error("Error fetching orders:", error));
+    }
+
+    document.addEventListener("DOMContentLoaded", fetchOrders);
+  </script>
 </html>
