@@ -3,10 +3,28 @@ const adminController = require("../controllers/admin");
 const isAdmin = require("../middleware/isAdmin");
 
 const router = express.Router();
+const multer = require("multer");
 
 // CRUD
+// Configure multer for handling image uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "../public/product-images"); // Change this to your desired upload directory
+  },
+  filename: (req, file, cb) => {
+    const timestamp = Date.now();
+    cb(null, `${file.originalname}`);
+  },
+});
 
-router.post("/create/product", isAdmin, adminController.create);
+const upload = multer({ storage });
+
+router.post(
+  "/create/product",
+  isAdmin,
+  upload.array("image", 4),
+  adminController.create
+);
 router.get("/get/product/:id", isAdmin, adminController.get);
 router.post("/update/product/:id", isAdmin, adminController.update);
 router.post("/delete/product/:id", isAdmin, adminController.delete);

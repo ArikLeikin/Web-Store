@@ -1,4 +1,3 @@
-const { ObjectId } = require("bson");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -23,7 +22,7 @@ const ProductSchema = new Schema({
   },
   image: {
     // NEED TO CHECK if url/file
-    type: [Buffer],
+    type: [String],
     required: true,
   },
   condition: {
@@ -39,10 +38,6 @@ const ProductSchema = new Schema({
   added_date: {
     type: Date,
   },
-  // supplier: {
-  //   type: ObjectId, // check if worth adding a prefix for user - U/ supplier - S
-  //   required: true,
-  // },
   quantity: {
     type: Number,
   },

@@ -41,11 +41,7 @@ router.get("/q&a", shopController.getQA);
 router.get("/statistics", shopController.getStatistics);
 
 router.get("/supplier", shopController.getSupplier);
-router.post(
-  "/supplier",
-  upload.array("productPhoto", 4),
-  shopController.postSupplier
-);
+router.post("/supplier", upload.array("image", 4), shopController.postSupplier);
 
 router.get("/uploadYad2", isAuth, shopController.getUploadYad2);
 router.post("/uploadYad2", isAuth, shopController.uploadYad2);
