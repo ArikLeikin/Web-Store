@@ -33,7 +33,7 @@
   padding: 0;
 }
 .productView-price {
-  font-size: 23;
+  font-size: 23px;
   margin-bottom: 15px;
 }
 .productView-slick-slider {
@@ -71,10 +71,12 @@
   float: left;
   border-radius: 6px;
   display: flex;
+  margin-bottom: 20px;
 }
 
 .quantity-input input {
   max-width: 50px;
+
 }
 input.minus.btn,
 input.plus.btn {
