@@ -11,8 +11,9 @@ exports.create = async (req, res) => {
     const model = url.split("/");
     const expression = model[2];
     console.log(expression);
+    console.log("HELLO");
     const newDocument = req.body;
-    console.log(newDocument);
+    //console.log(newDocument);
     // Assuming passed all required params in body
     switch (expression) {
       case "product":
@@ -25,7 +26,10 @@ exports.create = async (req, res) => {
         await StoreLocations.create(newDocument);
         break;
       case "user":
-        await axios.post("http://localhost/register", newDocument);
+        await axios.post(
+          "http://localhost:" + process.env.PORT + "/register",
+          newDocument
+        );
         break;
     }
     return res.status(200).json({

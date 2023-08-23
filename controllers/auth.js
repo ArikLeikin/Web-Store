@@ -88,6 +88,9 @@ exports.postRegister = async (req, res, next) => {
         country: req.body.country || null,
         postalCode: req.body.postalCode || null,
         street: req.body.street || null,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        phoneNumber: req.body.phoneNumber,
       },
       creditCard: req.body.creditCard || null, // Use the entered creditCard if available, otherwise set to null
       name: {
@@ -96,9 +99,11 @@ exports.postRegister = async (req, res, next) => {
       },
       usedProducts: [], // Initialize usedProducts as an empty array
       orderHistory: [],
+      wishlist: [],
     });
 
     await user.save();
+    console.log("Register success!");
     return res.status(200).redirect("/login"); //if register successful -> redirect to login screen
   } catch (error) {
     console.error(error);
