@@ -70,7 +70,7 @@ exports.postRegister = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   //const confirmPassword = req.body.confirmPassword;
-
+  console.log(req.body);
   try {
     const userDoc = await User.findOne({ email: email });
     if (userDoc) {
