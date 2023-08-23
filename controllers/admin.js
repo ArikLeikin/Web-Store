@@ -11,7 +11,6 @@ exports.create = async (req, res) => {
     const model = url.split("/");
     const expression = model[2];
     console.log(expression);
-    console.log("HELLO");
     const newDocument = req.body;
     //console.log(newDocument);
     // Assuming passed all required params in body

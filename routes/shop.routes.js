@@ -32,8 +32,6 @@ router.get("/product-details", shopController.getProductDetails);
 
 router.get("/gift-finder", shopController.getGiftFinder);
 
-router.get("/login", shopController.getLogin);
-
 router.get("/manager", isAdmin, shopController.getManager);
 
 router.get("/products", shopController.getProducts);
@@ -75,6 +73,7 @@ router.post("/buy-it-now/:productId", isAuth, shopController.postBuyItNow);
 
 router.get("/address", isAuth, shopController.getAddress);
 router.post("/address", isAuth, shopController.postAddress);
+router.post("/creditcard", isAuth, shopController.getCreditCard);
 router.post("/creditcard", isAuth, shopController.creditCardUpdate);
 
 module.exports = router;

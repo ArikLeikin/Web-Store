@@ -70,7 +70,7 @@ exports.postRegister = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   //const confirmPassword = req.body.confirmPassword;
-  console.log(req.body);
+  //console.log(req.body);
   try {
     const userDoc = await User.findOne({ email: email });
     if (userDoc) {
@@ -103,7 +103,7 @@ exports.postRegister = async (req, res, next) => {
     });
 
     await user.save();
-    console.log("Register success!");
+    //console.log("Register success!");
     return res.status(200).redirect("/login"); //if register successful -> redirect to login screen
   } catch (error) {
     console.error(error);
