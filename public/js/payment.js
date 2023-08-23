@@ -306,3 +306,58 @@ function disableOptions() {
     option.disabled = true;
   });
 }
+
+
+// document.addEventListener("DOMContentLoaded", async function () {
+//   try {
+//     // Fetch address data from the server
+//     const response = await fetch("http://127.0.0.1:8080/address");
+//     if (response.ok) {
+//       const addressData = await response.json();
+
+//       // Check if address data exists
+//       if (addressData) {
+//         // Fill the form fields with the fetched address data
+//         document.getElementById("firstname").value = addressData.firstname;
+//         document.getElementById("lastname").value = addressData.lastname;
+//         document.getElementById("phone").value = addressData.phone;
+//         document.getElementById("country").value = addressData.country;
+//         document.getElementById("city").value = addressData.city;
+//         document.getElementById("zipcode").value = addressData.zipcode;
+//         document.getElementById("street").value = addressData.street;
+//         document.getElementById("street_number").value = addressData.streetNumber;
+//       }
+//     } else {
+//       console.error("Failed to fetch address data.");
+//     }
+//   } catch (error) {
+//     console.error("An error occurred:", error);
+//   }
+// });
+
+
+// Fetch address data from the server
+fetch('http://127.0.0.1:8080/address')
+  .then(response => response.json())
+  .then(data => {
+    // Check if address data exists
+    if (data) {
+      // Fill form fields with fetched address data
+      document.getElementById('firstname').value = data.firstName;
+      document.getElementById('lastname').value = data.lastName;
+      document.getElementById('phone').value = data.phoneNumber;
+      document.getElementById('country').value = data.country;
+      document.getElementById('city').value = data.city;
+      document.getElementById('zipcode').value = data.postalCode;
+      document.getElementById('street').value = data.street;
+      document.getElementById('street_number').value = data.streetNumber;
+
+      // Display fetched address data
+      console.log('Fetched Address Data:', data);
+    } else {
+      console.log('No address data found.');
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching address data:', error);
+  });

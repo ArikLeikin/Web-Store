@@ -371,15 +371,14 @@
       <input type="text" id="country" name="country" required><br>
       <label for="postalCode">Postal Code:</label>
       <input type="text" id="postalCode" name="postalCode" required><br>
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required><br>
+      <label for="password">password:</label>
+      <input type="text" id="password" name="password" required><br>
       <label for="email">Email:</label>
       <input type="email" id="email" name="email"><br>
       <label for="phoneNumber">Phone Number:</label>
       <input type="text" id="phoneNumber" name="phoneNumber"><br>
       <label for="creditCard">Credit Card:</label>
       <input type="text" id="creditCard" name="creditCard"><br>
-      <input type="text" id="password" name="password"><br>
       <button type="submit">Add User</button>
     </form> 
   
@@ -393,13 +392,13 @@
           <th>Street</th>
           <th>Country</th>
           <th>Postal Code</th>
-          <th>Username</th>
+          <th>Password</th>
           <th>Email</th>
           <th>Phone Number</th>
           <th>Credit Card</th>
           <th>ID</th>
           <th>Action</th>
-          <th>Password</th>
+ 
 
         </tr>
       </thead>
@@ -444,12 +443,18 @@
           row.append($('<td>').text(data.address.street));
           row.append($('<td>').text(data.address.country));
           row.append($('<td>').text(data.address.postalCode));
-          row.append($('<td>').text(data.username));
+          row.append($('<td>').text(data.password));
           row.append($('<td>').text(data.email || '-'));
           row.append($('<td>').text(data.phoneNumber || '-'));
           row.append($('<td>').text(data.creditCard || '-'));
           row.append($('<td>').text(data._id));
-            row.append($('<td>').text(data._id));
+          
+
+          const deleteButton = $('<button>').addClass('delete-button').text('Delete User');
+          deleteButton.data('userid', data._id);
+          
+          const actionCell = $('<td>').append(deleteButton);
+          row.append(actionCell);
           return row;
         }
   
@@ -469,42 +474,24 @@
           });
         }
   
-        // // Function to delete a user by ID
-        // function deleteUser(userId) {
-        //   $.ajax({
-        //     url: `${baseUrl}/delete/user/${userId}`,
-        //     method: 'DELETE',
-        //     dataType: 'json',
-        //     success: function () {
-        //       fetchUsers(); // Refresh the user list after deletion
-        //     },
-        //     error: function (error) {
-        //       console.error('Error:', error);
-        //     }
-        //   });
-        // }
   
         // Add User Form submission event
         $('#add-user-form').submit(function (event) {
           event.preventDefault();
   
           const newUser = {
-            name: {
+          
               firstName: $('#firstName').val(),
-              lastName: $('#lastName').val()
-            },
-            address: {
+              lastName: $('#lastName').val(),
               city: $('#city').val(),
               street: $('#street').val(),
               country: $('#country').val(),
-              postalCode: $('#postalCode').val()
-            },
-            username: $('#username').val(),
-            email: $('#email').val(),
-            phoneNumber: $('#phoneNumber').val(),
-            creditCard: $('#creditCard').val(),
-            creditCard: $('#creditCard').val(),
-            password: $('#password').val(),
+              postalCode: $('#postalCode').val(),
+              email: $('#email').val(),
+              phoneNumber: $('#phoneNumber').val(),
+              creditCard: $('#creditCard').val(),
+                creditCard: $('#creditCard').val(),
+              password: $('#password').val(),
           };
   
           addUser(newUser);
@@ -512,19 +499,174 @@
           // Clear the form fields after submission
           $(this).trigger('reset');
         }); 
-  
-        // Delete user button click event
-        // tableBody.on('click', '.delete-button', function () {
-        //   const userId = $(this).data('userid');
-        //   deleteUser(userId);
-        // });
+
+        
+    // Function to delete a user
+    function deleteUser(userId) {
+      $.ajax({
+        url: `${baseUrl}/delete/user/:${userId}`, // Update the URL to the appropriate delete endpoint
+        method: 'POST',
+        success: function () {
+          fetchUsers(); // Refresh the user list after deletion
+        },
+        error: function (error) {
+          console.error('Error:', error);
+        }
+      });
+    }
+
+    // Delete button click event
+    tableBody.on('click', '.delete-button', function () {
+      const userId = $(this).data('userid');
+      if (confirm('Are you sure you want to delete this user?')) {
+        deleteUser(userId);
+      }
+    });
+      
       });
     </script> 
+
+
+   <h2>Products Management:</h2>
+   <script>
+ 
+        $(document).ready(function() {
+            $.ajax({
+                url: 'http://127.0.0.1:8080/api/products',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    populateTable(data);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+
+            function populateTable(products) {
+                var table = document.getElementById('productTable');
+
+                products.forEach(function(product) {
+                    var row = table.insertRow();
+
+                    var fields = [
+                        '_id', 'title', 'price', 'description', 'image', 'condition',
+                        'category', 'manufacture_date', 'supplier', 'quantity',
+                        'age_range_from', 'age_range_to'
+                    ];
+
+                    fields.forEach(function(field) {
+                        var cell = row.insertCell();
+
+                        if (field === 'image') {
+                            cell.innerHTML = '<img src="' + product[field][0].data + '" width="100">';
+                        } else {
+                            cell.innerHTML = product[field];
+                        }
+                    });
+
+                    var deleteCell = row.insertCell();
+                    var deleteButton = document.createElement('button');
+                    deleteButton.innerHTML = 'Delete';
+                    deleteButton.onclick = function() {
+                        deleteProduct(product._id);
+                    };
+                    deleteCell.appendChild(deleteButton);
+                });
+            }
+
+            function deleteProduct(id) {
+                if (confirm('Are you sure you want to delete this product?')) {
+                    $.ajax({
+                        url: 'http://127.0.0.1:8080/delete/product/:' + id,
+                        type: 'POST',
+                        success: function(response) {
+                            alert('Product deleted successfully.');
+                            location.reload(); // Refresh the page
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                }
+            }
+
+
+            $('#addProductForm').submit(function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    url: 'http://127.0.0.1:8080/create/product',
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        alert('Product added successfully.');
+                        location.reload(); // Refresh the page
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+
+        });
+</script>
+
+
+<table id="productTable">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Condition</th>
+        <th>Category</th>
+        <th>Manufacture Date</th>
+        <th>Supplier</th>
+        <th>Quantity</th>
+        <th>Age Range (From)</th>
+        <th>Age Range (To)</th>
+        <th>Action</th>
+    </tr>
+</table>
+
+<form id="addProductForm">
+  <label for="title">Title:</label>
+  <input type="text" id="title" name="title" required><br>
+
+  <label for="price">Price:</label>
+  <input type="number" step="0.01" id="price" name="price" required><br>
+
+  <label for="description">Description:</label>
+  <textarea id="description" name="description" rows="4" required></textarea><br>
+
+  <label for="category">Category:</label>
+  <input type="text" id="category" name="category" required><br>
+
+  <label for="quantity">Quantity:</label>
+  <input type="number" id="quantity" name="quantity" required><br>
+
+  <label for="condition">Condition:</label>
+  <select id="condition" name="condition" required>
+      <option value="new">New</option>
+      <option value="used">Used</option>
+  </select><br>
+
+  <button type="submit">Add Product</button>
+</form>
+
+
+
+
+
+
+
        
 
     
-    <h2>Products Management:</h2>
-    <table id="productTable" border="1">
+    
+    <!-- <table id="productTable" border="1">
       <thead>
         <tr>
           <th>ID</th>
@@ -542,7 +684,7 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Products will be displayed here -->
+ 
       </tbody>
     </table>
 
@@ -586,7 +728,7 @@
         `;
 
           tableBody.appendChild(row);
-        });
+        }); 
 
 
 
