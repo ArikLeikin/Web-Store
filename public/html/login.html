@@ -2,13 +2,12 @@
 <html>
   <head>
     <title>Games For All|Login</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css"
     />
-    <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
     <link
       rel="stylesheet"
@@ -40,7 +39,10 @@
               </a>
             </li>
             <li class="item__wishlist">
-              <a aria-label="Wishlist" href="">
+              <a
+                aria-label="Wishlist"
+                href="http://127.0.0.1:8080/my-account?show=wishlist"
+              >
                 <img
                   src="../images/white-icons/wishlist-icon.png"
                   alt="Cart"
@@ -317,8 +319,10 @@
         <input class="login-btn" type="submit" value="Login" />
         <div id="error-message" class="text-danger mt-2"></div>
       </form>
-      <p>Not a member? <a href="register">Register here</a></p>
-      <p>Not a member? <a href="passwordReset">Reset here</a></p>
+      <p>
+        Not a member? <a href="register">Register here</a><br />
+        Forgot your password? <a href="passwordReset">Reset here</a>
+      </p>
     </main>
     <div id="myModal" class="modal">
       <div class="modal-content">
