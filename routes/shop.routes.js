@@ -32,8 +32,6 @@ router.get("/product-details", shopController.getProductDetails);
 
 router.get("/gift-finder", shopController.getGiftFinder);
 
-router.get("/login", shopController.getLogin);
-
 router.get("/manager", isAdmin, shopController.getManager);
 
 router.get("/products", shopController.getProducts);
