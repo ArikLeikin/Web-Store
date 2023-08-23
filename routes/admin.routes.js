@@ -21,7 +21,7 @@ router.get("/get/store-locations/:id", isAdmin, adminController.get);
 router.post("/update/store-locations/:id", isAdmin, adminController.update);
 router.post("/delete/store-locations/:id", isAdmin, adminController.delete);
 
-router.post("/create/user", isAdmin, adminController.create);
+router.post("/create/user", adminController.create);
 router.get("/get/user/:id", isAdmin, adminController.get);
 router.put("/update/user/:id", isAdmin, adminController.update);
 router.post("/delete/user/:id", isAdmin, adminController.delete);

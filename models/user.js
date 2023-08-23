@@ -6,7 +6,7 @@ const permissionEnum = ["admin", "user", "supplier"];
 const userSchema = new Schema({
   permission: {
     type: String,
-    required: true,
+    //required: true,
     enum: permissionEnum,
     default: "user",
   },
@@ -37,7 +37,7 @@ const userSchema = new Schema({
     postalCode: { type: String },
     firstName: { type: String },
     lastName: { type: String },
-    phoneNumber: { type: Number },
+    phoneNumber: { type: String },
   },
   creditCard: {
     card_number: { type: String },
