@@ -175,6 +175,10 @@ exports.getYad2Update = (req, res, next) => {
   });
 };
 
+exports.postYad2Update = (req, res, next) => {
+  //TODO
+};
+
 exports.getYourAccount = (req, res, next) => {
   const file = path.join(__dirname, "../public/html/my-account.html");
   res.sendFile(file, (err) => {

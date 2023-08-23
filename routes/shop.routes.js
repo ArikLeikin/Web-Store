@@ -53,6 +53,7 @@ router.get("/uploadYad2", isAuth, shopController.getUploadYad2);
 router.post("/uploadYad2", isAuth, shopController.uploadYad2);
 
 router.get("/Yad2Update", isAuth, shopController.getYad2Update);
+router.post("/Yad2Update", isAuth, shopController.postYad2Update);
 
 router.get("/my-account", isAuth, shopController.getYourAccount);
 
@@ -65,7 +66,7 @@ router.get("/payment", isAuth, shopController.getPayment);
 router.post("/payment", isAuth, shopController.postPayment);
 router.post("/buy-it-now/:productId", isAuth, shopController.postBuyItNow);
 
-router.post("/address-update", isAuth, shopController.postAddress);
-router.post("/credit-card-update", isAuth, shopController.creditCardUpdate);
+router.post("/address", isAuth, shopController.postAddress);
+router.post("/creditcard", isAuth, shopController.creditCardUpdate);
 
 module.exports = router;
