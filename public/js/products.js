@@ -1,8 +1,8 @@
-
 /*   new slider nofar*/
 // Requires jQuery
 
 // Initialize slider:
+/*
 $(document).ready(function () {
   $(".noUi-handle").on("click", function () {
     $(this).width(50);
@@ -30,9 +30,9 @@ $(document).ready(function () {
     document.getElementById("price-dot-max").innerHTML = values[1]; //slider-range-value2
     document.getElementsByName("min-value").value = moneyFormat.from(values[0]);
     document.getElementsByName("max-value").value = moneyFormat.from(values[1]);
-  }); 
+  });
 });
-
+*/
 (function (factory) {
   if (typeof define === "function" && define.amd) {
     // AMD. Register as an anonymous module.
@@ -2103,153 +2103,38 @@ $(document).ready(function () {
   window.wNumb = wNumb;
 })();
 
-
-
-//Michal
-
-
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   const ageFilter = document.getElementById("age-filter");
-//   const categoryFilter = document.getElementById("game-type-filter");
-//   const minPriceInput = document.querySelector("[name='min-value']");
-//   const maxPriceInput = document.querySelector("[name='max-value']");
-//   const productItems = document.querySelectorAll(".product-item");
-
-//   // Initialize price slider and trigger filter on change
-//   $("#slider-range").slider({
-//     range: true,
-//     min: 0,
-//     max: 500, // Adjust the max value as needed
-//     values: [0, 500], // Initial min and max values
-//     change: function (event, ui) {
-//       $("#price-dot-min").text("$" + ui.values[0]);
-//       $("#price-dot-max").text("$" + ui.values[1]);
-
-//       minPriceInput.value = ui.values[0];
-//       maxPriceInput.value = ui.values[1];
-
-//       filterProducts(); // Call your filtering function here
-//     },
-//   });
-
-//   // Initialize the text labels
-//   $("#price-dot-min").text("$" + $("#slider-range").slider("values", 0));
-//   $("#price-dot-max").text("$" + $("#slider-range").slider("values", 1));
-
-//   // Attach event listeners to filters
-//   ageFilter.addEventListener("change", filterProducts);
-//   categoryFilter.addEventListener("change", filterProducts);
-//   minPriceInput.addEventListener("input", filterProducts);
-//   maxPriceInput.addEventListener("input", filterProducts);
-
-//   // Filtering function
-//   function filterProducts() {
-//     const selectedAge = ageFilter.value;
-//     const selectedCategory = categoryFilter.value;
-//     const minPrice = parseFloat(minPriceInput.value) || 0;
-//     const maxPrice = parseFloat(maxPriceInput.value) || Number.POSITIVE_INFINITY;
-
-//     productItems.forEach((productItem) => {
-//       const ageRange = productItem.getAttribute("data-age-range");
-//       const gameType = productItem.getAttribute("data-game-type");
-//       const productPrice = parseFloat(productItem.getAttribute("data-price"));
-
-//       const ageFilterMatch = selectedAge === "" || ageRange === selectedAge;
-//       const categoryFilterMatch =
-//         selectedCategory === "" || gameType === selectedCategory;
-//       const priceFilterMatch =
-//         productPrice >= minPrice && productPrice <= maxPrice;
-
-//       if (ageFilterMatch && categoryFilterMatch && priceFilterMatch) {
-//         productItem.style.display = "block";
-//       } else {
-//         productItem.style.display = "none";
-//       }
-//     });
-//   }
-// });
-
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   const sortSelect = document.getElementById("Sortby-filter");
-//   const productItems = document.querySelectorAll(".product-item");
-//   // const productGrid = document.getElementById("product-grid");
- 
-
-//   sortSelect.addEventListener("change", function () {
-//     const selectedValue = sortSelect.value;
-//     productItems.forEach((productItem) => {
-//       const sort = productItem.getAttribute("filter-by");
-
- 
-
-//       const FilterMatch = selectedValue === "" || sort === selectedValue;
-
-
-//       if (FilterMatch) {
-//         productItem.style.display = "block";
-//       } else {
-//         productItem.style.display = "none";
-//       }
-//     });
-
-    
-//   });
-// });
-
-// $(document).ready(function () {
-//   $("#price-filter-button").click(function () {
-//     var minPrice = parseFloat($("#min-price-input").val());
-//     var maxPrice = parseFloat($("#max-price-input").val());
-
-//     $(".product-item").each(function () {
-//       var productPrice = parseFloat($(this).data("price"));
-
-//       if ((isNaN(minPrice) || productPrice >= minPrice) &&
-//           (isNaN(maxPrice) || productPrice <= maxPrice)) {
-//         $(this).show();
-//       } else {
-//         $(this).hide();
-//       }
-//     });
-//   });
-// });
-
-
-
-$(document).ready(function() {
+$(document).ready(function () {
   // Function to handle sorting
   function sortProducts() {
     var $productGrid = $(".product-grid");
     var selectedSortValue = $("#Sortby-filter").val();
-    
+
     var $productItems = $productGrid.find(".product-item");
-    
+
     // Sort the product items based on the selected value
     if (selectedSortValue === "best-selling") {
       // Implement your best-selling sorting logic here
     } else if (selectedSortValue === "price-high-to-low") {
-      $productItems.sort(function(a, b) {
+      $productItems.sort(function (a, b) {
         var priceA = parseFloat($(a).data("price"));
         var priceB = parseFloat($(b).data("price"));
         return priceB - priceA;
       });
     } else if (selectedSortValue === "price-low-to-high") {
-      $productItems.sort(function(a, b) {
+      $productItems.sort(function (a, b) {
         var priceA = parseFloat($(a).data("price"));
         var priceB = parseFloat($(b).data("price"));
         return priceA - priceB;
       });
     }
-    
+
     // Empty the grid and append sorted product items back to it
     $productGrid.empty();
     $productItems.appendTo($productGrid);
   }
-  
+
   // Attach event handler to the dropdown change event
-  $("#Sortby-filter").on("change", function() {
+  $("#Sortby-filter").on("change", function () {
     sortProducts();
   });
 });
