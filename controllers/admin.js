@@ -31,7 +31,7 @@ exports.create = async (req, res) => {
       message: "Created successfully",
     });
   } catch (error) {
-    res.code(500).json({
+    res.status(500).json({
       message: "Failed to create",
     });
   }
