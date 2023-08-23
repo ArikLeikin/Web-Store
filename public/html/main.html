@@ -1,238 +1,380 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Playtopia|</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+  </head>
+  <body>
+    <header class="header" role="banner">
+      <div class="container">
+        <nav class="navUser">
+          <ul class="navUser-section">
+            <li class="item__account" id="item__account">
+              <a aria-label="Account" href="http://127.0.0.1:8080/login"
+                ><img
+                  src="../images/white-icons/account-icon.png"
+                  alt="account"
+                  width="30"
+                />
+              </a>
+            </li>
+            <li class="item__wishlist">
+              <a aria-label="Wishlist" href="">
+                <img
+                  src="../images/white-icons/wishlist-icon.png"
+                  alt="Cart"
+                  width="30"
+                />
+              </a>
+            </li>
+            <li class="item__cart">
+              <a href="http://127.0.0.1:8080/cart" aria-label="Cart">
+                <img
+                  src="../images/white-icons/cart-icon.png"
+                  alt="Cart"
+                  width="30"
+                />
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-<head>
-  <title>Games For All</title>
-  <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
-  <link rel="stylesheet" href="../css/index.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <script src="../js/index.js"></script>
+        <div class="header-logo">
+          <a href="http://127.0.0.1:8080/" data-instantload='{"page":"home"}'>
+            <div class="header-logo-image-container">
+              <img
+                class="header-logo-image"
+                src="../images/logo.png"
+                width="180"
+                height="auto"
+              />
+            </div>
+          </a>
+        </div>
 
-  <header class="header" role="banner">
-    <div class="container">
-      <nav class="navUser">
-        <ul class="navUser-section">
-          <li class="item__account" id="item__account">
-            <a aria-label="Account" href=""><img src="../images/white-icons/account-icon.png" alt="account"
-                width="30" />
-            </a>
+        <div class="quickSearch">
+          <form class="form">
+            <div class="form-container">
+              <input
+                class="form-input"
+                data-search-quick
+                name="search_query"
+                id="search_query"
+                data-error-message="Search field cannot be empty."
+                placeholder="Search the store"
+                autocomplete="off"
+              />
+              <button
+                type="submit"
+                class="button search-button"
+                id="searchButton"
+              >
+                <img
+                  src="../images/white-icons/search-icon.png"
+                  alt="Search"
+                  width="25"
+                  height="auto"
+                />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Start Navigation Bar -->
+      <nav class="navbar">
+        <ul class="menu">
+          <li>
+            <a class="hasDropdown header-title" href="#"
+              >Categories <i class="fa fa-angle-down"></i
+            ></a>
+
+            <ul class="nav_container">
+              <div class="container__list">
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=boardgames"
+                      class="sub-label-menu"
+                      >Board Games</a
+                    >
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=science"
+                      class="sub-label-menu"
+                      >Science</a
+                    >
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=games"
+                      class="sub-label-menu"
+                      >Games</a
+                    >
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=ridingtoys"
+                      class="sub-label-menu"
+                      >Riding Toys</a
+                    >
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=puzzles"
+                      class="sub-label-menu"
+                      >Puzzles</a
+                    >
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=musickaroke"
+                      class="sub-label-menu"
+                      >Music & Karaoke</a
+                    >
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=books"
+                      class="sub-label-menu"
+                      >Books</a
+                    >
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=lego"
+                      class="sub-label-menu"
+                      >Lego</a
+                    >
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=dolls"
+                      class="sub-label-menu"
+                      >Dolls</a
+                    >
+                  </div>
+                </div>
+                <div class="container__listItem"></div>
+                <div class="container__listItem"></div>
+
+                <div class="container__listItem">
+                  <div class="container__listItem_title bold no-underline">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=10andbellow"
+                      class="sub-label-menu"
+                      >$10 & Below</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </ul>
           </li>
-          <li class="item__wishlist">
-            <a aria-label="Wishlist" href="">
-              <img src="../images/white-icons/wishlist-icon.png" alt="Cart" width="30" />
-            </a>
+          <li>
+            <a class="hasDropdown header-title" href="#"
+              >Ages<i class="fa fa-angle-down"></i
+            ></a>
+            <ul class="nav_container">
+              <div class="container__list">
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?age=0-12"
+                      class="sub-label-menu"
+                      >0-12 MONTHS</a
+                    >
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?age=12-24"
+                      class="sub-label-menu"
+                      >12-24 MONTHS</a
+                    >
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?age=2-4"
+                      class="sub-label-menu"
+                      >2-4 YEARS</a
+                    >
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?age=5-7"
+                      class="sub-label-menu"
+                      >5-7 YEARS</a
+                    >
+                  </div>
+                </div>
+                <div class="container__listItem">
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?age=8-99"
+                      class="sub-label-menu"
+                      >8-99 YEARS</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </ul>
           </li>
-          <li class="item__cart">
-            <a href="cart.html" aria-label="Cart">
-              <img src="../images/white-icons/cart-icon.png" alt="Cart" width="30" />
-            </a>
+          <li>
+            <a
+              href="http://127.0.0.1:8080/products?category=outdoor"
+              class="header-title"
+              >Outdoor</a
+            >
+          </li>
+          <li>
+            <a
+              href="http://127.0.0.1:8080/products?category=yad2"
+              class="header-title"
+              >Yad2</a
+            >
+          </li>
+          <li>
+            <a href="http://127.0.0.1:8080/Gift-Finder" class="header-title"
+              >Gift Finder</a
+            >
           </li>
         </ul>
       </nav>
+      <!-- End Navigation Bar -->
+    </header>
 
-      <div class="header-logo">
-        <a href="#" data-instantload='{"page":"home"}'>
-          <div class="header-logo-image-container">
-            <img class="header-logo-image" src="../images/logo.png" width="180" height="auto" />
-          </div>
-        </a>
+    <main style="margin-top: 170px">
+      <h1>Welcome to Playtopia</h1>
+      <h2>Explore our amazing collection of toys for all ages!</h2>
+      <div class="featured-product">
+        <div class="slideshow">
+          <img src="images/sale.png" alt="Featured Toy 1" />
+          <img src="toy_image2.jpg" alt="Featured Toy 2" />
+          <img src="toy_image3.jpg" alt="Featured Toy 3" />
+          <img src="toy_image4.jpg" alt="Featured Toy 4" />
+        </div>
+        <div class="navigation">
+          <span class="arrow left-arrow">&#10094;</span>
+          <span class="arrow right-arrow">&#10095;</span>
+        </div>
       </div>
 
-      <div class="quickSearch">
-        <form class="form">
-          <div class="form-container">
-            <input class="form-input" data-search-quick name="search_query" id="search_query"
-              data-error-message="Search field cannot be empty." placeholder="Search the store" autocomplete="off" />
-            <button type="submit" class="button search-button" id="searchButton">
-              <img src="../images/white-icons/search-icon.png" alt="Search" width="25" height="auto" />
-            </button>
-          </div>
-        </form>
+      <div class="product-grid">
+        <div class="product">
+          <a href="product.html">
+            <h3>ON SALE!</h3>
+            <img src="sale.jpg" alt="sale" />
+          </a>
+        </div>
+        <div class="product">
+          <a href="product.html">
+            <h3>Product 1</h3>
+            <img src="product1.jpg" alt="category 1" />
+          </a>
+        </div>
+        <div class="product">
+          <a href="product.html">
+            <h3>Product 2</h3>
+            <img src="product2.jpg" alt="category 2" />
+          </a>
+        </div>
+        <div class="product">
+          <a href="product.html">
+            <h3>Product 3</h3>
+            <img src="product3.jpg" alt="category 3" />
+          </a>
+        </div>
+        <div class="product">
+          <a href="product.html">
+            <h3>Product 4</h3>
+            <img src="product4.jpg" alt="category 4" />
+          </a>
+        </div>
+        <div class="product">
+          <a href="product.html">
+            <h3>Product 5</h3>
+            <img src="product5.jpg" alt="category 5" />
+          </a>
+        </div>
+        <div class="product">
+          <a href="product.html">
+            <h3>Product 6</h3>
+            <img src="product6.jpg" alt="category 6" />
+          </a>
+        </div>
+        <div class="product">
+          <a href="product.html">
+            <h3>Product 7</h3>
+            <img src="product7.jpg" alt="category 7" />
+          </a>
+        </div>
+        <div class="product">
+          <a href="product.html">
+            <h3>Product 8</h3>
+            <img src="product8.jpg" alt="category 8" />
+          </a>
+        </div>
+        <div class="product">
+          <a href="product.html">
+            <h3>Product 9</h3>
+            <img src="product9.jpg" alt="category 9" />
+          </a>
+        </div>
+        <div class="product">
+          <a href="product.html">
+            <h3>Product 10</h3>
+            <img src="product10.jpg" alt="category 10" />
+          </a>
+        </div>
+        <div class="product">
+          <a href="product.html">
+            <h3>Product 11</h3>
+            <img src="product11.jpg" alt="category 11" />
+          </a>
+        </div>
+      </div>
+    </main>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-content"></div>
       </div>
     </div>
-
-    <!-- Start Navigation Bar -->
-    <nav class="navbar">
-      <ul class="menu">
-        <li>
-          <a class="hasDropdown" href="#">Categories <i class="fa fa-angle-down"></i></a>
-
-          <ul class="nav_container">
-            <div class="container__list">
-              <div class="container__listItem">
-                <div class="container__listItem_title">Board Games</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Science</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Games</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Riding Toys</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Puzzles</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Music&Karaoke</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Books</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Lego</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">Dolls</div>
-              </div>
-              <div class="container__listItem"></div>
-              <div class="container__listItem"></div>
-
-              <div class="container__listItem">
-                <div class="container__listItem_title bold no-underline">
-                  $10 & Below
-                </div>
-              </div>
-            </div>
-          </ul>
-        </li>
-        <li>
-          <a class="hasDropdown" href="#">Ages<i class="fa fa-angle-down"></i></a>
-          <ul class="nav_container">
-            <div class="container__list">
-              <div class="container__listItem">
-                <div class="container__listItem_title">0-12 MONTHS</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">12-24 MONTHS</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">2-4 YEARS</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">5-7 YEARS</div>
-              </div>
-              <div class="container__listItem">
-                <div class="container__listItem_title">8-99 YEARS</div>
-              </div>
-            </div>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Outdoor</a>
-        </li>
-        <li>
-          <a href="#">Yad2</a>
-        </li>
-        <li>
-          <a href="gift-finder.html">Gift Finder</a>
-        </li>
-      </ul>
-    </nav>
-    <!-- End Navigation Bar -->
-  </header>
-
-  <title>Toy Store</title>
-  <link rel="stylesheet" type="text/css" href="../css/main.css" />
-  <script src="../js/main.js"></script>
-</head>
-
-<body>
-  <main style="margin-top: 200px"></main>
-  <header></header>
-
-  <main>
-    <h1>Welcome to Playtopia</h1>
-    <h2>Explore our amazing collection of toys for all ages!</h2>
-    <div class="featured-product">
-      <div class="slideshow">
-        <img src="images/sale.png" alt="Featured Toy 1" />
-        <img src="toy_image2.jpg" alt="Featured Toy 2" />
-        <img src="toy_image3.jpg" alt="Featured Toy 3" />
-        <img src="toy_image4.jpg" alt="Featured Toy 4" />
-      </div>
-      <div class="navigation">
-        <span class="arrow left-arrow">&#10094;</span>
-        <span class="arrow right-arrow">&#10095;</span>
-      </div>
-    </div>
-
-    <div class="product-grid">
-      <div class="product">
-        <a href="product.html">
-          <h3>ON SALE!</h3>
-          <img src="sale.jpg" alt="sale" />
-        </a>
-      </div>
-      <div class="product">
-        <a href="product.html">
-          <h3>Product 1</h3>
-          <img src="product1.jpg" alt="category 1" />
-        </a>
-      </div>
-      <div class="product">
-        <a href="product.html">
-          <h3>Product 2</h3>
-          <img src="product2.jpg" alt="category 2" />
-        </a>
-      </div>
-      <div class="product">
-        <a href="product.html">
-          <h3>Product 3</h3>
-          <img src="product3.jpg" alt="category 3" />
-        </a>
-      </div>
-      <div class="product">
-        <a href="product.html">
-          <h3>Product 4</h3>
-          <img src="product4.jpg" alt="category 4" />
-        </a>
-      </div>
-      <div class="product">
-        <a href="product.html">
-          <h3>Product 5</h3>
-          <img src="product5.jpg" alt="category 5" />
-        </a>
-      </div>
-      <div class="product">
-        <a href="product.html">
-          <h3>Product 6</h3>
-          <img src="product6.jpg" alt="category 6" />
-        </a>
-      </div>
-      <div class="product">
-        <a href="product.html">
-          <h3>Product 7</h3>
-          <img src="product7.jpg" alt="category 7" />
-        </a>
-      </div>
-      <div class="product">
-        <a href="product.html">
-          <h3>Product 8</h3>
-          <img src="product8.jpg" alt="category 8" />
-        </a>
-      </div>
-      <div class="product">
-        <a href="product.html">
-          <h3>Product 9</h3>
-          <img src="product9.jpg" alt="category 9" />
-        </a>
-      </div>
-      <div class="product">
-        <a href="product.html">
-          <h3>Product 10</h3>
-          <img src="product10.jpg" alt="category 10" />
-        </a>
-      </div>
-      <div class="product">
-        <a href="product.html">
-          <h3>Product 11</h3>
-          <img src="product11.jpg" alt="category 11" />
-        </a>
-      </div>
-    </div>
-  </main>
-</body>
-
+  </body>
 </html>

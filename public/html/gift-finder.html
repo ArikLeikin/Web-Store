@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <title>Gift Finder</title>
+    <title>Playtopia|</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/gift-finder.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../js/index.js"></script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../js/gift-finder.js"></script>
+    <link rel="stylesheet" href="../css/gift-finder.css" />
   </head>
 
   <body>
@@ -19,7 +25,7 @@
         <nav class="navUser">
           <ul class="navUser-section">
             <li class="item__account" id="item__account">
-              <a aria-label="Account" href=""
+              <a aria-label="Account" href="http://127.0.0.1:8080/login"
                 ><img
                   src="../images/white-icons/account-icon.png"
                   alt="account"
@@ -37,7 +43,7 @@
               </a>
             </li>
             <li class="item__cart">
-              <a href="../html/cart.html" aria-label="Cart">
+              <a href="http://127.0.0.1:8080/cart" aria-label="Cart">
                 <img
                   src="../images/white-icons/cart-icon.png"
                   alt="Cart"
@@ -49,7 +55,7 @@
         </nav>
 
         <div class="header-logo">
-          <a href="#" data-instantload='{"page":"home"}'>
+          <a href="http://127.0.0.1:8080/" data-instantload='{"page":"home"}'>
             <div class="header-logo-image-container">
               <img
                 class="header-logo-image"
@@ -94,87 +100,190 @@
       <nav class="navbar">
         <ul class="menu">
           <li>
-            <a class="hasDropdown" href="#"
+            <a
+              class="hasDropdown header-title"
+              href="http://127.0.0.1:8080/products"
               >Categories <i class="fa fa-angle-down"></i
             ></a>
 
             <ul class="nav_container">
               <div class="container__list">
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Board Games</div>
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=boardgames"
+                      class="sub-label-menu"
+                      >Board Games</a
+                    >
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Science</div>
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=science"
+                      class="sub-label-menu"
+                      >Science</a
+                    >
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Games</div>
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=games"
+                      class="sub-label-menu"
+                      >Games</a
+                    >
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Riding Toys</div>
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=ridingtoys"
+                      class="sub-label-menu"
+                      >Riding Toys</a
+                    >
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Puzzles</div>
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=puzzles"
+                      class="sub-label-menu"
+                      >Puzzles</a
+                    >
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Music&Karaoke</div>
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=musickaroke"
+                      class="sub-label-menu"
+                      >Music & Karaoke</a
+                    >
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Books</div>
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=books"
+                      class="sub-label-menu"
+                      >Books</a
+                    >
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Lego</div>
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=lego"
+                      class="sub-label-menu"
+                      >Lego</a
+                    >
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">Dolls</div>
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?category=dolls"
+                      class="sub-label-menu"
+                      >Dolls</a
+                    >
+                  </div>
                 </div>
                 <div class="container__listItem"></div>
                 <div class="container__listItem"></div>
 
                 <div class="container__listItem">
                   <div class="container__listItem_title bold no-underline">
-                    $10 & Below
+                    <a
+                      href="http://127.0.0.1:8080/products?category=10andbellow"
+                      class="sub-label-menu"
+                      >$10 & Below</a
+                    >
                   </div>
                 </div>
               </div>
             </ul>
           </li>
           <li>
-            <a class="hasDropdown" href="#"
+            <a
+              class="hasDropdown header-title"
+              href="http://127.0.0.1:8080/products"
               >Ages<i class="fa fa-angle-down"></i
             ></a>
             <ul class="nav_container">
               <div class="container__list">
                 <div class="container__listItem">
-                  <div class="container__listItem_title">0-12 MONTHS</div>
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?age=0-12"
+                      class="sub-label-menu"
+                      >0-12 MONTHS</a
+                    >
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">12-24 MONTHS</div>
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?age=12-24"
+                      class="sub-label-menu"
+                      >12-24 MONTHS</a
+                    >
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">2-4 YEARS</div>
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?age=2-4"
+                      class="sub-label-menu"
+                      >2-4 YEARS</a
+                    >
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">5-7 YEARS</div>
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?age=5-7"
+                      class="sub-label-menu"
+                      >5-7 YEARS</a
+                    >
+                  </div>
                 </div>
                 <div class="container__listItem">
-                  <div class="container__listItem_title">8-99 YEARS</div>
+                  <div class="container__listItem_title">
+                    <a
+                      href="http://127.0.0.1:8080/products?age=8-99"
+                      class="sub-label-menu"
+                      >8-99 YEARS</a
+                    >
+                  </div>
                 </div>
               </div>
             </ul>
           </li>
           <li>
-            <a href="#">Outdoor</a>
+            <a
+              href="http://127.0.0.1:8080/products?category=outdoor"
+              class="header-title"
+              >Outdoor</a
+            >
           </li>
           <li>
-            <a href="">Yad2</a>
+            <a
+              href="http://127.0.0.1:8080/products?category=yad2"
+              class="header-title"
+              >Yad2</a
+            >
           </li>
           <li>
-            <a href="GiftFinder.html">Gift Finder</a>
+            <a href="http://127.0.0.1:8080/Gift-Finder" class="header-title"
+              >Gift Finder</a
+            >
           </li>
         </ul>
       </nav>
       <!-- End Navigation Bar -->
     </header>
+
     <main style="padding-top: 200px">
       <img class="gift-finder-logo" src="../images/gift-finder-logo.png" />
 
@@ -184,8 +293,8 @@
         >
         <select class="form-select" id="age" name="age" required>
           <option value="" disabled selected hidden>Please select age</option>
-          <option value="0-12 months">0-12 months</option>
-          <option value="12-24 months">12-24 months</option>
+          <option value="0-12">0-12 months</option>
+          <option value="12-24">12-24 months</option>
           <option value="2-4">2-4 Years</option>
           <option value="5-7">5-7 Years</option>
           <option value="8-99">8-99 Years</option>
@@ -203,14 +312,14 @@
         <label class="gift-finder-label">I know he prefers:</label>
         <select class="form-select" id="category">
           <option value="">All</option>
-          <option value="board">Board Games</option>
-          <option value="riding">Riding Toys</option>
-          <option value="book">Books</option>
+          <option value="boardgames">Board Games</option>
+          <option value="ridingtoys">Riding Toys</option>
+          <option value="books">Books</option>
           <option value="science">Science</option>
-          <option value="puzzle">Puzzle Games</option>
+          <option value="puzzles">Puzzle Games</option>
           <option value="lego">Lego</option>
           <option value="games">Games</option>
-          <option value="music-karaoke">Music & Karaoke</option>
+          <option value="musickaroke">Music & Karaoke</option>
           <option value="dolls">Dolls</option>
         </select>
 

@@ -1,5 +1,3 @@
-combine
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -101,7 +99,9 @@ combine
       <nav class="navbar">
         <ul class="menu">
           <li>
-            <a class="hasDropdown" href="#"
+            <a
+              class="hasDropdown header-title"
+              href="http://127.0.0.1:8080/products"
               >Categories <i class="fa fa-angle-down"></i
             ></a>
 
@@ -204,7 +204,7 @@ combine
             </ul>
           </li>
           <li>
-            <a class="hasDropdown" href="#"
+            <a class="hasDropdown header-title" href="#"
               >Ages<i class="fa fa-angle-down"></i
             ></a>
             <ul class="nav_container">
@@ -294,8 +294,8 @@ combine
             <td>
               <select class="select-filter" id="age-filter">
                 <option value="">All</option>
-                <option value="0-12 months">0-12 months</option>
-                <option value="12-24 months">12-24 months</option>
+                <option value="0-12">0-12 months</option>
+                <option value="12-24">12-24 months</option>
                 <option value="2-4">2-4 Years</option>
                 <option value="5-7">5-7 Years</option>
                 <option value="8-99">8-99 Years</option>
@@ -314,10 +314,12 @@ combine
                 <option value="books">Books</option>
                 <option value="science">Science</option>
                 <option value="puzzles">Puzzle Games</option>
-                <option value="Lego">Lego</option>
+                <option value="lego">Lego</option>
                 <option value="games">Games</option>
-                <option value="musickaraoke">Music & Karaoke</option>
+                <option value="musickaroke">Music & Karaoke</option>
                 <option value="dolls">Dolls</option>
+                <option value="outdoor" hidden>Outdoor</option>
+                <option value="yad2" hidden>Yad 2</option>
               </select>
             </td>
           </tr>
@@ -371,7 +373,7 @@ combine
 
         $(document).ready(function () {
           const productGrid = $("#productGrid");
-
+          $("#category-title").text("All Games");
           // Function to create the product HTML structure
           function createProductHTML(product) {
             const productItem = document.createElement("div");
@@ -535,12 +537,14 @@ combine
               { value: "books", label: "Books" },
               { value: "science", label: "Sience" },
               { value: "puzzles", label: "Puzzle Games" },
-              { value: "Lego", label: "Lego" },
+              { value: "lego", label: "Lego" },
               { value: "games", label: "Games" },
-              { value: "musickaraoke", label: "Music & Karaoke" },
+              { value: "musickaroke", label: "Music & Karaoke" },
               { value: "dolls", label: "Dolls" },
+              { value: "outdoor", label: "Outdoor" },
+              { value: "yad2", label: "Yad 2" },
+
               // { value: "10andbellow", label: "10$ & Bellow" },
-              // { value: "Yad2", label: "Yad 2" },
               // { value: "sale", label: "SALE" }
             ];
             const selectedOption = optionValues.find(
@@ -549,7 +553,30 @@ combine
             );
 
             $("#game-type-filter").val(selectedOption.value);
-            $("#game-type-filter").prop("disabled", true);
+            // $("#game-type-filter").prop("disabled", true);
+            $("#category-title").text(selectedOption.label);
+
+            fetchAndDisplayProducts();
+          }
+
+          // Extract 'category' parameter from the URL
+          const urlAge = getUrlParameter("age");
+          if (urlAge) {
+            const optionValues = [
+              { value: "", label: "All" },
+              { value: "0-12", label: "0-12 months" },
+              { value: "12-24", label: "12-24 months" },
+              { value: "2-4", label: "2-4 Years" },
+              { value: "5-7", label: "5-7 Years" },
+              { value: "8-99", label: "8-99 Years" },
+            ];
+            const selectedOption = optionValues.find(
+              (option) => option.value.toLowerCase() === urlAge.toLowerCase()
+            );
+
+            $("#age-filter").val(selectedOption.value);
+            // $("#age-filter").prop("disabled", true);
+
             fetchAndDisplayProducts();
           }
 
@@ -564,7 +591,6 @@ combine
           fetchAndDisplayProducts(); // Initial fetch and display
         });
       </script>
-      
     </main>
     <div id="myModal" class="modal">
       <div class="modal-content">

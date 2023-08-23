@@ -51,7 +51,7 @@ main {
   appearance: none;
   border: 0;
   box-shadow: none;
-  width: 90%;
+  min-width: 90%;
   padding: 0 1em;
   color: black;
   border-bottom: 1px solid grey;
