@@ -20,8 +20,8 @@ router.get("/api/order/:orderId", apiController.getOrder);
 router.get("/api/orders/user/:userId", apiController.getAllOrdersByUser);
 router.get("/api/orders", apiController.getAllOrders);
 
-router.get("/api/supplier/:supplierId", apiController.getSupplier);
-router.get("/api/suppliers", apiController.getAllSuppliers);
+// router.get("/api/supplier/:supplierId", apiController.getSupplier);
+// router.get("/api/suppliers", apiController.getAllSuppliers);
 
 router.get("/api/store-locations", apiController.getStoreLocations);
 

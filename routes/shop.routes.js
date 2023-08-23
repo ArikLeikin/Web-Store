@@ -73,6 +73,7 @@ router.get("/payment", isAuth, shopController.getPayment);
 router.post("/payment", isAuth, shopController.postPayment);
 router.post("/buy-it-now/:productId", isAuth, shopController.postBuyItNow);
 
+router.get("/address", isAuth, shopController.getAddress);
 router.post("/address", isAuth, shopController.postAddress);
 router.post("/creditcard", isAuth, shopController.creditCardUpdate);
 
