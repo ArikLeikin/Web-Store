@@ -26,4 +26,6 @@ router.get("/get/user/:id", isAdmin, adminController.get);
 router.put("/update/user/:id", isAdmin, adminController.update);
 router.post("/delete/user/:id", isAdmin, adminController.delete);
 
+router.post("/points/user/:id", isAdmin, adminController.updatePointsUser); //TODO
+
 module.exports = router;

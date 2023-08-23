@@ -85,6 +85,26 @@ exports.getLogin = (req, res, next) => {
   });
 };
 
+exports.getCartPage = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/cart.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.getWishlistPage = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/wishlist.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
 exports.getManager = (req, res, next) => {
   const file = path.join(__dirname, "../public/html/manager.html");
   res.sendFile(file, (err) => {
@@ -383,7 +403,7 @@ exports.postCartDelete = async (req, res, next) => {
     );
     if (cartItemIndex !== -1) {
       cart.items.splice(cartItemIndex, 1); // Remove the item from the cart
-      user.cart.items.splice(cartItemIndex, 1);
+      //user.cart.items.splice(cartItemIndex, 1);
       // req.session.user.cart = cart;
       // req.session.cart = cart;
       // Save changes to both the user and the session
@@ -419,6 +439,118 @@ exports.updateCartProductQuantity = async (req, res, next) => {
       return res.status(200).json({ message: "Cart item quantity updated" });
     } else {
       return res.status(404).json({ message: "Product not found in cart" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "An error occurred" });
+  }
+};
+
+exports.getWishlist = async (req, res, next) => {
+  const user = req.session.user;
+  if (user == undefined) {
+    return res.status(401).json("Log in required");
+  }
+  const wishlist = user.wishlist || [];
+  if (wishlist.length === 0) return res.status(401).json("Wishlist is Empty");
+  //console.log(cart.items);
+  res.status(200).json({
+    data: wishlist,
+  });
+};
+
+exports.postWishlistAdd = async (req, res, next) => {
+  try {
+    // req.session.user = await User.find({ username: "admin" }); // FIND -> RETURNS ARRAY!
+    // req.session.user = req.session.user[0];  --> For testing
+    const productIdToSave = req.body.productId;
+    let quantityToSave = parseInt(req.body.quantity);
+    if (quantityToSave <= 0)
+      return res.status(400).json({ message: "Non positive quantity" });
+    const user = req.session.user;
+    const wishlist = user.wishlist || [];
+    if (wishlist.length > 0) {
+      const existingWishlistItem = wishlist.find(
+        (item) => item.product.toString() === productIdToSave
+      );
+
+      if (existingWishlistItem) {
+        existingWishlistItem.quantity += quantityToSave;
+      } else {
+        wishlist.push({
+          product: productIdToSave,
+          quantity: quantityToSave,
+        });
+      }
+    } else {
+      wishlist.push({
+        product: productIdToSave,
+        quantity: quantityToSave,
+      });
+    }
+    await req.session.save();
+    await user.save();
+    res
+      .status(200)
+      .json({ message: "Product added successfully to wishlist!" });
+  } catch (err) {
+    res.status(500).json({ message: "Error adding product to wishlist!" });
+  }
+};
+
+exports.postWishlistDelete = async (req, res, next) => {
+  // req.session.user = await User.find({ username: "admin" }); // FIND -> RETURNS ARRAY!
+  // req.session.user = req.session.user[0]; --> For testing
+
+  const productId = req.body.productId;
+  const user = req.session.user;
+  const wishlist = user.wishlist;
+
+  try {
+    const wishlistItemIndex = wishlist.findIndex(
+      (item) => item.product.toString() === productId
+    );
+    if (wishlistItemIndex !== -1) {
+      wishlist.splice(wishlistItemIndex, 1); // Remove the item from the cart
+      //user.wishlist.splice(wishlistItemIndex, 1);
+      // Save changes to both the user and the session
+      await user.save();
+      await req.session.save();
+      return res
+        .status(200)
+        .json({ message: "Product removed from wishlist!" });
+    } else {
+      return res
+        .status(404)
+        .json({ message: "Product not found in wishlist!" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "An error occurred" });
+  }
+};
+
+exports.updateCartProductQuantity = async (req, res, next) => {
+  // req.session.user = await User.find({ username: "admin" }); // FIND -> RETURNS ARRAY!
+  // req.session.user = req.session.user[0]; --> For testing
+  const productId = req.body.productId;
+  const newQuantity = parseInt(req.body.quantity);
+  const user = req.session.user;
+  const wishlist = user.wishlist;
+
+  try {
+    const wishlistItem = cart.items.findIndex(
+      (item) => item.product.toString() === productId
+    );
+    if (wishlistItem != -1) {
+      wishlist[wishlistItem].quantity = newQuantity;
+      await user.save(); // Save changes to the database
+      await req.session.save();
+      return res
+        .status(200)
+        .json({ message: "Wishlist item quantity updated!" });
+    } else {
+      return res
+        .status(404)
+        .json({ message: "Product not found in wishlist!" });
     }
   } catch (error) {
     res.status(500).json({ message: "An error occurred" });
