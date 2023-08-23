@@ -214,7 +214,7 @@
 
 
 
-<!-- 
+
     <form id="add-user-form">
       <label for="firstName">First Name:</label>
       <input type="text" id="firstName" name="firstName" required><br>
@@ -236,6 +236,7 @@
       <input type="text" id="phoneNumber" name="phoneNumber"><br>
       <label for="creditCard">Credit Card:</label>
       <input type="text" id="creditCard" name="creditCard"><br>
+      <input type="text" id="password" name="password"><br>
       <button type="submit">Add User</button>
     </form> 
   
@@ -255,6 +256,8 @@
           <th>Credit Card</th>
           <th>ID</th>
           <th>Action</th>
+          <th>Password</th>
+
         </tr>
       </thead>
       <tbody></tbody>
@@ -303,6 +306,7 @@
           row.append($('<td>').text(data.phoneNumber || '-'));
           row.append($('<td>').text(data.creditCard || '-'));
           row.append($('<td>').text(data._id));
+            row.append($('<td>').text(data._id));
           return row;
         }
   
@@ -355,7 +359,9 @@
             username: $('#username').val(),
             email: $('#email').val(),
             phoneNumber: $('#phoneNumber').val(),
-            creditCard: $('#creditCard').val()
+            creditCard: $('#creditCard').val(),
+            creditCard: $('#creditCard').val(),
+            password: $('#password').val(),
           };
   
           addUser(newUser);
@@ -364,13 +370,13 @@
           $(this).trigger('reset');
         }); 
   
-        <!-- // Delete user button click event
+        // Delete user button click event
         // tableBody.on('click', '.delete-button', function () {
         //   const userId = $(this).data('userid');
         //   deleteUser(userId);
         // });
       });
-    </script> -->
+    </script> 
        
 
     
