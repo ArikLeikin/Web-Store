@@ -1,5 +1,5 @@
 module.exports = (req, res, next) => {
-  if (req.session.isLoggedIn) {
+  if (req.session.isLoggedIn == true) {
     return res.redirect("/my-account");
   }
   next();
