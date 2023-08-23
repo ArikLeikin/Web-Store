@@ -611,6 +611,17 @@ exports.submitSuplliersItem = async (req, res, next) => {
   }
 };
 
+exports.getAddress = async (req, res) => {
+  try {
+    const address = req.session.user.address;
+    return res.status(200).json(address);
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
+
 exports.postAddress = async (req, res) => {
   try {
     const user = req.session.user;
@@ -618,6 +629,10 @@ exports.postAddress = async (req, res) => {
     user.address.street = req.body.street + req.street_number;
     user.address.country = req.body.country;
     user.address.postalCode = req.body.postalCode;
+    user.address.firstName = req.body.firstName;
+    user.address.lastName = req.body.lastName;
+    user.address.phoneNumber = req.body.phoneNumber;
+    await req.session.save();
     await user.save();
     res.status(200).json({
       message: "Address updated successfully",
@@ -637,6 +652,7 @@ exports.creditCardUpdate = async (req, res) => {
     user.creditCard.holdr_name = req.body.card_holder; // NEED TO FIX AND ADJUST WITH FRONTEND
     user.creditCard.expiration_date = req.body.expiration_date; // NEED TO ADJUST BY FRONT
     user.creditCard.ccv = req.body.ccv;
+    await req.session.save();
     await user.save();
     user.res.status(200).json({
       message: "Credit card updated successfully",
