@@ -14,8 +14,8 @@ const store = new MongoDBStore({
 });
 
 //view engine
-app.set("view engine", "ejs");
-app.set("views", "views");
+// app.set("view engine", "ejs");
+// app.set("views", "views");
 
 //setting up routes
 const shopRoutes = require("./routes/shop.routes");
@@ -37,7 +37,7 @@ app.use(
   })
 );
 
-app.use(flash());
+//app.use(flash());
 
 // for each request the session is added to the request
 app.use((req, res, next) => {
