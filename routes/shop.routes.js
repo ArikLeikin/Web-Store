@@ -57,10 +57,17 @@ router.post("/Yad2Update", isAuth, shopController.postYad2Update);
 
 router.get("/my-account", isAuth, shopController.getYourAccount);
 
-router.get("/cart", isAuth, shopController.getCart);
+router.get("/cart", isAuth, shopController.getCartPage);
+router.get("/cart/products", isAuth, shopController.getCart);
 router.post("/cart/add", isAuth, shopController.postCartAdd);
 router.post("/cart/delete", isAuth, shopController.postCartDelete);
 router.post("/cart/update", isAuth, shopController.updateCartProductQuantity);
+
+router.get("/wishlist", isAuth, shopController.getWishlistPage);
+router.get("/wishlist/products", isAuth, shopController.getWishlist);
+router.post("/wishlist/add", isAuth, shopController.postWishlistAdd);
+router.post("/wishlist/delete", isAuth, shopController.postWishlistDelete);
+router.post("/wishlist/update", isAuth, shopController.postWishlistUpdate);
 
 router.get("/payment", isAuth, shopController.getPayment);
 router.post("/payment", isAuth, shopController.postPayment);

@@ -73,7 +73,7 @@ const userSchema = new Schema({
   ],
   points: {
     type: Number,
-    default: 0,
+    default: 200,
   },
 });
 
