@@ -1,5 +1,3 @@
-
-
 // $(document).ready(function() {
 //   const productId = "64d0a26b2e852944de35e012"; // Replace with your product ID
 //   const url = `http://127.0.0.1:8080/api/product/${productId}`;
@@ -168,7 +166,7 @@
 //     const minusButtons = document.querySelectorAll(".minus");
 //     const plusButtons = document.querySelectorAll(".plus");
 //     const quantityInputs = document.querySelectorAll(".input-text.qty");
-  
+
 //     minusButtons.forEach((minusButton) => {
 //       minusButton.addEventListener("click", function () {
 //         const input = minusButton.nextElementSibling;
@@ -179,7 +177,7 @@
 //         }
 //       });
 //     });
-  
+
 //     plusButtons.forEach((plusButton) => {
 //       plusButton.addEventListener("click", function () {
 //         const input = plusButton.previousElementSibling;
@@ -189,33 +187,33 @@
 //       });
 //     });
 //   });
-  
+
 //   document.addEventListener("DOMContentLoaded", function () {
 //     const imageSlickItems = document.querySelectorAll(".productView-imageSlick");
 //     const mainImage = document.querySelector(".productView-image");
-  
+
 //     imageSlickItems.forEach(function (imageSlickItem, index) {
 //       imageSlickItem.addEventListener("click", function () {
 //         // Remove active class from all images
 //         imageSlickItems.forEach(function (item) {
 //           item.classList.remove("active");
 //         });
-  
+
 //         // Add active class to the clicked image
 //         imageSlickItem.classList.add("active");
-  
+
 //         // Update the main image source
 //         const imageSource = imageSlickItem.querySelector("img").src;
 //         mainImage.src = imageSource;
 //       });
 //     });
 //   });
-  
+
 //   document.addEventListener("DOMContentLoaded", function () {
 //     const favoriteButton = document.querySelector(".favorite-button");
 //     favoriteButton.addEventListener("click", function () {
 //       const heartIcon = favoriteButton.querySelector("i");
-  
+
 //       if (heartIcon.classList.contains("far")) {
 //         heartIcon.classList.remove("far");
 //         heartIcon.classList.add("fas"); // Change to filled heart icon
@@ -230,40 +228,41 @@
 
 // });
 
-
-//Quantity minus and plus buttons
-$(".minus").click(function () {
+$(document).ready(function () {
+  //Quantity minus and plus buttons
+  $(".minus").click(function () {
     const input = $(this).next();
     let quantity = parseInt(input.val());
     if (quantity > 1) {
-        quantity--;
-        input.val(quantity);
+      quantity--;
+      input.val(quantity);
     }
-});
+  });
 
-$(".plus").click(function () {
+  $(".plus").click(function () {
     const input = $(this).prev();
     let quantity = parseInt(input.val());
     quantity++;
     input.val(quantity);
-});
+  });
 
-// Image click handler
-$(".productView-imageSlick").click(function () {
+  // Image click handler
+  $(".productView-imageSlick").click(function () {
     $(".productView-imageSlick").removeClass("active");
     $(this).addClass("active");
     const imageSource = $(this).find("img").attr("src");
     $(".productView-image").attr("src", imageSource);
-});
+  });
 
-// Favorite button click handler
-$(".favorite-button").click(function () {
+  // Favorite button click handler
+  $(".favorite-button").click(function () {
     const heartIcon = $(this).find("i");
     if (heartIcon.hasClass("far")) {
-        heartIcon.removeClass("far").addClass("fas");
-        $(this).attr("aria-label", "Remove from favorites");
+      heartIcon.removeClass("far").addClass("fas");
+      $(this).attr("aria-label", "Remove from favorites");
     } else {
-        heartIcon.removeClass("fas").addClass("far");
-        $(this).attr("aria-label", "Add to favorites");
+      heartIcon.removeClass("fas").addClass("far");
+      $(this).attr("aria-label", "Add to favorites");
     }
+  });
 });
