@@ -5,6 +5,8 @@
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
     <link rel="stylesheet" href="../css/payment.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 
     <link
       rel="stylesheet"
@@ -187,6 +189,51 @@
     <main style="margin-top: 170px">
       <div class="center">
         <a href="cart.html">Go back to cart...</a>
+      </div>
+
+      <div>
+        <div class="container1">
+          <p style="text-align: center;">
+            Save money on your purchases by using your accumulated points for discounts!
+          </p>
+          <div class="square-container">
+            <div class="square" data-points="5">
+              <h2>5 Points</h2>
+              <p>$5 Discount</p>
+            </div>
+            <div class="square" data-points="50">
+              <h2>50 Points</h2>
+              <p>$50 Discount</p>
+            </div>
+            <div class="square" data-points="500">
+              <h2>500 Points</h2>
+              <p>$500 Discount</p>
+            </div>
+          </div>
+          <p style="text-align: center;  font-size: 13px;">
+            *You can use 100 points minimum in each purchase.
+          </p>
+        </div>
+        <div class="select-container">
+
+          <label for="inputPoints">Enter Points:</label>
+          <input type="number" id="inputPoints" placeholder="Enter points" />
+          <button class="check-button" onclick="checkPoints()">Check Points</button>
+
+          <label for="pointsSelect">Select Points to Use:</label>
+          <select id="pointsSelect">
+            <option value="100">100 points (100 dollars)</option>
+            <option value="150">150 points (150 dollars)</option>
+            <option value="200">200 points (200 dollars)</option>
+            <option value="250">250 points (250 dollars)</option>
+            <option value="300">300 points (300 dollars)</option>
+            <option value="350">350 points (350 dollars)</option>
+            <option value="400">400 points (400 dollars)</option>
+            <option value="450">450 points (450 dollars)</option>
+            <option value="500">500 points (500 dollars)</option>
+          </select>
+          <button class="use-button">Use my points!</button>
+        </div>
       </div>
 
       <div class="checkout">

@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="../css/uploadYad2.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -202,7 +204,7 @@
             placeholder="Product Name"
             required
           />
-          <div id="productName-error" class="error-message"></div>
+        
           <div style="display: flex; gap: 15px">
             <input
               class="third-input"
@@ -243,6 +245,7 @@
             class="next1 next action-button"
             value="Next"
           />
+          <div id="productName-error" class="error-message"></div>
           <div id="price-error" class="error-message"></div>
         </fieldset>
         <fieldset>
@@ -250,21 +253,26 @@
           <h3 class="fs-subtitle">step 2</h3>
 
           <input
-            type="text"
-            id="bankAccount"
-            name="bankAccount"
-            placeholder="Bank Account Number"
-            required
-          />
-          <div id="bankAccount-error" class="error-message"></div>
-          <input
+          type="text"
+          id="bankAccount"
+          name="bankAccount"
+          placeholder="Bank Account Number"
+          required
+        />
+        <div id="bankAccount-error" class="error-message"></div>
+
+
+          <input type="file" id="productPhotos" name="productPhotos[]" accept="image/jpeg, image/png, image/gif" multiple
+          rdequired />
+        <div i="productPhoto-error" class="error-message"></div>
+          <!-- <input
             type="file"
             id="productPhoto"
             name="productPhoto"
             accept="image/*"
             placeholder="Image"
             required
-          />
+          /> -->
           <input
             type="button"
             name="previous"

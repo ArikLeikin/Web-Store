@@ -183,6 +183,7 @@
     <main style="margin-top: 190px">     
       <div id="product-details"></div>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 
 <script>
   $(document).ready(function () {
     const productId = window.location.search.split("=")[1];
@@ -334,25 +335,7 @@
                               </span>
                             </section>
                           </div>
-                        </div>
-                        <div class="suggested-products">
-                          <section><h1>Customers Also Viewed</h1></section>
-                          <div class="item">
-                            <img
-                              src="http://img1.exportersindia.com/product_images/bc-small/dir_55/1620613/cannondale-jekyll-1-2011-mountain-bike-309779.jpg"
-                              alt="item"
-                            />
-                            <section class="title">
-                              <span class="title-desc"
-                                ><a href="#">Cannondale Jekyll 3 - Mountain</a></span
-                              >
-
-                              <span class="title-price"> $130</span>
-                            </section>
-                            <button class="add-to-cart" type="button">Add to cart</button>
-                          </div>
-                        </div>
-
+                        
                       `;
 
         productDetailsDiv.html(productHTML);
@@ -363,45 +346,524 @@
         console.error("Error fetching data:", error);
       },
     });
-
-    // Quantity manipulation
-    $(".minus").click(function () {
-      const input = $(this).next();
-      let quantity = parseInt(input.val());
-      if (quantity > 1) {
-        quantity--;
-        input.val(quantity);
-      }
-    });
-
-    $(".plus").click(function () {
-      const input = $(this).prev();
-      let quantity = parseInt(input.val());
-      quantity++;
-      input.val(quantity);
-    });
-
-    // Image selection and swapping
-    $(".productView-imageSlick").click(function () {
-      $(".productView-imageSlick").removeClass("active");
-      $(this).addClass("active");
-      const imageSource = $(this).find("img").attr("src");
-      $(".productView-image").attr("src", imageSource);
-    });
-
-    // Favorite button interaction
-    $(".favorite-button").click(function () {
-      const heartIcon = $(this).find("i");
-      if (heartIcon.hasClass("far")) {
-        heartIcon.removeClass("far").addClass("fas");
-        $(this).attr("aria-label", "Remove from favorites");
-      } else {
-        heartIcon.removeClass("fas").addClass("far");
-        $(this).attr("aria-label", "Add to favorites");
-      }
-    });
   });
+     
+</script> -->
+
+
+
+<script>
+//   $(document).ready(function () {
+//     const productId = window.location.search.split("=")[1];
+//     const url = `http://127.0.0.1:8080/api/product/${productId}`;
+//     const productDetailsDiv = $("#product-details");
+
+//     $.ajax({
+//         url: url,
+//         method: "GET",
+//         dataType: "json",
+//         success: function (data) {
+//             const {
+//                 title,
+//                 price,
+//                 description,
+//                 category,
+//                 condition,
+//                 manufacture_date,
+//                 supplier,
+//                 quantity,
+//                 image,
+//             } = data.data;
+
+//             const capitalizeFirstLetter = (str) => {
+//                 return str.charAt(0).toUpperCase() + str.slice(1);
+//             };
+
+//             const formattedManufactureDate = new Date(manufacture_date).toLocaleDateString('en-US', {
+//                 year: 'numeric',
+//                 month: 'long',
+//                 day: 'numeric',
+//             });
+
+//             const capitalizedTitle = capitalizeFirstLetter(title);
+//             const capitalizedCategory = capitalizeFirstLetter(category);
+//             const capitalizedCondition = capitalizeFirstLetter(condition);
+//             const capitalizedSupplier = capitalizeFirstLetter(supplier);
+
+//             const productView = document.createElement("div");
+//             productView.className = "productView";
+
+
+
+
+//             // Product images
+//             const productImagesDiv = document.createElement("div");
+//             productImagesDiv.className = "productView-images";
+
+//             const productImage = document.createElement("img");
+//             productImage.src = image;
+//             productImage.alt = capitalizedTitle;
+//             productImage.title = capitalizedTitle;
+//             productImage.dataset.sizes = "auto";
+//             productImage.className = "productView-image";
+
+//             // Image slider
+//             const imageSliderUl = document.createElement("ul");
+//             imageSliderUl.className = "productView-slick-slider";
+
+//             const slickTrackDiv = document.createElement("div");
+//             slickTrackDiv.className = "slick-track";
+
+//             // Create image slider elements
+//             const imageUrls = [
+//                 image,
+//                 "https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6783/10840__44648.1684056186.jpg?c=2",
+//                 "https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6784/10840_alt2__86991.1684056189.jpg?c=2",
+//                 "https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6785/10840_alt16__63979.1684056193.jpg?c=2"
+//             ];
+
+//             for (let i = 0; i < imageUrls.length; i++) {
+//                 const slickLi = document.createElement("li");
+//                 slickLi.className = i === 0 ? "productView-imageSlick active" : "productView-imageSlick";
+//                 slickLi.dataset.slickIndex = i;
+//                 slickLi.setAttribute("aria-hidden", "false");
+//                 slickLi.setAttribute("tabindex", "0");
+
+//                 const imgOption = document.createElement("img");
+//                 imgOption.src = imageUrls[i];
+//                 imgOption.alt = capitalizedTitle;
+//                 imgOption.title = capitalizedTitle;
+//                 imgOption.dataset.sizes = "auto";
+//                 imgOption.className = "productView-image-option";
+
+//                 slickLi.appendChild(imgOption);
+//                 slickTrackDiv.appendChild(slickLi);
+//             }
+
+//             imageSliderUl.appendChild(slickTrackDiv);
+//             productImagesDiv.appendChild(productImage);
+//             productImagesDiv.appendChild(imageSliderUl);
+
+//             productView.appendChild(productImagesDiv);
+
+//             // // Product images
+//             // const productImagesDiv = document.createElement("div");
+//             // productImagesDiv.className = "productView-images";
+
+//             // const productImage = document.createElement("img");
+//             // productImage.src = image;
+//             // productImage.alt = title;
+//             // productImage.title = title;
+//             // productImage.className = "productView-image";
+
+//             // // ... (create image slider elements as needed)
+
+//             // productImagesDiv.appendChild(productImage);
+//             // // ... (append image slider elements)
+
+//             // productView.appendChild(productImagesDiv);
+
+//             // Product information
+//             const productInfoDiv = document.createElement("div");
+//             productInfoDiv.className = "productView-info";
+
+//             const productTitle = document.createElement("h4");
+//             productTitle.className = "productView-name";
+//             productTitle.textContent = capitalizedTitle;
+
+//             const categoryPara = document.createElement("p");
+//             // categoryPara.innerHTML = `<strong>Category:</strong> ${capitalizedCategory}`;
+
+//             const conditionPara = document.createElement("p");
+//             // conditionPara.innerHTML = `<strong>Condition:</strong> ${capitalizedCondition}`;
+
+//             const priceSpan = document.createElement("span");
+//             priceSpan.className = "productView-price";
+//             priceSpan.textContent = `${price}$`;
+
+//             const manufactureDatePara = document.createElement("p");
+//             // manufactureDatePara.innerHTML = `<strong>Manufacturing Date:</strong> ${formattedManufactureDate}`;
+
+//             const supplierPara = document.createElement("p");
+//             // supplierPara.innerHTML = `<strong>Supplier:</strong> ${capitalizedSupplier}`;
+
+//             const quantityPara = document.createElement("p");
+//             // quantityPara.innerHTML = `<strong>Quantity:</strong> ${quantity}`;
+
+//             // Quantity section
+//             const productQtySection = document.createElement("section");
+//             productQtySection.className = "productView-qty";
+
+//             const quantityInputDiv = document.createElement("div");
+//             quantityInputDiv.className = "quantity-input";
+
+//             const minusButton = document.createElement("input");
+//             minusButton.className = "minus btn";
+//             minusButton.type = "button";
+//             minusButton.value = "-";
+
+//             const quantityInput = document.createElement("input");
+//             quantityInput.id = "quantity";
+//             quantityInput.className = "input-text qty text";
+//             quantityInput.size = "4";
+//             quantityInput.value = "1";
+
+//             const plusButton = document.createElement("input");
+//             plusButton.className = "plus btn";
+//             plusButton.type = "button";
+//             plusButton.value = "+";
+
+//             quantityInputDiv.appendChild(minusButton);
+//             quantityInputDiv.appendChild(quantityInput);
+//             quantityInputDiv.appendChild(plusButton);
+
+//             productQtySection.appendChild(quantityInputDiv);
+
+//             // Add to cart section
+//             const addToCartSection = document.createElement("section");
+//             addToCartSection.className = "add-to-cart-section";
+
+//             const addToCartButton = document.createElement("button");
+//             addToCartButton.className = "btn-ns-hot";
+//             const addToCartLink = document.createElement("a");
+//             addToCartLink.href = "#";
+//             addToCartLink.textContent = "ADD TO CART";
+//             addToCartButton.appendChild(addToCartLink);
+
+//             const favoriteButton = document.createElement("button");
+//             favoriteButton.className = "favorite-button";
+//             favoriteButton.setAttribute("aria-label", "Add to favorites");
+//             const heartIcon = document.createElement("i");
+//             heartIcon.className = "far fa-heart";
+//             favoriteButton.appendChild(heartIcon);
+
+//             addToCartSection.appendChild(addToCartButton);
+//             addToCartSection.appendChild(favoriteButton);
+
+//             // Product description section
+//             const productDescriptionSection = document.createElement("section");
+//             productDescriptionSection.className = "productView-details";
+
+//             const productDescriptionTitle = document.createElement("span");
+//             productDescriptionTitle.className = "productView-details-title";
+//             productDescriptionTitle.textContent = "Product Description";
+
+//             const productDescription = document.createElement("span");
+//             productDescription.className = "productView-details-description";
+//             productDescription.textContent = description;
+
+//             productDescriptionSection.appendChild(productDescriptionTitle);
+//             productDescriptionSection.appendChild(productDescription);
+
+//             // Append all sections to the product info div
+//             productInfoDiv.appendChild(productTitle);
+//             productInfoDiv.appendChild(categoryPara);
+//             productInfoDiv.appendChild(conditionPara);
+//             productInfoDiv.appendChild(priceSpan);
+//             productInfoDiv.appendChild(manufactureDatePara);
+//             productInfoDiv.appendChild(supplierPara);
+//             productInfoDiv.appendChild(quantityPara);
+//             productInfoDiv.appendChild(productQtySection);
+//             productInfoDiv.appendChild(addToCartSection);
+//             productInfoDiv.appendChild(productDescriptionSection);
+
+//             productView.appendChild(productInfoDiv);
+
+//             productDetailsDiv.append(productView);
+
+//             // Quantity minus and plus buttons
+//             $(".minus").click(function () {
+//                 const input = $(this).next();
+//                 let quantity = parseInt(input.val());
+//                 if (quantity > 1) {
+//                     quantity--;
+//                     input.val(quantity);
+//                 }
+//             });
+
+//             $(".plus").click(function () {
+//                 const input = $(this).prev();
+//                 let quantity = parseInt(input.val());
+//                 quantity++;
+//                 input.val(quantity);
+//             });
+
+//             // Image click handler
+//             $(".productView-imageSlick").click(function () {
+//                 $(".productView-imageSlick").removeClass("active");
+//                 $(this).addClass("active");
+//                 const imageSource = $(this).find("img").attr("src");
+//                 $(".productView-image").attr("src", imageSource);
+//             });
+
+//             // Favorite button click handler
+//             $(".favorite-button").click(function () {
+//                 const heartIcon = $(this).find("i");
+//                 if (heartIcon.hasClass("far")) {
+//                     heartIcon.removeClass("far").addClass("fas");
+//                     $(this).attr("aria-label", "Remove from favorites");
+//                 } else {
+//                     heartIcon.removeClass("fas").addClass("far");
+//                     $(this).attr("aria-label", "Add to favorites");
+//                 }
+//             });
+
+//             // Rest of your code
+//         },
+//         error: function (error) {
+//             console.error("Error fetching data:", error);
+//         },
+//     });
+// });
+
 </script>
+
+<script>
+  $(document).ready(function () {
+    const productId = window.location.search.split("=")[1];
+    const url = `http://127.0.0.1:8080/api/product/${productId}`;
+    const productDetailsDiv = $("#product-details");
+
+    $.ajax({
+        url: url,
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            const {
+                title,
+                price,
+                description,
+                quantity,
+                image,
+            } = data.data;
+
+            const capitalizeFirstLetter = (str) => {
+                return str.charAt(0).toUpperCase() + str.slice(1);
+            };
+
+            const productView = document.createElement("div");
+            productView.className = "productView";
+
+            // Product images
+            const productImagesDiv = document.createElement("div");
+            productImagesDiv.className = "productView-images";
+
+            const productImage = document.createElement("img");
+            productImage.src = image;
+            // productImage.alt = capitalizedTitle;
+            // productImage.title = capitalizedTitle;
+            productImage.dataset.sizes = "auto";
+            productImage.className = "productView-image";
+
+            // Image slider
+            const imageSliderUl = document.createElement("ul");
+            imageSliderUl.className = "productView-slick-slider";
+
+            const slickTrackDiv = document.createElement("div");
+            slickTrackDiv.className = "slick-track";
+
+            // Create image slider elements
+            const imageUrls = [
+                image,
+                "https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6783/10840__44648.1684056186.jpg?c=2",
+                "https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6784/10840_alt2__86991.1684056189.jpg?c=2",
+                "https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6785/10840_alt16__63979.1684056193.jpg?c=2"
+            ];
+
+            for (let i = 0; i < imageUrls.length; i++) {
+                const slickLi = document.createElement("li");
+                slickLi.className = i === 0 ? "productView-imageSlick active" : "productView-imageSlick";
+                slickLi.dataset.slickIndex = i;
+                slickLi.setAttribute("aria-hidden", "false");
+                slickLi.setAttribute("tabindex", "0");
+
+                const imgOption = document.createElement("img");
+                imgOption.src = imageUrls[i];
+                // imgOption.alt = capitalizedTitle;
+                // imgOption.title = capitalizedTitle;
+                imgOption.dataset.sizes = "auto";
+                imgOption.className = "productView-image-option";
+
+                slickLi.appendChild(imgOption);
+                slickTrackDiv.appendChild(slickLi);
+            }
+
+            imageSliderUl.appendChild(slickTrackDiv);
+            productImagesDiv.appendChild(productImage);
+            productImagesDiv.appendChild(imageSliderUl);
+
+            productView.appendChild(productImagesDiv);
+
+            // Product images
+            // const productImagesDiv = document.createElement("div");
+            // productImagesDiv.className = "productView-images";
+
+            // const productImage = document.createElement("img");
+            // productImage.src = image;
+            // productImage.alt = capitalizeFirstLetter(title);
+            // productImage.title = capitalizeFirstLetter(title);
+            // productImage.dataset.sizes = "auto";
+            // productImage.className = "productView-image";
+
+            // productImagesDiv.appendChild(productImage);
+            // productView.appendChild(productImagesDiv);
+
+            // Product information
+            const productInfoDiv = document.createElement("div");
+            productInfoDiv.className = "productView-info";
+
+            const productTitle = document.createElement("h4");
+            productTitle.className = "productView-name";
+            productTitle.textContent = capitalizeFirstLetter(title);
+
+            const priceSpan = document.createElement("span");
+            priceSpan.className = "productView-price";
+            priceSpan.textContent = `${price}$`;
+
+            // Quantity section
+            const productQtySection = document.createElement("section");
+            productQtySection.className = "productView-qty";
+
+            const quantityInputDiv = document.createElement("div");
+            quantityInputDiv.className = "quantity-input";
+
+            const minusButton = document.createElement("input");
+            minusButton.className = "minus btn";
+            minusButton.type = "button";
+            minusButton.value = "-";
+
+            const quantityInput = document.createElement("input");
+            quantityInput.id = "quantity";
+            quantityInput.className = "input-text qty text";
+            quantityInput.size = "4";
+            quantityInput.value = "1";
+
+            const plusButton = document.createElement("input");
+            plusButton.className = "plus btn";
+            plusButton.type = "button";
+            plusButton.value = "+";
+
+            quantityInputDiv.appendChild(minusButton);
+            quantityInputDiv.appendChild(quantityInput);
+            quantityInputDiv.appendChild(plusButton);
+
+            productQtySection.appendChild(quantityInputDiv);
+
+            // Add to cart section
+            const addToCartSection = document.createElement("section");
+            addToCartSection.className = "add-to-cart-section";
+
+            const addToCartButton = document.createElement("button");
+            addToCartButton.className = "btn-ns-hot";
+            const addToCartLink = document.createElement("a");
+            addToCartLink.href = "#";
+            addToCartLink.textContent = "ADD TO CART";
+            addToCartButton.appendChild(addToCartLink);
+
+            const favoriteButton = document.createElement("button");
+            favoriteButton.className = "favorite-button";
+            favoriteButton.setAttribute("aria-label", "Add to favorites");
+            const heartIcon = document.createElement("i");
+            heartIcon.className = "far fa-heart";
+            favoriteButton.appendChild(heartIcon);
+
+            addToCartSection.appendChild(addToCartButton);
+            addToCartSection.appendChild(favoriteButton);
+
+            // Product description section
+            const productDescriptionSection = document.createElement("section");
+            productDescriptionSection.className = "productView-details";
+
+            const productDescriptionTitle = document.createElement("span");
+            productDescriptionTitle.className = "productView-details-title";
+            productDescriptionTitle.textContent = "Product Description";
+
+            const productDescription = document.createElement("span");
+            productDescription.className = "productView-details-description";
+            productDescription.textContent = description;
+
+            productDescriptionSection.appendChild(productDescriptionTitle);
+            productDescriptionSection.appendChild(productDescription);
+
+            // Append all sections to the product info div
+            productInfoDiv.appendChild(productTitle);
+            productInfoDiv.appendChild(priceSpan);
+            productInfoDiv.appendChild(productQtySection);
+            productInfoDiv.appendChild(addToCartSection);
+            productInfoDiv.appendChild(productDescriptionSection);
+
+            productView.appendChild(productInfoDiv);
+
+            productDetailsDiv.append(productView);
+
+        },
+        error: function (error) {
+            console.error("Error fetching data:", error);
+        },
+    });
+});
+
+</script>
+
+
+<script>
+
+//     $(".minus").click(function () {
+//       const input = $(this).next();
+//       let quantity = parseInt(input.val());
+//       if (quantity > 1) {
+//         quantity--;
+//         input.val(quantity);
+//       }
+//     });
+
+//     $(".plus").click(function () {
+//       const input = $(this).prev();
+//       let quantity = parseInt(input.val());
+//       quantity++;
+//       input.val(quantity);
+//     });
+
+  
+//     $(".productView-imageSlick").click(function () {
+//       $(".productView-imageSlick").removeClass("active");
+//       $(this).addClass("active");
+//       const imageSource = $(this).find("img").attr("src");
+//       $(".productView-image").attr("src", imageSource);
+//     });
+
+//     $(".favorite-button").click(function () {
+//       const heartIcon = $(this).find("i");
+//       if (heartIcon.hasClass("far")) {
+//         heartIcon.removeClass("far").addClass("fas");
+//         $(this).attr("aria-label", "Remove from favorites");
+//       } else {
+//         heartIcon.removeClass("fas").addClass("far");
+//         $(this).attr("aria-label", "Add to favorites");
+//       }
+//     });
+
+  </script>
+
+</div>
+<div class="suggested-products">
+  <section><h1>Customers Also Viewed</h1></section>
+  <div class="item">
+    <img
+      src="http://img1.exportersindia.com/product_images/bc-small/dir_55/1620613/cannondale-jekyll-1-2011-mountain-bike-309779.jpg"
+      alt="item"
+    />
+    <section class="title">
+      <span class="title-desc"
+        ><a href="#">Cannondale Jekyll 3 - Mountain</a></span
+      >
+
+      <span class="title-price"> $130</span>
+    </section>
+    <button class="add-to-cart" type="button">Add to cart</button>
+  </div>
+</div>
+
 
 
 

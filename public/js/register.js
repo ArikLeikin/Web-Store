@@ -26,44 +26,55 @@ $(document).ready(function () {
     var passwordValidation = $("#password-validation").val();
 
 
-    const city = $("#firstName").val();
-    if (!validateName(city)) {
-      showError("#firstName-error", "First name can only contain letters.");
-      isValid = false;
-    }
+    // const city = $("#firstName").val();
+    // if (!validateName(city)) {
+    //   showError("#firstName-error", "First name can only contain letters.");
+    //   isValid = false;
+    // }
 
-    const street = $("#lastName").val();
-    if (!validateName(street)) {
-      showError("#lastName-error", "Last name can only contain letters.");
-      isValid = false;
-    }
+    // const street = $("#lastName").val();
+    // if (!validateName(street)) {
+    //   showError("#lastName-error", "Last name can only contain letters.");
+    //   isValid = false;
+    // }
 
-    const phone = $("#phoneNumber").val();
-    if (!validatePhoneNumber(phone)) {
-      showError("#phoneNumber-error", "Phone number must be 10 digits.");
-      isValid = false;
-    }
+    // const phone = $("#phoneNumber").val();
+    // if (!validatePhoneNumber(phone)) {
+    //   showError("#phoneNumber-error", "Phone number must be 10 digits.");
+    //   isValid = false;
+    // }
 
-    if (password.length < 5) {
-      $("#password-error")
-        .addClass("error-message")
-        .text(
-          "Password must be at least 5 characters long (including numbers)."
-        );
-    } else {
-      $("#password-error").removeClass("error-message").text("");
-    }
+    // if (password.length < 5) {
+    //   $("#password-error")
+    //     .addClass("error-message")
+    //     .text(
+    //       "Password must be at least 5 characters long (including numbers)."
+    //     );
+    // } else {
+    //   $("#password-error").removeClass("error-message").text("");
+    // }
 
-    if (passwordValidation.length < 5) {
-      $("#password-validation-error")
-        .addClass("error-message")
-        .text(
-          "Password validation must be at least 5 characters long (including numbers)."
-        );
-    } else {
-      $("#password-validation-error").removeClass("error-message").text("");
-    }
+    // if (passwordValidation.length < 5) {
+    //   $("#password-validation-error")
+    //     .addClass("error-message")
+    //     .text(
+    //       "Password validation must be at least 5 characters long (including numbers)."
+    //     );
+    // } else {
+    //   $("#password-validation-error").removeClass("error-message").text("");
+    // }
 
+<<<<<<< HEAD
+    // if (password !== passwordValidation) {
+    //   event.preventDefault(); // Prevent form submission
+    //   $("#password-validation-error")
+    //     .addClass("error-message")
+    //     .text("Passwords do not match.");
+    // } else {
+    //   $("#password-validation-error").removeClass("error-message").text("");
+    // }
+    
+=======
     if (password !== passwordValidation) {
       event.preventDefault(); // Prevent form submission
       $("#password-validation-error")
@@ -73,6 +84,7 @@ $(document).ready(function () {
       $("#password-validation-error").removeClass("error-message").text("");
     }
 
+>>>>>>> main
 
   });
 });
@@ -146,6 +158,47 @@ $(document).ready(function () {
     // Get the input values
     var password = $("#password").val();
     var confirmPassword = $("#password-validation").val();
+    var firstName = $("#firstName").val();
+    var lastName = $("#lastName").val();
+    var phoneNumber = $("#phoneNumber").val();
+
+
+
+    
+    if (!validateOnlyLetters(firstName)) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: "First name should be only letters.",
+      });
+      return;
+    }
+
+    if (!validateOnlyLetters(lastName)) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: "Last name should be only letters.",
+      });
+      return
+    }
+    function validateOnlyLetters(str) {
+      return /^[a-zA-Z]+$/.test(str);
+    }
+    
+    if (!validateTenDigits(phoneNumber)) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: "Phone number Must be 10 digits",
+      });
+      return
+    }
+
+      function validateTenDigits(str) {
+        return /^\d{10}$/.test(str);
+      }
+      
 
     // Check if passwords match
     if (password !== confirmPassword) {
