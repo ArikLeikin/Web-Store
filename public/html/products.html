@@ -101,7 +101,9 @@ combine
       <nav class="navbar">
         <ul class="menu">
           <li>
-            <a class="hasDropdown" href="#"
+            <a
+              class="hasDropdown header-title"
+              href="http://127.0.0.1:8080/products"
               >Categories <i class="fa fa-angle-down"></i
             ></a>
 
@@ -204,7 +206,7 @@ combine
             </ul>
           </li>
           <li>
-            <a class="hasDropdown" href="#"
+            <a class="hasDropdown header-title" href="#"
               >Ages<i class="fa fa-angle-down"></i
             ></a>
             <ul class="nav_container">
@@ -314,10 +316,12 @@ combine
                 <option value="books">Books</option>
                 <option value="science">Science</option>
                 <option value="puzzles">Puzzle Games</option>
-                <option value="Lego">Lego</option>
+                <option value="lego">Lego</option>
                 <option value="games">Games</option>
-                <option value="musickaraoke">Music & Karaoke</option>
+                <option value="musickaroke">Music & Karaoke</option>
                 <option value="dolls">Dolls</option>
+                <option value="outdoor" hidden>Outdoor</option>
+                <option value="yad2" hidden>Yad 2</option>
               </select>
             </td>
           </tr>
@@ -371,7 +375,7 @@ combine
 
         $(document).ready(function () {
           const productGrid = $("#productGrid");
-
+          $("#category-title").text("All Games");
           // Function to create the product HTML structure
           function createProductHTML(product) {
             const productItem = document.createElement("div");
@@ -535,12 +539,14 @@ combine
               { value: "books", label: "Books" },
               { value: "science", label: "Sience" },
               { value: "puzzles", label: "Puzzle Games" },
-              { value: "Lego", label: "Lego" },
+              { value: "lego", label: "Lego" },
               { value: "games", label: "Games" },
-              { value: "musickaraoke", label: "Music & Karaoke" },
+              { value: "musickaroke", label: "Music & Karaoke" },
               { value: "dolls", label: "Dolls" },
+              { value: "outdoor", label: "Outdoor" },
+              { value: "yad2", label: "Yad 2" },
+
               // { value: "10andbellow", label: "10$ & Bellow" },
-              // { value: "Yad2", label: "Yad 2" },
               // { value: "sale", label: "SALE" }
             ];
             const selectedOption = optionValues.find(
@@ -550,6 +556,8 @@ combine
 
             $("#game-type-filter").val(selectedOption.value);
             $("#game-type-filter").prop("disabled", true);
+            $("#category-title").text(selectedOption.label);
+
             fetchAndDisplayProducts();
           }
 
@@ -564,7 +572,6 @@ combine
           fetchAndDisplayProducts(); // Initial fetch and display
         });
       </script>
-      
     </main>
     <div id="myModal" class="modal">
       <div class="modal-content">
