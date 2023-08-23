@@ -147,12 +147,12 @@
     <section id="content-management">
       <h2>Content Management:</h2>
       <p>In order to learn abou the statistice of different age ranges in the countey according to areas - go to: <a
-          href="statistics.html">Statistics Page</a></p>
+          href="../html/statistics.html">Statistics Page</a></p>
       <!-- Need to add websocket managment -->
 
     </section>
 
-    <h2>Users Management:</h2>
+    <!-- <h2>Users Management:</h2>
     <table id="data-table">
       <thead>
         <tr>
@@ -210,11 +210,11 @@
           return row;
         }
       });
-    </script>
+    </script> -->
 
     <h2>Users Management:</h2>
 
-    <!-- Add User Form -->
+
     <!-- <form id="add-user-form">
       <label for="firstName">First Name:</label>
       <input type="text" id="firstName" name="firstName" required><br>
@@ -260,7 +260,7 @@
       <tbody></tbody>
     </table> -->
   
-    <!-- <script>
+     <!-- <script>
       $(document).ready(function () {
         const baseUrl = 'http://127.0.0.1:8080'; // Base URL
         const tableBody = $('#data-table tbody');
@@ -350,18 +350,90 @@
   
           // Clear the form fields after submission
           $(this).trigger('reset');
-        });
+        }); -->
   
-        // Delete user button click event
+        <!-- // Delete user button click event
         // tableBody.on('click', '.delete-button', function () {
         //   const userId = $(this).data('userid');
         //   deleteUser(userId);
         // });
       });
-    </script>
-         -->
+    </script> -->
+       
 
+    <form id="userForm">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" required><br><br>
       
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" required><br><br>
+      
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city" required><br><br>
+      
+      <label for="street">Street:</label>
+      <input type="text" id="street" name="street" required><br><br>
+      
+      <label for="country">Country:</label>
+      <input type="text" id="country" name="country" required><br><br>
+      
+      <label for="postalCode">Postal Code:</label>
+      <input type="text" id="postalCode" name="postalCode" required><br><br>
+      
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br><br>
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br><br>
+      
+      <button type="submit">Create User</button>
+  </form>
+
+  <script>
+      document.getElementById("userForm").addEventListener("submit", function(event) {
+          event.preventDefault();
+
+          const formData = new FormData(event.target);
+          const userData = {
+              name: {
+                  firstName: formData.get("firstName"),
+                  lastName: formData.get("lastName")
+              },
+              cart: { items: [] },
+              address: {
+                  city: formData.get("city"),
+                  street: formData.get("street"),
+                  country: formData.get("country"),
+                  postalCode: formData.get("postalCode")
+              },
+              creditCard: null,
+              points: 0,
+              permission: "user",
+              username: formData.get("username"),
+              password: formData.get("password"),
+              orderHistory: [],
+              phoneNumber: "null",
+              usedProducts: [],
+              wishlist: []
+          };
+
+          fetch("http://127.0.0.1:8080/create/user", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json"
+              },
+              body: JSON.stringify(userData)
+          })
+          .then(response => response.json())
+          .then(data => {
+              console.log("User created:", data);
+             
+          })
+          .catch(error => {
+              console.error("Error creating user:", error);
+          });
+      });
+  </script>
 
 
 
