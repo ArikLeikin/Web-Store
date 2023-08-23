@@ -3,7 +3,7 @@ const Order = require("../models/order");
 const Supplier = require("../models/supplier");
 const StoreLocations = require("../models/store-locations");
 const User = require("../models/user");
-const auth = require("../controllers/auth");
+const axios = require("axios");
 
 exports.create = async (req, res) => {
   try {
@@ -25,7 +25,7 @@ exports.create = async (req, res) => {
         await StoreLocations.create(newDocument);
         break;
       case "user":
-        await auth.postRegister(newDocument);
+        await axios.post("http://localhost/register", newDocument);
         break;
     }
     return res.status(200).json({
