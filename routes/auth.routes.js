@@ -13,7 +13,7 @@ router.post("/reset-password", authController.postResetPassword);
 router.get("/login", isLoggedIn, authController.getLogin);
 router.post("/login", authController.postLogin);
 
-router.post("/logout", authController.postLogout);
+router.get("/logout", authController.postLogout);
 
 router.get("/reset-password", authController.getResetPassword);
 router.post("/reset-password", authController.postResetPassword);
