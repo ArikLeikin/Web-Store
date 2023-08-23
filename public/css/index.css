@@ -76,7 +76,6 @@ body {
   font-weight: 600;
 }
 
-
 /* done nofar new */
 .navbar .menu a > .fa {
   font-weight: bold;
@@ -161,7 +160,7 @@ li:hover a.hasDropdown:after {
   text-overflow: ellipsis;
 }
 
-.container__listItem>div {
+.container__listItem > div {
   color: black;
   cursor: pointer;
   overflow: hidden;
@@ -257,7 +256,7 @@ li:hover a.hasDropdown:after {
   display: block;
   font-family: inherit;
   font-size: 1.1rem;
-  height: 1.1rem;
+  height: 2.5rem;
   margin: 0;
   padding: 0.7rem 1.8rem;
   width: 100%;
