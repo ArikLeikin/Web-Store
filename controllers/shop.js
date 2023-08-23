@@ -644,6 +644,17 @@ exports.postAddress = async (req, res) => {
   }
 };
 
+exports.getCreditCard = async (req, res) => {
+  try {
+    const creditCard = req.session.user.creditCard;
+    return res.status(200).json(creditCard);
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
+
 exports.creditCardUpdate = async (req, res) => {
   try {
     const user = req.session.user;
