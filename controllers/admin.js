@@ -12,6 +12,7 @@ exports.create = async (req, res) => {
     const expression = model[2];
     console.log(expression);
     const newDocument = req.body;
+    console.log(newDocument);
     // Assuming passed all required params in body
     switch (expression) {
       case "product":
