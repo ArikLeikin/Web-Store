@@ -152,7 +152,7 @@
 
     </section>
 
-    <h2>Users Management:</h2>
+     <!-- <h2>Users Management:</h2>
     <table id="data-table">
       <thead>
         <tr>
@@ -210,12 +210,12 @@
           return row;
         }
       });
-    </script>
+    </script> -->
 
 
 
-
-    <!-- <form id="add-user-form">
+<!-- 
+    <form id="add-user-form">
       <label for="firstName">First Name:</label>
       <input type="text" id="firstName" name="firstName" required><br>
       <label for="lastName">Last Name:</label>
@@ -291,7 +291,19 @@
   
         // Function to create a table row
         function createTableRow(data) {
-          // ... (same as in your existing code)
+          const row = $('<tr>');
+          row.append($('<td>').text(data.name.firstName));
+          row.append($('<td>').text(data.name.lastName));
+          row.append($('<td>').text(data.address.city));
+          row.append($('<td>').text(data.address.street));
+          row.append($('<td>').text(data.address.country));
+          row.append($('<td>').text(data.address.postalCode));
+          row.append($('<td>').text(data.username));
+          row.append($('<td>').text(data.email || '-'));
+          row.append($('<td>').text(data.phoneNumber || '-'));
+          row.append($('<td>').text(data.creditCard || '-'));
+          row.append($('<td>').text(data._id));
+          return row;
         }
   
         // Function to add a new user
@@ -358,8 +370,8 @@
         //   deleteUser(userId);
         // });
       });
-    </script>
-        -->
+    </script> -->
+       
 
     
     <h2>Products Management:</h2>
