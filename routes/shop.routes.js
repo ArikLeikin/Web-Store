@@ -73,6 +73,7 @@ router.post("/buy-it-now/:productId", isAuth, shopController.postBuyItNow);
 
 router.get("/address", isAuth, shopController.getAddress);
 router.post("/address", isAuth, shopController.postAddress);
+router.post("/creditcard", isAuth, shopController.getCreditCard);
 router.post("/creditcard", isAuth, shopController.creditCardUpdate);
 
 module.exports = router;
