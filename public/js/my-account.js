@@ -618,3 +618,36 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 1000);
   });
 });
+
+
+
+// Get a reference to the form fields
+const firstNameField = document.getElementById("firstName");
+const lastNameField = document.getElementById("lastName");
+const phoneNumberField = document.getElementById("phoneNumber");
+const countryField = document.getElementById("country");
+const cityField = document.getElementById("city");
+const streetField = document.getElementById("street");
+const streetNoField = document.getElementById("streetno");
+const zipcodeField = document.getElementById("zipcode");
+
+// Make an HTTP request to fetch the address data
+fetch("http://127.0.0.1:8080/address")
+  .then(response => response.json())
+  .then(addressData => {
+    // Check if address data exists
+    if (addressData) {
+      // Fill the form fields with the retrieved data
+      firstNameField.value = addressData.firstName;
+      lastNameField.value = addressData.lastName;
+      phoneNumberField.value = addressData.phoneNumber;
+      countryField.value = addressData.country;
+      cityField.value = addressData.city;
+      streetField.value = addressData.street;
+      streetNoField.value = addressData.streetno;
+      zipcodeField.value = addressData.postalCode;
+    }
+  })
+  .catch(error => {
+    console.error("Error fetching address data:", error);
+  });
