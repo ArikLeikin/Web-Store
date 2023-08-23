@@ -155,3 +155,21 @@ exports.delete = async (req, res) => {
     });
   }
 };
+
+exports.updatePointsUser = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const points = req.body.points;
+    const user = await User.find(id);
+    if (!user) {
+      res.status(400).json("User not found!");
+    }
+    user.points = points;
+    await user.save();
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
