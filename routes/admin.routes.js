@@ -4,6 +4,18 @@ const isAdmin = require("../middleware/isAdmin");
 
 const router = express.Router();
 const multer = require("multer");
+// const mongoose = require("mongoose");
+// const gridfs = require("mongoose-gridfs");
+// gridfs.mongo = mongoose.mongo;
+// const conn = await mongoose.createConnection(
+//   "mongodb+srv://" +
+//     process.env.DB_USERNAME +
+//     ":" +
+//     process.env.DB_PASSWORD +
+//     "@webstore.svlylpv.mongodb.net/"
+// );
+
+// const Image = gridfs(conn.db, mongoose.mongo);
 
 // CRUD
 // Configure multer for handling image uploads
@@ -28,6 +40,7 @@ router.post(
 router.get("/get/product/:id", isAdmin, adminController.get);
 router.post("/update/product/:id", isAdmin, adminController.update);
 router.post("/delete/product/:id", isAdmin, adminController.delete);
+router.get("/edit/product/:id", isAdmin, adminController.getProductUpdate);
 
 router.post("/create/order", isAdmin, adminController.create);
 router.get("/get/order/:id", isAdmin, adminController.get);
@@ -44,6 +57,6 @@ router.get("/get/user/:id", isAdmin, adminController.get);
 router.put("/update/user/:id", isAdmin, adminController.update);
 router.post("/delete/user/:id", isAdmin, adminController.delete);
 
-router.post("/points/user/:id", isAdmin, adminController.updatePointsUser); //TODO
+router.post("/points/user/:id", isAdmin, adminController.updatePointsUser);
 
 module.exports = router;
