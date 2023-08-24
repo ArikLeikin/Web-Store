@@ -2138,3 +2138,4 @@ $(document).ready(function () {
     sortProducts();
   });
 });
+
