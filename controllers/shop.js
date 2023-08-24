@@ -184,6 +184,7 @@ exports.uploadYad2 = async (req, res, next) => {
     image: req.body.productPhoto,
     condition: req.body.condition,
   });
+  //need to do
 };
 
 exports.getYad2Update = (req, res, next) => {
@@ -290,8 +291,8 @@ exports.postPayment = async (req, res, next) => {
 exports.postBuyItNow = async (req, res, next) => {
   try {
     const user = req.session.user;
-    const productId = req.session.productId;
-    const product = await Product.find(productId);
+    const productId = req.body.productId;
+    const product = await Product.find({ _id: productId });
     const newOrder = new Order({
       user_info: user._id,
       products: product.id,
@@ -314,7 +315,7 @@ exports.addProductToCart = async (req, res, next) => {
     if (user == null) {
       return res.status(401).json("Log in required");
     }
-    const productToAdd = await Product.findById(req.body.productId);
+    const productToAdd = await Product.findById({ _id: req.body.productId });
     if (productToAdd == null) {
       throw new Error("Product not found");
     }

@@ -17,7 +17,7 @@ module.exports = {
   getUser: async (req, res) => {
     try {
       const userId = req.params.userId;
-      const user = await User.findById(userId);
+      const user = await User.findById({ _id: userId });
       res.status(200).json(user);
     } catch (err) {
       res.status(500).json({ message: "Error retrieving user", error: err });
@@ -43,7 +43,7 @@ module.exports = {
   getSupplier: async (req, res) => {
     try {
       const supplierId = req.params.supplierId;
-      const supplier = await Supplier.findById(supplierId);
+      const supplier = await Supplier.findById({ _id: supplierId });
       res.status(200).json(supplier);
     } catch (err) {
       res
@@ -88,7 +88,7 @@ module.exports = {
   getOrder: async (req, res) => {
     try {
       const orderId = req.params.orderId;
-      const order = await Order.findById(orderId);
+      const order = await Order.findById({ _id: orderId });
       res.status(200).json(order);
     } catch (err) {
       res.status(500).json({ message: "Error retrieving order", error: err });
@@ -107,7 +107,7 @@ module.exports = {
   getAllOrdersByUser: async (req, res) => {
     try {
       const userId = req.params.userId;
-      const orders = await Order.find({ user: userId });
+      const orders = await Order.find({ user_info: userId });
       res.status(200).json(orders);
     } catch (err) {
       res.status(500).json({ message: "Error retrieving orders", error: err });
@@ -174,7 +174,7 @@ module.exports = {
     try {
       const prodId = req.params.productId;
       console.log(prodId);
-      const product = await Product.findById(prodId);
+      const product = await Product.findById({ _id: prodId });
       console.log(product);
       if (product != null)
         res.status(200).json({
