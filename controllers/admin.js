@@ -50,16 +50,16 @@ exports.get = async (req, res) => {
     let returnedObject;
     switch (expression) {
       case "product":
-        returnedObject = await Product.find(id);
+        returnedObject = await Product.find({ _id: id });
         break;
       case "order":
-        returnedObject = await Order.find(id);
+        returnedObject = await Order.find({ _id: id });
         break;
       case "store-locations":
-        returnedObject = await StoreLocations.find(id);
+        returnedObject = await StoreLocations.find({ _id: id });
         break;
       case "user":
-        returnedObject = await User.find(id);
+        returnedObject = await User.find({ _id: id });
         break;
       default:
         // Handle cases where the expression doesn't match any of the expected values
@@ -131,16 +131,16 @@ exports.delete = async (req, res) => {
     console.log(expression);
     switch (expression) {
       case "product":
-        await Product.findOneAndDelete(id);
+        await Product.findOneAndDelete({ _id: id });
         break;
       case "order":
-        await Order.findOneAndDelete(id);
+        await Order.findOneAndDelete({ _id: id });
         break;
       case "store-locations":
-        await StoreLocations.findOneAndDelete(id);
+        await StoreLocations.findOneAndDelete({ _id: id });
         break;
       case "user":
-        await User.findOneAndDelete(id);
+        await User.findOneAndDelete({ _id: id });
         break;
       default:
         // Handle cases where the expression doesn't match any of the expected values
@@ -164,7 +164,7 @@ exports.updatePointsUser = async (req, res, next) => {
   try {
     const id = req.params.id;
     const points = req.body.points;
-    const user = await User.find(id);
+    const user = await User.find({ _id: id });
     if (!user) {
       res.status(400).json("User not found!");
     }
