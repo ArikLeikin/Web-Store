@@ -4,6 +4,7 @@ const isAuth = require("../middleware/isAuth");
 
 const router = express.Router();
 
+router.get("/api/current-user");
 router.get("/api/user/:userId", apiController.getUser);
 router.get("/api/users", apiController.getAllUsers);
 
