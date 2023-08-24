@@ -272,77 +272,49 @@ function clearErrorMessages() {
 
 
 
-let selectedPoints = 0;
+// let selectedPoints = 0;
 
-function checkPoints() {
-  const inputValue = parseInt(document.getElementById("inputPoints").value);
-  const selectElement = document.getElementById("pointsSelect");
-  const useButton = document.getElementById("useButton");
+// function checkPoints() {
+//   const inputValue = parseInt(document.getElementById("inputPoints").value);
+//   const selectElement = document.getElementById("pointsSelect");
+//   const useButton = document.getElementById("useButton");
 
-  if (!isNaN(inputValue) && inputValue >= 100) {
-    enableOptions(inputValue);
-    selectElement.disabled = false;
-    useButton.disabled = true;
-    alert("Points checked successfully. Now select points to use.");
-  } else {
-    disableOptions();
-    selectElement.disabled = true;
-    useButton.disabled = true;
-    alert("Please enter a value of at least 100 points.");
-  }
-}
-
-function enableOptions(maxValue) {
-  const options = document.querySelectorAll("#pointsSelect option");
-  options.forEach(option => {
-    const value = parseInt(option.value);
-    option.disabled = isNaN(value) || value > maxValue;
-  });
-}
-
-function disableOptions() {
-  const options = document.querySelectorAll("#pointsSelect option");
-  options.forEach(option => {
-    option.disabled = true;
-  });
-}
-
-
-// document.addEventListener("DOMContentLoaded", async function () {
-//   try {
-//     // Fetch address data from the server
-//     const response = await fetch("http://127.0.0.1:8080/address");
-//     if (response.ok) {
-//       const addressData = await response.json();
-
-//       // Check if address data exists
-//       if (addressData) {
-//         // Fill the form fields with the fetched address data
-//         document.getElementById("firstname").value = addressData.firstname;
-//         document.getElementById("lastname").value = addressData.lastname;
-//         document.getElementById("phone").value = addressData.phone;
-//         document.getElementById("country").value = addressData.country;
-//         document.getElementById("city").value = addressData.city;
-//         document.getElementById("zipcode").value = addressData.zipcode;
-//         document.getElementById("street").value = addressData.street;
-//         document.getElementById("street_number").value = addressData.streetNumber;
-//       }
-//     } else {
-//       console.error("Failed to fetch address data.");
-//     }
-//   } catch (error) {
-//     console.error("An error occurred:", error);
+//   if (!isNaN(inputValue) && inputValue >= 100) {
+//     enableOptions(inputValue);
+//     selectElement.disabled = false;
+//     useButton.disabled = true;
+//     alert("Points checked successfully. Now select points to use.");
+//   } else {
+//     disableOptions();
+//     selectElement.disabled = true;
+//     useButton.disabled = true;
+//     alert("Please enter a value of at least 100 points.");
 //   }
-// });
+// }
+
+// function enableOptions(maxValue) {
+//   const options = document.querySelectorAll("#pointsSelect option");
+//   options.forEach(option => {
+//     const value = parseInt(option.value);
+//     option.disabled = isNaN(value) || value > maxValue;
+//   });
+// }
+
+// function disableOptions() {
+//   const options = document.querySelectorAll("#pointsSelect option");
+//   options.forEach(option => {
+//     option.disabled = true;
+//   });
+// }
 
 
-// Fetch address data from the server
+
+
+
 fetch('http://127.0.0.1:8080/address')
   .then(response => response.json())
-  .then(data => {
-    // Check if address data exists
+  .then(data => {  
     if (data) {
-      // Fill form fields with fetched address data
       document.getElementById('firstname').value = data.firstName;
       document.getElementById('lastname').value = data.lastName;
       document.getElementById('phone').value = data.phoneNumber;
@@ -352,7 +324,6 @@ fetch('http://127.0.0.1:8080/address')
       document.getElementById('street').value = data.street;
       document.getElementById('street_number').value = data.streetNumber;
 
-      // Display fetched address data
       console.log('Fetched Address Data:', data);
     } else {
       console.log('No address data found.');
@@ -361,3 +332,55 @@ fetch('http://127.0.0.1:8080/address')
   .catch(error => {
     console.error('Error fetching address data:', error);
   });
+
+
+
+  $(document).ready(function () {
+    // Perform AJAX request
+    $.ajax({
+      url: 'http://127.0.0.1:8080/creditcard',
+      type: 'GET',
+      dataType: 'json', // Assuming the response is in JSON format
+      success: function (data) {
+        // Assuming data fields are named accordingly
+        $('#card-number').val(data.cardNumber);
+        $('#card-holder').val(data.cardHolder);
+        $('#card-expiration-month').val(data.expiration_date);
+        $('#card-ccv').val(data.ccv);
+      },
+      error: function () {
+        // Handle error if the request fails
+        console.log('Error fetching credit card data');
+      },
+    });
+  });
+
+
+
+  const pointsNumberSpan = document.getElementById('pointsNumber');
+  const pointLabel = document.querySelector('.pointlabel');
+  
+  $.ajax({
+    url: 'http://127.0.0.1:8080/api/current-user',
+    dataType: 'json',
+    success: function(data) {
+      const userPoints = data.points || 0; 
+      pointsNumberSpan.textContent = userPoints;
+      pointLabel.textContent = `You have ${userPoints} points - you can redeem up to 500 points with each purchase`;
+      updatePointsDropdown();
+    },
+    error: function(error) {
+      console.error('Error fetching user data:', error);
+    }
+  });
+  
+function updatePointsDropdown() {
+  var pointsSelect = document.getElementById("pointsSelect");
+  var options = pointsSelect.options;
+  var pointsNumber = parseInt(document.getElementById("pointsNumber").textContent);
+
+  for (var i = 0; i < options.length; i++) {
+    var optionValue = parseInt(options[i].value);
+    options[i].disabled = pointsNumber < optionValue;
+  }
+}
