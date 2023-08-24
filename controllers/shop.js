@@ -176,6 +176,8 @@ exports.getUploadYad2 = (req, res, next) => {
 
 exports.uploadYad2 = async (req, res, next) => {
   const newProduct = new Product({
+    quantity: 1,
+    category: req.body.category,
     title: req.body.productName,
     price: req.body.price,
     description: req.body.description,

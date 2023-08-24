@@ -6,10 +6,10 @@ const StoreLocations = require("../models/store-locations");
 
 module.exports = {
   getCurrent: async (req, res) => {
-    try{
+    try {
       const user = req.session.user;
       res.status(200).json(user);
-    }catch(error){
+    } catch (error) {
       res.status(500).json({ message: "Error retrieving user", error: err });
     }
   },
@@ -19,6 +19,13 @@ module.exports = {
       const userId = req.params.userId;
       const user = await User.findById(userId);
       res.status(200).json(user);
+    } catch (err) {
+      res.status(500).json({ message: "Error retrieving user", error: err });
+    }
+  },
+  getCurrentUser: async (req, res) => {
+    try {
+      res.status(200).json(req.session.user);
     } catch (err) {
       res.status(500).json({ message: "Error retrieving user", error: err });
     }
