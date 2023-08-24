@@ -426,31 +426,31 @@
 
 
       <script>
-        $(document).ready(function () {
+   $(document).ready(function () {
   $(".submit").click(function () {
-    var productName = $("#productName").val();
+    var title = $("#productName").val();
     var price = $("#price").val();
     var condition = $("#condition").val();
-    var age = $("#age").val();
+    var age_range = $("#age").val();
     var bankAccount = $("#bankAccount").val();
 
     // Gather product photos
-    var productPhotos = $("#productPhotos")[0].files;
+    var image = $("#productPhotos")[0].files;
     var formData = new FormData();
 
-    formData.append("productName", productName);
+    formData.append("title", title);
     formData.append("price", price);
     formData.append("condition", condition);
-    formData.append("age", age);
+    formData.append("age_range", age_range);
     formData.append("bankAccount", bankAccount);
 
     // Append product photos to formData
-    for (var i = 0; i < productPhotos.length; i++) {
-      formData.append("productPhotos[]", productPhotos[i]);
+    for (var i = 0; i < image.length; i++) {
+      formData.append("image[]", image[i]);
     }
 
     $.ajax({
-      url: "http://127.0.0.1:8080//uploadYad2", // Change this URL to the actual endpoint
+      url: "http://127.0.0.1:8080/uploadYad2", 
       type: "POST",
       data: formData,
       contentType: false,
