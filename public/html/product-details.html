@@ -642,11 +642,80 @@
                   $(this).attr("aria-label", "Add to favorites");
                 }
               });
+
+
+     $(".favorite-button").click(function () {
+    const productId = window.location.search.split("=")[1];
+    const heartIcon = $(this).find("i");
+    const isFavorite = heartIcon.hasClass("fas");
+
+    if (!isFavorite) {
+      // Add to wishlist logic
+      addToWishlist(productId);
+      
+      // Toggle the heart icon
+      heartIcon.toggleClass("fas far");
+      $(this).attr("aria-label", "Remove from favorites");
+    }
+  });
+
+  function addToWishlist(productId) {
+    // You can use Ajax here to send a request to the server
+    $.ajax({
+      url: "http://127.0.0.1:8080/wishlist/products",
+      method: "POST",
+      data: {
+        productId: productId,
+      },
+      success: function (response) {
+        console.log("Product added to wishlist:", response);
+      },
+      error: function (error) {
+        console.error("Error adding product to wishlist:", error);
+      },
+    });
+  }
+
+              
             },
             error: function (error) {
               console.error("Error fetching data:", error);
             },
           });
+
+
+
+
+          
+  // Add to cart button click handler
+  $(".btn-ns-hot").click(function (event) {
+    event.preventDefault(); // Prevent the default form submission
+    
+    const productId = window.location.search.split("=")[1];
+    const quantity = $("#quantity").val();
+
+    addToCart(productId, quantity);
+  });
+
+  function addToCart(productId, quantity) {
+    // You can use Ajax here to send a request to add the product to the cart
+    $.ajax({
+      url: "http://127.0.0.1:8080/cart/add",
+      method: "POST",
+      data: {
+        productId: productId,
+        quantity: quantity
+      },
+      success: function (response) {
+        console.log("Product added to cart:", response);
+        // You can update the cart count or show a success message here
+      },
+      error: function (error) {
+        console.error("Error adding product to cart:", error);
+      },
+    });
+  }
+
         });
       </script>
 

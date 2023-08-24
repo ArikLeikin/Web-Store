@@ -415,6 +415,54 @@
           />
         </fieldset>
       </form>
+
+      <script>
+   $(document).ready(function () {
+  // Capture the form submission event
+  $("#msform").on("submit", function (event) {
+    event.preventDefault();
+
+    // Get the form inputs
+    var category = $("#category").val();
+    var ages = $("#ages").val();
+    var productName = $("#productName").val();
+    var price = $("#price").val();
+    var condition = $("#condition").val();
+    var productPhotos = $("#productPhotos")[0].files; // Assuming single file selection for simplicity
+
+    // Create a FormData object to send the data
+    var formData = new FormData();
+    formData.append("category", category);
+    formData.append("ages", ages);
+    formData.append("productName", productName);
+    formData.append("price", price);
+    formData.append("condition", condition);
+    for (var i = 0; i < productPhotos.length; i++) {
+      formData.append("productPhotos[]", productPhotos[i]);
+    }
+
+    // Send the data to the server
+    $.ajax({
+      url: "http://127.0.0.1:8080//supplier", // Change this URL to the appropriate server endpoint
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (response) {
+        // Handle success response
+        console.log("Product added successfully:", response);
+        // You might want to show a success message to the user or redirect them
+      },
+      error: function (xhr, status, error) {
+        // Handle error response
+        console.error("Error adding product:", error);
+        // You might want to show an error message to the user
+      },
+    });
+  });
+});
+
+      </script>
     </main>
     <div id="myModal" class="modal">
       <div class="modal-content">
