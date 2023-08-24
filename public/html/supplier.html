@@ -304,12 +304,8 @@
         <fieldset>
           <h2 class="fs-title">Enter Your Details</h2>
           <h3 class="fs-subtitle">step 1</h3>
-          <!-- <input type="text" id="companyName" name="companyName" placeholder="Company's Name" required />
-        <div id="companyName-error" class="error-message"></div> -->
+
           <select class="form-select" id="category" name="category" required>
-            <!-- <option value="" disabled selected hidden>
-              Product's Category
-            </option> -->
             <option value="board">Board Games</option>
             <option value="riding">Riding Toys</option>
             <option value="book">Books</option>
@@ -408,7 +404,7 @@
             value="Previous"
           />
           <input
-            type="button"
+            type="submit"
             name="submit"
             class="submit action-button"
             value="Submit"
@@ -417,51 +413,50 @@
       </form>
 
       <script>
-   $(document).ready(function () {
-  // Capture the form submission event
-  $("#msform").submit(function (event) {
-    event.preventDefault();
+        $(document).ready(function () {
+          // Capture the form submission event
+          $("#msform").submit(function (event) {
+            event.preventDefault();
 
-    // Get the form inputs
-    var category = $("#category").val();
-    var age_range = $("#ages").val();
-    var title = $("#productName").val();
-    var price = $("#price").val();
-    var condition = $("#condition").val();
-    var image = $("#productPhotos")[0].files;
+            // Get the form inputs
+            var category = $("#category").val();
+            var age_range = $("#ages").val();
+            var title = $("#productName").val();
+            var price = $("#price").val();
+            var condition = $("#condition").val();
+            var image = $("#productPhotos")[0].files;
 
-    // Create a FormData object to send the data
-    var formData = new FormData();
-    formData.append("category", category);
-    formData.append("age_range", age_range);
-    formData.append("title", title);
-    formData.append("price", price);
-    formData.append("condition", condition);
-    for (var i = 0; i < image.length; i++) {
-      formData.append("productPhotos[]", image[i]);
-    }
+            // Create a FormData object to send the data
+            var formData = new FormData();
+            formData.append("category", category);
+            formData.append("age_range", age_range);
+            formData.append("title", title);
+            formData.append("price", price);
+            formData.append("condition", condition);
+            for (var i = 0; i < image.length; i++) {
+              formData.append("productPhotos[]", image[i]);
+            }
 
-    // Send the data to the server
-    $.ajax({
-      url: "http://127.0.0.1:8080/supplier",
-      type: "POST",
-      data: formData,
-      contentType: false,
-      processData: false,
-      success: function (response) {
-        // Handle success response
-        console.log("Product added successfully:", response);
-        // You might want to show a success message to the user or redirect them
-      },
-      error: function (xhr, status, error) {
-        // Handle error response
-        console.error("Error adding product:", error);
-        // You might want to show an error message to the user
-      },
-    });
-  });
-});
-
+            // Send the data to the server
+            $.ajax({
+              url: "http://127.0.0.1:8080/supplier",
+              type: "POST",
+              data: formData,
+              contentType: false,
+              processData: false,
+              success: function (response) {
+                // Handle success response
+                console.log("Product added successfully:", response);
+                // You might want to show a success message to the user or redirect them
+              },
+              error: function (xhr, status, error) {
+                // Handle error response
+                console.error("Error adding product:", error);
+                // You might want to show an error message to the user
+              },
+            });
+          });
+        });
       </script>
     </main>
     <div id="myModal" class="modal">
