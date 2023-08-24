@@ -299,38 +299,38 @@ $(document).ready(function () {
   });
 });
 
-$(document).ready(function () {
-  $("#uploadForm").submit(function (event) {
-    const inputElement = $("#productPhotos")[0];
-    const selectedFiles = inputElement.files;
+// $(document).ready(function () {
+//   $("#uploadForm").submit(function (event) {
+//     const inputElement = $("#productPhotos")[0];
+//     const selectedFiles = inputElement.files;
 
-    // Check if at least one photo is uploaded
-    if (selectedFiles.length < 1) {
-      event.preventDefault();
-      Swal.fire("Error", "Please upload at least one photo.", "error");
-      return;
-    }
+//     // Check if at least one photo is uploaded
+//     if (selectedFiles.length < 1) {
+//       event.preventDefault();
+//       Swal.fire("Error", "Please upload at least one photo.", "error");
+//       return;
+//     }
 
-    // Check if the number of photos exceeds the maximum limit
-    if (selectedFiles.length > 4) {
-      event.preventDefault();
-      Swal.fire("Error", "You can upload a maximum of four photos.", "error");
-      return;
-    }
+//     // Check if the number of photos exceeds the maximum limit
+//     if (selectedFiles.length > 4) {
+//       event.preventDefault();
+//       Swal.fire("Error", "You can upload a maximum of four photos.", "error");
+//       return;
+//     }
 
-    // Check file types for each selected photo
-    for (let i = 0; i < selectedFiles.length; i++) {
-      const file = selectedFiles[i];
-      const fileType = file.type;
+//     // Check file types for each selected photo
+//     for (let i = 0; i < selectedFiles.length; i++) {
+//       const file = selectedFiles[i];
+//       const fileType = file.type;
 
-      if (fileType !== "image/jpeg" && fileType !== "image/png" && fileType !== "image/gif") {
-        event.preventDefault();
-        Swal.fire("Error", "Unsupported file type. Please upload JPG, PNG, or GIF images.", "error");
-        return;
-      }
-    }
-  });
-});
+//       if (fileType !== "image/jpeg" && fileType !== "image/png" && fileType !== "image/gif") {
+//         event.preventDefault();
+//         Swal.fire("Error", "Unsupported file type. Please upload JPG, PNG, or GIF images.", "error");
+//         return;
+//       }
+//     }
+//   });
+// });
 
 
 // Michal

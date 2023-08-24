@@ -424,28 +424,55 @@
       </form>
 
       <script>
-        $(document).ready(function () {
-          $(".submit").click(function () {
-            var productName = $("#productName").val();
-            var price = $("#price").val();
-            var condition = $("#condition").val();
-            var age = $("#age").val();
-            var bankAccount = $("#bankAccount").val();
 
-            // Gather product photos
-            var productPhotos = $("#productPhotos")[0].files;
-            var formData = new FormData();
+   $(document).ready(function () {
+  $(".submit").click(function () {
+    var title = $("#productName").val();
+    var price = $("#price").val();
+    var condition = $("#condition").val();
+    var age_range = $("#age").val();
+    var bankAccount = $("#bankAccount").val();
 
-            formData.append("productName", productName);
-            formData.append("price", price);
-            formData.append("condition", condition);
-            formData.append("age", age);
-            formData.append("bankAccount", bankAccount);
+    // Gather product photos
+    var image = $("#productPhotos")[0].files;
+    var formData = new FormData();
 
-            // Append product photos to formData
-            for (var i = 0; i < productPhotos.length; i++) {
-              formData.append("productPhotos[]", productPhotos[i]);
-            }
+    formData.append("title", title);
+    formData.append("price", price);
+    formData.append("condition", condition);
+    formData.append("age_range", age_range);
+    formData.append("bankAccount", bankAccount);
+
+    // Append product photos to formData
+    for (var i = 0; i < image.length; i++) {
+      formData.append("image[]", image[i]);
+    }
+
+    $.ajax({
+      url: "http://127.0.0.1:8080/uploadYad2", 
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (response) {
+        // Handle the response
+        if (response.success) {
+          // Success message or redirection
+          alert("Product uploaded successfully!");
+          // You can also redirect the user to a success page
+          // window.location.href = "/uploadSuccess";
+        } else {
+          // Error handling
+          alert("Error uploading product. Please try again later.");
+        }
+      },
+      error: function () {
+        // Handle error
+        alert("An error occurred while uploading the product.");
+      },
+    });
+  });
+});
 
             $.ajax({
               url: "http://127.0.0.1:8080//uploadYad2", // Change this URL to the actual endpoint

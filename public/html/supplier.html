@@ -418,6 +418,7 @@
           $("#msform").submit(function (event) {
             event.preventDefault();
 
+
             // Get the form inputs
             var category = $("#category").val();
             var age_range = $("#ages").val();
@@ -426,16 +427,19 @@
             var condition = $("#condition").val();
             var image = $("#productPhotos")[0].files;
 
-            // Create a FormData object to send the data
-            var formData = new FormData();
-            formData.append("category", category);
-            formData.append("age_range", age_range);
-            formData.append("title", title);
-            formData.append("price", price);
-            formData.append("condition", condition);
-            for (var i = 0; i < image.length; i++) {
-              formData.append("productPhotos[]", image[i]);
-            }
+    // Create a FormData object to send the data
+    var formData = new FormData();
+    formData.append("category", category);
+    formData.append("age_range", age_range);
+    formData.append("title", title);
+    formData.append("price", price);
+    formData.append("condition", condition);
+    for (var i = 0; i < image.length; i++) {
+      formData.append("image[]", image[i]);
+    }
+
+
+        
 
             // Send the data to the server
             $.ajax({
