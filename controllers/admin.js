@@ -94,16 +94,16 @@ exports.update = async (req, res) => {
     // Assuming passed same names as written in schema
     switch (expression) {
       case "product":
-        await Product.findOneAndUpdate(id, updated);
+        await Product.findOneAndUpdate({ _id: id }, updated);
         break;
       case "order":
-        await Order.findOneAndUpdate(id, updated);
+        await Order.findOneAndUpdate({ _id: id }, updated);
         break;
       case "store-locations":
-        await StoreLocations.findOneAndUpdate(id, updated);
+        await StoreLocations.findOneAndUpdate({ _id: id }, updated);
         break;
       case "user":
-        await User.findOneAndUpdate(id, updated);
+        await User.findOneAndUpdate({ _id: id }, updated);
         break;
       default:
         // Handle cases where the expression doesn't match any of the expected values
