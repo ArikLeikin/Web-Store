@@ -361,3 +361,25 @@ fetch('http://127.0.0.1:8080/address')
   .catch(error => {
     console.error('Error fetching address data:', error);
   });
+
+
+
+  $(document).ready(function () {
+    // Perform AJAX request
+    $.ajax({
+      url: 'http://127.0.0.1:8080/creditcard',
+      type: 'GET',
+      dataType: 'json', // Assuming the response is in JSON format
+      success: function (data) {
+        // Assuming data fields are named accordingly
+        $('#card-number').val(data.cardNumber);
+        $('#card-holder').val(data.cardHolder);
+        $('#card-expiration-month').val(data.expiration_date);
+        $('#card-ccv').val(data.ccv);
+      },
+      error: function () {
+        // Handle error if the request fails
+        console.log('Error fetching credit card data');
+      },
+    });
+  });
