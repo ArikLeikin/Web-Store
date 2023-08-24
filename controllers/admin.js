@@ -177,3 +177,13 @@ exports.updatePointsUser = async (req, res, next) => {
     });
   }
 };
+
+exports.getProductUpdate = async (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/product-update.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};

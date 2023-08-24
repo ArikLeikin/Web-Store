@@ -20,11 +20,12 @@ const ProductSchema = new Schema({
     type: String,
     required: true,
   },
-  image: {
-    // NEED TO CHECK if url/file
-    type: [String],
-    required: true,
-  },
+  image: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "GridFSImage", // Reference to GridFS files
+    },
+  ],
   condition: {
     // new/used
     type: String,

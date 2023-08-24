@@ -2,6 +2,9 @@ const path = require("path");
 const fs = require("fs");
 const Product = require("../models/product");
 const Order = require("../models/order");
+// const mongoose = require("mongoose");
+// const gridfs = require("mongoose-gridfs");
+// gridfs.mongo = mongoose.mongo;
 
 exports.getHomePage = (req, res, next) => {
   const file = path.join(__dirname, "../public/html/main.html");
@@ -175,15 +178,26 @@ exports.getUploadYad2 = (req, res, next) => {
 };
 
 exports.uploadYad2 = async (req, res, next) => {
-  const newProduct = new Product({
-    quantity: 1,
-    category: req.body.category,
-    title: req.body.productName,
-    price: req.body.price,
-    description: req.body.description,
-    image: req.body.productPhoto,
-    condition: req.body.condition,
-  });
+  try {
+    //console.log("Hello");
+    const newProduct = new Product({
+      quantity: 1,
+      category: req.body.category,
+      title: req.body.title,
+      price: req.body.price,
+      description: req.body.description,
+      image: req.body.image,
+      condition: req.body.condition,
+      added_date: req.body.added_date,
+      age_range: req.body.age_range,
+    });
+    await newProduct.save();
+    res.status(200).json({ message: "Upload success!" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+
   //need to do
 };
 
@@ -678,22 +692,60 @@ exports.creditCardUpdate = async (req, res) => {
 };
 
 exports.postSupplier = async (req, res) => {
-  const { price, ages, category, companyName, productName, condition } =
-    req.body;
-  const images = req.files.map((file) => file.buffer);
-  const checkIfProductExist = await Product.find({ title: productName });
-  if (checkIfProductExist) {
-    return res.status(401).json({ message: "Product name already in use." });
+  const {
+    price,
+    age_range,
+    category,
+    title,
+    condition,
+    quantity,
+    added_date,
+    description,
+  } = req.body;
+  try {
+    const checkIfProductExist = await Product.find({ title: title });
+    console.log(checkIfProductExist);
+    if (checkIfProductExist.length != 0) {
+      return res.status(401).json({ message: "Product name already in use." });
+    }
+    // const conn = await mongoose.createConnection(
+    //   "mongodb+srv://" +
+    //     process.env.DB_USERNAME +
+    //     ":" +
+    //     process.env.DB_PASSWORD +
+    //     "@webstore.svlylpv.mongodb.net/"
+    // );
+
+    // let Image = gridfs(conn.db, mongoose.mongo);
+    // const product = new Product({
+    //   category: category,
+    //   condition: condition,
+    //   price: price,
+    //   title: title,
+    //   age_range: age_range,
+    //   // image: images,
+    //   description: description,
+    //   quantity: quantity,
+    //   added_date: added_date,
+    // });
+
+    // const imageDocs = [];
+    // for (const file of req.files) {
+    //   const image = new Image({
+    //     filename: file.filename,
+    //     contentType: file.mimetype,
+    //   });
+
+    //   const imageDoc = await image.write(file.path);
+    //   imageDocs.push(imageDoc);
+    // }
+
+    //product.image = imageDocs.map((imageDoc) => imageDoc._id);
+
+    // await product.save();
+    return res.status(200).json({ message: "Product added successfully !" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "error in server" });
   }
-  req.session.user.availableProducts.push(
-    new Product({
-      category: category,
-      condition: condition,
-      price: price,
-      supplier: companyName, // need to check if need : req.session.user.name
-      title: productName,
-      age_range: ages,
-      image: images,
-    })
-  );
 };
