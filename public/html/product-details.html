@@ -474,71 +474,48 @@
               const productView = document.createElement("div");
               productView.className = "productView";
 
-              // Product images
+              
+
+              //Product images
               const productImagesDiv = document.createElement("div");
               productImagesDiv.className = "productView-images";
 
               const productImage = document.createElement("img");
               productImage.src = image;
-              // productImage.alt = capitalizedTitle;
-              // productImage.title = capitalizedTitle;
+              productImage.alt = capitalizeFirstLetter(title);
+              productImage.title = capitalizeFirstLetter(title);
               productImage.dataset.sizes = "auto";
               productImage.className = "productView-image";
 
-              // Image slider
-              const imageSliderUl = document.createElement("ul");
-              imageSliderUl.className = "productView-slick-slider";
-
-              const slickTrackDiv = document.createElement("div");
-              slickTrackDiv.className = "slick-track";
-
-              // Create image slider elements
-              const imageUrls = [
-                image,
-                "https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6783/10840__44648.1684056186.jpg?c=2",
-                "https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6784/10840_alt2__86991.1684056189.jpg?c=2",
-                "https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6785/10840_alt16__63979.1684056193.jpg?c=2",
-              ];
-
-              for (let i = 0; i < imageUrls.length; i++) {
-                const slickLi = document.createElement("li");
-                slickLi.className =
-                  i === 0
-                    ? "productView-imageSlick active"
-                    : "productView-imageSlick";
-                slickLi.dataset.slickIndex = i;
-                slickLi.setAttribute("aria-hidden", "false");
-                slickLi.setAttribute("tabindex", "0");
-
-                const imgOption = document.createElement("img");
-                imgOption.src = imageUrls[i];
-                // imgOption.alt = capitalizedTitle;
-                // imgOption.title = capitalizedTitle;
-                imgOption.dataset.sizes = "auto";
-                imgOption.className = "productView-image-option";
-
-                slickLi.appendChild(imgOption);
-                slickTrackDiv.appendChild(slickLi);
-              }
-
-              imageSliderUl.appendChild(slickTrackDiv);
               productImagesDiv.appendChild(productImage);
-              productImagesDiv.appendChild(imageSliderUl);
 
-              productView.appendChild(productImagesDiv);
+     const slickSlider = document.createElement("ul");
+      slickSlider.className = "productView-slick-slider";
+      const slickTrack = document.createElement("div");
+      slickTrack.className = "slick-track";
 
-              // Product images
-              // const productImagesDiv = document.createElement("div");
-              // productImagesDiv.className = "productView-images";
+      // data.images.forEach((imgSrc, index) => {
+      //   const slickItem = document.createElement("li");
+      //   slickItem.className = `productView-imageSlick ${index === 0 ? "active" : ""}`;
+      //   slickItem.dataset.slickIndex = index;
+      //   slickItem.setAttribute("aria-hidden", "false");
+      //   slickItem.setAttribute("tabindex", "0");
 
-              // const productImage = document.createElement("img");
-              // productImage.src = image;
-              // productImage.alt = capitalizeFirstLetter(title);
-              // productImage.title = capitalizeFirstLetter(title);
-              // productImage.dataset.sizes = "auto";
-              // productImage.className = "productView-image";
+      //   const imgOption = document.createElement("img");
+      //   imgOption.src = imgSrc;
+      //   imgOption.alt = capitalizeFirstLetter(title);
+      //   imgOption.title = capitalizeFirstLetter(title);
+      //   imgOption.dataset.sizes = "auto";
+      //   imgOption.className = "productView-image-option";
 
-              // productImagesDiv.appendChild(productImage);
+      //   slickItem.appendChild(imgOption);
+      //   slickTrack.appendChild(slickItem);
+      // });
+
+      slickSlider.appendChild(slickTrack);
+      productImagesDiv.appendChild(slickSlider);
+
+      productView.appendChild(productImagesDiv);
               // productView.appendChild(productImagesDiv);
 
               // Product information
@@ -665,11 +642,80 @@
                   $(this).attr("aria-label", "Add to favorites");
                 }
               });
+
+
+     $(".favorite-button").click(function () {
+    const productId = window.location.search.split("=")[1];
+    const heartIcon = $(this).find("i");
+    const isFavorite = heartIcon.hasClass("fas");
+
+    if (!isFavorite) {
+      // Add to wishlist logic
+      addToWishlist(productId);
+      
+      // Toggle the heart icon
+      heartIcon.toggleClass("fas far");
+      $(this).attr("aria-label", "Remove from favorites");
+    }
+  });
+
+  function addToWishlist(productId) {
+    // You can use Ajax here to send a request to the server
+    $.ajax({
+      url: "http://127.0.0.1:8080/wishlist/products",
+      method: "POST",
+      data: {
+        productId: productId,
+      },
+      success: function (response) {
+        console.log("Product added to wishlist:", response);
+      },
+      error: function (error) {
+        console.error("Error adding product to wishlist:", error);
+      },
+    });
+  }
+
+              
             },
             error: function (error) {
               console.error("Error fetching data:", error);
             },
           });
+
+
+
+
+          
+  // Add to cart button click handler
+  $(".btn-ns-hot").click(function (event) {
+    event.preventDefault(); // Prevent the default form submission
+    
+    const productId = window.location.search.split("=")[1];
+    const quantity = $("#quantity").val();
+
+    addToCart(productId, quantity);
+  });
+
+  function addToCart(productId, quantity) {
+    // You can use Ajax here to send a request to add the product to the cart
+    $.ajax({
+      url: "http://127.0.0.1:8080/cart/add",
+      method: "POST",
+      data: {
+        productId: productId,
+        quantity: quantity
+      },
+      success: function (response) {
+        console.log("Product added to cart:", response);
+        // You can update the cart count or show a success message here
+      },
+      error: function (error) {
+        console.error("Error adding product to cart:", error);
+      },
+    });
+  }
+
         });
       </script>
 
