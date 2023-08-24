@@ -419,7 +419,7 @@
       <script>
    $(document).ready(function () {
   // Capture the form submission event
-  $("#msform").on("submit", function (event) {
+  $("#msform").submit(function (event) {
     event.preventDefault();
 
     // Get the form inputs
@@ -433,11 +433,11 @@
     // Create a FormData object to send the data
     var formData = new FormData();
     formData.append("category", category);
-    formData.append("ages", age_range);
-    formData.append("productName", title);
+    formData.append("age_range", age_range);
+    formData.append("title", title);
     formData.append("price", price);
     formData.append("condition", condition);
-    for (var i = 0; i < productPhotos.length; i++) {
+    for (var i = 0; i < image.length; i++) {
       formData.append("productPhotos[]", image[i]);
     }
 
