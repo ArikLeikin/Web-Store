@@ -1,6 +1,5 @@
 const Product = require("../models/product");
 const Order = require("../models/order");
-const Supplier = require("../models/supplier");
 const StoreLocations = require("../models/store-locations");
 const User = require("../models/user");
 const axios = require("axios");

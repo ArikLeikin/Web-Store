@@ -2,7 +2,6 @@ const path = require("path");
 const fs = require("fs");
 const Product = require("../models/product");
 const Order = require("../models/order");
-const Supplier = require("../models/supplier");
 
 exports.getHomePage = (req, res, next) => {
   const file = path.join(__dirname, "../public/html/main.html");
