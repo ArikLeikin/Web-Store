@@ -318,27 +318,13 @@
             *You can use 100 points minimum in each purchase.
           </p>
         </div>
-        <div class="select-container">
+        <!-- <div class="select-container">
           <label for="inputPoints">Enter Points:</label>
           <input type="number" id="inputPoints" placeholder="Enter points" />
           <button class="check-button" onclick="checkPoints()">
             Check Points
           </button>
-
-          <label for="pointsSelect">Select Points to Use:</label>
-          <select id="pointsSelect">
-            <option value="100">100 points (100 dollars)</option>
-            <option value="150">150 points (150 dollars)</option>
-            <option value="200">200 points (200 dollars)</option>
-            <option value="250">250 points (250 dollars)</option>
-            <option value="300">300 points (300 dollars)</option>
-            <option value="350">350 points (350 dollars)</option>
-            <option value="400">400 points (400 dollars)</option>
-            <option value="450">450 points (450 dollars)</option>
-            <option value="500">500 points (500 dollars)</option>
-          </select>
-          <button class="use-button">Use my points!</button>
-        </div>
+        </div> -->
       </div>
 
       <div class="checkout">
@@ -425,7 +411,7 @@
 
           <div id="card-number-error" class="error-message"></div>
           <fieldset>
-            <label class="pay-label" for="card-holder">Card holder</label>
+            <label class="pay-label" for="card-holder">Card holder ID</label>
             <input type="text" id="card-holder" required />
             <div id="card-holder-error" class="error-message"></div>
           </fieldset>
@@ -477,7 +463,26 @@
             <span></span>
             Save Credit Card details for future purchases
           </label>
-
+          <br />
+          <div class="pointDiv">
+            <label class="pointlabel" for="pointsSelect"
+              >You have <span id="pointsNumber">390</span> points - you can
+              redeem up to 1,000 points with each purchase</label
+            >
+            <br />
+            <select id="pointsSelect" class="pointsSelect">
+              <option value="100">100 points (100 dollars)</option>
+              <option value="150">150 points (150 dollars)</option>
+              <option value="200">200 points (200 dollars)</option>
+              <option value="250">250 points (250 dollars)</option>
+              <option value="300">300 points (300 dollars)</option>
+              <option value="350">350 points (350 dollars)</option>
+              <option value="400">400 points (400 dollars)</option>
+              <option value="450">450 points (450 dollars)</option>
+              <option value="500">500 points (500 dollars)</option>
+            </select>
+            <button class="redeem-btn">REDEEM</button>
+          </div>
           <fieldset class="fieldset-footer">
             <div class="form-footer">
               <p id="total-price">Total(USD) $0</p>
