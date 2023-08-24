@@ -346,25 +346,34 @@
             required
           />
           <div id="productName-error" class="error-message"></div>
-          <input
-            class="half-input"
-            type="text"
-            id="price"
-            name="price"
-            required
-            placeholder="Price"
-          />
-          <div id="price-error" class="error-message"></div>
-          <select
-            class="half-input form-select"
-            id="condition"
-            name="condition"
-            required
-          >
-            <!-- <option value="" disabled selected hidden>Condition</option> -->
-            <option value="new">New</option>
-            <option value="used">Used</option>
-          </select>
+          <div style="display: flex; gap: 15px">
+            <input
+              class="third-input"
+              type="text"
+              id="price"
+              name="price"
+              required
+              placeholder="Price"
+            />
+            <input
+              class="third-input"
+              type="text"
+              id="quantity"
+              name="quantity"
+              required
+              placeholder="Quantity"
+            />
+            <select
+              class="third-input form-select"
+              id="condition"
+              name="condition"
+              required
+            >
+              <!-- <option value="" disabled selected hidden>Condition</option> -->
+              <option value="new">New</option>
+              <option value="used">Used</option>
+            </select>
+          </div>
           <input
             type="file"
             id="productPhotos"
@@ -372,6 +381,13 @@
             accept="image/jpeg, image/png, image/gif"
             multiple
             required
+          />
+          <input
+            type="text"
+            id="descriptionn"
+            name="description"
+            required
+            placeholder="Product Description"
           />
           <div id="productPhoto-error" class="error-message"></div>
           <input
@@ -386,6 +402,7 @@
             class="next2 next action-button"
             value="Next"
           />
+          <div id="price-error" class="error-message"></div>
         </fieldset>
         <fieldset>
           <h2 class="fs-title">Summary</h2>
@@ -414,7 +431,6 @@
 
       <script>
         $(document).ready(function () {
-          // Capture the form submission event
           $("#msform").submit(function (event) {
             event.preventDefault();
 
