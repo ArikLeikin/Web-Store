@@ -415,7 +415,7 @@
             value="Previous"
           />
           <input
-            type="button"
+            type="submit"
             name="submit"
             class="submit action-button"
             value="Submit"
@@ -423,9 +423,8 @@
         </fieldset>
       </form>
 
-
-
       <script>
+
    $(document).ready(function () {
   $(".submit").click(function () {
     var title = $("#productName").val();
@@ -475,6 +474,31 @@
   });
 });
 
+            $.ajax({
+              url: "http://127.0.0.1:8080//uploadYad2", // Change this URL to the actual endpoint
+              type: "POST",
+              data: formData,
+              contentType: false,
+              processData: false,
+              success: function (response) {
+                // Handle the response
+                if (response.success) {
+                  // Success message or redirection
+                  alert("Product uploaded successfully!");
+                  // You can also redirect the user to a success page
+                  // window.location.href = "/uploadSuccess";
+                } else {
+                  // Error handling
+                  alert("Error uploading product. Please try again later.");
+                }
+              },
+              error: function () {
+                // Handle error
+                alert("An error occurred while uploading the product.");
+              },
+            });
+          });
+        });
       </script>
     </main>
     <div id="myModal" class="modal">
