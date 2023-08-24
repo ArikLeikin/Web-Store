@@ -12,6 +12,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../js/index.js"></script>
@@ -1160,12 +1165,19 @@
     }
 
     function fetchUserDetails() {
-      const url = "http://127.0.0.1:8080/api/user/current"; // Update the URL to your API route
+      const url = "http://127.0.0.1:8080/api/current-user";
+
       fetch(url)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              `Fetch error: ${response.status} ${response.statusText}`
+            );
+          }
+          return response.json();
+        })
         .then((data) => {
-          const firstName = data.name.firstName; // Assuming the response contains a firstName field
-          // Display the user's first name in the HTML page
+          const firstName = data.name.firstName;
           document.getElementById("full-user-name").textContent = firstName;
         })
         .catch((error) => {
@@ -1173,7 +1185,6 @@
         });
     }
 
-    // Call the function to fetch and display user details
     fetchUserDetails();
 
     function fetchOrders() {
