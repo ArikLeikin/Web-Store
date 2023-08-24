@@ -424,26 +424,26 @@
 
     // Get the form inputs
     var category = $("#category").val();
-    var ages = $("#ages").val();
-    var productName = $("#productName").val();
+    var age_range = $("#ages").val();
+    var title = $("#productName").val();
     var price = $("#price").val();
     var condition = $("#condition").val();
-    var productPhotos = $("#productPhotos")[0].files; // Assuming single file selection for simplicity
+    var image = $("#productPhotos")[0].files;
 
     // Create a FormData object to send the data
     var formData = new FormData();
     formData.append("category", category);
-    formData.append("ages", ages);
-    formData.append("productName", productName);
+    formData.append("ages", age_range);
+    formData.append("productName", title);
     formData.append("price", price);
     formData.append("condition", condition);
     for (var i = 0; i < productPhotos.length; i++) {
-      formData.append("productPhotos[]", productPhotos[i]);
+      formData.append("productPhotos[]", image[i]);
     }
 
     // Send the data to the server
     $.ajax({
-      url: "http://127.0.0.1:8080//supplier", // Change this URL to the appropriate server endpoint
+      url: "http://127.0.0.1:8080/supplier",
       type: "POST",
       data: formData,
       contentType: false,
