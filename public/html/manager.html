@@ -687,11 +687,11 @@
                 description: $('#description').val(),
                 category: $('#category').val(),
                 condition: $('#condition').val(),
-                manufacture_date: $('#manufacture_date').val(),
+                added_date: $('#manufacture_date').val(),
                 supplier: $('#supplier').val(),
                 quantity: parseInt($('#quantity').val()),
                 age_range: parseInt($('#age_range').val()),
-                images: [
+                image: [
                     $('#image1').val(),
                     $('#image2').val(),
                     $('#image3').val(),
@@ -701,7 +701,7 @@
 
             // Send POST request to add a new product
             $.ajax({
-                url: 'http://127.0.0.1:8080/api/products',
+                url: 'http://127.0.0.1:8080/create/product',
                 type: 'POST',
                 data: JSON.stringify(formData),
                 contentType: 'application/json',
@@ -831,17 +831,14 @@ function updateProduct(id, updatedData) {
   <label for="manufacture_date">Manufacture Date:</label>
   <input type="date" id="manufacture_date" name="manufacture_date" required><br>
 
-  <label for="supplier">Supplier:</label>
-  <input type="text" id="supplier" name="supplier" required><br>
 
   <label for="quantity">Quantity:</label>
   <input type="number" id="quantity" name="quantity" required><br>
 
-  <!-- <label for="age_range_from">Age Range (From):</label>
-  <input type="number" id="age_range_from" name="age_range_from" required><br>
+  <label for="age_range">Age Range:</label>
+  <input type="text" id="age_range" name="age_range" required><br> 
 
-  <label for="age_range_to">Age Range (To):</label>
-  <input type="number" id="age_range_to" name="age_range_to" required><br> -->
+
 
   <label for="image1">Image 1 URL:</label>
   <input type="text" id="image1" name="image1" required><br>
