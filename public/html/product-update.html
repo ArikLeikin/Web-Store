@@ -12,17 +12,16 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../js/index.js"></script>
-
-    <script src="../js/supplier.js"></script>
-    <link rel="stylesheet" href="../css/supplier.css" />
+    <script src="../js/product-update.js"></script>
+    <link rel="stylesheet" href="../css/product-update.css" />
   </head>
 
   <body>
@@ -290,192 +289,135 @@
       <!-- End Navigation Bar -->
     </header>
     <main style="margin-top: 160px">
-      <h1 class="page-title">Adding new products to the supply</h1>
-
-      <!-- multistep form -->
-      <form class="msform" id="msform">
-        <!-- progressbar -->
-        <ul id="progressbar">
-          <li class="active">Your Details</li>
-          <li>Product information</li>
-          <li>Summary</li>
-        </ul>
-        <!-- fieldsets -->
-        <fieldset>
-          <h2 class="fs-title">Enter Your Details</h2>
-          <h3 class="fs-subtitle">step 1</h3>
-
-          <select class="form-select" id="category" name="category" required>
-            <option value="board">Board Games</option>
-            <option value="riding">Riding Toys</option>
-            <option value="book">Books</option>
-            <option value="science">Science</option>
-            <option value="puzzle">Puzzle Games</option>
-            <option value="lego">Lego</option>
-            <option value="games">Games</option>
-            <option value="music & karaoke">Music & Karaoke</option>
-            <option value="dolls">Dolls</option>
-            <option value="dolls">Outdoor</option>
-
-            <!-- <option value="10$ & bellow">10$ & Bellow</option> -->
-          </select>
-
-          <div id="category-error" class="error-message"></div>
-          <select class="form-select" id="ages" name="ages" required>
-            <!-- <option value="" disabled selected hidden>Appropriate Ages</option> -->
-            <option value="0-12 months">0-12 months</option>
-            <option value="12-24 months">12-24 months</option>
-            <option value="2-4">2-4 Years</option>
-            <option value="5-7">5-7 Years</option>
-            <option value="8-99">8-99 Years</option>
-          </select>
-          <div id="ages-error" class="error-message"></div>
-          <input
-            type="button"
-            name="next"
-            class="next1 next action-button"
-            value="Next"
-          />
-        </fieldset>
-        <fieldset>
-          <h2 class="fs-title">Product information</h2>
-          <h3 class="fs-subtitle">step 2</h3>
-          <input
-            type="text"
-            id="productName"
-            name="productName"
-            placeholder="Product Name"
-            required
-          />
-          <div id="productName-error" class="error-message"></div>
-          <div style="display: flex; gap: 15px">
+      <h1 class="page-title">Update Your Product Details</h1>
+      <div class="t-container">
+        <form
+          method="POST"
+          action="/product-update"
+          class="form"
+          id="product-update-form"
+        >
+          <fieldset class="fieldset fieldset-productName">
+            <label class="reg-label" for="productName">Product name</label>
             <input
-              class="third-input"
-              type="text"
-              id="price"
-              name="price"
+              class="reg-input"
+              type="productName"
+              id="productName"
+              name="productName"
               required
-              placeholder="Price"
             />
-            <input
-              class="third-input"
-              type="text"
-              id="quantity"
-              name="quantity"
-              required
-              placeholder="Quantity"
-            />
+            <div id="productName-error" class="error-message"></div>
+          </fieldset>
+
+          <fieldset class="fieldset fieldset-condition">
+            <label class="reg-label" for="condition">Condition</label>
             <select
-              class="third-input form-select"
+              class="half-input form-select"
               id="condition"
               name="condition"
               required
             >
-              <!-- <option value="" disabled selected hidden>Condition</option> -->
               <option value="new">New</option>
               <option value="used">Used</option>
             </select>
-          </div>
-          <input
-            type="file"
-            id="productPhotos"
-            name="productPhotos[]"
-            accept="image/jpeg, image/png, image/gif"
-            multiple
-            required
-          />
-          <input
-            type="text"
-            id="descriptionn"
-            name="description"
-            required
-            placeholder="Product Description"
-          />
-          <div id="productPhoto-error" class="error-message"></div>
-          <input
-            type="button"
-            name="previous"
-            class="previous2 previous action-button"
-            value="Previous"
-          />
-          <input
-            type="button"
-            name="next"
-            class="next2 next action-button"
-            value="Next"
-          />
-          <div id="price-error" class="error-message"></div>
-        </fieldset>
-        <fieldset>
-          <h2 class="fs-title">Summary</h2>
-          <h3 class="fs-subtitle">step 3</h3>
-          <p class="summary-form">
-            After submission, Our team will then review your submission, and
-            upon approval, your product will be made available for purchase by
-            our customers.<br />
-            Thank you for partnering with PLAYTOPIA, and we look forward to
-            showcasing your amazing products to the world!
-          </p>
-          <input
-            type="button"
-            name="previous"
-            class="previous3 previous action-button"
-            value="Previous"
-          />
-          <input
-            type="submit"
-            name="submit"
-            class="submit action-button"
-            value="Submit"
-          />
-        </fieldset>
-      </form>
+          </fieldset>
 
-      <script>
-        $(document).ready(function () {
-          $("#msform").submit(function (event) {
-            event.preventDefault();
+          <fieldset class="fieldset fieldset-price">
+            <label class="reg-label" for="price">Price</label>
+            <input
+              class="half-input"
+              type="number"
+              id="price"
+              name="price"
+              required
+            />
+            <div id="price-error" class="error-message"></div>
+          </fieldset>
 
-            // Get the form inputs
-            var category = $("#category").val();
-            var age_range = $("#ages").val();
-            var title = $("#productName").val();
-            var price = $("#price").val();
-            var condition = $("#condition").val();
-            var image = $("#productPhotos")[0].files;
+          <fieldset class="fieldset fieldset-age">
+            <label class="reg-label" for="age">Appropriate Ages </label>
+            <select class="half-input form-select" id="age" name="age" required>
+              <option value="0-12 months">0-12 months</option>
+              <option value="12-24 months">12-24 months</option>
+              <option value="2-4">2-4 Years</option>
+              <option value="5-7">5-7 Years</option>
+              <option value="8-99">8-99 Years</option>
+            </select>
+          </fieldset>
 
-            // Create a FormData object to send the data
-            var formData = new FormData();
-            formData.append("category", category);
-            formData.append("age_range", age_range);
-            formData.append("title", title);
-            formData.append("price", price);
-            formData.append("condition", condition);
-            for (var i = 0; i < image.length; i++) {
-              formData.append("image[]", image[i]);
-            }
+          <fieldset class="fieldset fieldset-quantity">
+            <label class="reg-label" for="quantity">Quantity</label>
+            <input
+              class="half-input"
+              type="number"
+              id="quantity"
+              name="quantity"
+              required
+            />
+          </fieldset>
+          <fieldset class="fieldset fieldset-category">
+            <label class="reg-label" for="category">Category </label>
+            <select
+              class="half-input form-select"
+              id="category"
+              name="category"
+              required
+            >
+              <option value="board">Board Games</option>
+              <option value="riding">Riding Toys</option>
+              <option value="book">Books</option>
+              <option value="science">Science</option>
+              <option value="puzzle">Puzzle Games</option>
+              <option value="lego">Lego</option>
+              <option value="games">Games</option>
+              <option value="music & karaoke">Music & Karaoke</option>
+              <option value="dolls">Dolls</option>
+              <option value="dolls">Outdoor</option>
+              <!-- <option value="10$ & bellow">10$ & Bellow</option> -->
+            </select>
+          </fieldset>
 
-            // Send the data to the server
-            $.ajax({
-              url: "http://127.0.0.1:8080/supplier",
-              type: "POST",
-              data: formData,
-              contentType: false,
-              processData: false,
-              success: function (response) {
-                // Handle success response
-                console.log("Product added successfully:", response);
-                // You might want to show a success message to the user or redirect them
-              },
-              error: function (xhr, status, error) {
-                // Handle error response
-                console.error("Error adding product:", error);
-                // You might want to show an error message to the user
-              },
-            });
-          });
-        });
-      </script>
+          <fieldset class="fieldset-desc">
+            <label class="reg-label" for="descriprion"
+              >Description about the product:</label
+            >
+            <input
+              class="reg-input"
+              type="textarea"
+              id="descriprion"
+              name="descriprion"
+              required
+            />
+          </fieldset>
+          <fieldset class="fieldset fieldset-image">
+            <label class="reg-label" for="image">Image</label>
+            <input
+              type="file"
+              id="productPhotos"
+              name="productPhotos[]"
+              accept="image/jpeg, image/png, image/gif"
+              multiple
+              rdequired
+            />
+            <!-- <input
+              type="file"
+              id="productPhoto"
+              name="productPhoto"
+              accept="image/*"
+              placeholder="Image"
+              required
+            /> -->
+          </fieldset>
+          <fieldset class="fieldset-footer">
+            <div class="form-footer">
+              <button class="btn-ns-hot delete-btn" type="button">
+                Delete
+              </button>
+              <button class="btn-ns-hot" type="submit">Update</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
     </main>
     <div id="myModal" class="modal">
       <div class="modal-content">
