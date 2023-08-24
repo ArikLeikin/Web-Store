@@ -438,7 +438,7 @@
     formData.append("price", price);
     formData.append("condition", condition);
     for (var i = 0; i < image.length; i++) {
-      formData.append("productPhotos[]", image[i]);
+      formData.append("image[]", image[i]);
     }
 
     // Send the data to the server
