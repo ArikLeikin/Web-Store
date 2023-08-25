@@ -879,6 +879,7 @@ fetch("http://127.0.0.1:8080/api/current-user")
   });
 
 /*~~~~~~~~~~~~~~~~~~~~~~~post request~~~~~~~~~~~~~~~~~~~~~~~*/
+
 document.addEventListener("DOMContentLoaded", function () {
   const saveAddressBtn = document.getElementById("save-address-btn");
   const addressForm = document.getElementById("address-form");
