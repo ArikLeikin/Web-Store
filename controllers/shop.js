@@ -528,10 +528,10 @@ exports.postWishlistAdd = async (req, res, next) => {
     // req.session.user = await User.find({ username: "admin" }); // FIND -> RETURNS ARRAY!
     // req.session.user = req.session.user[0];  --> For testing
     const productIdToSave = req.body.productId;
-    let quantityToSave = parseInt(req.body.quantity);
-    if (quantityToSave <= 0)
-      return res.status(400).json({ message: "Non positive quantity" });
-    const user = req.session.user;
+    let quantityToSave = 1;
+    // if (quantityToSave <= 0)
+    //   return res.status(400).json({ message: "Non positive quantity" });
+    const user = await User.findById(req.session.user._id);
     const wishlist = user.wishlist || [];
     if (wishlist.length > 0) {
       const existingWishlistItem = wishlist.find(
@@ -552,12 +552,14 @@ exports.postWishlistAdd = async (req, res, next) => {
         quantity: quantityToSave,
       });
     }
-    await req.session.save();
     await user.save();
+    req.session.user = user;
+    await req.session.save();
     res
       .status(200)
       .json({ message: "Product added successfully to wishlist!" });
-  } catch (err) {
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Error adding product to wishlist!" });
   }
 };
