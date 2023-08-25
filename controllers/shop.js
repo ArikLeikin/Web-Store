@@ -675,7 +675,8 @@ exports.postAddress = async (req, res) => {
   try {
     const user = req.session.user;
     user.address.city = req.body.city;
-    user.address.street = req.body.street + req.street_number;
+    user.address.street = req.body.street;
+    user.address.streetNumber = req.body.streetNumber;
     user.address.country = req.body.country;
     user.address.postalCode = req.body.postalCode;
     user.address.firstName = req.body.firstName;
