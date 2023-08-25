@@ -4,6 +4,9 @@ const Product = require("../models/product");
 const Order = require("../models/order");
 const nodemailer = require("nodemailer");
 
+//C:\Users\BooM\Desktop\School\WebDEV\WebStore\WebStore\public
+//C:\Users\BooM\Desktop\School\WebDEV\WebStore\public
+
 const transporter = nodemailer.createTransport({
   service: process.env.EMAIL_SERVICE, // Use the appropriate service here
   auth: {
@@ -747,7 +750,8 @@ exports.postSupplier = async (req, res) => {
     // );
 
     // let Image = gridfs(conn.db, mongoose.mongo);
-    const images = req.files;
+    const images = req.files["image[]"];
+    console.log(images);
     const product = new Product({
       category: category,
       condition: condition,

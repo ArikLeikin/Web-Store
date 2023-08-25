@@ -9,10 +9,9 @@ const multer = require("multer");
 // Configure multer for handling image uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../public/product-images"); // Change this to your desired upload directory
+    cb(null, "./public/product-images"); // Change this to your desired upload directory
   },
   filename: (req, file, cb) => {
-    const timestamp = Date.now();
     cb(null, `${file.originalname}`);
   },
 });
