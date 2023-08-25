@@ -128,3 +128,64 @@ function clearErrorMessages() {
   $(".error-message").text("");
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("creditCardUpdate-form");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const cardNumber = document.getElementById("card-number").value +
+      document.getElementById("card-number-1").value +
+      document.getElementById("card-number-2").value +
+      document.getElementById("card-number-3").value;
+    const cardHolder = document.getElementById("card-holder").value;
+    const expirationMonth = document.getElementById("card-expiration-month").value;
+    const expirationYear = document.getElementById("card-expiration-year").value;
+    const ccv = document.getElementById("card-ccv").value;
+
+    const data = {
+      card_number: cardNumber,
+      holder_name: cardHolder,
+      expiration_date: expirationMonth,
+      ccv: ccv,
+    };
+
+    $.ajax({
+      url: "http://127.0.0.1:8080/creditcard",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify(data),
+      success: function (result) {
+        console.log("Response from server:", result);
+      },
+      error: function (error) {
+        console.error("Error sending data:", error);
+       
+      },
+    });
+  });
+});
+
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const response = await fetch("http://127.0.0.1:8080/creditcard");
+    const creditCardData = await response.json();
+
+    const cardNumber = creditCardData.card_number.toString();
+
+    document.querySelector("#card-holder").value = cardNumber.substr(0, 4);
+    document.querySelector("#card-holder-1").value = cardNumber.substr(4, 4);
+    document.querySelector("#card-holder-1").value = cardNumber.substr(8 , 4);
+    document.querySelector("#card-holder-3").value = cardNumber.substr(12 , 4);
+
+    document.querySelector("#card-holder").value = creditCardData.card_holder;
+    document.querySelector("#card-expiration-month").value = creditCardData.expiration_month;
+    document.querySelector("#card-expiration-year").value = creditCardData.expiration_year;
+    document.querySelector("#card-ccv").value = creditCardData.ccv;
+  } catch (error) {
+    console.error("Error fetching or populating credit card data:", error);
+  }
+});
+

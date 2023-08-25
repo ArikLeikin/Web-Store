@@ -390,10 +390,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const submitButton = document.querySelector("#purchase-button");
   submitButton.addEventListener("click", function (event) {
     event.preventDefault(); 
-    
+
+
+
+        
     const checkbox = document.querySelector(".cl-checkbox");
     if (checkbox.checked) {
-      const card_number = document.querySelector("#card-number").value;
+      const card_number =
+    document.querySelector('#card-number')+
+    document.querySelector('#card-number-1')+
+     document.querySelector('#card-number-2')+
+     document.querySelector('#card-number-3');
+     
       const holder_name = document.querySelector("#card-holder").value;
       const expiration_date = document.querySelector("#card-expiration-month").value;
       const ccv = document.querySelector("#card-ccv").value;
@@ -402,7 +410,6 @@ document.addEventListener("DOMContentLoaded", function () {
         holder_name,
         expiration_date,
         ccv,
-
       };
 
       fetch("http://127.0.0.1:8080/creditcard", {
@@ -463,7 +470,7 @@ $(document).ready(function() {
     var postalCode = $("#zipcode").val();
     var street = $("#street").val();
     var streetNumber = $("#street_number").val();
-    var card_number = $("#card-number").val();
+    var card_number = $("#card-number").val()+$("#card-number-1").val()+$("#card-number-2").val()+$("#card-number-3").val();
     var holder_name = $("#card-holder").val();
     var expiration_date = $("#card-expiration-month").val();
     var ccv = $("#card-ccv").val();

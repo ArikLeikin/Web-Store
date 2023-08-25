@@ -433,6 +433,7 @@
             var condition = $("#condition").val();
             var age_range = $("#age").val();
             var bankAccount = $("#bankAccount").val();
+            var description = $("#description").val();
 
             // Gather product photos
             var image = $("#productPhotos")[0].files;
@@ -442,7 +443,8 @@
             formData.append("price", price);
             formData.append("condition", condition);
             formData.append("age_range", age_range);
-            // formData.append("bankAccount", bankAccount);
+             formData.append("bankAccount", bankAccount);
+             formData.append("description", description);
 
             // Append product photos to formData
             for (var i = 0; i < image.length; i++) {
