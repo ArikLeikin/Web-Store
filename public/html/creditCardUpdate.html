@@ -420,13 +420,11 @@
       contentType: "application/json",
       data: JSON.stringify(data),
       success: function (result) {
-        // Handle the response from the server if needed
         console.log("Response from server:", result);
-        // You can display a success message or perform other actions here
       },
       error: function (error) {
         console.error("Error sending data:", error);
-        // Handle errors here
+       
       },
     });
   });
