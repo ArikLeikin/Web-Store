@@ -11,11 +11,23 @@ exports.create = async (req, res) => {
     const expression = model[2];
     console.log(expression);
     const newDocument = req.body;
+
     //console.log(newDocument);
     // Assuming passed all required params in body
     switch (expression) {
       case "product":
+        newDocument.image = req.files.map((image) => image.path);
         await Product.create(newDocument);
+        let message =
+          "A new product has arrived! check out the new product called:" +
+          newDocument.title +
+          "\n at http://localhost:8080";
+        await axios.post(
+          "https://graph.facebook.com/111544942041745/feed?message=" +
+            message +
+            "&access_token=" +
+            process.env.FACEBOOK_API_KEY
+        );
         break;
       case "order":
         await Order.create(newDocument);

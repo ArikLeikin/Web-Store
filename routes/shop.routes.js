@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 //const upload = multer({ dest: "../public/product-images" });
-const multerConfig = upload.fields([{ name: "image", maxCount: 4 }]);
+const multerConfig = upload.fields([{ name: "image[]", maxCount: 4 }]);
 
 router.get("/", shopController.getHomePage);
 

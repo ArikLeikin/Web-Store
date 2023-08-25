@@ -2,9 +2,15 @@ const path = require("path");
 const fs = require("fs");
 const Product = require("../models/product");
 const Order = require("../models/order");
-// const mongoose = require("mongoose");
-// const gridfs = require("mongoose-gridfs");
-// gridfs.mongo = mongoose.mongo;
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+  service: process.env.EMAIL_SERVICE, // Use the appropriate service here
+  auth: {
+    user: process.env.EMAIL_USERNAME, // Replace with your Gmail email address
+    pass: process.env.EMAIL_PASSWORD, // Replace with your Gmail password or App Password
+  },
+});
 
 exports.getHomePage = (req, res, next) => {
   const file = path.join(__dirname, "../public/html/main.html");
@@ -276,16 +282,40 @@ exports.postPayment = async (req, res, next) => {
     total_price -= req.body.points;
     req.session.user.points -= req.body.points;
     //console.log(total_price);
+    const date = new Date();
+    const dateToSubmit = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDay()
+    );
 
     const newOrder = new Order({
       user_info: user._id,
       products: cartItems.map((item) => item.product._id),
-      total_price,
-      order_date: new Date(),
+      total_price: total_price,
+      order_date: dateToSubmit,
       status: "Pending", // Set the initial status as desired
     });
     req.session.user.points += total_price * 0.1;
-
+    /*[
+      {name,quantity}
+      {name,quantity}
+      {name,quantity}
+    ]
+    */
+    transporter.sendMail({
+      to: user.email,
+      from: process.env.EMAIL_USERNAME,
+      subject: "Order Successful",
+      // Need to check
+      html: `
+        <p>Thank you for ordering!</p>
+        <p>You've ordered the following: ${cartItems}</p> 
+        <p>total price: ${total_price} </p>
+        <p>We would love to see you again!</p>
+        <p>Playtopia</p>
+      `,
+    });
     await newOrder.save();
 
     // Clear the user's cart in the session or the database
@@ -717,17 +747,18 @@ exports.postSupplier = async (req, res) => {
     // );
 
     // let Image = gridfs(conn.db, mongoose.mongo);
-    // const product = new Product({
-    //   category: category,
-    //   condition: condition,
-    //   price: price,
-    //   title: title,
-    //   age_range: age_range,
-    //   // image: images,
-    //   description: description,
-    //   quantity: quantity,
-    //   added_date: added_date,
-    // });
+    const images = req.files;
+    const product = new Product({
+      category: category,
+      condition: condition,
+      price: price,
+      title: title,
+      age_range: age_range,
+      image: images.map((image) => image.path),
+      description: description,
+      quantity: quantity,
+      added_date: added_date,
+    });
 
     // const imageDocs = [];
     // for (const file of req.files) {
@@ -742,7 +773,7 @@ exports.postSupplier = async (req, res) => {
 
     //product.image = imageDocs.map((imageDoc) => imageDoc._id);
 
-    // await product.save();
+    await product.save();
     return res.status(200).json({ message: "Product added successfully !" });
   } catch (err) {
     console.log(err);

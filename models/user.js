@@ -33,6 +33,7 @@ const userSchema = new Schema({
   address: {
     city: { type: String },
     street: { type: String },
+    streetNumber: { type: Number },
     country: { type: String },
     postalCode: { type: String },
     firstName: { type: String },
