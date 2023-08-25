@@ -64,7 +64,6 @@ $(document).ready(function () {
     //   $("#password-validation-error").removeClass("error-message").text("");
     // }
 
-<<<<<<< HEAD
     // if (password !== passwordValidation) {
     //   event.preventDefault(); // Prevent form submission
     //   $("#password-validation-error")
@@ -74,17 +73,6 @@ $(document).ready(function () {
     //   $("#password-validation-error").removeClass("error-message").text("");
     // }
     
-=======
-    if (password !== passwordValidation) {
-      event.preventDefault(); // Prevent form submission
-      $("#password-validation-error")
-        .addClass("error-message")
-        .text("Passwords do not match.");
-    } else {
-      $("#password-validation-error").removeClass("error-message").text("");
-    }
-
->>>>>>> main
 
   });
 });
