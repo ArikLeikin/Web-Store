@@ -357,16 +357,12 @@ fetch('http://127.0.0.1:8080/address')
 
 
 
-  const pointsNumberSpan = document.getElementById('pointsNumber');
-  const pointLabel = document.querySelector('.pointlabel');
-  
   $.ajax({
     url: 'http://127.0.0.1:8080/api/current-user',
+    type: 'GET',
     dataType: 'json',
     success: function(data) {
-      const userPoints = data.points || 0; 
-      pointsNumberSpan.textContent = userPoints;
-      pointLabel.textContent = `You have ${userPoints} points - you can redeem up to 500 points with each purchase`;
+     document.getElementById('pointsNumber').textContent=data.points; 
       updatePointsDropdown();
     },
     error: function(error) {

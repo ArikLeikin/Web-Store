@@ -498,7 +498,7 @@
           // Function to delete a user
           function deleteUser(userId) {
             $.ajax({
-              url: `${baseUrl}/delete/user/:${userId}`, // Update the URL to the appropriate delete endpoint
+              url: `${baseUrl}/delete/user/${userId}`, // Update the URL to the appropriate delete endpoint
               method: "POST",
               success: function () {
                 fetchUsers(); // Refresh the user list after deletion

@@ -662,7 +662,7 @@
   function addToWishlist(productId) {
     // You can use Ajax here to send a request to the server
     $.ajax({
-      url: "http://127.0.0.1:8080/wishlist/products",
+      url: "http://127.0.0.1:8080/wishlist/add",
       method: "POST",
       data: {
         productId: productId,
