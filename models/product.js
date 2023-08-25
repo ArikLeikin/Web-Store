@@ -22,8 +22,8 @@ const ProductSchema = new Schema({
   },
   image: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "GridFSImage", // Reference to GridFS files
+      type: String,
+      required: true,
     },
   ],
   condition: {
