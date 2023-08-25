@@ -814,7 +814,10 @@ exports.getPersonalDetails = async (req, res) => {
 exports.postPersonalDetails = async (req, res) => {
   try {
     const user = await User.findById(req.session.user._id);
-    user = req.body;
+    user.firstName = req.body.firstName;
+    user.lastName = req.body.lastName;
+    user.phoneNumber = req.body.phoneNumber;
+    user.email = req.body.email;
     user.save();
     req.session.user = user;
     req.session.user.save();
