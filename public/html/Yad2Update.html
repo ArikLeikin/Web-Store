@@ -396,6 +396,43 @@
           </fieldset>
         </form>
       </div>
+
+      <script>
+        $(document).ready(function() {
+          $("#UpdateYad2-form").submit(function(event) {
+            event.preventDefault(); 
+            
+            var title = $("#productName").val();
+            var condition = $("#condition").val();
+            var price = $("#price").val();
+            var age_range = $("#age").val();
+            var bankAccount = $("#bankAccount").val();
+            var description = $("#description").val();
+            
+            var data = {
+              title: title,
+              condition: condition,
+              price: price,
+              age_range: age_range,
+              bankAccount: bankAccount,
+              description: description
+            };
+            
+            $.ajax({
+              type: "POST",
+              url: "http://127.0.0.1:8080/Yad2Update", 
+              data: data,
+              success: function(response) {
+                console.log("Success:", response);
+              },
+              error: function(error) {
+                console.log("Error:", error);
+              }
+            });
+          });
+        });
+      </script>
+      
     </main>
     <div id="myModal" class="modal">
       <div class="modal-content">

@@ -118,7 +118,8 @@ Checkout
   float: right;
 }
 /*checkbox*/
-.cl-checkbox {
+.cl-checkbox,
+.cl-checkbox-address {
   position: relative;
   display: inline-block;
   margin-bottom: 15px;
@@ -126,7 +127,7 @@ Checkout
 }
 
 /* Input */
-.cl-checkbox > input {
+/* .cl-checkbox > input {
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -146,32 +147,31 @@ Checkout
   transform: scale(1);
   pointer-events: none;
   transition: opacity 0.3s, transform 0.2s;
-}
+} */
 
 /* Span */
-.cl-checkbox > span {
+/* .cl-checkbox > span {
   display: inline-block;
   cursor: pointer;
-}
+} */
 
 /* Box */
-.cl-checkbox > span::before {
+/* .cl-checkbox > span::before {
   content: "";
   display: inline-block;
   box-sizing: border-box;
   margin: 3px 11px 3px 1px;
   border: solid 2px;
-  /* Safari */
   border-color: rgba(0, 0, 0, 0.6);
   border-radius: 2px;
   width: 18px;
   height: 18px;
   vertical-align: top;
   transition: border-color 0.2s, background-color 0.2s;
-}
+} */
 
 /* Checkmark */
-.cl-checkbox > span::after {
+/* .cl-checkbox > span::after{
   content: "";
   display: block;
   position: absolute;
@@ -183,10 +183,10 @@ Checkout
   border-right: none;
   border-top: none;
   transform: translate(3px, 4px) rotate(-45deg);
-}
+} */
 
 /* Checked, Indeterminate */
-.cl-checkbox > input:checked,
+/* .cl-checkbox > input:checked,
 .cl-checkbox > input:indeterminate {
   background-color: #018786;
 }
@@ -195,9 +195,9 @@ Checkout
 .cl-checkbox > input:indeterminate + span::before {
   border-color: #018786;
   background-color: #018786;
-}
+} */
 
-.cl-checkbox > input:checked + span::after,
+/* .cl-checkbox > input:checked + span::after,
 .cl-checkbox > input:indeterminate + span::after {
   border-color: #fff;
 }
@@ -205,23 +205,23 @@ Checkout
 .cl-checkbox > input:indeterminate + span::after {
   border-left: none;
   transform: translate(4px, 3px);
-}
+} */
 
 /* Hover, Focus */
-.cl-checkbox:hover > input {
+/* .cl-checkbox:hover > input {
   opacity: 0.04;
-}
+} */
 
-.cl-checkbox > input:focus {
+/* .cl-checkbox > input:focus {
   opacity: 0.12;
 }
 
 .cl-checkbox:hover > input:focus {
   opacity: 0.16;
-}
+} */
 
 /* Active */
-.cl-checkbox > input:active {
+/* .cl-checkbox > input:active {
   opacity: 1;
   transform: scale(0);
   transition: transform 0s, opacity 0s;
@@ -234,10 +234,10 @@ Checkout
 .cl-checkbox > input:checked:active + span::before {
   border-color: transparent;
   background-color: rgba(0, 0, 0, 0.6);
-}
+} */
 
 /* Disabled */
-.cl-checkbox > input:disabled {
+/* .cl-checkbox > input:disabled {
   opacity: 0;
 }
 
@@ -254,7 +254,7 @@ Checkout
 .cl-checkbox > input:indeterminate:disabled + span::before {
   border-color: transparent;
   background-color: currentColor;
-}
+} */
 
 .container1 {
   text-align: center;

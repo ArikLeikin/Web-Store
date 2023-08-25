@@ -45,6 +45,7 @@ $(document).ready(function () {
 
     var productName = $("#productName").val();
     var price = $("#price").val();
+    var description = $("#description").val();
    
     let isValid = true;
     
@@ -83,6 +84,19 @@ $(document).ready(function () {
       });
       isValid = false;
     }
+
+    if (!validateLettersDigitsAndSpaces2(description)) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Descriptionn should be at leat 5 characters.',
+      });
+      isValid = false;
+    }
+    function validateLettersDigitsAndSpaces2(str) {
+      return /^[a-zA-Z0-9 ]{5,}$/.test(str);
+    }
+
 
     //  if (!validateLettersDigitsAndSpaces(productName)) {
     //   $("#productName-error").text("Product name should be only letters or digits, and at least 4 characters.");

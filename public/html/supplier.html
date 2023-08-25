@@ -386,7 +386,7 @@
           />
           <input
             type="text"
-            id="descriptionn"
+            id="description"
             name="description"
             required
             placeholder="Product Description"
@@ -455,22 +455,17 @@
               formData.append("image[]", image[i]);
             }
 
-            // Send the data to the server
             $.ajax({
-              url: "http://127.0.0.1:8080/supplier",
+              url: "http://127.0.0.1:8080/create/product",
               type: "POST",
               data: formData,
               contentType: false,
               processData: false,
               success: function (response) {
-                // Handle success response
                 console.log("Product added successfully:", response);
-                // You might want to show a success message to the user or redirect them
               },
               error: function (xhr, status, error) {
-                // Handle error response
                 console.error("Error adding product:", error);
-                // You might want to show an error message to the user
               },
             });
           });

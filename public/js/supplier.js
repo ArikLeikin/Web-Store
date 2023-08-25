@@ -97,6 +97,8 @@ $(document).ready(function () {
     var price = $("#price").val();
     var productName = $("#productName").val();
     var productPhoto = $("#productPhoto").val();
+    var quantity = $("#quantity").val();
+    var description = $("#description").val();
     let isValid = true;
 
     if (!validateNumber(price)) {
@@ -144,11 +146,34 @@ $(document).ready(function () {
 
     }
 
+    
+    if (!validateNumber(quantity)) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Quantity should only contain digits.',
+      });
+      isValid = false;
+    }
+
+    if (!validateLettersDigitsAndSpaces2(description)) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Validation Error',
+        text: 'Descriptionn should be at leat 5 characters.',
+      });
+      isValid = false;
+    }
+
     function validateNumber(str) {
       return /^\d+$/.test(str);
     }
     function validateLettersDigitsAndSpaces(str) {
       return /^[a-zA-Z0-9 ]{4,}$/.test(str);
+    }
+
+    function validateLettersDigitsAndSpaces2(str) {
+      return /^[a-zA-Z0-9 ]{5,}$/.test(str);
     }
 
     if (!isValid) {
