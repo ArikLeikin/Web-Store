@@ -208,5 +208,9 @@ h4.productView-name {
   background-color: rgba(0, 0, 0, 0.1);
 }
 .favorite-button i {
-  color: red; /* Set the heart icon color to red */
+  color: red; 
+}
+
+.edit-icon:hover {
+  color: rgb(113, 108, 98); 
 }
