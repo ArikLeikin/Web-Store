@@ -199,14 +199,14 @@ exports.getUploadYad2 = (req, res, next) => {
 
 exports.uploadYad2 = async (req, res, next) => {
   try {
-    //console.log("Hello");
+    const image = req.files["image[]"];
     const newProduct = new Product({
       quantity: 1,
       category: req.body.category,
       title: req.body.title,
       price: req.body.price,
       description: req.body.description,
-      image: req.body.image,
+      image: image.map((image) => image.path),
       condition: req.body.condition,
       added_date: req.body.added_date,
       age_range: req.body.age_range,
@@ -217,8 +217,6 @@ exports.uploadYad2 = async (req, res, next) => {
     console.log(err);
     res.status(500).json({ message: "Internal server error" });
   }
-
-  //need to do
 };
 
 exports.getYad2Update = (req, res, next) => {
@@ -814,14 +812,15 @@ exports.getPersonalDetails = async (req, res) => {
 exports.postPersonalDetails = async (req, res) => {
   try {
     const user = await User.findById(req.session.user._id);
-    user.firstName = req.body.firstName;
-    user.lastName = req.body.lastName;
+    user.name.firstName = req.body.firstName;
+    user.name.lastName = req.body.lastName;
     user.phoneNumber = req.body.phoneNumber;
     user.email = req.body.email;
-    user.save();
+    await user.save();
     req.session.user = user;
-    req.session.user.save();
-    return res.status(200).json(user);
+    await req.session.save();
+
+    return res.status(200).json({ message: "Changed details successfully !" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "error in server" });
