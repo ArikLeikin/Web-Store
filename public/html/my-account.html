@@ -561,11 +561,12 @@
 
                 <span class="alertBox-column alertBox-message"
                   >No address is registered in our system. To enter an address
-                  please click "Add new address".</span
+                  please fill the following fields.</span
                 >
               </div>
+            </div>
 
-              <!-- add new address option -->
+            <!-- add new address option 
               <button class="collapsible-div btn-account-page" type="button">
                 ADD NEW ADDERSS
               </button>
@@ -678,7 +679,7 @@
                 </div>
               </div>
             </div>
-
+          -->
             <!-- addresses book-->
             <div class="box address-alert">
               <div aria-label="Delete" class="address-delete">
@@ -820,32 +821,27 @@
               </button>
               <div class="add-new-payment-content" id="add-new-payment-content">
                 <div class="box add-new-payment-box">
-                  <form
-                    method="POST"
-                    action="#"
-                    class="t-form"
-                    id="new-payment-form"
-                  >
+                  <form class="t-form" id="new-payment-form">
                     <fieldset>
                       <label class="reg-label" for="new-card-number"
                         >Card Number</label
                       >
                       <input
                         type="num"
-                        id="new-card-number"
+                        id="new-card-number-1"
                         class="input-cart-number"
                         maxlength="4"
                         required
                       />
                       <input
                         type="num"
-                        id="new-card-number-1"
+                        id="new-card-number-2"
                         class="input-cart-number"
                         maxlength="4"
                       />
                       <input
                         type="num"
-                        id="new-card-number-2"
+                        id="new-card-number-3"
                         class="input-cart-number"
                         max="9999"
                         maxlength="4"
@@ -853,7 +849,7 @@
                       />
                       <input
                         type="num"
-                        id="new-card-number-3"
+                        id="new-card-number-4"
                         class="input-cart-number"
                         max="9999"
                         maxlength="4"
@@ -869,6 +865,7 @@
                       <input
                         type="text"
                         id="new-card-holder"
+                        name="holder_name"
                         class="reg-input"
                         required
                       />
@@ -924,13 +921,18 @@
                           type="num"
                           id="new-card-ccv"
                           maxlength="3"
+                          name="ccv"
                           class="reg-input"
                           required
                         />
                         <div id="cvv-number-error" class="error-message"></div>
                       </fieldset>
                       <fieldset class="t-form-footer">
-                        <button class="btn-account-page" type="submit">
+                        <button
+                          class="btn-account-page"
+                          type="submit"
+                          id="update-new-payment"
+                        >
                           SAVE CARD
                         </button>
                       </fieldset>

@@ -408,13 +408,12 @@ function validateStreetNumber(streetNumber) {
 $(document).ready(function () {
   $("#new-payment-form").submit(function (event) {
     event.preventDefault();
-    clearErrorMessages();
 
     let isValid = true;
-    const cardNumber = $("#card-number").val();
-    const cardNumber1 = $("#card-number-1").val();
-    const cardNumber2 = $("#card-number-2").val();
-    const cardNumber3 = $("#card-number-3").val();
+    const cardNumber = $("#new-card-number-1").val();
+    const cardNumber1 = $("#new-card-number-2").val();
+    const cardNumber2 = $("#new-card-number-3").val();
+    const cardNumber3 = $("#new-card-number-4").val();
 
     if (
       !validateCardNumber(cardNumber) ||
@@ -431,7 +430,7 @@ $(document).ready(function () {
       isValid = false;
     }
 
-    const cardHolder = $("#card-holder").val();
+    const cardHolder = $("#new-card-holder").val();
     if (!validateCardHolder(cardHolder)) {
       Swal.fire({
         icon: "warning",
@@ -442,8 +441,8 @@ $(document).ready(function () {
       isValid = false;
     }
 
-    const expirationMonth = $("#card-expiration-month").val();
-    const expirationYear = $("#card-expiration-year").val();
+    const expirationMonth = $("#new-card-expiration-month").val();
+    const expirationYear = $("#new-card-expiration-year").val();
     if (!validateExpirationDate(expirationMonth, expirationYear)) {
       Swal.fire({
         icon: "warning",
@@ -454,7 +453,7 @@ $(document).ready(function () {
       isValid = false;
     }
 
-    const cvv = $("#card-ccv").val();
+    const cvv = $("#new-card-ccv").val();
     if (!validateCVV(cvv)) {
       Swal.fire({
         icon: "warning",
@@ -739,11 +738,10 @@ fetch("http://127.0.0.1:8080/api/current-user")
   .then((data) => {
     var alertBox = document.getElementById("payment-alert-box");
 
-    if (!data.creditCard) {
+    if (!data.creditCard === 0) {
       alertBox.style.display = "block";
     } else {
-      alertBox.style.display = "none";
-
+      alertBox.style.display = "block";
       const creditCardTemplate = `
         <div class="box">
           <div aria-label="Edit" class="address-edit">
@@ -757,7 +755,7 @@ fetch("http://127.0.0.1:8080/api/current-user")
             ••••-••••-••••-
           </span>
           <span class="payment-label sub" id="payment-4number">
-            ${data.creditCard ? data.creditCard.card_number.slice(-4) : ""}
+            ${data.creditCard.card_number.slice(-4)}
           </span>
           <div aria-label="Delete" class="payment-delete">
             <i class="fa fa-trash" id="payment"></i>
@@ -908,6 +906,51 @@ document.addEventListener("DOMContentLoaded", function () {
       url: "http://127.0.0.1:8080/personal-details", // Replace with your actual URL
       type: "POST",
       data: formData,
+      success: function (response) {
+        // Handle the response data here
+        console.log(response);
+      },
+      error: function (error) {
+        // Handle errors here
+        console.error("Error:", error);
+      },
+    });
+  });
+});
+
+/*card update*/
+document.addEventListener("DOMContentLoaded", function () {
+  $("#new-payment-form").submit(function (event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+    const formData = new FormData(); // Serialize form data
+    var card_expiration_year = document.getElementById(
+      "new-card-expiration-year"
+    ).value;
+    var card_expiration_month = document.getElementById(
+      "new-card-expiration-month"
+    ).value;
+    var card_expiration = card_expiration_month + "/" + card_expiration_year;
+    var card_number =
+      document.getElementById("new-card-number-1").value +
+      document.getElementById("new-card-number-2").value +
+      document.getElementById("new-card-number-3").value +
+      document.getElementById("new-card-number-4").value;
+    formData.append("expiration_date", card_expiration);
+    formData.append("card_number", card_number);
+    formData.append(
+      "holder_name",
+      document.getElementById("new-card-holder").value
+    );
+    formData.append("ccv", document.getElementById("new-card-ccv").value);
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+    $.ajax({
+      url: "http://127.0.0.1:8080/creditcard", // Replace with your actual URL
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
       success: function (response) {
         // Handle the response data here
         console.log(response);
