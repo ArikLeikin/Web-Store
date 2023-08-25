@@ -201,6 +201,7 @@ exports.getUploadYad2 = (req, res, next) => {
 exports.uploadYad2 = async (req, res, next) => {
   try {
     const image = req.files["image[]"];
+    const user = await User.findById(req.session.user._id);
     const newProduct = new Product({
       quantity: 1,
       category: req.body.category,
@@ -213,6 +214,11 @@ exports.uploadYad2 = async (req, res, next) => {
       age_range: req.body.age_range,
     });
     await newProduct.save();
+    user.usedProducts.push(newProduct);
+    await user.save();
+    req.session.user = user;
+    await req.session.save();
+
     res.status(200).json({ message: "Upload success!" });
   } catch (err) {
     console.log(err);
