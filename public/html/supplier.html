@@ -451,12 +451,13 @@
             formData.append("title", title);
             formData.append("price", price);
             formData.append("condition", condition);
+            formData.append("description", description);
             for (var i = 0; i < image.length; i++) {
               formData.append("image[]", image[i]);
             }
 
             $.ajax({
-              url: "http://127.0.0.1:8080/create/product",
+              url: "http://127.0.0.1:8080/supplier",
               type: "POST",
               data: formData,
               contentType: false,
