@@ -348,7 +348,7 @@
                   id="max-price-input"
                   min="0"
                   class="price-input center"
-                /> 
+                />
               </div>
             </td>
           </tr>
@@ -381,6 +381,7 @@
           $("#category-title").text("All Games");
           // Function to create the product HTML structure
           function createProductHTML(product) {
+            console.log(product.image[0]);
             const productItem = document.createElement("div");
             productItem.className = "product-item";
             productItem.setAttribute("data-age-range", product.ageRange);
@@ -391,7 +392,7 @@
             productLink.className = "product-img";
             productLink.href = "/product-details?id=" + product._id;
             const productImage = document.createElement("img");
-            productImage.src = product.image;
+            productImage.src = "../" + product.image[0].split("public")[1]; // Need to check if possible to remove split
             productImage.alt = "item";
             productLink.appendChild(productImage);
             const productTitleSection = document.createElement("section");
