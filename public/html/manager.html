@@ -297,66 +297,6 @@
         <!-- Need to add websocket managment -->
       </section>
 
-      <!-- <h2>Users Management:</h2>
-    <table id="data-table">
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>City</th>
-          <th>Street</th>
-          <th>Country</th>
-          <th>Postal Code</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Phone Number</th>
-          <th>Credit Card</th>
-          <th>ID</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-
-    <script>
-      $(document).ready(function () {
-        const url = 'http://127.0.0.1:8080/api/users'; // Replace with the actual URL
-        const tableBody = $('#data-table tbody');
-
-        $.ajax({
-          url: url,
-          method: 'GET',
-          dataType: 'json',
-          success: function (data) {
-            const users = data; // Assuming the array is directly in the response
-
-            users.forEach(function (user) {
-              const row = createTableRow(user);
-              tableBody.append(row);
-            });
-          },
-          error: function (error) {
-            console.error('Error:', error);
-          }
-        });
-
-        function createTableRow(data) {
-          const row = $('<tr>');
-          row.append($('<td>').text(data.name.firstName));
-          row.append($('<td>').text(data.name.lastName));
-          row.append($('<td>').text(data.address.city));
-          row.append($('<td>').text(data.address.street));
-          row.append($('<td>').text(data.address.country));
-          row.append($('<td>').text(data.address.postalCode));
-          row.append($('<td>').text(data.username));
-          row.append($('<td>').text(data.email || '-'));
-          row.append($('<td>').text(data.phoneNumber || '-'));
-          row.append($('<td>').text(data.creditCard || '-'));
-          row.append($('<td>').text(data._id));
-          return row;
-        }
-      });
-    </script> -->
-
       <form id="add-user-form">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" required /><br />

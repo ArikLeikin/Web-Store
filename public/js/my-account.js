@@ -577,44 +577,157 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// Get a reference to the form fields
-const firstNameField = document.getElementById("add-firstName");
-const lastNameField = document.getElementById("add-lastName");
-const phoneNumberField = document.getElementById("add-phoneNumber");
-const countryField = document.getElementById("country");
-const cityField = document.getElementById("city");
-const streetField = document.getElementById("street");
-const streetNoField = document.getElementById("streetno");
-const zipcodeField = document.getElementById("zipcode");
-
-// Make an HTTP request to fetch the address data
-fetch("http://127.0.0.1:8080/address")
+// address details
+fetch("http://127.0.0.1:8080/api/current-user")
   .then((response) => {
     if (!response.ok) {
       throw new Error(`Fetch error: ${response.status} ${response.statusText}`);
     }
     return response.json();
   })
-  .then((addressData) => {
+  .then((data) => {
     // Check if address data exists
-    if (addressData) {
+    if (data) {
       // Fill the form fields with the retrieved data
-      document.getElementById("add-firstName").textContent =
-        addressData.firstName;
-      document.getElementById("add-lastName").textContent =
-        addressData.lastName;
-      document.getElementById("add-phoneNumber").textContent =
-        addressData.phoneNumber;
-      document.getElementById("country").textContent = addressData.country;
-      document.getElementById("city").textContent = addressData.city;
-      document.getElementById("street").textContent = addressData.street;
-      document.getElementById("streetno").textContent = addressData.streetno;
-      document.getElementById("zipcode").textContent = addressData.postalCode;
+      document.getElementById("add-firstName").value = data.address.firstName;
+      document.getElementById("add-lastName").value = data.address.lastName;
+      document.getElementById("add-phoneNumber").value =
+        data.address.phoneNumber;
+      document.getElementById("country").value = data.address.country;
+      document.getElementById("city").value = data.address.city;
+      document.getElementById("street").value = data.address.street;
+      document.getElementById("streetno").value = data.address.streetno;
+      document.getElementById("zipcode").value = data.address.postalCode;
     }
   })
   .catch((error) => {
     console.error("Error fetching address user details:", error);
   });
+
+//user pesonal details
+fetch("http://127.0.0.1:8080/api/current-user")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Fetch error: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    var alertBox = document.getElementById("address-alert-box");
+    if (Object.keys(data.address).length === 0) {
+      alertBox.style.display = "block";
+    } else {
+      alertBox.style.display = "none";
+      document.getElementById("full-user-name").textContent =
+        data.name.firstName + " " + data.name.lastName;
+      document.getElementById("firstName").value = data.name.firstName;
+      document.getElementById("lastName").value = data.name.lastName;
+      document.getElementById("phoneNumber").value = data.phoneNumber;
+      document.getElementById("email").value = data.email;
+    }
+  })
+  .catch((error) => {
+    console.error("Error fetching user details:", error);
+  });
+
+//user order list
+fetch("http://127.0.0.1:8080/api/current-user")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Fetch error: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    var alertBox = document.getElementById("orders-alert-box");
+    const orderHistoryContainer = document.getElementById("order-history");
+    if (data.orderHistory.length == 0) {
+      alertBox.style.display = "block";
+    } else {
+      alertBox.style.display = "none";
+      orders.forEach((order) => {
+        const orderElement = createOrderElement(order);
+        orderHistoryContainer.appendChild(orderElement);
+      });
+    }
+  })
+  .catch((error) => {
+    console.error("Error fetching user details:", error);
+  });
+
+function createOrderElement(order) {
+  const orderDiv = document.createElement("div");
+  orderDiv.classList.add("box");
+
+  const cardHeader = document.createElement("div");
+  cardHeader.classList.add("my-card-header");
+  cardHeader.setAttribute("data-target", "#order" + order._id);
+
+  const orderStatus = document.createElement("h4");
+  orderStatus.classList.add("order-sub-title");
+  orderStatus.textContent = "ORDER STATUS: ";
+
+  const orderInfo = document.createElement("h4");
+  orderInfo.classList.add("order-info");
+  orderInfo.textContent = order.status;
+
+  const orderDate = document.createElement("h5");
+  orderDate.classList.add("order-sub-info");
+  orderDate.innerHTML = `Order Date <span>${order.order_date}</span>`;
+
+  const cartProducts = document.createElement("div");
+  cartProducts.classList.add("cart-products");
+
+  order.products.forEach((product) => {
+    const productItem = createProductItem(product.imageSrc);
+    cartProducts.appendChild(productItem);
+  });
+
+  const orderFooter = document.createElement("div");
+  orderFooter.classList.add("order-footer");
+
+  const orderSummary = document.createElement("div");
+  orderSummary.classList.add("order-sammary");
+
+  const orderNumber = document.createElement("h4");
+  orderNumber.classList.add("order-sub-title");
+  orderNumber.innerHTML = `ORDER NO. : <span class="order-sub-info">${order._id}</span>`;
+
+  const totalPrice = document.createElement("h4");
+  totalPrice.classList.add("order-sub-title");
+  totalPrice.innerHTML = `TOTAL PRICE: <span class="order-sub-info">${order.total_price}$</span>`;
+
+  orderSummary.appendChild(orderNumber);
+  orderSummary.appendChild(totalPrice);
+
+  const viewOrderBtn = document.createElement("button");
+  viewOrderBtn.classList.add("btn-account-page");
+  viewOrderBtn.textContent = "View Order";
+
+  orderFooter.appendChild(orderSummary);
+  orderFooter.appendChild(viewOrderBtn);
+
+  cardHeader.appendChild(orderStatus);
+  cardHeader.appendChild(orderInfo);
+  cardHeader.appendChild(orderDate);
+  cardHeader.appendChild(cartProducts);
+  cardHeader.appendChild(orderFooter);
+
+  orderDiv.appendChild(cardHeader);
+
+  return orderDiv;
+}
+function createProductItem(imageSrc) {
+  const item = document.createElement("div");
+  item.classList.add("item");
+
+  const img = document.createElement("img");
+  img.src = imageSrc;
+  img.alt = "item";
+
+  item.appendChild(img);
+  return item;
+}
 
 fetch("http://127.0.0.1:8080/api/current-user")
   .then((response) => {
@@ -624,8 +737,142 @@ fetch("http://127.0.0.1:8080/api/current-user")
     return response.json();
   })
   .then((data) => {
-    const firstName = data.name.firstName + " " + data.name.lastName;
-    document.getElementById("full-user-name").textContent = firstName;
+    var alertBox = document.getElementById("payment-alert-box");
+
+    if (!data.creditCard) {
+      alertBox.style.display = "block";
+    } else {
+      alertBox.style.display = "none";
+
+      const creditCardTemplate = `
+        <div class="box">
+          <div aria-label="Edit" class="address-edit">
+            <a href="http://127.0.0.1:8080/creditCardUpdate" class="inside-link">
+              <span>Edit</span>
+              <i class="fa fa-pencil-square-o"></i>
+            </a>
+          </div>
+          <h4 class="payment-label" id="payment-name">Credit Card</h4>
+          <span class="payment-label sub" id="payment-number">
+            ••••-••••-••••-
+          </span>
+          <span class="payment-label sub" id="payment-4number">
+            ${data.creditCard ? data.creditCard.card_number.slice(-4) : ""}
+          </span>
+          <div aria-label="Delete" class="payment-delete">
+            <i class="fa fa-trash" id="payment"></i>
+          </div>
+        </div>
+      `;
+
+      // Inject the template into a container on your page
+      const paymentMethodsContainer =
+        document.getElementById("payment-methods");
+      paymentMethodsContainer.innerHTML = creditCardTemplate;
+    }
+  })
+  .catch((error) => {
+    console.error("Error fetching user details:", error);
+  });
+
+// Fetch user data including wishlist
+fetch("http://127.0.0.1:8080/api/current-user")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Fetch error: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    var alertBox = document.getElementById("wishlist-alert-box");
+    var wishItemsContainer = document.getElementById("wish-items");
+
+    if (data.wishlist.length === 0) {
+      alertBox.style.display = "block";
+    } else {
+      alertBox.style.display = "none";
+      // Wishlist is not empty, create and populate the template
+      data.wishlist.forEach((item) => {
+        var wishItemTemplate = `
+        <div class="wish-item">
+          <div aria-label="wish-delete" class="wish-delete">
+            <i class="fa fa-trash" id="wish"></i>
+          </div>
+          <img src="${item.product.image}" alt="item" />
+          <section class="title">
+            <span class="title-desc center">
+              <a href="#">${item.product.title}</a>
+            </span>
+            <br />
+            <span class="title-price center">$${item.product.price}</span>
+          </section>
+          <button class="add-to-cart" id="addToCartBtn" type="button">
+            Add to cart
+          </button>
+          <div class="modal" id="cartModal">
+            <div class="modal-content">
+              <p class="centered-text">
+                Product added to cart! &#10003;
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+
+        var wishItemDiv = document.createElement("div");
+        wishItemDiv.innerHTML = wishItemTemplate;
+        wishItemsContainer.appendChild(wishItemDiv);
+      });
+    }
+  })
+  .catch((error) => {
+    console.error("Error fetching user details:", error);
+  });
+
+//user yad2 list
+fetch("http://127.0.0.1:8080/api/current-user")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Fetch error: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    var alertBox = document.getElementById("yad2-alert-box");
+    var yad2ItemsContainer = document.getElementById("yad2-items");
+
+    if (data.usedProducts.length === 0) {
+      alertBox.style.display = "block";
+    } else {
+      alertBox.style.display = "none";
+      // usedProducts list is not empty, create and populate the template
+      data.usedProducts.forEach((item) => {
+        var usedProductTemplate = `
+          <div class="wish-item">
+            <div class="wish-option">
+              <div aria-label="wish-delete left" class="wish-delete">
+                <i class="fa fa-trash" id="yad2"></i>
+              </div>
+              <div aria-label="wish-edit right" class="wish-edit">
+                <i class="fa fa-edit"></i>
+              </div>
+            </div>
+            <img src="${item.image}" alt="item" />
+            <section class="title">
+              <span class="title-desc center">
+                <a href="#">${item.title}</a>
+              </span>
+              <br />
+              <span class="title-price center">$${item.price}</span>
+            </section>
+          </div>
+        `;
+
+        var usedProductDiv = document.createElement("div");
+        usedProductDiv.innerHTML = usedProductTemplate;
+        yad2ItemsContainer.appendChild(usedProductDiv);
+      });
+    }
   })
   .catch((error) => {
     console.error("Error fetching user details:", error);
