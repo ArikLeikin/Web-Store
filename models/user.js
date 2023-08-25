@@ -31,38 +31,28 @@ const userSchema = new Schema({
   orderHistory: [{ type: Schema.Types.ObjectId, ref: "Order", default: null }],
   phoneNumber: { type: String },
   address: {
-    city: { type: String },
-    street: { type: String },
-    streetNumber: { type: Number },
-    country: { type: String },
-    postalCode: { type: String },
-    firstName: { type: String },
-    lastName: { type: String },
-    phoneNumber: { type: String },
+    city: { type: String, default: null },
+    street: { type: String, default: null },
+    streetNumber: { type: Number, default: null },
+    country: { type: String, default: null },
+    postalCode: { type: String, default: null },
+    firstName: { type: String, default: null },
+    lastName: { type: String, default: null },
+    phoneNumber: { type: String, default: null },
   },
   creditCard: {
-    card_number: { type: String },
-    holder_name: { type: String },
-    expiration_date: { type: String },
-    ccv: { type: String },
+    card_number: { type: String, default: null },
+    holder_name: { type: String, default: null },
+    expiration_date: { type: String, default: null },
+    ccv: { type: String, default: null },
   },
   resetToken: { type: String },
   resetTokenExpiration: { type: Date },
   usedProducts: [
     {
-      title: { type: String, required: true },
-      description: { type: String, required: true },
-      price: {
-        type: Number,
-        required: true,
-        validate: {
-          validator: (value) => value > 0,
-          message: "Price must be greater than 0.",
-        },
-      },
-      image: { type: String, required: true }, // You can use a URL or a file path to the image
-      condition: { type: String, required: true }, // E.g., "used", "like new", etc.
-      // Add any other properties specific to used products that you want to store
+      type: Schema.Types.ObjectId,
+      ref: "Product",
+      default: null,
     },
   ],
   wishlist: [
