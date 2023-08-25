@@ -3,6 +3,7 @@ const fs = require("fs");
 const Product = require("../models/product");
 const Order = require("../models/order");
 const nodemailer = require("nodemailer");
+const User = require("../models/user");
 
 //C:\Users\BooM\Desktop\School\WebDEV\WebStore\WebStore\public
 //C:\Users\BooM\Desktop\School\WebDEV\WebStore\public
@@ -683,7 +684,9 @@ exports.getAddress = async (req, res) => {
 
 exports.postAddress = async (req, res) => {
   try {
-    const user = req.session.user;
+    console.log(req.body);
+    const user = await User.findById(req.session.user._id);
+    //console.log(user);
     user.address.city = req.body.city;
     user.address.street = req.body.street;
     user.address.streetNumber = req.body.streetNumber;
@@ -692,12 +695,14 @@ exports.postAddress = async (req, res) => {
     user.address.firstName = req.body.firstName;
     user.address.lastName = req.body.lastName;
     user.address.phoneNumber = req.body.phoneNumber;
+    req.session.user = user;
     await req.session.save();
     await user.save();
     res.status(200).json({
       message: "Address updated successfully",
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       message: "Internal server error",
     });

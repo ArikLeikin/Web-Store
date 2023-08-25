@@ -88,6 +88,7 @@ exports.postRegister = async (req, res, next) => {
         country: req.body.country || null,
         postalCode: req.body.postalCode || null,
         street: req.body.street || null,
+        streetNumber: req.body.streetNumber || null,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         phoneNumber: req.body.phoneNumber,
