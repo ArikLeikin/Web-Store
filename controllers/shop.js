@@ -419,11 +419,17 @@ exports.postCartAdd = async (req, res, next) => {
     // req.session.user = await User.find({ username: "admin" }); // FIND -> RETURNS ARRAY!
     // req.session.user = req.session.user[0];  --> For testing
     const productIdToSave = req.body.productId;
-    let quantityToSave = parseInt(req.body.quantity);
+    let quantityToSave = req.body.quantity;
     if (quantityToSave <= 0)
       return res.status(400).json({ message: "Non positive quantity" });
-    const user = req.session.user;
-    const cart = user.cart || [];
+    const user = await User.findById(req.session.user._id);
+    let cart;
+    if (!user.cart) {
+      cart = { items: [] }; // Initialize the cart if it doesn't exist
+    } else {
+      cart = user.cart;
+    }
+
     if (cart.items.length > 0) {
       const existingCartItem = cart.items.find(
         (item) => item.product.toString() === productIdToSave
@@ -443,13 +449,13 @@ exports.postCartAdd = async (req, res, next) => {
         quantity: quantityToSave,
       });
     }
-
-    // req.session.user.cart = cart;
-    // req.session.cart = cart;
-    await req.session.save();
     await user.save();
+    req.session.user = user;
+    await req.session.save();
+
     res.status(200).json({ message: "Product added successfully to cart!" });
-  } catch (err) {
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Error adding product to cart!" });
   }
 };
