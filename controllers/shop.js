@@ -202,6 +202,7 @@ exports.uploadYad2 = async (req, res, next) => {
   try {
     const image = req.files["image[]"];
     const user = await User.findById(req.session.user._id);
+    const currDate = new Date();
     const newProduct = new Product({
       quantity: 1,
       category: "yad2",
@@ -210,7 +211,12 @@ exports.uploadYad2 = async (req, res, next) => {
       description: req.body.description,
       image: image.map((image) => image.path),
       condition: req.body.condition,
-      added_date: req.body.added_date,
+      added_date:
+        currDate.getDay() +
+        "/" +
+        currDate.getMonth() +
+        "/" +
+        currDate.getFullYear(),
       age_range: req.body.age_range,
     });
     await newProduct.save();
@@ -218,7 +224,6 @@ exports.uploadYad2 = async (req, res, next) => {
     await user.save();
     req.session.user = user;
     await req.session.save();
-
     res.status(200).json({ message: "Upload success!" });
   } catch (err) {
     console.log(err);
