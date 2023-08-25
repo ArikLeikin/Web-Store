@@ -881,45 +881,70 @@ fetch("http://127.0.0.1:8080/api/current-user")
 /*~~~~~~~~~~~~~~~~~~~~~~~post request~~~~~~~~~~~~~~~~~~~~~~~*/
 
 document.addEventListener("DOMContentLoaded", function () {
-  const saveAddressBtn = document.getElementById("save-address-btn");
-  const addressForm = document.getElementById("address-form");
+  // const saveAddressBtn = document.getElementById("save-address-btn");
+  // const addressForm = document.getElementById("address-form");
+  $("#address-form").submit(function (event) {
+    event.preventDefault(); // Prevent the form from submitting normally
 
-  saveAddressBtn.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent default form submission
+    const formData = $(this).serialize(); // Serialize form data
 
-    var firstName = $("#add-firstName").val();
-    var lastName = $("#add-lastName").val();
-    var phoneNumber = $("#add-phoneNumber").val();
-    var country = $("#country").val();
-    var city = $("#city").val();
-    var street = $("#street").val();
-    var streetNumber = $("#streetNumber").val();
-    var postalCode = $("#zipcode").val();
-
-    var formData = new FormData();
-    formData.append("firstName", firstName);
-    formData.append("lastName", lastName);
-    formData.append("phoneNumber", phoneNumber);
-    formData.append("country", country);
-    formData.append("city", city);
-    formData.append("street", street);
-    formData.append("streetNumber", streetNumber);
-    formData.append("postalCode", postalCode);
-
-    console.log(formData);
-    // Send a POST request to your API with form data
     $.ajax({
-      url: "http://127.0.0.1:8080/address",
+      url: "http://127.0.0.1:8080/address", // Replace with your actual URL
       type: "POST",
       data: formData,
-      contentType: false,
-      processData: false,
       success: function (response) {
-        console.log("addrress update successfully:", response);
+        // Handle the response data here
+        console.log(response);
       },
-      error: function (xhr, status, error) {
-        console.error("Error update addrress:", error);
+      error: function (error) {
+        // Handle errors here
+        console.error("Error:", error);
       },
     });
   });
+  // saveAddressBtn.addEventListener("click", function (event) {
+  //   event.preventDefault(); // Prevent default form submission
+
+  //   var firstName = $("#add-firstName").val();
+  //   var lastName = $("#add-lastName").val();
+  //   var phoneNumber = $("#add-phoneNumber").val();
+  //   var country = $("#country").val();
+  //   var city = $("#city").val();
+  //   var street = $("#street").val();
+  //   var streetNumber = $("#streetno").val();
+  //   var postalCode = $("#zipcode").val();
+  //   console.log(firstName);
+  //   console.log(lastName);
+  //   console.log(phoneNumber);
+  //   console.log(country);
+  //   console.log(city);
+  //   console.log(street);
+  //   console.log(streetNumber);
+  //   console.log(postalCode);
+
+  //   var formData = new FormData();
+  //   formData.append("firstName", firstName);
+  //   formData.append("lastName", lastName);
+  //   formData.append("phoneNumber", phoneNumber);
+  //   formData.append("country", country);
+  //   formData.append("city", city);
+  //   formData.append("street", street);
+  //   formData.append("streetNumber", streetNumber);
+  //   formData.append("postalCode", postalCode);
+
+  //   console.log(formData);
+  //   // Send a POST request to your API with form data
+  //   $.ajax({
+  //     url: "http://127.0.0.1:8080/address",
+  //     type: "POST",
+  //     data: formData,
+  //     contentType: false,
+  //     processData: false,
+  //     success: function (response) {
+  //       console.log("addrress update successfully:", response);
+  //     },
+  //     error: function (xhr, status, error) {
+  //       console.error("Error update addrress:", error);
+  //     },
+  //   });
 });
