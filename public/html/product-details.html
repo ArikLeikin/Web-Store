@@ -469,6 +469,36 @@
 
               productDetailsDiv.append(productView);
 
+              // Add a click event listener to the button
+addToCartButton.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  const productId = window.location.search.split("=")[1];
+  const quantity = $("#quantity").val();
+
+  addToCart(productId, quantity);
+});
+
+
+// Your addToCart function now includes the AJAX request
+function addToCart(productId, quantity) {
+  $.ajax({
+    url: "http://127.0.0.1:8080/cart/add",
+    method: "POST",
+    data: {
+      productId: productId,
+      quantity: quantity
+    },
+    success: function (response) {
+      console.log("Product added to cart:", response);
+    },
+    error: function (error) {
+      console.error("Error adding product to cart:", error);
+    },
+  });
+}
+
+
               $(".minus").click(function () {
                 const input = $(this).next();
                 let quantity = parseInt(input.val());
@@ -543,36 +573,32 @@
           });
 
 
-
-
-          
- 
-  $(".btn-ns-hot").click(function (event) {
-    event.preventDefault(); 
+  // $(".btn-ns-hot").click(function (event) {
+  //   event.preventDefault(); 
     
-    const productId = window.location.search.split("=")[1];
-    const quantity = $("#quantity").val();
+  //   const productId = window.location.search.split("=")[1];
+  //   const quantity = $("#quantity").val();
 
-    addToCart(productId, quantity);
-  });
+  //   addToCart(productId, quantity);
+  // });
 
-  function addToCart(productId, quantity) {
+  // function addToCart(productId, quantity) {
     
-    $.ajax({
-      url: "http://127.0.0.1:8080/cart/add",
-      method: "POST",
-      data: {
-        productId: productId,
-        quantity: quantity
-      },
-      success: function (response) {
-        console.log("Product added to cart:", response);
-      },
-      error: function (error) {
-        console.error("Error adding product to cart:", error);
-      },
-    });
-  }
+  //   $.ajax({
+  //     url: "http://127.0.0.1:8080/cart/add",
+  //     method: "POST",
+  //     data: {
+  //       productId: productId,
+  //       quantity: quantity
+  //     },
+  //     success: function (response) {
+  //       console.log("Product added to cart:", response);
+  //     },
+  //     error: function (error) {
+  //       console.error("Error adding product to cart:", error);
+  //     },
+  //   });
+  // }
 
         });
       </script>
