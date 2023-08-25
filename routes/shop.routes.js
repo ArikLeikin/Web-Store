@@ -47,7 +47,7 @@ router.get("/supplier", shopController.getSupplier);
 router.post("/supplier", multerConfig, shopController.postSupplier);
 
 router.get("/uploadYad2", isAuth, shopController.getUploadYad2);
-router.post("/uploadYad2", isAuth, shopController.uploadYad2);
+router.post("/uploadYad2", isAuth, multerConfig, shopController.uploadYad2);
 
 router.get("/Yad2Update", isAuth, shopController.getYad2Update);
 router.post("/Yad2Update", isAuth, shopController.postYad2Update);
