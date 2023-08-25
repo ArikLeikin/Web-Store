@@ -204,7 +204,7 @@ exports.uploadYad2 = async (req, res, next) => {
     const user = await User.findById(req.session.user._id);
     const newProduct = new Product({
       quantity: 1,
-      category: req.body.category,
+      category: "yad2",
       title: req.body.title,
       price: req.body.price,
       description: req.body.description,
