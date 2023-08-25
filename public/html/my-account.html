@@ -585,7 +585,7 @@
                       <input
                         class="reg-input"
                         type="firstName"
-                        id="new-firstName"
+                        id="new-add-firstName"
                         name="firstName"
                         required
                       />
@@ -597,7 +597,7 @@
                       <input
                         class="reg-input"
                         type="lastName"
-                        id="new-lastName"
+                        id="new-add-lastName"
                         name="lastName"
                         required
                       />
@@ -609,7 +609,7 @@
                       <input
                         class="reg-input"
                         type="phoneNumber"
-                        id="new-phoneNumber"
+                        id="new-add-phoneNumber"
                         name="phoneNumber"
                         required
                       />
@@ -685,12 +685,7 @@
               <div aria-label="Delete" class="address-delete">
                 <i class="fa fa-trash" id="address"></i>
               </div>
-              <form
-                method="POST"
-                action="#"
-                class="t-form"
-                id="new-address-form"
-              >
+              <form class="t-form" id="address-form">
                 <fieldset class="fieldset fieldset-firstName">
                   <label class="reg-label" for="add-firstName"
                     >First name</label
@@ -762,7 +757,7 @@
                       class="reg-input"
                       type="number"
                       id="streetno"
-                      name="streetno"
+                      name="streetNumber"
                       required
                     />
                   </fieldset>
@@ -773,11 +768,15 @@
                     class="reg-input"
                     type="text"
                     id="zipcode"
-                    name="zipcode"
+                    name="postalCode"
                     required
                   />
                 </fieldset>
-                <button class="btn-account-page" type="submit">
+                <button
+                  class="btn-account-page"
+                  type="submit"
+                  id="save-address-btn"
+                >
                   Save Changes
                 </button>
               </form>
