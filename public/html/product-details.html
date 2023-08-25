@@ -287,173 +287,6 @@
 
     <main style="margin-top: 190px">
       <div id="product-details"></div>
-      <!-- 
-<script>
-  $(document).ready(function () {
-    const productId = window.location.search.split("=")[1];
-    const url = `http://127.0.0.1:8080/api/product/${productId}`;
-    const productDetailsDiv = $("#product-details");
-
-    $.ajax({
-      url: url,
-      method: "GET",
-      dataType: "json",
-      success: function (data) {
-        const {
-          title,
-          price,
-          description,
-          category,
-          condition,
-          manufacture_date,
-          supplier,
-          quantity,
-          image,
-        } = data.data;
-
-        const capitalizeFirstLetter = (str) => {
-          return str.charAt(0).toUpperCase() + str.slice(1);
-        };
-
-        const formattedManufactureDate = new Date(manufacture_date).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        });
-
-
-        const capitalizedTitle = capitalizeFirstLetter(title);
-        const capitalizedCategory = capitalizeFirstLetter(category);
-        const capitalizedCondition = capitalizeFirstLetter(condition);
-        const capitalizedSupplier = capitalizeFirstLetter(supplier);
-
-
-        const productHTML = `
-                          <div class="productView">
-                          <div class="productView-images">
-                            <img
-                              src="${image}"
-                              alt=" Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces"
-                              title=" Oxford IMEX Tiger I Tank Building Blocks Set 689 Pieces"
-                              data-sizes="auto"
-                              class="productView-image"
-                            />
-                            <ul class="productView-slick-slider">
-                              <div class="slick-track">
-                                <li
-                                  class="productView-imageSlick active"
-                                  data-slick-index="0"
-                                  aria-hidden="false"
-                                  tabindex="0"
-                                >
-                                  <img
-                                    src="${image}"
-                                    alt=" LEGO DUPLO 10840 BIG FAIR"
-                                    title=" LEGO DUPLO 10840 BIG FAIR"
-                                    data-sizes="auto"
-                                    class="productView-image-option"
-                                  />
-                                </li>
-                                <li
-                                  class="productView-imageSlick"
-                                  data-slick-index="1"
-                                  aria-hidden="false"
-                                  tabindex="0"
-                                >
-                                  <img
-                                    src="https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6783/10840__44648.1684056186.jpg?c=2"
-                                    alt=" LEGO DUPLO 10840 BIG FAIR"
-                                    title=" LEGO DUPLO 10840 BIG FAIR"
-                                    data-sizes="auto"
-                                    class="productView-image-option"
-                                  />
-                                </li>
-                                <li
-                                  class="productView-imageSlick"
-                                  data-slick-index="2"
-                                  aria-hidden="false"
-                                  tabindex="0"
-                                >
-                                  <img
-                                    src="https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6784/10840_alt2__86991.1684056189.jpg?c=2"
-                                    alt=" LEGO DUPLO 10840 BIG FAIR"
-                                    title=" LEGO DUPLO 10840 BIG FAIR"
-                                    data-sizes="auto"
-                                    class="productView-image-option"
-                                  />
-                                </li>
-                                <li
-                                  class="productView-imageSlick"
-                                  data-slick-index="3"
-                                  aria-hidden="false"
-                                  tabindex="0"
-                                >
-                                  <img
-                                    src="https://cdn11.bigcommerce.com/s-2ap7o05kzl/images/stencil/100x100/products/2813/6785/10840_alt16__63979.1684056193.jpg?c=2"
-                                    alt=" LEGO DUPLO 10840 BIG FAIR"
-                                    title=" LEGO DUPLO 10840 BIG FAIR"
-                                    data-sizes="auto"
-                                    class="productView-image-option"
-                                  />
-                                </li>
-                              </div>
-                            </ul>
-                          </div>
-                          <div class="productView-info">
-                            <section class="productView-title">
-                              <h4 class="productView-name">
-                              ${capitalizedTitle}
-                              </h4>
-                              <p><strong>Category:</strong> ${capitalizedCategory}</p>
-                              <p><strong>Condition:</strong> ${capitalizedCondition}</p>
-                              <span class="productView-price">${price}$</span>
-                              <p><strong>Manufacturing Date:</strong> ${formattedManufactureDate}</p>
-                              <p><strong>Supplier:</strong> ${capitalizedSupplier}</p>
-                              <p><strong>Quantity:</strong> ${quantity}</p>
-                            </section>
-                            <section class="productView-qty">
-                              <div class="quantity-input">
-                                <input class="minus btn" type="button" value="-" />
-                                <input
-                                  id="text_tribulus"
-                                  value="1"
-                                  class="input-text qty text"
-                                  size="4"
-                                  id="quantity"
-                                />
-                                <input class="plus btn" type="button" value="+" />
-                              </div>
-                            </section>
-                            <section class="add-to-cart-section">
-                              <button class="btn-ns-hot">
-                                <a href="#">ADD TO CART</a>
-                              </button>
-                                <button class="favorite-button" aria-label="Add to favorites">
-                                  <i class="far fa-heart"></i>
-                                </button>
-                            </section>
-                            <section class="productView-details">
-                              <span class="productView-details-title">Product Description</span>
-                              <span class="productView-details-description">
-                              ${description}
-                              </span>
-                            </section>
-                          </div>
-                        
-                      `;
-
-        productDetailsDiv.html(productHTML);
-        
-        // Rest of your code
-      },
-      error: function (error) {
-        console.error("Error fetching data:", error);
-      },
-    });
-  });
-     
-</script> -->
-
       <script>
         $(document).ready(function () {
           const productId = window.location.search.split("=")[1];
@@ -467,6 +300,37 @@
             success: function (data) {
               const { title, price, description, quantity, image } = data.data;
 
+
+         $.ajax({
+        url: "http://127.0.0.1:8080/api/current-user",
+        method: "GET",
+        dataType: "json",
+        success: function (userData) {
+          const userPermission = userData.permission;
+
+          // ... (your existing code)
+
+          // Check if the user is an admin
+          if (userPermission === "admin") {
+            const editIcon = document.createElement("i");
+            editIcon.className = "fas fa-pencil-alt edit-icon";
+            editIcon.style.display = "inline"; 
+            editIcon.style.position = "absolute"; 
+            editIcon.style.top = "200px"; 
+            editIcon.style.right = "110px";
+            editIcon.addEventListener("click", function () {
+              window.location.href = "http://127.0.0.1:8080/product-update"; 
+            });
+            productInfoDiv.appendChild(editIcon);
+          }
+
+          productView.appendChild(productInfoDiv);
+        },
+        error: function (error) {
+          console.error("Error fetching user data:", error);
+        },
+      });
+
               const capitalizeFirstLetter = (str) => {
                 return str.charAt(0).toUpperCase() + str.slice(1);
               };
@@ -474,8 +338,7 @@
               const productView = document.createElement("div");
               productView.className = "productView";
 
-              
-
+            
               //Product images
               const productImagesDiv = document.createElement("div");
               productImagesDiv.className = "productView-images";
