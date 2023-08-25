@@ -47,7 +47,7 @@ exports.getContactPage = (req, res, next) => {
 };
 
 exports.getaddressUpdate = (req, res, next) => {
-  const file = path.join(__dirname, "../public/html/addressUpdate.html");
+  const file = path.join(__dirname, "../public/html/address-update.html");
   res.sendFile(file, (err) => {
     if (err) {
       console.error(err);
@@ -68,6 +68,16 @@ exports.getCreditCardUpdate = (req, res, next) => {
 
 exports.getProductDetails = (req, res, next) => {
   const file = path.join(__dirname, "../public/html/product-details.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.getProductUpdate = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/product-update.html");
   res.sendFile(file, (err) => {
     if (err) {
       console.error(err);

@@ -31,6 +31,7 @@ router.get("/contact", shopController.getContactPage);
 router.get("/creditCardUpdate", shopController.getCreditCardUpdate);
 
 router.get("/product-details", shopController.getProductDetails);
+router.get("/product-update", shopController.getProductUpdate);
 
 router.get("/gift-finder", shopController.getGiftFinder);
 
