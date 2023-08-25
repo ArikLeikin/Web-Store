@@ -814,14 +814,15 @@ exports.getPersonalDetails = async (req, res) => {
 exports.postPersonalDetails = async (req, res) => {
   try {
     const user = await User.findById(req.session.user._id);
-    user.firstName = req.body.firstName;
-    user.lastName = req.body.lastName;
+    user.name.firstName = req.body.firstName;
+    user.name.lastName = req.body.lastName;
     user.phoneNumber = req.body.phoneNumber;
     user.email = req.body.email;
-    user.save();
+    await user.save();
     req.session.user = user;
-    req.session.user.save();
-    return res.status(200).json(user);
+    await req.session.save();
+
+    return res.status(200).json({ message: "Changed details successfully !" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "error in server" });
