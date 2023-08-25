@@ -800,3 +800,27 @@ exports.postSupplier = async (req, res) => {
     res.status(500).json({ message: "error in server" });
   }
 };
+
+exports.getPersonalDetails = async (req, res) => {
+  try {
+    const user = await User.findById(req.session.user._id);
+    return res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "error in server" });
+  }
+};
+
+exports.postPersonalDetails = async (req, res) => {
+  try {
+    const user = await User.findById(req.session.user._id);
+    user = req.body;
+    user.save();
+    req.session.user = user;
+    req.session.user.save();
+    return res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "error in server" });
+  }
+};
