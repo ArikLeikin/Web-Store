@@ -4,6 +4,7 @@ const Product = require("../models/product");
 const Order = require("../models/order");
 const nodemailer = require("nodemailer");
 const User = require("../models/user");
+const { log } = require("console");
 
 //C:\Users\BooM\Desktop\School\WebDEV\WebStore\WebStore\public
 //C:\Users\BooM\Desktop\School\WebDEV\WebStore\public
@@ -717,21 +718,22 @@ exports.getCreditCard = async (req, res) => {
     });
   }
 };
-
 exports.creditCardUpdate = async (req, res) => {
   try {
-    const user = req.session.user;
-    user.creditCard.card_number = req.body.creditCardNumber;
-    user.creditCard.card_number = req.body.creditCard;
-    user.creditCard.holdr_name = req.body.card_holder; // NEED TO FIX AND ADJUST WITH FRONTEND
+    console.log(req.body);
+    const user = await User.findById(req.session.user._id);
+    user.creditCard.card_number = req.body.card_number;
+    user.creditCard.holder_name = req.body.holder_name; // NEED TO FIX AND ADJUST WITH FRONTEND
     user.creditCard.expiration_date = req.body.expiration_date; // NEED TO ADJUST BY FRONT
     user.creditCard.ccv = req.body.ccv;
-    await req.session.save();
     await user.save();
-    user.res.status(200).json({
+    req.session.user = user;
+    await req.session.save();
+    res.status(200).json({
       message: "Credit card updated successfully",
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       message: "Internal server error",
     });
