@@ -4,6 +4,9 @@ const Product = require("../models/product");
 const Order = require("../models/order");
 const nodemailer = require("nodemailer");
 
+//C:\Users\BooM\Desktop\School\WebDEV\WebStore\WebStore\public
+//C:\Users\BooM\Desktop\School\WebDEV\WebStore\public
+
 const transporter = nodemailer.createTransport({
   service: process.env.EMAIL_SERVICE, // Use the appropriate service here
   auth: {
@@ -44,7 +47,7 @@ exports.getContactPage = (req, res, next) => {
 };
 
 exports.getaddressUpdate = (req, res, next) => {
-  const file = path.join(__dirname, "../public/html/addressUpdate.html");
+  const file = path.join(__dirname, "../public/html/address-update.html");
   res.sendFile(file, (err) => {
     if (err) {
       console.error(err);
@@ -65,6 +68,16 @@ exports.getCreditCardUpdate = (req, res, next) => {
 
 exports.getProductDetails = (req, res, next) => {
   const file = path.join(__dirname, "../public/html/product-details.html");
+  res.sendFile(file, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+};
+
+exports.getProductUpdate = (req, res, next) => {
+  const file = path.join(__dirname, "../public/html/product-update.html");
   res.sendFile(file, (err) => {
     if (err) {
       console.error(err);
@@ -672,7 +685,8 @@ exports.postAddress = async (req, res) => {
   try {
     const user = req.session.user;
     user.address.city = req.body.city;
-    user.address.street = req.body.street + req.street_number;
+    user.address.street = req.body.street;
+    user.address.streetNumber = req.body.streetNumber;
     user.address.country = req.body.country;
     user.address.postalCode = req.body.postalCode;
     user.address.firstName = req.body.firstName;
@@ -747,7 +761,8 @@ exports.postSupplier = async (req, res) => {
     // );
 
     // let Image = gridfs(conn.db, mongoose.mongo);
-    const images = req.files;
+    const images = req.files["image[]"];
+    console.log(images);
     const product = new Product({
       category: category,
       condition: condition,
