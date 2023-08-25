@@ -877,3 +877,48 @@ fetch("http://127.0.0.1:8080/api/current-user")
   .catch((error) => {
     console.error("Error fetching user details:", error);
   });
+
+/*~~~~~~~~~~~~~~~~~~~~~~~post request~~~~~~~~~~~~~~~~~~~~~~~*/
+document.addEventListener("DOMContentLoaded", function () {
+  const saveAddressBtn = document.getElementById("save-address-btn");
+  const addressForm = document.getElementById("address-form");
+
+  saveAddressBtn.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    var firstName = $("#add-firstName").val();
+    var lastName = $("#add-lastName").val();
+    var phoneNumber = $("#add-phoneNumber").val();
+    var country = $("#country").val();
+    var city = $("#city").val();
+    var street = $("#street").val();
+    var streetNumber = $("#streetNumber").val();
+    var postalCode = $("#zipcode").val();
+
+    var formData = new FormData();
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("phoneNumber", phoneNumber);
+    formData.append("country", country);
+    formData.append("city", city);
+    formData.append("street", street);
+    formData.append("streetNumber", streetNumber);
+    formData.append("postalCode", postalCode);
+
+    console.log(formData);
+    // Send a POST request to your API with form data
+    $.ajax({
+      url: "http://127.0.0.1:8080/address",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (response) {
+        console.log("addrress update successfully:", response);
+      },
+      error: function (xhr, status, error) {
+        console.error("Error update addrress:", error);
+      },
+    });
+  });
+});
