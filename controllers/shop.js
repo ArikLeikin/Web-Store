@@ -402,16 +402,22 @@ exports.addProductToCart = async (req, res, next) => {
 };
 
 exports.getCart = async (req, res, next) => {
-  const user = req.session.user;
-  if (user == undefined) {
-    return res.status(401).json("Log in required");
+  try {
+    const user = await User.findById(req.session.user._id);
+    if (user == undefined) {
+      return res.status(401).json("Log in required");
+    }
+    const cart = user.cart || [];
+    if (cart.items.length === 0) return res.status(401).json("Cart is Empty");
+    res.status(200).json({
+      data: cart.items,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Internal server error",
+    });
   }
-  const cart = user.cart || [];
-  if (cart.items.length === 0) return res.status(401).json("Cart is Empty");
-  //console.log(cart.items);
-  res.status(200).json({
-    data: cart.items,
-  });
 };
 
 exports.postCartAdd = async (req, res, next) => {
