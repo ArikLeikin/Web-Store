@@ -921,8 +921,9 @@ document.addEventListener("DOMContentLoaded", function () {
 /*card update*/
 document.addEventListener("DOMContentLoaded", function () {
   $("#new-payment-form").submit(function (event) {
-    event.preventDefault(); // Prevent the form from submitting normally
-    const formData = new FormData(); // Serialize form data
+    event.preventDefault(); // Prevent the default form submission
+
+    // Collect form data
     var card_expiration_year = document.getElementById(
       "new-card-expiration-year"
     ).value;
@@ -935,30 +936,56 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("new-card-number-2").value +
       document.getElementById("new-card-number-3").value +
       document.getElementById("new-card-number-4").value;
-    formData.append("expiration_date", card_expiration);
-    formData.append("card_number", card_number);
-    formData.append(
-      "holder_name",
-      document.getElementById("new-card-holder").value
-    );
-    formData.append("ccv", document.getElementById("new-card-ccv").value);
-    for (const [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
+    var formData = {
+      card_number: card_number,
+      holder_name: $("#new-card-holder").val(),
+      expiration_date: card_expiration,
+      ccv: $("#new-card-ccv").val(),
+    };
+
+    // Send AJAX POST request
     $.ajax({
-      url: "http://127.0.0.1:8080/creditcard", // Replace with your actual URL
       type: "POST",
+      url: "http://127.0.0.1:8080/creditcard",
       data: formData,
-      contentType: false,
-      processData: false,
       success: function (response) {
-        // Handle the response data here
-        console.log(response);
+        // Handle success response
+        console.log("Success:", response);
       },
       error: function (error) {
-        // Handle errors here
-        console.error("Error:", error);
+        // Handle error response
+        console.log("Error:", error);
       },
     });
   });
+  // $("#new-payment-form").submit(function (event) {
+  //   event.preventDefault(); // Prevent the form from submitting normally
+  //   const formData = new FormData(); // Serialize form data
+
+  //   formData.append("expiration_date", card_expiration);
+  //   formData.append("card_number", card_number);
+  //   formData.append(
+  //     "holder_name",
+  //     document.getElementById("new-card-holder").value
+  //   );
+  //   formData.append("ccv", document.getElementById("new-card-ccv").value);
+  //   for (const [key, value] of formData.entries()) {
+  //     console.log(`${key}: ${value}`);
+  //   }
+  //   $.ajax({
+  //     url: "http://127.0.0.1:8080/creditcard", // Replace with your actual URL
+  //     type: "POST",
+  //     data: formData,
+  //     contentType: false,
+  //     processData: false,
+  //     success: function (response) {
+  //       // Handle the response data here
+  //       console.log(response);
+  //     },
+  //     error: function (error) {
+  //       // Handle errors here
+  //       console.error("Error:", error);
+  //     },
+  //   });
+  // });
 });
