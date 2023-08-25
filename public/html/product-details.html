@@ -308,9 +308,6 @@
         success: function (userData) {
           const userPermission = userData.permission;
 
-          // ... (your existing code)
-
-          // Check if the user is an admin
           if (userPermission === "admin") {
             const editIcon = document.createElement("i");
             editIcon.className = "fas fa-pencil-alt edit-icon";
@@ -321,6 +318,8 @@
             editIcon.addEventListener("click", function () {
               window.location.href = "http://127.0.0.1:8080/product-update"; 
             });
+            const editText = document.createTextNode("Edit"); 
+            editIconLink.appendChild(editText); 
             productInfoDiv.appendChild(editIcon);
           }
 
