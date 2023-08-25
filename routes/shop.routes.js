@@ -74,5 +74,7 @@ router.get("/address", isAuth, shopController.getAddress);
 router.post("/address", isAuth, shopController.postAddress);
 router.get("/creditcard", isAuth, shopController.getCreditCard);
 router.post("/creditcard", isAuth, shopController.creditCardUpdate);
+router.get("/personal-details", isAuth, shopController.getPersonalDetails);
+router.post("/personal-details", isAuth, shopController.postPersonalDetails);
 
 module.exports = router;
