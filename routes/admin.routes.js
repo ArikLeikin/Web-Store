@@ -4,20 +4,7 @@ const isAdmin = require("../middleware/isAdmin");
 
 const router = express.Router();
 const multer = require("multer");
-// const mongoose = require("mongoose");
-// const gridfs = require("mongoose-gridfs");
-// gridfs.mongo = mongoose.mongo;
-// const conn = await mongoose.createConnection(
-//   "mongodb+srv://" +
-//     process.env.DB_USERNAME +
-//     ":" +
-//     process.env.DB_PASSWORD +
-//     "@webstore.svlylpv.mongodb.net/"
-// );
 
-// const Image = gridfs(conn.db, mongoose.mongo);
-
-// CRUD
 // Configure multer for handling image uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -30,13 +17,10 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
+const multerConfig = upload.fields([{ name: "image[]", maxCount: 4 }]);
 
-router.post(
-  "/create/product",
-  isAdmin,
-  upload.array("image", 4),
-  adminController.create
-);
+// CRUD
+router.post("/create/product", isAdmin, multerConfig, adminController.create);
 router.get("/get/product/:id", isAdmin, adminController.get);
 router.post("/update/product/:id", isAdmin, adminController.update);
 router.post("/delete/product/:id", isAdmin, adminController.delete);
