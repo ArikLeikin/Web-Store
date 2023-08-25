@@ -303,7 +303,7 @@
               <p>
                 <span class="top-sidebar-title">Hi,</span><br />
                 <span class="top-sidebar-title bold" id="full-user-name"
-                  >[first name || last]</span
+                  >User</span
                 >
               </p>
             </div>
@@ -545,7 +545,7 @@
             </div>
 
             <!-- there is no address-->
-            <div class="box">
+            <div class="box address-">
               <div class="alertBox alertBox--info">
                 <div class="alertBox-column alertBox-icon">
                   <svg
@@ -677,7 +677,7 @@
             </div>
 
             <!-- addresses book-->
-            <div class="box">
+            <div class="box address-alert">
               <div aria-label="Delete" class="address-delete">
                 <i class="fa fa-trash" id="address"></i>
               </div>
@@ -688,33 +688,35 @@
                 id="new-address-form"
               >
                 <fieldset class="fieldset fieldset-firstName">
-                  <label class="reg-label" for="firstName">First name</label>
+                  <label class="reg-label" for="add-firstName"
+                    >First name</label
+                  >
                   <input
                     class="reg-input"
-                    type="firstName"
-                    id="firstName"
+                    type="text"
+                    id="add-firstName"
                     name="firstName"
                     required
                   />
                 </fieldset>
                 <fieldset class="fieldset fieldset-lastName">
-                  <label class="reg-label" for="lastName">Last name</label>
+                  <label class="reg-label" for="add-lastName">Last name</label>
                   <input
                     class="reg-input"
-                    type="lastName"
-                    id="lastName"
+                    type="text"
+                    id="add-lastName"
                     name="lastName"
                     required
                   />
                 </fieldset>
                 <fieldset class="fieldset-phoneNumber">
-                  <label class="reg-label" for="phoneNumber"
+                  <label class="reg-label" for="add-phoneNumber"
                     >Phone number</label
                   >
                   <input
                     class="reg-input"
-                    type="phoneNumber"
-                    id="phoneNumber"
+                    type="text"
+                    id="add-phoneNumber"
                     name="phoneNumber"
                     required
                   />
@@ -1163,29 +1165,6 @@
 
       return orderDiv;
     }
-
-    function fetchUserDetails() {
-      const url = "http://127.0.0.1:8080/api/current-user";
-
-      fetch(url)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(
-              `Fetch error: ${response.status} ${response.statusText}`
-            );
-          }
-          return response.json();
-        })
-        .then((data) => {
-          const firstName = data.name.firstName;
-          document.getElementById("full-user-name").textContent = firstName;
-        })
-        .catch((error) => {
-          console.error("Error fetching user details:", error);
-        });
-    }
-
-    fetchUserDetails();
 
     function fetchOrders() {
       const url = "http://127.0.0.1:8080/api/orders";

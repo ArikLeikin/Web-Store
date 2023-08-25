@@ -16,8 +16,11 @@ const storage = multer.diskStorage({
     cb(null, `${file.originalname}`);
   },
 });
-
 const upload = multer({ storage });
+
+//const upload = multer({ dest: "../public/product-images" });
+const multerConfig = upload.fields([{ name: "image", maxCount: 4 }]);
+
 router.get("/", shopController.getHomePage);
 
 router.get("/about", shopController.getAboutPage);
@@ -41,7 +44,7 @@ router.get("/q&a", shopController.getQA);
 router.get("/statistics", shopController.getStatistics);
 
 router.get("/supplier", shopController.getSupplier);
-router.post("/supplier", upload.array("image", 4), shopController.postSupplier);
+router.post("/supplier", multerConfig, shopController.postSupplier);
 
 router.get("/uploadYad2", isAuth, shopController.getUploadYad2);
 router.post("/uploadYad2", isAuth, shopController.uploadYad2);

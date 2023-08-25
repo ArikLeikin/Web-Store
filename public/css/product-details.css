@@ -76,7 +76,6 @@
 
 .quantity-input input {
   max-width: 50px;
-
 }
 input.minus.btn,
 input.plus.btn {
@@ -147,7 +146,7 @@ h4.productView-name {
   background-color: #fff;
   float: left;
   margin: 0 10px 10px 0;
-  width: 240px;
+  width: 200px;
   padding: 10px;
   min-height: 300px;
   display: grid;
