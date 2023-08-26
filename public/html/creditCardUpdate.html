@@ -294,34 +294,21 @@
         Update your Credit Catd details and save it for your next purchases:
       </p>
       <div class="checkout">
-        <form
-          method="POST"
-          action="/creditcard"
-          class="form"
-          id="creditCardUpdate-form"
-        >
+        <form class="form" id="creditCardUpdate-form">
           <fieldset>
             <label class="pay-label" for="card-number">Card Number</label>
-            <input
-              type="num"
-              id="card-number"
-              class="input-cart-number"
-              maxlength="4"
-              required
-            />
             <input
               type="num"
               id="card-number-1"
               class="input-cart-number"
               maxlength="4"
+              required
             />
             <input
               type="num"
               id="card-number-2"
               class="input-cart-number"
-              max="9999"
               maxlength="4"
-              required
             />
             <input
               type="num"
@@ -331,11 +318,19 @@
               maxlength="4"
               required
             />
+            <input
+              type="num"
+              id="card-number-4"
+              class="input-cart-number"
+              max="9999"
+              maxlength="4"
+              required
+            />
           </fieldset>
           <div id="card-number-error" class="error-message"></div>
           <fieldset>
             <label class="pay-label" for="card-holder">Card holder ID</label>
-            <input type="text" id="card-holder" required />
+            <input type="text" id="card-holder" name="holder_name" required />
             <div id="card-holder-error" class="error-message"></div>
           </fieldset>
           <fieldset class="fieldset-expiration">
@@ -377,12 +372,19 @@
           </fieldset>
           <fieldset class="fieldset-ccv">
             <label class="pay-label" for="card-ccv">CCV</label>
-            <input type="num" id="card-ccv" maxlength="3" required />
+            <input type="num" id="card-ccv" maxlength="3" name="ccv" required />
             <div id="cvv-number-error" class="error-message"></div>
           </fieldset>
 
           <fieldset class="fieldset-footer">
             <div class="form-footer">
+              <button
+                type="button"
+                id="delete-card-btn"
+                class="btn-ns-hot delete-btn"
+              >
+                Delete
+              </button>
               <button class="btn-ns-hot" type="submit" id="update-button">
                 Update
               </button>
@@ -390,7 +392,6 @@
           </fieldset>
         </form>
       </div>
-
     </main>
 
     <div id="myModal" class="modal">

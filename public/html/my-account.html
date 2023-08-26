@@ -302,9 +302,7 @@
             <div class="top-sidebar_inner">
               <p>
                 <span class="top-sidebar-title">Hi,</span><br />
-                <span class="top-sidebar-title bold" id="full-user-name"
-                  >User</span
-                >
+                <span class="top-sidebar-title bold" id="full-user-name"></span>
               </p>
             </div>
           </div>
@@ -513,26 +511,36 @@
             </div>
             <div class="box">
               <div class="pass-container">
-                <label class="reg-label" for="currpassword"
-                  >Current Password</label
-                >
-                <input
-                  class="reg-input"
-                  type="password"
-                  id="currpassword"
-                  name="currpassword"
-                  required
-                />
-                <label class="reg-label" for="newpassword">New Password</label>
-                <input
-                  class="reg-input"
-                  type="password"
-                  id="newpassword"
-                  name="newpassword"
-                  required
-                />
+                <form class="t-form" id="password-form">
+                  <fieldset class="fieldset">
+                    <label class="reg-label" for="currpassword"
+                      >Current Password</label
+                    >
+                    <input
+                      class="reg-input"
+                      type="password"
+                      id="currpassword"
+                      name="currpassword"
+                      required
+                    />
+                  </fieldset>
+                  <fieldset class="fieldset">
+                    <label class="reg-label" for="newpassword"
+                      >New Password</label
+                    >
+                    <input
+                      class="reg-input"
+                      type="password"
+                      id="newpassword"
+                      name="newpassword"
+                      required
+                    />
+                  </fieldset>
+                  <button class="btn-account-page" type="submit">
+                    Save password
+                  </button>
+                </form>
               </div>
-              <button class="btn-account-page">Save password</button>
             </div>
           </div>
 
@@ -566,125 +574,8 @@
               </div>
             </div>
 
-            <!-- add new address option 
-              <button class="collapsible-div btn-account-page" type="button">
-                ADD NEW ADDERSS
-              </button>
-              <div class="add-new-address-content" id="add-new-address-content">
-                <div class="box add-new-address-box">
-                  <form
-                    method="POST"
-                    action="#"
-                    class="t-form"
-                    id="new-address-form"
-                  >
-                    <fieldset class="fieldset fieldset-firstName">
-                      <label class="reg-label" for="new-firstName"
-                        >First name</label
-                      >
-                      <input
-                        class="reg-input"
-                        type="firstName"
-                        id="new-add-firstName"
-                        name="firstName"
-                        required
-                      />
-                    </fieldset>
-                    <fieldset class="fieldset fieldset-lastName">
-                      <label class="reg-label" for="new-lastName"
-                        >Last name</label
-                      >
-                      <input
-                        class="reg-input"
-                        type="lastName"
-                        id="new-add-lastName"
-                        name="lastName"
-                        required
-                      />
-                    </fieldset>
-                    <fieldset class="fieldset-phoneNumber">
-                      <label class="reg-label" for="new-phoneNumber"
-                        >Phone number</label
-                      >
-                      <input
-                        class="reg-input"
-                        type="phoneNumber"
-                        id="new-add-phoneNumber"
-                        name="phoneNumber"
-                        required
-                      />
-                    </fieldset>
-                    <fieldset class="fieldset-country">
-                      <label class="reg-label" for="new-country">Country</label>
-                      <input
-                        class="reg-input"
-                        type="text"
-                        id="new-country"
-                        name="country"
-                        required
-                      />
-                    </fieldset>
-                    <fieldset class="fieldset-city">
-                      <label class="reg-label" for="new-city">City</label>
-                      <input
-                        class="reg-input"
-                        type="text"
-                        id="new-city"
-                        name="city"
-                        required
-                      />
-                    </fieldset>
-                    <div class="street">
-                      <fieldset class="fieldset-street">
-                        <label class="reg-label" for="new-street">Street</label>
-                        <input
-                          class="reg-input"
-                          type="text"
-                          id="new-street"
-                          name="street"
-                          required
-                        />
-                      </fieldset>
-                      <fieldset class="fieldset-streetno">
-                        <label class="reg-label" for="new-streetno"
-                          >Street NO.</label
-                        >
-                        <input
-                          class="reg-input"
-                          type="number"
-                          id="new-streetno"
-                          name="streetno"
-                          required
-                        />
-                      </fieldset>
-                    </div>
-                    <fieldset class="fieldset-zipcode">
-                      <label class="reg-label" for="new-zipcode"
-                        >Zip Code</label
-                      >
-                      <input
-                        class="reg-input"
-                        type="text"
-                        id="new-zipcode"
-                        name="zipcode"
-                        required
-                      />
-                    </fieldset>
-                    <div class="footer-button">
-                      <button class="btn-account-page" type="submit">
-                        Save Address
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          -->
             <!-- addresses book-->
             <div class="box address-alert">
-              <div aria-label="Delete" class="address-delete">
-                <i class="fa fa-trash" id="address"></i>
-              </div>
               <form class="t-form" id="address-form">
                 <fieldset class="fieldset fieldset-firstName">
                   <label class="reg-label" for="add-firstName"
@@ -772,13 +663,26 @@
                     required
                   />
                 </fieldset>
-                <button
-                  class="btn-account-page"
-                  type="submit"
-                  id="save-address-btn"
+                <div
+                  aria-label="Delete"
+                  class="address-delete"
+                  style="display: flex"
                 >
-                  Save Changes
-                </button>
+                  <button
+                    class="btn-account-page"
+                    type="submit"
+                    id="save-address-btn"
+                  >
+                    Save Changes
+                  </button>
+                  <button
+                    type="button"
+                    id="delete-address-btn"
+                    class="clear-btn"
+                  >
+                    <i class="fa fa-trash" id="address-delete-icon"></i>
+                  </button>
+                </div>
               </form>
             </div>
           </div>
@@ -942,9 +846,9 @@
               </div>
             </div>
 
-            <!-- payment card-->
-            <div class="box">
-              <div aria-label="Edit" class="address-edit">
+            <!-- payment card -->
+            <div class="box" id="payment-box"></div>
+            <!--<div aria-label="Edit" class="address-edit">
                 <a
                   href="http://127.0.0.1:8080/creditCardUpdate"
                   class="inside-link"
@@ -964,9 +868,9 @@
 
               <div aria-label="Delete" class="payment-delete">
                 <i class="fa fa-trash" id="payment"></i>
-              </div>
-            </div>
+              </div>-->
           </div>
+
           <!-- wish list-->
           <div class="page-section wish-list" id="wish-list">
             <div class="box">
@@ -1130,90 +1034,5 @@
       item.appendChild(img);
       return item;
     }
-
-    // function createOrderElement(order) {
-    //   const orderDiv = document.createElement("div");
-    //   orderDiv.classList.add("box");
-
-    //   const cardHeader = document.createElement("div");
-    //   cardHeader.classList.add("my-card-header");
-    //   cardHeader.setAttribute("data-target", "#order" + order._id);
-
-    //   const orderStatus = document.createElement("h4");
-    //   orderStatus.classList.add("order-sub-title");
-    //   orderStatus.textContent = "ORDER STATUS: ";
-
-    //   const orderInfo = document.createElement("h4");
-    //   orderInfo.classList.add("order-info");
-    //   orderInfo.textContent = order.status;
-
-    //   const orderDate = document.createElement("h5");
-    //   orderDate.classList.add("order-sub-info");
-    //   orderDate.innerHTML = `Order Date <span>${order.order_date}</span>`;
-
-    //   const cartProducts = document.createElement("div");
-    //   cartProducts.classList.add("cart-products");
-
-    //   order.products.forEach((product) => {
-    //     const productItem = createProductItem(product.imageSrc);
-    //     cartProducts.appendChild(productItem);
-    //   });
-
-    //   const orderFooter = document.createElement("div");
-    //   orderFooter.classList.add("order-footer");
-
-    //   const orderSummary = document.createElement("div");
-    //   orderSummary.classList.add("order-sammary");
-
-    //   const orderNumber = document.createElement("h4");
-    //   orderNumber.classList.add("order-sub-title");
-    //   orderNumber.innerHTML = `ORDER NO. : <span class="order-sub-info">${order._id}</span>`;
-
-    //   const totalPrice = document.createElement("h4");
-    //   totalPrice.classList.add("order-sub-title");
-    //   totalPrice.innerHTML = `TOTAL PRICE: <span class="order-sub-info">${order.total_price}$</span>`;
-
-    //   orderSummary.appendChild(orderNumber);
-    //   orderSummary.appendChild(totalPrice);
-
-    //   const viewOrderBtn = document.createElement("button");
-    //   viewOrderBtn.classList.add("btn-account-page");
-    //   viewOrderBtn.textContent = "View Order";
-
-    //   orderFooter.appendChild(orderSummary);
-    //   orderFooter.appendChild(viewOrderBtn);
-
-    //   cardHeader.appendChild(orderStatus);
-    //   cardHeader.appendChild(orderInfo);
-    //   cardHeader.appendChild(orderDate);
-    //   cardHeader.appendChild(cartProducts);
-    //   cardHeader.appendChild(orderFooter);
-
-    //   orderDiv.appendChild(cardHeader);
-
-    //   return orderDiv;
-    // }
-
-    // function fetchOrders() {
-    //   const url = "http://127.0.0.1:8080/api/orders";
-    //   const orderHistoryContainer = document.getElementById("order-history");
-
-    //   fetch(url)
-    //     .then((response) => response.json())
-    //     .then((orders) => {
-    //       if (orders.length === 0) {
-    //         const alertBox = document.querySelector(".alertBox--info");
-    //         alertBox.style.display = "block";
-    //       } else {
-    //         orders.forEach((order) => {
-    //           const orderElement = createOrderElement(order);
-    //           orderHistoryContainer.appendChild(orderElement);
-    //         });
-    //       }
-    //     })
-    //     .catch((error) => console.error("Error fetching orders:", error));
-    // }
-
-    // document.addEventListener("DOMContentLoaded", fetchOrders);
   </script>
 </html>
