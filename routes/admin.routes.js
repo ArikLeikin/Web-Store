@@ -51,6 +51,7 @@ router.get(
   isAdmin,
   adminController.getUsersByCountry
 );
+router.get("/user/group-by-permissions", isAdmin, adminController.usersGroupBy);
 
 router.post("/points/user/:id", isAdmin, adminController.updatePointsUser);
 
