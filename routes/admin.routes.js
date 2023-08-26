@@ -22,7 +22,12 @@ const multerConfig = upload.fields([{ name: "image[]", maxCount: 4 }]);
 // CRUD
 router.post("/create/product", isAdmin, multerConfig, adminController.create);
 router.get("/get/product/:id", isAdmin, adminController.get);
-router.post("/update/product/:id", isAdmin, adminController.update);
+router.post(
+  "/update/product/:id",
+  isAdmin,
+  multerConfig,
+  adminController.update
+);
 router.post("/delete/product/:id", isAdmin, adminController.delete);
 router.get("/edit/product/:id", isAdmin, adminController.getProductUpdate);
 
@@ -31,6 +36,7 @@ router.get("/get/order/:id", isAdmin, adminController.get);
 router.post("/update/order/:id", isAdmin, adminController.update);
 router.post("/delete/order/:id", isAdmin, adminController.delete);
 router.get("/order-by-user/:userId", isAdmin, adminController.getOrdersByUser);
+router.get("/order/groupBy", isAdmin, adminController.ordersGroupByUser);
 
 router.post("/create/store-locations", isAdmin, adminController.create);
 router.get("/get/store-locations/:id", isAdmin, adminController.get);

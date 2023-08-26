@@ -108,6 +108,9 @@ exports.update = async (req, res) => {
     // Assuming passed same names as written in schema
     switch (expression) {
       case "product":
+        const image = JSON.parse(JSON.stringify(req.files))["image[]"];
+        updated.image = image.map((image) => image.path);
+        console.log(updated);
         await Product.findOneAndUpdate({ _id: id }, updated);
         break;
       case "order":
@@ -192,6 +195,43 @@ exports.getOrdersByUser = async (req, res, next) => {
     res.status(200).json(orders);
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+exports.ordersGroupByUser = async (req, res) => {
+  try {
+    const pipeline = [
+      {
+        $group: {
+          _id: "$user_info", // Group by user_info
+          totalOrders: { $sum: 1 }, // Calculate total order count
+          totalRevenue: { $sum: "$total_price" }, // Calculate total revenue
+        },
+      },
+      {
+        $lookup: {
+          from: "users", // Collection name for the User model
+          localField: "_id",
+          foreignField: "_id",
+          as: "user",
+        },
+      },
+      {
+        $project: {
+          _id: 0, // Exclude _id field from the result
+          user_info: "$_id",
+          totalOrders: 1,
+          totalRevenue: 1,
+          user: { $arrayElemAt: ["$user", 0] }, // Extract the user object from the array
+        },
+      },
+    ];
+
+    const result = await Order.aggregate(pipeline);
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
