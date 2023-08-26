@@ -292,8 +292,7 @@
       <h1 class="page-title">Update Your Product Details</h1>
       <div class="t-container">
         <form
-          method="POST"
-          action="/product-update"
+        enctype="multipart/form-data"
           class="form"
           id="product-update-form"
         >
@@ -377,14 +376,14 @@
           </fieldset>
 
           <fieldset class="fieldset-desc">
-            <label class="reg-label" for="descriprion"
+            <label class="reg-label" for="description"
               >Description about the product:</label
             >
             <input
               class="reg-input"
               type="textarea"
-              id="descriprion"
-              name="descriprion"
+              id="description"
+              name="description"
               required
             />
           </fieldset>
@@ -393,7 +392,7 @@
             <input
               type="file"
               id="productPhotos"
-              name="productPhotos[]"
+              name="image[]"
               accept="image/jpeg, image/png, image/gif"
               multiple
               rdequired

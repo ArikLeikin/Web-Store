@@ -299,6 +299,7 @@
             dataType: "json",
             success: function (data) {
               const { title, price, description, quantity, image } = data.data;
+              const productCategory= data.category;
 
 
          $.ajax({
@@ -316,10 +317,19 @@
             editIcon.style.top = "200px"; 
             editIcon.style.right = "110px";
             editIcon.addEventListener("click", function () {
-              window.location.href = "http://127.0.0.1:8080/product-update"; 
+              if(productCategory === "yad2")
+              {
+                window.location.href = "http://127.0.0.1:8080/Yad2Update?id=" +productId;
+
+              }
+              else
+              {
+               
+                window.location.href = "http://127.0.0.1:8080/product-update?id=" +productId;
+              }
+             
+              
             });
-            const editText = document.createTextNode("Edit"); 
-            editIconLink.appendChild(editText); 
             productInfoDiv.appendChild(editIcon);
           }
 
@@ -599,6 +609,49 @@ function addToCart(productId, quantity) {
   //     },
   //   });
   // }
+
+
+          
+ 
+    $(document).on("click", ".btn-ns-hot", function () {
+    event.preventDefault(); 
+    console.log("clicked")
+    const productId = window.location.search.split("=")[1];
+    const quantity = $("#quantity").val();
+
+    $.ajax({
+      url: "http://127.0.0.1:8080/cart/add",
+      method: "POST",
+      data: {
+        productId: productId,
+        quantity: quantity
+      },
+      success: function (response) {
+        console.log("Product added to cart:", response);
+      },
+      error: function (error) {
+        console.error("Error adding product to cart:", error);
+      },
+    });
+  });
+
+  function addToCart(productId, quantity) {
+    console.log("Clicked add");
+    $.ajax({
+      url: "http://127.0.0.1:8080/cart/add",
+      method: "POST",
+      data: {
+        productId: productId,
+        quantity: quantity
+      },
+      success: function (response) {
+        console.log("Product added to cart:", response);
+      },
+      error: function (error) {
+        console.error("Error adding product to cart:", error);
+      },
+    });
+  }
 
         });
       </script>
