@@ -5,7 +5,6 @@ const Order = require("../models/order");
 const nodemailer = require("nodemailer");
 const User = require("../models/user");
 const { log } = require("console");
-const { FORMERR } = require("dns");
 
 //C:\Users\BooM\Desktop\School\WebDEV\WebStore\WebStore\public
 //C:\Users\BooM\Desktop\School\WebDEV\WebStore\public
@@ -203,7 +202,6 @@ exports.uploadYad2 = async (req, res, next) => {
   try {
     const image = req.files["image[]"];
     const user = await User.findById(req.session.user._id);
-    const currDate = new Date();
     const newProduct = new Product({
       quantity: 1,
       category: "yad2",
@@ -212,12 +210,7 @@ exports.uploadYad2 = async (req, res, next) => {
       description: req.body.description,
       image: image.map((image) => image.path),
       condition: req.body.condition,
-      added_date:
-        currDate.getDay() +
-        "/" +
-        currDate.getMonth() +
-        "/" +
-        currDate.getFullYear(),
+      added_date: req.body.added_date,
       age_range: req.body.age_range,
     });
     await newProduct.save();
@@ -225,6 +218,7 @@ exports.uploadYad2 = async (req, res, next) => {
     await user.save();
     req.session.user = user;
     await req.session.save();
+
     res.status(200).json({ message: "Upload success!" });
   } catch (err) {
     console.log(err);
@@ -244,13 +238,18 @@ exports.getYad2Update = (req, res, next) => {
 
 exports.postYad2Update = async (req, res, next) => {
   try {
+
+
     const id = req.params.id;
     const product = await Product.findById(id);
+    product.title=req.body.title;
     product.condition = req.body.condition;
     product.price = req.body.price;
     product.age_range = req.body.age_range;
     product.description = req.body.description;
-    product.image = req.files["image[]"];
+    const image= JSON.parse(JSON.stringify(req.files))["image[]"];
+   product.image = image.map((image) => image.path);
+
 
     await product.save();
     res.status(200).json({ message: "Product updated successfully" });
@@ -300,7 +299,11 @@ exports.getYourAccount = (req, res, next) => {
 
 exports.postPayment = async (req, res, next) => {
   try {
-    const user = await User.findById(req.session.user._id);
+    // req.session.user = await User.find({ username: "admin" }).populate(
+    //   "cart.items.product"
+    // ); // FIND -> RETURNS ARRAY!
+    // req.session.user = req.session.user[0];
+    const user = req.session.user;
     const cartItems = user.cart.items;
 
     if (cartItems.length === 0) {
@@ -317,11 +320,9 @@ exports.postPayment = async (req, res, next) => {
     console.log("PRICE: " + total_price);
 
     // assuming passed a param -> 0---allPointsOfUser
-    if (!isNaN(req.body.points)) {
-      total_price -= req.body.points;
-      req.session.user.points -= req.body.points;
-    }
+    total_price -= req.body.points;
     req.session.user.points -= req.body.points;
+    //console.log(total_price);
     const date = new Date();
     const dateToSubmit = new Date(
       date.getFullYear(),
@@ -337,7 +338,12 @@ exports.postPayment = async (req, res, next) => {
       status: "Pending", // Set the initial status as desired
     });
     req.session.user.points += total_price * 0.1;
-
+    /*[
+      {name,quantity}
+      {name,quantity}
+      {name,quantity}
+    ]
+    */
     transporter.sendMail({
       to: user.email,
       from: process.env.EMAIL_USERNAME,
@@ -357,12 +363,12 @@ exports.postPayment = async (req, res, next) => {
     user.cart.items = [];
 
     await user.save();
-    req.session.user = user;
+    // req.session.user = user;
+    // req.session.cart = { items: [] };
     await req.session.save();
 
     return res.status(200).json({ message: "Order created successfully" });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "An error occurred" });
   }
 };
@@ -418,20 +424,16 @@ exports.addProductToCart = async (req, res, next) => {
 };
 
 exports.getCart = async (req, res, next) => {
-  try {
-    const user = await User.findById(req.session.user._id);
-    if (user == undefined) {
-      return res.status(401).json("Log in required");
-    }
-    const cart = user.cart || [];
-    if (cart.items.length === 0) return res.status(401).json("Cart is Empty");
-    res.status(200).json(cart);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      message: "Internal server error",
-    });
+  const user = req.session.user;
+  if (user == undefined) {
+    return res.status(401).json("Log in required");
   }
+  const cart = user.cart || [];
+  if (cart.items.length === 0) return res.status(401).json("Cart is Empty");
+  //console.log(cart.items);
+  res.status(200).json({
+    data: cart.items,
+  });
 };
 
 exports.postCartAdd = async (req, res, next) => {
@@ -439,17 +441,11 @@ exports.postCartAdd = async (req, res, next) => {
     // req.session.user = await User.find({ username: "admin" }); // FIND -> RETURNS ARRAY!
     // req.session.user = req.session.user[0];  --> For testing
     const productIdToSave = req.body.productId;
-    let quantityToSave = req.body.quantity;
+    let quantityToSave = parseInt(req.body.quantity);
     if (quantityToSave <= 0)
       return res.status(400).json({ message: "Non positive quantity" });
-    const user = await User.findById(req.session.user._id);
-    let cart;
-    if (!user.cart) {
-      cart = { items: [] }; // Initialize the cart if it doesn't exist
-    } else {
-      cart = user.cart;
-    }
-
+    const user = req.session.user;
+    const cart = user.cart || [];
     if (cart.items.length > 0) {
       const existingCartItem = cart.items.find(
         (item) => item.product.toString() === productIdToSave
@@ -469,13 +465,13 @@ exports.postCartAdd = async (req, res, next) => {
         quantity: quantityToSave,
       });
     }
-    await user.save();
-    req.session.user = user;
-    await req.session.save();
 
+    // req.session.user.cart = cart;
+    // req.session.cart = cart;
+    await req.session.save();
+    await user.save();
     res.status(200).json({ message: "Product added successfully to cart!" });
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
     res.status(500).json({ message: "Error adding product to cart!" });
   }
 };

@@ -111,74 +111,98 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-fetch("http://127.0.0.1:8080/cart/products")
-  .then((response) => response.json())
-  .then((items) => {
-    const cartItemsTable = document.querySelector(".cart-items");
-    console.log(items);
-    items.forEach((item) => {
-      // Use the correct variable name "item"
-      console.log("111: " + item);
-      const cartItemRow = document.createElement("tr");
-      cartItemRow.classList.add("cart-item");
-      cartItemRow.id = item.id; // Use "item.id" instead of "product.id"
 
-      // Create the elements and set their content and attributes
-      const deleteLink = document.createElement("a");
-      deleteLink.className = "cart-remove icon";
-      deleteLink.setAttribute("data-cart-itemid", item.id); // Use "item.id"
-      deleteLink.setAttribute("href", "#");
-      deleteLink.setAttribute(
-        "data-confirm-delete",
-        "Are you sure you want to delete this item?"
-      );
-      const deleteIcon = document.createElement("img");
-      deleteIcon.setAttribute("src", "../images/white-icons/x-icon.png");
-      deleteLink.appendChild(deleteIcon);
-      const deleteCell = document.createElement("td");
-      deleteCell.className = "cart-item-block cart-item-del";
-      deleteCell.appendChild(deleteLink);
 
-      // Create the product image
-      const productImage = document.createElement("img");
-      productImage.setAttribute("src", item.image); // Use "item.image"
-      productImage.setAttribute("alt", item.name); // Use "item.name"
-      productImage.setAttribute("title", item.name); // Use "item.name"
-      productImage.setAttribute("data-sizes", "auto");
-      productImage.className = "cart-item-image";
-      const imageCell = document.createElement("td");
-      imageCell.className = "cart-item-block cart-item-figure";
-      imageCell.appendChild(productImage);
+document.addEventListener("DOMContentLoaded", async function () {
+  const cartItemsContainer = document.querySelector(".cart-items");
 
-      // Create the product title and price elements
-      const productNameLink = document.createElement("a");
-      productNameLink.setAttribute("href", "#item-link");
-      productNameLink.textContent = item.name; // Use "item.name"
-      const productName = document.createElement("h4");
-      productName.className = "cart-item-name";
-      productName.appendChild(productNameLink);
-      const priceLabel = document.createElement("span");
-      priceLabel.className = "cart-item-label qty";
-      priceLabel.textContent = "Price";
-      const priceValue = document.createElement("span");
-      priceValue.className = "cart-item-value qty";
-      priceValue.textContent = item.price; // Use "item.price"
-      const titleCell = document.createElement("td");
-      titleCell.className = "cart-item-block cart-item-title";
-      titleCell.appendChild(productName);
-      titleCell.appendChild(priceLabel);
-      titleCell.appendChild(priceValue);
+  async function fetchProductDetails(productId) {
+    const response = await fetch(`http://127.0.0.1:8080/api/product/${productId}`);
+    const productData = await response.json();
+    return productData;
+  }
 
-      // ... Create other cells similarly ...
+  function createCartItemElement(productData) {
+    const cartItem = document.createElement("tr");
+    cartItem.classList.add("cart-item");
 
-      // Append the cells to the row
-      cartItemRow.appendChild(deleteCell);
-      cartItemRow.appendChild(imageCell);
-      cartItemRow.appendChild(titleCell);
-      // ... Append other cells ...
+    const cartItemDel = document.createElement("td");
+    cartItemDel.classList.add("cart-item-block", "cart-item-del");
 
-      // Append the row to the table
-      cartItemsTable.appendChild(cartItemRow);
-    });
-  })
-  .catch((error) => console.error("Error fetching data:", error));
+    const removeLink = document.createElement("a");
+    removeLink.classList.add("cart-remove", "icon");
+    removeLink.href = "#"; // Add the correct URL here
+
+    const removeImage = document.createElement("img");
+    removeImage.src = "../images/white-icons/x-icon.png"; // Add the correct image URL here
+
+    removeLink.appendChild(removeImage);
+    cartItemDel.appendChild(removeLink);
+    cartItem.appendChild(cartItemDel);
+
+    const cartItemFigure = document.createElement("td");
+    cartItemFigure.classList.add("cart-item-block", "cart-item-figure");
+
+    const productImage = document.createElement("img");
+    productImage.src = productData.image;
+    productImage.alt = productData.name;
+    productImage.classList.add("cart-item-image");
+
+    cartItemFigure.appendChild(productImage);
+    cartItem.appendChild(cartItemFigure);
+
+    const cartItemTitle = document.createElement("td");
+    cartItemTitle.classList.add("cart-item-block", "cart-item-title");
+
+    const productNameLink = document.createElement("a");
+    productNameLink.href = "#item-link"; // Add the correct URL here
+    productNameLink.textContent = productData.name;
+
+    const productPriceLabel = document.createElement("span");
+    productPriceLabel.classList.add("cart-item-label", "qty");
+    productPriceLabel.textContent = "Price";
+
+    const productPriceValue = document.createElement("span");
+    productPriceValue.classList.add("cart-item-value", "qty");
+    productPriceValue.textContent = "$" + productData.price.toFixed(2);
+
+    cartItemTitle.appendChild(productNameLink);
+    cartItemTitle.appendChild(document.createElement("br"));
+    cartItemTitle.appendChild(productPriceLabel);
+    cartItemTitle.appendChild(productPriceValue);
+    cartItem.appendChild(cartItemTitle);
+
+    const cartItemQuantity = document.createElement("td");
+    cartItemQuantity.classList.add("cart-item-block", "cart-item-quantity");
+
+    // Create the quantity input elements and buttons here
+
+    cartItem.appendChild(cartItemQuantity);
+
+    const cartItemSubtotal = document.createElement("td");
+    cartItemSubtotal.classList.add("cart-item-block", "cart-item-subtotal");
+
+    const subtotalValue = document.createElement("strong");
+    subtotalValue.classList.add("cart-item-value", "subtotal");
+    subtotalValue.textContent = "$" + productData.price.toFixed(2);
+
+    cartItemSubtotal.appendChild(subtotalValue);
+    cartItem.appendChild(cartItemSubtotal);
+
+    return cartItem;
+  }
+
+  
+  const cartProductsResponse = await fetch("http://127.0.0.1:8080/cart/products");
+  const cartProductsData = await cartProductsResponse.json();
+
+
+  for (const productId in cartProductsData) {
+    if (cartProductsData.hasOwnProperty(productId)) {
+      const productData = await fetchProductDetails(productId);
+      const cartItem = createCartItemElement(productData);
+      cartItemsContainer.appendChild(cartItem);
+    }
+  }
+});
+

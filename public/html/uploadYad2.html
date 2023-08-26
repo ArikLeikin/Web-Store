@@ -459,7 +459,9 @@
               processData: false,
               success: function (response) {
                 // Handle the response
-                alert("Product uploaded successfully!");
+                if (response.success) {
+                  alert("Product uploaded successfully!");
+                }
               },
               error: function () {
                 // Handle error
