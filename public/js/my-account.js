@@ -1,26 +1,3 @@
-$(document).ready(function () {
-  // Update email form submission
-  $("#updateEmailForm").submit(function (event) {
-    event.preventDefault();
-    const newEmail = $("#newEmail").val();
-    // Logic to update email goes here
-  });
-
-  // Generate accordion cards for order history
-  for (let i = 1; i <= 3; i++) {
-    $("#orderHistoryAccordion").append(`
-            <div class="card">
-                <div class="card-header" data-toggle="collapse" data-target="#order${i}">
-                    Order ${i}
-                </div>
-                <div class="card-content collapse" id="order${i}">
-                    <!-- Order ${i} details go here -->
-                </div>
-            </div>
-        `);
-  }
-});
-
 /*collapsible-div for address button*/
 $(document).ready(function () {
   var coll = document.getElementsByClassName("collapsible-div");
@@ -81,199 +58,53 @@ $(document).ready(function () {
     show("yad2-list");
   });
 });
-
-$(document).ready(function () {
-  $("#update-details-form").submit(function (e) {
-    e.preventDefault(); // Prevent the default form submission
-
-    // Get the input values
-    var firstName = $("#firstName").val();
-    var lastName = $("#lastName").val();
-    var phoneNumber = $("#phoneNumber").val();
-    var email = $("#email").val();
-
-    let isValid = true;
-
-    if (!validateOnlyLetters(firstName)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "First name should be only letters.",
-      });
-      isValid = false;
-    }
-
-    if (!validateOnlyLetters(lastName)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Last name should be only letters.",
-      });
-      isValid = false;
-    }
-    function validateOnlyLetters(str) {
-      return /^[a-zA-Z]+$/.test(str);
-    }
-
-    if (!validateTenDigits(phoneNumber)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Phone number can be only 10 digits",
-      });
-      isValid = false;
-    }
-
-    function validateTenDigits(str) {
-      return /^\d{10}$/.test(str);
-    }
-
-    if (!validateContainsAtSymbol(email)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Email address should contain @.",
-      });
-      isValid = false;
-    }
-
-    function validateContainsAtSymbol(str) {
-      return /@/.test(str);
-    }
-
-    if (!isValid) {
-      return false;
-    }
-  });
-});
-
-$(".btn-account-page").click(function () {
-  // event.preventDefault();
-  // clearErrorMessages();
-
-  let isValid = true;
-
-  const FirstName = $("#firstname").val();
-  if (!validateName(FirstName)) {
-    Swal.fire({
-      icon: "warning",
-      title: "Validation Error",
-      text: "First name should be only letters.",
-    });
-    // showError("#firstname-error", "First name can only contain letters.");
-    isValid = false;
-  }
-
-  const LastName = $("#lastname").val();
-  if (!validateName(LastName)) {
-    Swal.fire({
-      icon: "warning",
-      title: "Validation Error",
-      text: "Last name should be only letters.",
-    });
-    // showError("#lastname-error", "Last name can only contain letters.");
-    isValid = false;
-  }
-
-  const phone = $("#phone").val();
-  if (!validatePhoneNumber(phone)) {
-    Swal.fire({
-      icon: "warning",
-      title: "Validation Error",
-      text: "Phone number can be only 10 digits",
-    });
-    // showError("#phone-error", "Phone number can only contain only 10 digits.");
-    isValid = false;
-  }
-
-  const country = $("#country").val();
-  if (!validateName(country)) {
-    Swal.fire({
-      icon: "warning",
-      title: "Validation Error",
-      text: "Country name can only contain letters.",
-    });
-    // showError("#country-error", "Country name can only contain letters.");
-    isValid = false;
-  }
-
-  const zipcode = $("#zipcode").val();
-  if (!validateZipCode(zipcode)) {
-    Swal.fire({
-      icon: "warning",
-      title: "Validation Error",
-      text: "Zipcode can only contain only 5 digits.",
-    });
-    // showError("#zipcode-error", "Zipcode can only contain only 5 digits.");
-    isValid = false;
-  }
-
-  const city = $("#city").val();
-  if (!validateCity(city)) {
-    Swal.fire({
-      icon: "warning",
-      title: "Validation Error",
-      text: "City name can only contain letters.",
-    });
-    // showError("#city-error", "City name can only contain letters.");
-    isValid = false;
-  }
-
-  const street = $("#street").val();
-  if (!validateStreet(street)) {
-    Swal.fire({
-      icon: "warning",
-      title: "Validation Error",
-      text: "Street name can only contain letters.",
-    });
-    // showError("#street-error", "Street name can only contain letters.");
-    isValid = false;
-  }
-
-  const streetNumber = $("#street_number").val();
-  if (!validateStreetNumber(streetNumber)) {
-    Swal.fire({
-      icon: "warning",
-      title: "Validation Error",
-      text: "Street number must be digits",
-    });
-    // showError("#street-number-error", "Street number must be digits.");
-    isValid = false;
-  }
-
-  if (!isValid) {
-    return false;
-  }
-});
-
-// });
-
-function validateName(city) {
-  return /^[A-Za-z\s]+$/.test(city);
+/* ~~~~~~~~~~~~ validation section ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+function validateOnlyLetters(str) {
+  return /^[a-zA-Z]+$/.test(str);
 }
-
-function validatePhoneNumber(phone) {
-  return /^\d{10}$/.test(phone);
+function validateTenDigits(str) {
+  return /^\d{10}$/.test(str);
 }
-
-function validateZipCode(phone) {
-  return /^\d{5}$/.test(phone);
+function validateContainsAtSymbol(str) {
+  return /@/.test(str);
 }
-
-function validateCity(city) {
-  return /^[A-Za-z\s]+$/.test(city);
+function validateName(str) {
+  return /^[A-Za-z\s]+$/.test(str);
 }
-
-function validateStreet(street) {
-  return /^[A-Za-z\s]+$/.test(street);
+function validateZipCode(num) {
+  return /^\d{5}$/.test(num);
 }
-
+function validateCardNumber(cardNumber) {
+  return /^\d{4}$/.test(cardNumber);
+}
 function validateStreetNumber(streetNumber) {
   return /^\d+$/.test(streetNumber);
 }
 
+function validateCVV(cvv) {
+  return /^\d{3}$/.test(cvv);
+}
+function validateCardHolder(cardHolder) {
+  return cardHolder.length === 9 && /^[0-9]+$/.test(cardHolder);
+}
+function validateExpirationDate(expirationMonth, expirationYear) {
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth() + 1;
+  const enteredYear = parseInt(expirationYear, 10);
+  const enteredMonth = parseInt(expirationMonth, 10);
+
+  if (enteredYear < currentYear) {
+    return false;
+  } else if (enteredYear === currentYear && enteredMonth < currentMonth) {
+    return false;
+  }
+  return true;
+}
+
+// personal details validation
+
 $(document).ready(function () {
-  $("#update-details-form").submit(function (e) {
+  $("#password-form").submit(function (e) {
     var newpassword = $("#newpassword").val();
 
     var passwordPattern =
@@ -289,228 +120,86 @@ $(document).ready(function () {
   });
 });
 
-$(document).ready(function () {
-  $("#new-address-form").submit(function (e) {
-    let isValid = true;
+// $(document).ready(function () {
+//   $("#new-payment-form").submit(function (event) {
+//     event.preventDefault();
 
-    const FirstName = $("#firstname").val();
-    if (!validateName(FirstName)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "First name can only contain letters.",
-      });
-      // showError("#firstname-error", "First name can only contain letters.");
-      isValid = false;
-    }
+//     let isValid = true;
+//     const cardNumber = $("#new-card-number-1").val();
+//     const cardNumber1 = $("#new-card-number-2").val();
+//     const cardNumber2 = $("#new-card-number-3").val();
+//     const cardNumber3 = $("#new-card-number-4").val();
 
-    const LastName = $("#lastname").val();
-    if (!validateName(LastName)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Last name can only contain letters.",
-      });
-      // showError("#lastname-error", "Last name can only contain letters.");
-      isValid = false;
-    }
+//     if (
+//       !validateCardNumber(cardNumber) ||
+//       !validateCardNumber(cardNumber1) ||
+//       !validateCardNumber(cardNumber2) ||
+//       !validateCardNumber(cardNumber3)
+//     ) {
+//       Swal.fire({
+//         icon: "warning",
+//         title: "Validation Error",
+//         text: "ZCard number must have 4 digits each.",
+//       });
+//       // showError("#card-number-error", "Card number must have 4 digits each.");
+//       isValid = false;
+//     }
 
-    const phone = $("#phoneNumber").val();
-    if (!validatePhoneNumber(phone)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Phone number can only contain only 10 digits.",
-      });
-      // showError("#phoneNumber-error", "Phone number can only contain only 10 digits.");
-      isValid = false;
-    }
+//     const cardHolder = $("#new-card-holder").val();
+//     if (!validateCardHolder(cardHolder)) {
+//       Swal.fire({
+//         icon: "warning",
+//         title: "Validation Error",
+//         text: "Card holder name must have 9 digits.",
+//       });
+//       // showError("#card-holder-error", "Card holder name must have 9 digits.");
+//       isValid = false;
+//     }
 
-    const country = $("#country").val();
-    if (!validateName(country)) {
-      // showError("#country-error", "Country name can only contain letters.");
-      isValid = false;
-    }
+//     const expirationMonth = $("#new-card-expiration-month").val();
+//     const expirationYear = $("#new-card-expiration-year").val();
+//     if (!validateExpirationDate(expirationMonth, expirationYear)) {
+//       Swal.fire({
+//         icon: "warning",
+//         title: "Validation Error",
+//         text: "Invalid expiration date.",
+//       });
+//       // showError("#expiration-month-error", "Invalid expiration date.");
+//       isValid = false;
+//     }
 
-    const city = $("#city").val();
-    if (!validateCity(city)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "ZCity name can only contain letters.",
-      });
-      // showError("#city-error", "City name can only contain letters.");
-      isValid = false;
-    }
+//     const cvv = $("#new-card-ccv").val();
+//     if (!validateCVV(cvv)) {
+//       Swal.fire({
+//         icon: "warning",
+//         title: "Validation Error",
+//         text: "CCV must be 3 digits.",
+//       });
+//       // showError("#cvv-number-error", "CCV must be 3 digits.");
+//       isValid = false;
+//     }
+//     if (!isValid) {
+//       return false;
+//     }
+//   });
+// });
 
-    const street = $("#street").val();
-    if (!validateStreet(street)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Street name can only contain letters.",
-      });
-      // showError("#street-error", "Street name can only contain letters.");
-      isValid = false;
-    }
+// document.addEventListener("DOMContentLoaded", function () {
+//   const deleteIcon = document.getElementById("address");
 
-    const streetNumber = $("#streetno").val();
-    if (!validateStreetNumber(streetNumber)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Street number must be digits.",
-      });
-      // showError("#streetnoerror", "Street number must be digits.");
-      isValid = false;
-    }
+//   if (deleteIcon) {
+//     deleteIcon.addEventListener("click", function (event) {
+//       // const confirmDelete = confirm("Are you sure you want to delete this address?");
+//       Swal.fire({
+//         icon: "warning",
+//         title: "Confirmation",
+//         text: "Are you sure you want to delete this address?",
+//       });
 
-    const zipcode = $("#zipcode").val();
-    if (!validateZipCode(zipcode)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Zipcode can only contain only 5 digits.",
-      });
-      // showError("#zipcode-error", "Zipcode can only contain only 5 digits.");
-      isValid = false;
-    }
-
-    if (!isValid) {
-      return false;
-    }
-  });
-});
-function validateName(city) {
-  return /^[A-Za-z\s]+$/.test(city);
-}
-
-function validatePhoneNumber(phone) {
-  return /^\d{10}$/.test(phone);
-}
-
-function validateZipCode(phone) {
-  return /^\d{5}$/.test(phone);
-}
-
-function validateCity(city) {
-  return /^[A-Za-z\s]+$/.test(city);
-}
-
-function validateStreet(street) {
-  return /^[A-Za-z\s]+$/.test(street);
-}
-
-function validateStreetNumber(streetNumber) {
-  return /^\d+$/.test(streetNumber);
-}
-
-$(document).ready(function () {
-  $("#new-payment-form").submit(function (event) {
-    event.preventDefault();
-
-    let isValid = true;
-    const cardNumber = $("#new-card-number-1").val();
-    const cardNumber1 = $("#new-card-number-2").val();
-    const cardNumber2 = $("#new-card-number-3").val();
-    const cardNumber3 = $("#new-card-number-4").val();
-
-    if (
-      !validateCardNumber(cardNumber) ||
-      !validateCardNumber(cardNumber1) ||
-      !validateCardNumber(cardNumber2) ||
-      !validateCardNumber(cardNumber3)
-    ) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "ZCard number must have 4 digits each.",
-      });
-      // showError("#card-number-error", "Card number must have 4 digits each.");
-      isValid = false;
-    }
-
-    const cardHolder = $("#new-card-holder").val();
-    if (!validateCardHolder(cardHolder)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Card holder name must have 9 digits.",
-      });
-      // showError("#card-holder-error", "Card holder name must have 9 digits.");
-      isValid = false;
-    }
-
-    const expirationMonth = $("#new-card-expiration-month").val();
-    const expirationYear = $("#new-card-expiration-year").val();
-    if (!validateExpirationDate(expirationMonth, expirationYear)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Invalid expiration date.",
-      });
-      // showError("#expiration-month-error", "Invalid expiration date.");
-      isValid = false;
-    }
-
-    const cvv = $("#new-card-ccv").val();
-    if (!validateCVV(cvv)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "CCV must be 3 digits.",
-      });
-      // showError("#cvv-number-error", "CCV must be 3 digits.");
-      isValid = false;
-    }
-    if (!isValid) {
-      return false;
-    }
-  });
-});
-
-function validateCardNumber(cardNumber) {
-  return /^\d{4}$/.test(cardNumber);
-}
-
-function validateCardHolder(cardHolder) {
-  return cardHolder.length === 9 && /^[0-9]+$/.test(cardHolder);
-}
-
-function validateExpirationDate(expirationMonth, expirationYear) {
-  const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().getMonth() + 1;
-  const enteredYear = parseInt(expirationYear, 10);
-  const enteredMonth = parseInt(expirationMonth, 10);
-
-  if (enteredYear < currentYear) {
-    return false;
-  } else if (enteredYear === currentYear && enteredMonth < currentMonth) {
-    return false;
-  }
-  return true;
-}
-
-function validateCVV(cvv) {
-  return /^\d{3}$/.test(cvv);
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  const deleteIcon = document.getElementById("address");
-
-  if (deleteIcon) {
-    deleteIcon.addEventListener("click", function (event) {
-      // const confirmDelete = confirm("Are you sure you want to delete this address?");
-      Swal.fire({
-        icon: "warning",
-        title: "Confirmation",
-        text: "Are you sure you want to delete this address?",
-      });
-
-      event.preventDefault(); // Prevents the default action (e.g., navigation or form submission)
-    });
-  }
-});
+//       event.preventDefault(); // Prevents the default action (e.g., navigation or form submission)
+//     });
+//   }
+// });
 
 document.addEventListener("DOMContentLoaded", function () {
   const deleteIcon = document.getElementById("payment");
@@ -575,6 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 1000);
   });
 });
+/* ~~~~~~~~~~~~ get api ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 // address details
 fetch("http://127.0.0.1:8080/api/current-user")
@@ -585,18 +275,36 @@ fetch("http://127.0.0.1:8080/api/current-user")
     return response.json();
   })
   .then((data) => {
+    var alertBox = document.getElementById("address-alert-box");
     // Check if address data exists
     if (data) {
-      // Fill the form fields with the retrieved data
-      document.getElementById("add-firstName").value = data.address.firstName;
-      document.getElementById("add-lastName").value = data.address.lastName;
-      document.getElementById("add-phoneNumber").value =
-        data.address.phoneNumber;
-      document.getElementById("country").value = data.address.country;
-      document.getElementById("city").value = data.address.city;
-      document.getElementById("street").value = data.address.street;
-      document.getElementById("streetno").value = data.address.streetNumber;
-      document.getElementById("zipcode").value = data.address.postalCode;
+      if (data && data.address) {
+        alertBox.style.display = "none";
+        // Fill the form fields with the retrieved data
+        document.getElementById("add-firstName").value =
+          data.address.firstName || "";
+        document.getElementById("add-lastName").value =
+          data.address.lastName || "";
+        document.getElementById("add-phoneNumber").value =
+          data.address.phoneNumber || "";
+        document.getElementById("country").value = data.address.country || "";
+        document.getElementById("city").value = data.address.city || "";
+        document.getElementById("street").value = data.address.street;
+        document.getElementById("streetno").value =
+          data.address.streetNumber || "";
+        document.getElementById("zipcode").value =
+          data.address.postalCode || "";
+      } else {
+        alertBox.style.display = "block";
+        // document.getElementById("add-firstName").value = "";
+        // document.getElementById("add-lastName").value = "";
+        // document.getElementById("add-phoneNumber").value = "";
+        // document.getElementById("country").value = "";
+        // document.getElementById("city").value = "";
+        // document.getElementById("street").value = "";
+        // document.getElementById("streetno").value = "";
+        // document.getElementById("zipcode").value = "";
+      }
     }
   })
   .catch((error) => {
@@ -612,18 +320,12 @@ fetch("http://127.0.0.1:8080/api/current-user")
     return response.json();
   })
   .then((data) => {
-    var alertBox = document.getElementById("address-alert-box");
-    if (Object.keys(data.address).length === 0) {
-      alertBox.style.display = "block";
-    } else {
-      alertBox.style.display = "none";
-      document.getElementById("full-user-name").textContent =
-        data.name.firstName + " " + data.name.lastName;
-      document.getElementById("firstName").value = data.name.firstName;
-      document.getElementById("lastName").value = data.name.lastName;
-      document.getElementById("phoneNumber").value = data.phoneNumber;
-      document.getElementById("email").value = data.email;
-    }
+    document.getElementById("full-user-name").textContent =
+      data.name.firstName + " " + data.name.lastName;
+    document.getElementById("firstName").value = data.name.firstName;
+    document.getElementById("lastName").value = data.name.lastName;
+    document.getElementById("phoneNumber").value = data.phoneNumber;
+    document.getElementById("email").value = data.email;
   })
   .catch((error) => {
     console.error("Error fetching user details:", error);
@@ -737,13 +439,10 @@ fetch("http://127.0.0.1:8080/api/current-user")
   })
   .then((data) => {
     var alertBox = document.getElementById("payment-alert-box");
-
-    if (!data.creditCard === 0) {
-      alertBox.style.display = "block";
-    } else {
-      alertBox.style.display = "block";
+    var dataBox = document.getElementById("payment-box");
+    if (data && data.creditCard.card_number.slice(-4) != "") {
+      alertBox.style.display = "none";
       const creditCardTemplate = `
-        <div class="box">
           <div aria-label="Edit" class="address-edit">
             <a href="http://127.0.0.1:8080/creditCardUpdate" class="inside-link">
               <span>Edit</span>
@@ -757,16 +456,14 @@ fetch("http://127.0.0.1:8080/api/current-user")
           <span class="payment-label sub" id="payment-4number">
             ${data.creditCard.card_number.slice(-4)}
           </span>
-          <div aria-label="Delete" class="payment-delete">
-            <i class="fa fa-trash" id="payment"></i>
-          </div>
-        </div>
+          
       `;
-
       // Inject the template into a container on your page
-      const paymentMethodsContainer =
-        document.getElementById("payment-methods");
+      const paymentMethodsContainer = document.getElementById("payment-box");
       paymentMethodsContainer.innerHTML = creditCardTemplate;
+    } else {
+      alertBox.style.display = "block";
+      dataBox.style.display = "none";
     }
   })
   .catch((error) => {
@@ -882,39 +579,221 @@ fetch("http://127.0.0.1:8080/api/current-user")
 document.addEventListener("DOMContentLoaded", function () {
   $("#address-form").submit(function (event) {
     event.preventDefault(); // Prevent the form from submitting normally
-    const formData = $(this).serialize(); // Serialize form data
+    let isValid = true;
+
+    const FirstName = $("#add-firstName").val();
+    if (!validateName(FirstName)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "First name should be only letters.",
+      });
+      // showError("#firstname-error", "First name can only contain letters.");
+      isValid = false;
+    }
+
+    const LastName = $("#add-lastName").val();
+    if (!validateName(LastName)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Last name should be only letters.",
+      });
+      // showError("#lastname-error", "Last name can only contain letters.");
+      isValid = false;
+    }
+
+    const phone = $("#add-phoneNumber").val();
+    if (!validateTenDigits(phone)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Phone number can be only 10 digits",
+      });
+      // showError("#phone-error", "Phone number can only contain only 10 digits.");
+      isValid = false;
+    }
+
+    const country = $("#country").val();
+    if (!validateName(country)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Country name can only contain letters.",
+      });
+      // showError("#country-error", "Country name can only contain letters.");
+      isValid = false;
+    }
+
+    const zipcode = $("#zipcode").val();
+    if (!validateZipCode(zipcode)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Zipcode can only contain only 5 digits.",
+      });
+      // showError("#zipcode-error", "Zipcode can only contain only 5 digits.");
+      isValid = false;
+    }
+
+    const city = $("#city").val();
+    if (!validateName(city)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "City name can only contain letters.",
+      });
+      // showError("#city-error", "City name can only contain letters.");
+      isValid = false;
+    }
+
+    const street = $("#street").val();
+    if (!validateName(street)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Street name can only contain letters.",
+      });
+      // showError("#street-error", "Street name can only contain letters.");
+      isValid = false;
+    }
+
+    const streetNumber = $("#streetno").val();
+    if (!validateStreetNumber(streetNumber)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Street number must be digits",
+      });
+      // showError("#street-number-error", "Street number must be digits.");
+      isValid = false;
+    }
+
+    if (isValid) {
+      const formData = $(this).serialize(); // Serialize form data
+      $.ajax({
+        url: "http://127.0.0.1:8080/address", // Replace with your actual URL
+        type: "POST",
+        data: formData,
+        success: function (response) {
+          console.log(response);
+          alert("Address updated successfully");
+        },
+        error: function (error) {
+          // Handle errors here
+          console.error("Error:", error);
+        },
+      });
+    }
+  });
+});
+// if the trash button is clicked :
+$(document).ready(function () {
+  // Listener for the delete address button
+  const deleteAddressButton = document.getElementById("delete-address-btn");
+  deleteAddressButton.addEventListener("click", function () {
+    const confirmed = confirm("Are you sure you want to delete this address?");
+    if (confirmed) {
+      clearAddressFields();
+      submitAddressForm();
+    }
+  });
+
+  // Function to clear address form fields
+  function clearAddressFields() {
+    document.getElementById("add-firstName").value = "";
+    document.getElementById("add-lastName").value = "";
+    document.getElementById("add-phoneNumber").value = "";
+    document.getElementById("country").value = "";
+    document.getElementById("city").value = "";
+    document.getElementById("street").value = "";
+    document.getElementById("streetno").value = "";
+    document.getElementById("zipcode").value = "";
+  }
+
+  // Function to submit the address form
+  function submitAddressForm() {
+    const formData = $("#address-form").serialize();
     $.ajax({
-      url: "http://127.0.0.1:8080/address", // Replace with your actual URL
+      url: "http://127.0.0.1:8080/address",
       type: "POST",
       data: formData,
       success: function (response) {
         console.log(response);
+        alert("Address deleted successfully");
       },
       error: function (error) {
-        // Handle errors here
         console.error("Error:", error);
+        // Handle error
       },
     });
-  });
+  }
 });
 /*personal details*/
 document.addEventListener("DOMContentLoaded", function () {
   $("#personal-details-form").submit(function (event) {
     event.preventDefault(); // Prevent the form from submitting normally
-    const formData = $(this).serialize(); // Serialize form data
-    $.ajax({
-      url: "http://127.0.0.1:8080/personal-details", // Replace with your actual URL
-      type: "POST",
-      data: formData,
-      success: function (response) {
-        // Handle the response data here
-        console.log(response);
-      },
-      error: function (error) {
-        // Handle errors here
-        console.error("Error:", error);
-      },
-    });
+    // Get the input values
+    var firstName = $("#firstName").val();
+    var lastName = $("#lastName").val();
+    var phoneNumber = $("#phoneNumber").val();
+    var email = $("#email").val();
+
+    let isValid = true;
+
+    if (!validateOnlyLetters(firstName)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "First name should be only letters.",
+      });
+      isValid = false;
+    }
+
+    if (!validateOnlyLetters(lastName)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Last name should be only letters.",
+      });
+      isValid = false;
+    }
+
+    if (!validateTenDigits(phoneNumber)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Phone number can be only 10 digits",
+      });
+      isValid = false;
+    }
+
+    if (!validateContainsAtSymbol(email)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Email address should contain @.",
+      });
+      isValid = false;
+    }
+
+    if (isValid) {
+      const formData = $(this).serialize(); // Serialize form data
+      $.ajax({
+        url: "http://127.0.0.1:8080/personal-details", // Replace with your actual URL
+        type: "POST",
+        data: formData,
+        success: function (response) {
+          // Handle the response data here
+          console.log(response);
+          alert("Your personal details have been successfully updated");
+        },
+        error: function (error) {
+          // Handle errors here
+          console.error("Error:", error);
+        },
+      });
+    }
   });
 });
 
@@ -922,70 +801,96 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   $("#new-payment-form").submit(function (event) {
     event.preventDefault(); // Prevent the default form submission
+    let isValid = true;
+    const cardNumber = $("#new-card-number-1").val();
+    const cardNumber1 = $("#new-card-number-2").val();
+    const cardNumber2 = $("#new-card-number-3").val();
+    const cardNumber3 = $("#new-card-number-4").val();
 
-    // Collect form data
-    var card_expiration_year = document.getElementById(
-      "new-card-expiration-year"
-    ).value;
-    var card_expiration_month = document.getElementById(
-      "new-card-expiration-month"
-    ).value;
-    var card_expiration = card_expiration_month + "/" + card_expiration_year;
-    var card_number =
-      document.getElementById("new-card-number-1").value +
-      document.getElementById("new-card-number-2").value +
-      document.getElementById("new-card-number-3").value +
-      document.getElementById("new-card-number-4").value;
-    var formData = {
-      card_number: card_number,
-      holder_name: $("#new-card-holder").val(),
-      expiration_date: card_expiration,
-      ccv: $("#new-card-ccv").val(),
-    };
+    if (
+      !validateCardNumber(cardNumber) ||
+      !validateCardNumber(cardNumber1) ||
+      !validateCardNumber(cardNumber2) ||
+      !validateCardNumber(cardNumber3)
+    ) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "ZCard number must have 4 digits each.",
+      });
+      // showError("#card-number-error", "Card number must have 4 digits each.");
+      isValid = false;
+    }
 
-    // Send AJAX POST request
-    $.ajax({
-      type: "POST",
-      url: "http://127.0.0.1:8080/creditcard",
-      data: formData,
-      success: function (response) {
-        // Handle success response
-        console.log("Success:", response);
-      },
-      error: function (error) {
-        // Handle error response
-        console.log("Error:", error);
-      },
-    });
+    const cardHolder = $("#new-card-holder").val();
+    if (!validateCardHolder(cardHolder)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Card holder name must have 9 digits.",
+      });
+      // showError("#card-holder-error", "Card holder name must have 9 digits.");
+      isValid = false;
+    }
+
+    const expirationMonth = $("#new-card-expiration-month").val();
+    const expirationYear = $("#new-card-expiration-year").val();
+    if (!validateExpirationDate(expirationMonth, expirationYear)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Invalid expiration date.",
+      });
+      // showError("#expiration-month-error", "Invalid expiration date.");
+      isValid = false;
+    }
+
+    const cvv = $("#new-card-ccv").val();
+    if (!validateCVV(cvv)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "CCV must be 3 digits.",
+      });
+      // showError("#cvv-number-error", "CCV must be 3 digits.");
+      isValid = false;
+    }
+    if (isValid) {
+      // Collect form data
+      var card_expiration_year = document.getElementById(
+        "new-card-expiration-year"
+      ).value;
+      var card_expiration_month = document.getElementById(
+        "new-card-expiration-month"
+      ).value;
+      var card_expiration = card_expiration_month + "/" + card_expiration_year;
+      var card_number =
+        document.getElementById("new-card-number-1").value +
+        document.getElementById("new-card-number-2").value +
+        document.getElementById("new-card-number-3").value +
+        document.getElementById("new-card-number-4").value;
+      var formData = {
+        card_number: card_number,
+        holder_name: $("#new-card-holder").val(),
+        expiration_date: card_expiration,
+        ccv: $("#new-card-ccv").val(),
+      };
+
+      // Send AJAX POST request
+      $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:8080/creditcard",
+        data: formData,
+        success: function (response) {
+          // Handle success response
+          console.log("Success:", response);
+          alert("card details updated successfully");
+        },
+        error: function (error) {
+          // Handle error response
+          console.log("Error:", error);
+        },
+      });
+    }
   });
-  // $("#new-payment-form").submit(function (event) {
-  //   event.preventDefault(); // Prevent the form from submitting normally
-  //   const formData = new FormData(); // Serialize form data
-
-  //   formData.append("expiration_date", card_expiration);
-  //   formData.append("card_number", card_number);
-  //   formData.append(
-  //     "holder_name",
-  //     document.getElementById("new-card-holder").value
-  //   );
-  //   formData.append("ccv", document.getElementById("new-card-ccv").value);
-  //   for (const [key, value] of formData.entries()) {
-  //     console.log(`${key}: ${value}`);
-  //   }
-  //   $.ajax({
-  //     url: "http://127.0.0.1:8080/creditcard", // Replace with your actual URL
-  //     type: "POST",
-  //     data: formData,
-  //     contentType: false,
-  //     processData: false,
-  //     success: function (response) {
-  //       // Handle the response data here
-  //       console.log(response);
-  //     },
-  //     error: function (error) {
-  //       // Handle errors here
-  //       console.error("Error:", error);
-  //     },
-  //   });
-  // });
 });

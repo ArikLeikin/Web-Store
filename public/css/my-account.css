@@ -463,7 +463,6 @@ i.fa.fa-arrow-up:hover {
   cursor: pointer;
 }
 
-
 .modal {
   display: none;
   position: fixed;
@@ -477,14 +476,13 @@ i.fa.fa-arrow-up:hover {
 
 .modal-content {
   background-color: white;
-  max-width: 300px; 
+  max-width: 300px;
   margin: 10% auto;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
   font-size: 20px;
-
 }
 
 .centered-text {
@@ -492,4 +490,16 @@ i.fa.fa-arrow-up:hover {
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.clear-btn {
+  border: 0;
+  background-color: transparent;
+  align-self: end;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+i#address-delete-icon {
+  font-size: 20px;
+  cursor: pointer;
 }
