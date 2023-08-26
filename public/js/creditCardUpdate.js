@@ -129,38 +129,41 @@ function clearErrorMessages() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("creditCardUpdate-form");
+  $("#new-payment-form").submit(function (event) {
+    event.preventDefault(); // Prevent the default form submission
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const cardNumber = document.getElementById("card-number").value +
-      document.getElementById("card-number-1").value +
-      document.getElementById("card-number-2").value +
-      document.getElementById("card-number-3").value;
-    const cardHolder = document.getElementById("card-holder").value;
-    const expirationMonth = document.getElementById("card-expiration-month").value;
-    const expirationYear = document.getElementById("card-expiration-year").value;
-    const ccv = document.getElementById("card-ccv").value;
-
-    const data = {
-      card_number: cardNumber,
-      holder_name: cardHolder,
-      expiration_date: expirationMonth,
-      ccv: ccv,
+    // Collect form data
+    var card_expiration_year = document.getElementById(
+      "new-card-expiration-year"
+    ).value;
+    var card_expiration_month = document.getElementById(
+      "new-card-expiration-month"
+    ).value;
+    var card_expiration = card_expiration_month + "/" + card_expiration_year;
+    var card_number =
+      document.getElementById("new-card-number-1").value +
+      document.getElementById("new-card-number-2").value +
+      document.getElementById("new-card-number-3").value +
+      document.getElementById("new-card-number-4").value;
+    var formData = {
+      card_number: card_number,
+      holder_name: $("#new-card-holder").val(),
+      expiration_date: card_expiration,
+      ccv: $("#new-card-ccv").val(),
     };
 
+    // Send AJAX POST request
     $.ajax({
-      url: "http://127.0.0.1:8080/creditcard",
       type: "POST",
-      contentType: "application/json",
-      data: JSON.stringify(data),
-      success: function (result) {
-        console.log("Response from server:", result);
+      url: "http://127.0.0.1:8080/creditcard",
+      data: formData,
+      success: function (response) {
+        // Handle success response
+        console.log("Success:", response);
       },
       error: function (error) {
-        console.error("Error sending data:", error);
-       
+        // Handle error response
+        console.log("Error:", error);
       },
     });
   });

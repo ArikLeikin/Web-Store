@@ -301,8 +301,12 @@ fetch('http://127.0.0.1:8080/address')
       type: 'GET',
       dataType: 'json', 
       success: function (data) {
-        $('#card-number').val(data.cardNumber);
-        $('#card-holder').val(data.cardHolder);
+        const cardNumber =data.card_number;
+        $('#card-number').val(cardNumber.substr(0, 4));
+        $('#card-number-1').val(cardNumber.substr(4, 4));
+        $('#card-number-2').val(cardNumber.substr(8, 4));
+        $('#card-number-3').val(cardNumber.substr(12, 4));
+        $('#card-holder').val(data.holder_name);
         $('#card-expiration-month').val(data.expiration_date);
         $('#card-ccv').val(data.ccv);
       },
@@ -390,10 +394,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const submitButton = document.querySelector("#purchase-button");
   submitButton.addEventListener("click", function (event) {
     event.preventDefault(); 
-
-
-
-        
+    
     const checkbox = document.querySelector(".cl-checkbox");
     if (checkbox.checked) {
       const card_number =

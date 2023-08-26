@@ -378,7 +378,7 @@
           <input
             type="file"
             id="productPhotos"
-            name="productPhotos[]"
+            name="image[]"
             accept="image/jpeg, image/png, image/gif"
             multiple
             rdequired
@@ -460,13 +460,7 @@
               success: function (response) {
                 // Handle the response
                 if (response.success) {
-                  // Success message or redirection
                   alert("Product uploaded successfully!");
-                  // You can also redirect the user to a success page
-                  // window.location.href = "/uploadSuccess";
-                } else {
-                  // Error handling
-                  alert("Error uploading product. Please try again later.");
                 }
               },
               error: function () {
