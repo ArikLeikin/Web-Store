@@ -242,8 +242,22 @@ exports.getYad2Update = (req, res, next) => {
   });
 };
 
-exports.postYad2Update = (req, res, next) => {
-  //TODO
+exports.postYad2Update = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const product = await Product.findById(id);
+    product.condition = req.body.condition;
+    product.price = req.body.price;
+    product.age_range = req.body.age_range;
+    product.description = req.body.description;
+    product.image = req.files["image[]"];
+
+    await product.save();
+    res.status(200).json({ message: "Product updated successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 exports.getYourAccount = (req, res, next) => {
@@ -288,11 +302,11 @@ exports.postPayment = async (req, res, next) => {
   try {
     const user = await User.findById(req.session.user._id);
     const cartItems = user.cart.items;
-    console.log(cartItems);
 
     if (cartItems.length === 0) {
       return res.status(400).json({ message: "Cart is empty" });
     }
+    console.log(cartItems);
     let total_price = 0;
     for (let i = 0; i < cartItems.length; i++) {
       let singleItem = await Product.findById(
@@ -537,12 +551,10 @@ exports.getWishlist = async (req, res, next) => {
 
 exports.postWishlistAdd = async (req, res, next) => {
   try {
-    // req.session.user = await User.find({ username: "admin" }); // FIND -> RETURNS ARRAY!
-    // req.session.user = req.session.user[0];  --> For testing
     const productIdToSave = req.body.productId;
     let quantityToSave = 1;
-    // if (quantityToSave <= 0)
-    //   return res.status(400).json({ message: "Non positive quantity" });
+    if (quantityToSave <= 0)
+      return res.status(400).json({ message: "Non positive quantity" });
     const user = await User.findById(req.session.user._id);
     const wishlist = user.wishlist || [];
     if (wishlist.length > 0) {
