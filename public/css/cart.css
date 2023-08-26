@@ -32,7 +32,7 @@ body {
   background-color: white;
 }
 .cart-items {
-  width: max-content;
+  width: 100%;
   margin: auto;
 }
 .cart-item {
@@ -107,7 +107,7 @@ h4.cart-item-name a {
 }
 
 td.cart-item-block.cart-item-quantity {
-  padding-left: 20px;
+  padding-left: 350px;
   padding-right: 10px;
 }
 .cart-item-label.subtotal,
