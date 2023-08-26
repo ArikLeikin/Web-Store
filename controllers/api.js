@@ -175,7 +175,7 @@ module.exports = {
     try {
       const prodId = req.params.productId;
       console.log(prodId);
-      const product = await Product.findById({ _id: prodId });
+      const product = await Product.findById(prodId);
       console.log(product);
       if (product != null)
         res.status(200).json({

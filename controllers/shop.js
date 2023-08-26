@@ -5,6 +5,7 @@ const Order = require("../models/order");
 const nodemailer = require("nodemailer");
 const User = require("../models/user");
 const { log } = require("console");
+const { FORMERR } = require("dns");
 
 //C:\Users\BooM\Desktop\School\WebDEV\WebStore\WebStore\public
 //C:\Users\BooM\Desktop\School\WebDEV\WebStore\public
@@ -285,27 +286,28 @@ exports.getYourAccount = (req, res, next) => {
 
 exports.postPayment = async (req, res, next) => {
   try {
-    // req.session.user = await User.find({ username: "admin" }).populate(
-    //   "cart.items.product"
-    // ); // FIND -> RETURNS ARRAY!
-    // req.session.user = req.session.user[0];
-    const user = req.session.user;
+    const user = await User.findById(req.session.user._id);
     const cartItems = user.cart.items;
-    //console.log(cartItems);
+    console.log(cartItems);
 
     if (cartItems.length === 0) {
       return res.status(400).json({ message: "Cart is empty" });
     }
-
-    const total_price = cartItems.reduce(
-      (total, item) => total + item.product.price * item.quantity,
-      0
-    );
+    let total_price = 0;
+    for (let i = 0; i < cartItems.length; i++) {
+      let singleItem = await Product.findById(
+        cartItems[i].product.toHexString()
+      );
+      total_price += singleItem.price * cartItems[i].quantity;
+    }
+    console.log("PRICE: " + total_price);
 
     // assuming passed a param -> 0---allPointsOfUser
-    total_price -= req.body.points;
+    if (!isNaN(req.body.points)) {
+      total_price -= req.body.points;
+      req.session.user.points -= req.body.points;
+    }
     req.session.user.points -= req.body.points;
-    //console.log(total_price);
     const date = new Date();
     const dateToSubmit = new Date(
       date.getFullYear(),
@@ -321,12 +323,7 @@ exports.postPayment = async (req, res, next) => {
       status: "Pending", // Set the initial status as desired
     });
     req.session.user.points += total_price * 0.1;
-    /*[
-      {name,quantity}
-      {name,quantity}
-      {name,quantity}
-    ]
-    */
+
     transporter.sendMail({
       to: user.email,
       from: process.env.EMAIL_USERNAME,
@@ -346,12 +343,12 @@ exports.postPayment = async (req, res, next) => {
     user.cart.items = [];
 
     await user.save();
-    // req.session.user = user;
-    // req.session.cart = { items: [] };
+    req.session.user = user;
     await req.session.save();
 
     return res.status(200).json({ message: "Order created successfully" });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "An error occurred" });
   }
 };
@@ -414,9 +411,7 @@ exports.getCart = async (req, res, next) => {
     }
     const cart = user.cart || [];
     if (cart.items.length === 0) return res.status(401).json("Cart is Empty");
-    res.status(200).json({
-      data: cart.items,
-    });
+    res.status(200).json(cart);
   } catch (error) {
     console.log(error);
     res.status(500).json({
