@@ -238,13 +238,18 @@ exports.getYad2Update = (req, res, next) => {
 
 exports.postYad2Update = async (req, res, next) => {
   try {
+
+
     const id = req.params.id;
     const product = await Product.findById(id);
+    product.title=req.body.title;
     product.condition = req.body.condition;
     product.price = req.body.price;
     product.age_range = req.body.age_range;
     product.description = req.body.description;
-    product.image = req.files["image[]"];
+    const image= JSON.parse(JSON.stringify(req.files))["image[]"];
+   product.image = image.map((image) => image.path);
+
 
     await product.save();
     res.status(200).json({ message: "Product updated successfully" });

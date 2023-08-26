@@ -370,7 +370,8 @@
             <option value="lowToHigh">Price: Low to High</option>
           </select>
         </div>
-        <div id="productGrid"></div>
+        <div id="productGrid"><img src="../product-images/image.png" alt=""></div>
+        
       </div>
 
       <script>
@@ -381,7 +382,8 @@
           $("#category-title").text("All Games");
           // Function to create the product HTML structure
           function createProductHTML(product) {
-            console.log(product.image[0]);
+      
+            console.log(product);
             const productItem = document.createElement("div");
             productItem.className = "product-item";
             productItem.setAttribute("data-age-range", product.ageRange);
@@ -392,7 +394,9 @@
             productLink.className = "product-img";
             productLink.href = "/product-details?id=" + product._id;
             const productImage = document.createElement("img");
+            console.log(product.image[0]);
             productImage.src = "../" + product.image[0].split("public")[1]; // Need to check if possible to remove split
+          //  productImage.src =product.image[0];
             productImage.alt = "item";
             productLink.appendChild(productImage);
             const productTitleSection = document.createElement("section");

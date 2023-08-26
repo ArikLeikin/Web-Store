@@ -50,7 +50,7 @@ router.get("/uploadYad2", isAuth, shopController.getUploadYad2);
 router.post("/uploadYad2", isAuth, multerConfig, shopController.uploadYad2);
 
 router.get("/Yad2Update", isAuth, shopController.getYad2Update);
-router.post("/Yad2Update/:id", isAuth, shopController.postYad2Update);
+router.post("/Yad2Update/:id", isAuth,multerConfig, shopController.postYad2Update);
 
 router.get("/my-account", isAuth, shopController.getYourAccount);
 

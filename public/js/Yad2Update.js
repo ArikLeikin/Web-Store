@@ -184,9 +184,8 @@ $(document).ready(function() {
     }
 
     $.ajax({
-            url: `http://127.0.0.1:8080/Yad2Update`,
+            url: `http://127.0.0.1:8080/Yad2Update/${productId}`,
             type: "POST",
-            contentType: "application/json",
             data: formData,
             contentType: false,
             processData: false,
@@ -217,12 +216,19 @@ $(document).ready(function() {
       $('#category').val(data.data.category);
       $('#description').val(data.data.description);
 
+      const files = data.data.image.map(path => {
+        const parts = path.split('/');
+        const fileName = parts[parts.length - 1];
+        return new File([path], fileName);
+      });
+    
       const fileList = new DataTransfer();
       files.forEach(file => {
         fileList.items.add(file);
       });
       const fileInput = $('input[name="image[]"]');
       fileInput[0].files = fileList.files;
+
     },
     error: function(error) {
       console.error('Error fetching product data:', error);

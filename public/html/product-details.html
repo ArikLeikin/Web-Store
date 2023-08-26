@@ -299,7 +299,7 @@
             dataType: "json",
             success: function (data) {
               const { title, price, description, quantity, image } = data.data;
-              const productCategory= data.category;
+              const productCategory= data.data.category;
 
 
          $.ajax({
