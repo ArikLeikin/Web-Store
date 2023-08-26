@@ -99,6 +99,7 @@ exports.update = async (req, res) => {
   try {
     const updated = req.body;
     const id = req.params.id;
+    console.log(req.url);
     const url = req.url;
     const model = url.split("/");
     const expression = model[2];
@@ -169,6 +170,39 @@ exports.delete = async (req, res) => {
     res.status(500).json({
       message: "Internal server error",
     });
+  }
+};
+
+exports.getStoreByAreaCode = async (req, res) => {
+  try {
+    const areaCode = req.params.areaCode;
+    const stores = await StoreLocations.find({ phone_area_code: areaCode });
+    res.status(200).json(stores);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+exports.getOrdersByUser = async (req, res, next) => {
+  try {
+    const userId = req.parms.id;
+    const orders = await Order.find({ user_info: userId });
+    res.status(200).json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+exports.getUsersByCountry = async (req, res) => {
+  try {
+    const country = req.params.country;
+    const users = await User.find({ "address.country": country });
+    res.status(200).json(users);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
