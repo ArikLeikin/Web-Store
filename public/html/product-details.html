@@ -299,6 +299,7 @@
             dataType: "json",
             success: function (data) {
               const { title, price, description, quantity, image } = data.data;
+              const productCategory= data.data.category;
 
 
          $.ajax({
@@ -308,9 +309,6 @@
         success: function (userData) {
           const userPermission = userData.permission;
 
-          // ... (your existing code)
-
-          // Check if the user is an admin
           if (userPermission === "admin") {
             const editIcon = document.createElement("i");
             editIcon.className = "fas fa-pencil-alt edit-icon";
@@ -319,7 +317,18 @@
             editIcon.style.top = "200px"; 
             editIcon.style.right = "110px";
             editIcon.addEventListener("click", function () {
-              window.location.href = "http://127.0.0.1:8080/product-update"; 
+              if(productCategory === "yad2")
+              {
+                window.location.href = "http://127.0.0.1:8080/Yad2Update?id=" +productId;
+
+              }
+              else
+              {
+               
+                window.location.href = "http://127.0.0.1:8080/product-update?id=" +productId;
+              }
+             
+              
             });
             productInfoDiv.appendChild(editIcon);
           }
@@ -470,6 +479,36 @@
 
               productDetailsDiv.append(productView);
 
+              // Add a click event listener to the button
+addToCartButton.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  const productId = window.location.search.split("=")[1];
+  const quantity = $("#quantity").val();
+
+  addToCart(productId, quantity);
+});
+
+
+// Your addToCart function now includes the AJAX request
+function addToCart(productId, quantity) {
+  $.ajax({
+    url: "http://127.0.0.1:8080/cart/add",
+    method: "POST",
+    data: {
+      productId: productId,
+      quantity: quantity
+    },
+    success: function (response) {
+      console.log("Product added to cart:", response);
+    },
+    error: function (error) {
+      console.error("Error adding product to cart:", error);
+    },
+  });
+}
+
+
               $(".minus").click(function () {
                 const input = $(this).next();
                 let quantity = parseInt(input.val());
@@ -544,6 +583,32 @@
           });
 
 
+  // $(".btn-ns-hot").click(function (event) {
+  //   event.preventDefault(); 
+    
+  //   const productId = window.location.search.split("=")[1];
+  //   const quantity = $("#quantity").val();
+
+  //   addToCart(productId, quantity);
+  // });
+
+  // function addToCart(productId, quantity) {
+    
+  //   $.ajax({
+  //     url: "http://127.0.0.1:8080/cart/add",
+  //     method: "POST",
+  //     data: {
+  //       productId: productId,
+  //       quantity: quantity
+  //     },
+  //     success: function (response) {
+  //       console.log("Product added to cart:", response);
+  //     },
+  //     error: function (error) {
+  //       console.error("Error adding product to cart:", error);
+  //     },
+  //   });
+  // }
 
 
           

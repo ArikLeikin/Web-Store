@@ -292,22 +292,29 @@ fetch("http://127.0.0.1:8080/address")
     console.error("Error fetching address data:", error);
   });
 
-$(document).ready(function () {
-  $.ajax({
-    url: "http://127.0.0.1:8080/creditcard",
-    type: "GET",
-    dataType: "json",
-    success: function (data) {
-      $("#card-number").val(data.cardNumber);
-      $("#card-holder").val(data.cardHolder);
-      $("#card-expiration-month").val(data.expiration_date);
-      $("#card-ccv").val(data.ccv);
-    },
-    error: function () {
-      console.log("Error fetching credit card data");
-    },
+
+
+  $(document).ready(function () {
+    $.ajax({
+      url: 'http://127.0.0.1:8080/creditcard',
+      type: 'GET',
+      dataType: 'json', 
+      success: function (data) {
+        const cardNumber =data.card_number;
+        $('#card-number').val(cardNumber.substr(0, 4));
+        $('#card-number-1').val(cardNumber.substr(4, 4));
+        $('#card-number-2').val(cardNumber.substr(8, 4));
+        $('#card-number-3').val(cardNumber.substr(12, 4));
+        $('#card-holder').val(data.holder_name);
+        $('#card-expiration-month').val(data.expiration_date);
+        $('#card-ccv').val(data.ccv);
+      },
+      error: function () {
+        console.log('Error fetching credit card data');
+      },
+    });
   });
-});
+
 
 $.ajax({
   url: "http://127.0.0.1:8080/api/current-user",
@@ -335,27 +342,23 @@ function updatePointsDropdown() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const submitButton = document.querySelector("#purchase-button");
-  submitButton.addEventListener("click", function (event) {
+$(document).ready(function () {
+  $("#purchase-button").click(function (event) {
     event.preventDefault();
 
     const checkbox = $(".cl-checkbox-address");
-    console.log("111 " + checkbox);
-    if (checkbox.checked) {
-      console.log(checkbox.checked);
-    } else {
-      console.log("Not Checked");
-    }
-    if (checkbox.checked) {
-      const firstName = document.querySelector("#firstname").value;
-      const lastName = document.querySelector("#lastname").value;
-      const phoneNumber = document.querySelector("#phone").value;
-      const country = document.querySelector("#country").value;
-      const city = document.querySelector("#city").value;
-      const postalCode = document.querySelector("#zipcode").value;
-      const street = document.querySelector("#street").value;
-      const streetNumber = document.querySelector("#street_number").value;
+
+
+ 
+    // if (checkbox.checked) {
+      const firstName = $("#firstname").val();
+      const lastName = $("#lastname").val();
+      const phoneNumber = $("#phone").val();
+      const country = $("#country").val();
+      const city = $("#city").val();
+      const postalCode = $("#zipcode").val();
+      const street = $("#street").val();
+      const streetNumber = $("#street_number").val();
 
       const data = {
         firstName,
@@ -367,46 +370,43 @@ document.addEventListener("DOMContentLoaded", function () {
         street,
         streetNumber,
       };
+      console.log(data);
 
-      fetch("http://127.0.0.1:8080/address", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then((result) => {
+      $.ajax({
+        url: "http://127.0.0.1:8080/address",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function (result) {
           console.log("Data sent successfully:", result);
-          document.querySelector("#purchase-form").submit();
-        })
-        .catch((error) => {
+          $("#purchase-form").submit();
+        },
+        error: function (error) {
           console.error("Error sending data:", error);
-        });
-    } else {
-      document.querySelector("#purchase-form").submit();
-    }
+        },
+      });
+    // } else {
+    //   $("#purchase-form").submit();
+    // }
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const submitButton = document.querySelector("#purchase-button");
-  submitButton.addEventListener("click", function (event) {
+
+$(document).ready(function () {
+  $("#purchase-button").click(function (event) {
     event.preventDefault();
 
-    const checkbox = document.querySelector(".cl-checkbox");
-    if (checkbox.checked) {
+    const checkbox = $(".cl-checkbox");
+    // if (checkbox.prop("checked")) {
       const card_number =
-        document.querySelector("#card-number") +
-        document.querySelector("#card-number-1") +
-        document.querySelector("#card-number-2") +
-        document.querySelector("#card-number-3");
+        $("#card-number").val() +
+        $("#card-number-1").val() +
+        $("#card-number-2").val() +
+        $("#card-number-3").val();
 
-      const holder_name = document.querySelector("#card-holder").value;
-      const expiration_date = document.querySelector(
-        "#card-expiration-month"
-      ).value;
-      const ccv = document.querySelector("#card-ccv").value;
+      const holder_name = $("#card-holder").val();
+      const expiration_date = $("#card-expiration-month").val();
+      const ccv = $("#card-ccv").val();
       const data = {
         card_number,
         holder_name,
@@ -414,26 +414,26 @@ document.addEventListener("DOMContentLoaded", function () {
         ccv,
       };
 
-      fetch("http://127.0.0.1:8080/creditcard", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then((result) => {
+      $.ajax({
+        url: "http://127.0.0.1:8080/creditcard",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function (result) {
           console.log("Data sent successfully:", result);
-          document.querySelector("#purchase-form").submit();
-        })
-        .catch((error) => {
+          $("#purchase-form").submit();
+        },
+        error: function (error) {
           console.error("Error sending data:", error);
-        });
-    } else {
-      document.querySelector("#purchase-form").submit();
-    }
+        },
+      });
+    // } else {
+    //   $("#purchase-form").submit();
+    // }
   });
 });
+
+
 
 $(document).ready(function () {
   function updatePoints() {
@@ -453,12 +453,41 @@ $(document).ready(function () {
         $(this).prop("disabled", true);
       }
     });
+
+    // Update points on the server
+    updatePointsOnServer(updatedPoints);
   }
 
+  function updatePointsOnServer(updatedPoints) {
+    // Construct the API URL
+    var apiUrl = "http://127.0.0.1:8080/api/current-user";
+
+    // Create a request body
+    var requestBody = JSON.stringify({ points: updatedPoints });
+
+    // Make a POST request to update points
+    fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: requestBody
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Points updated on the server:", data);
+      // You can handle the response data if needed
+    })
+    .catch(error => {
+      console.error("Error updating points:", error);
+    });
+  }
+
+  // Call the updatePoints function when the select value changes
+  $("#pointsSelect").on("change", updatePoints);
+
+  // Call the updatePoints function initially to set up the UI
   updatePoints();
-  $("#pointsSelect").change(function () {
-    updatePoints();
-  });
 });
 
 $(document).ready(function () {

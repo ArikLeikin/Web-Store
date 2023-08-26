@@ -229,10 +229,12 @@ fetch("http://127.0.0.1:8080/api/current-user")
 /*card update*/
 document.addEventListener("DOMContentLoaded", function () {
   $("#creditCardUpdate-form").submit(function (event) {
+
     event.preventDefault(); // Prevent the default form submission
 
     // Collect form data
     var card_expiration_year = document.getElementById(
+
       "card-expiration-year"
     ).value;
     var card_expiration_month = document.getElementById(
@@ -251,6 +253,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ccv: $("#card-ccv").val(),
     };
     console.log(formData.holder_name);
+
     // Send AJAX POST request
     $.ajax({
       type: "POST",
@@ -259,7 +262,9 @@ document.addEventListener("DOMContentLoaded", function () {
       success: function (response) {
         // Handle success response
         console.log("Success:", response);
+
         alert("card details updated successfully");
+
       },
       error: function (error) {
         // Handle error response
