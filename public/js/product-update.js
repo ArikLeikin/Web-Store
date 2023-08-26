@@ -25,7 +25,6 @@ $(document).ready(function () {
       isValid = false;
     }
 
-
     var productPhotos = $("#productPhotos")[0].files;
     if (productPhotos.length === 0) {
       Swal.fire({
@@ -42,29 +41,27 @@ $(document).ready(function () {
       });
       isValid = false;
     }
-    
+
     if (!validateNumber(quantity)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Quantity should only contain digits.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Quantity should only contain digits.",
       });
       isValid = false;
     }
 
     if (!validateLettersDigitsAndSpaces2(description)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Descriptionn should be at leat 5 characters.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Descriptionn should be at leat 5 characters.",
       });
       isValid = false;
     }
     if (!isValid) {
-
       return false;
     }
-
   });
 });
 
@@ -82,7 +79,6 @@ function validateNumber(str) {
 function validateLettersDigitsAndSpaces2(str) {
   return /^[a-zA-Z0-9 ]{5,}$/.test(str);
 }
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const deleteButton = document.querySelector(".delete-btn");

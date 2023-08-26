@@ -18,55 +18,55 @@ $(document).ready(function () {
     let isValid = true;
 
     const FirstName = $("#firstname").val();
-      if (!validateName(FirstName)) {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Validation Error',
-          text: 'First name can only contain letters.',
-        });
-        // showError("#firstname-error", "First name can only contain letters.");
-        isValid = false;
-      }
+    if (!validateName(FirstName)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "First name can only contain letters.",
+      });
+      // showError("#firstname-error", "First name can only contain letters.");
+      isValid = false;
+    }
 
-      const LastName = $("#lastname").val();
-      if (!validateName(LastName)) {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Validation Error',
-          text: 'Last name can only contain letters.',
-        });
-        // showError("#lastname-error", "Last name can only contain letters.");
-        isValid = false;
-      }
+    const LastName = $("#lastname").val();
+    if (!validateName(LastName)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Last name can only contain letters.",
+      });
+      // showError("#lastname-error", "Last name can only contain letters.");
+      isValid = false;
+    }
 
-      const country = $("#country").val();
-      if (!validateName(country)) {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Validation Error',
-          text: 'Country name can only contain letters.',
-        });
-        // showError("#country-error", "Country name can only contain letters.");
-        isValid = false;
-      }
+    const country = $("#country").val();
+    if (!validateName(country)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Country name can only contain letters.",
+      });
+      // showError("#country-error", "Country name can only contain letters.");
+      isValid = false;
+    }
 
-      const zipcode = $("#zipcode").val();
-      if (!validateZipCode(zipcode)) {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Validation Error',
-          text: 'Zipcode can only contain only 5 digits.',
-        });
-        // showError("#zipcode-error", "Zipcode can only contain only 5 digits.");
-        isValid = false;
-      }
+    const zipcode = $("#zipcode").val();
+    if (!validateZipCode(zipcode)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Zipcode can only contain only 5 digits.",
+      });
+      // showError("#zipcode-error", "Zipcode can only contain only 5 digits.");
+      isValid = false;
+    }
 
     const phone = $("#phone").val();
     if (!validatePhoneNumber(phone)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Phone number must be 10 digits.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Phone number must be 10 digits.",
       });
       // showError("#phone-error", "Phone number must be 10 digits.");
       isValid = false;
@@ -75,9 +75,9 @@ $(document).ready(function () {
     const city = $("#city").val();
     if (!validateCity(city)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'City name can only contain letters.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "City name can only contain letters.",
       });
       // showError("#city-error", "City name can only contain letters.");
       isValid = false;
@@ -86,9 +86,9 @@ $(document).ready(function () {
     const street = $("#street").val();
     if (!validateStreet(street)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Street name can only contain letters.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Street name can only contain letters.",
       });
       // showError("#street-error", "Street name can only contain letters.");
       isValid = false;
@@ -97,9 +97,9 @@ $(document).ready(function () {
     const streetNumber = $("#street_number").val();
     if (!validateStreetNumber(streetNumber)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Street number must be digits.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Street number must be digits.",
       });
       // showError("#street-number-error", "Street number must be digits.");
       isValid = false;
@@ -117,9 +117,9 @@ $(document).ready(function () {
       !validateCardNumber(cardNumber3)
     ) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Card number must have 4 digits each.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Card number must have 4 digits each.",
       });
       // showError("#card-number-error", "Card number must have 4 digits each.");
       isValid = false;
@@ -128,9 +128,9 @@ $(document).ready(function () {
     const cardHolder = $("#card-holder").val();
     if (!validateCardHolder(cardHolder)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Card holder name must have 9 digits.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Card holder name must have 9 digits.",
       });
       // showError("#card-holder-error", "Card holder name must have 9 digits.");
       isValid = false;
@@ -140,9 +140,9 @@ $(document).ready(function () {
     const expirationYear = $("#card-expiration-year").val();
     if (!validateExpirationDate(expirationMonth, expirationYear)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Invalid expiration date.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Invalid expiration date.",
       });
       // showError("#expiration-month-error", "Invalid expiration date.");
       isValid = false;
@@ -151,8 +151,8 @@ $(document).ready(function () {
     const cvv = $("#card-ccv").val();
     if (!validateCVV(cvv)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
+        icon: "warning",
+        title: "Validation Error",
         text: '"CVV must be 3 digits.',
       });
       // showError("#cvv-number-error", "CVV must be 3 digits.");
@@ -163,13 +163,13 @@ $(document).ready(function () {
       const FirstName = $("#firstname").val();
       const LastName = $("#lastname").val();
       const country = $("#country").val();
-       const zipcode = $("#zipcode").val();
+      const zipcode = $("#zipcode").val();
       const phone = $("#phone").val();
       const city = $("#city").val();
       const street = $("#street").val();
       const streetNumber = $("#street_number").val();
       const cardHolder = $("#card-holder").val();
-      const lastFourDigits= $("#card-number-3").val();
+      const lastFourDigits = $("#card-number-3").val();
       const expirationMonth = $("#card-expiration-month").val();
       const expirationYear = $("#card-expiration-year").val();
 
@@ -270,27 +270,26 @@ function clearErrorMessages() {
   $(".error-message").text("");
 }
 
-
-fetch('http://127.0.0.1:8080/address')
-  .then(response => response.json())
-  .then(data => {  
+fetch("http://127.0.0.1:8080/address")
+  .then((response) => response.json())
+  .then((data) => {
     if (data) {
-      document.getElementById('firstname').value = data.firstName;
-      document.getElementById('lastname').value = data.lastName;
-      document.getElementById('phone').value = data.phoneNumber;
-      document.getElementById('country').value = data.country;
-      document.getElementById('city').value = data.city;
-      document.getElementById('zipcode').value = data.postalCode;
-      document.getElementById('street').value = data.street;
-      document.getElementById('street_number').value = data.streetNumber;
+      document.getElementById("firstname").value = data.firstName;
+      document.getElementById("lastname").value = data.lastName;
+      document.getElementById("phone").value = data.phoneNumber;
+      document.getElementById("country").value = data.country;
+      document.getElementById("city").value = data.city;
+      document.getElementById("zipcode").value = data.postalCode;
+      document.getElementById("street").value = data.street;
+      document.getElementById("street_number").value = data.streetNumber;
 
-      console.log('Fetched Address Data:', data);
+      console.log("Fetched Address Data:", data);
     } else {
-      console.log('No address data found.');
+      console.log("No address data found.");
     }
   })
-  .catch(error => {
-    console.error('Error fetching address data:', error);
+  .catch((error) => {
+    console.error("Error fetching address data:", error);
   });
 
 
@@ -317,30 +316,31 @@ fetch('http://127.0.0.1:8080/address')
   });
 
 
-  $.ajax({
-    url: 'http://127.0.0.1:8080/api/current-user',
-    type: 'GET',
-    dataType: 'json',
-    success: function(data) {
-     document.getElementById('pointsNumber').textContent=data.points; 
-      updatePointsDropdown();
-    },
-    error: function(error) {
-      console.error('Error fetching user data:', error);
-    }
-  });
-  
+$.ajax({
+  url: "http://127.0.0.1:8080/api/current-user",
+  type: "GET",
+  dataType: "json",
+  success: function (data) {
+    document.getElementById("pointsNumber").textContent = data.points;
+    updatePointsDropdown();
+  },
+  error: function (error) {
+    console.error("Error fetching user data:", error);
+  },
+});
+
 function updatePointsDropdown() {
   var pointsSelect = document.getElementById("pointsSelect");
   var options = pointsSelect.options;
-  var pointsNumber = parseInt(document.getElementById("pointsNumber").textContent);
+  var pointsNumber = parseInt(
+    document.getElementById("pointsNumber").textContent
+  );
 
   for (var i = 0; i < options.length; i++) {
     var optionValue = parseInt(options[i].value);
     options[i].disabled = pointsNumber < optionValue;
   }
 }
-
 
 $(document).ready(function () {
   $("#purchase-button").click(function (event) {
@@ -435,15 +435,17 @@ $(document).ready(function () {
 
 
 
-$(document).ready(function() {
+$(document).ready(function () {
   function updatePoints() {
     var selectedPoints = parseInt($("#pointsSelect").val());
-    var totalPrice = parseFloat($("#total-price").text().replace("Total(USD) $", ""));
-    
+    var totalPrice = parseFloat(
+      $("#total-price").text().replace("Total(USD) $", "")
+    );
+
     var updatedPoints = -selectedPoints + Math.round(totalPrice * 0.1);
 
     $("#pointsNumber").text(updatedPoints);
-    $("#pointsSelect option").each(function() {
+    $("#pointsSelect option").each(function () {
       var optionPoints = parseInt($(this).val());
       if (optionPoints <= updatedPoints) {
         $(this).prop("disabled", false);
@@ -488,9 +490,8 @@ $(document).ready(function() {
   updatePoints();
 });
 
-
-$(document).ready(function() {
-  $("#purchase-form").submit(function(event) {
+$(document).ready(function () {
+  $("#purchase-form").submit(function (event) {
     event.preventDefault();
     var firstName = $("#firstname").val();
     var lastName = $("#lastname").val();
@@ -500,7 +501,11 @@ $(document).ready(function() {
     var postalCode = $("#zipcode").val();
     var street = $("#street").val();
     var streetNumber = $("#street_number").val();
-    var card_number = $("#card-number").val()+$("#card-number-1").val()+$("#card-number-2").val()+$("#card-number-3").val();
+    var card_number =
+      $("#card-number").val() +
+      $("#card-number-1").val() +
+      $("#card-number-2").val() +
+      $("#card-number-3").val();
     var holder_name = $("#card-holder").val();
     var expiration_date = $("#card-expiration-month").val();
     var ccv = $("#card-ccv").val();
@@ -519,21 +524,19 @@ $(document).ready(function() {
       holder_name: holder_name,
       expiration_date: expiration_date,
       ccv: ccv,
-      points: points
+      points: points,
     };
 
- 
     $.ajax({
       type: "POST",
       url: "http://127.0.0.1:8080/payment",
       data: formData,
-      success: function(response) {
+      success: function (response) {
         console.log("Payment successful:", response);
-
       },
-      error: function(error) {
+      error: function (error) {
         console.error("Payment error:", error);
-      }
+      },
     });
   });
 });
