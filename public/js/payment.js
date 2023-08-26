@@ -1,20 +1,89 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const totalElement = document.querySelector("#total-price"); // Update this selector to match your payment page's total element
+var saveAddress = true;
+var saveCard = true;
 
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const cartTotal = urlParams.get("total");
+$(document).ready(function () {
+  const checkboxAddress = document.getElementById("saveAddress");
+  const checkboxCard = document.getElementById("saveCard");
 
-  if (cartTotal !== null) {
-    totalElement.textContent = "Total(USD) $" + cartTotal;
-  }
+  checkboxAddress.addEventListener("change", function () {
+    const isChecked = this.checked;
+
+    // You can now use the isChecked value to perform actions based on whether the checkbox is checked or unchecked
+    if (isChecked) {
+      console.log("Address Checkbox is checked");
+      saveAddress = true;
+    } else {
+      console.log("Address Checkbox is unchecked");
+      saveAddress = false;
+    }
+  });
+
+  checkboxCard.addEventListener("change", function () {
+    const isChecked = this.checked;
+
+    // You can now use the isChecked value to perform actions based on whether the checkbox is checked or unchecked
+    if (isChecked) {
+      console.log("Card Checkbox is checked");
+      saveCard = true;
+    } else {
+      console.log("Card Checkbox is unchecked");
+      saveCard = false;
+    }
+  });
 });
 
+function validateName(str) {
+  return /^[A-Za-z\s]+$/.test(str);
+}
+
+function validateZipCode(phone) {
+  return /^\d{5}$/.test(phone);
+}
+function validatePhoneNumber(phone) {
+  return /^\d{10}$/.test(phone);
+}
+
+function validateStreetNumber(streetNumber) {
+  return /^\d+$/.test(streetNumber);
+}
+
+function validateCardNumber(cardNumber) {
+  return /^\d{4}$/.test(cardNumber);
+}
+
+function validateCardHolder(cardHolder) {
+  return cardHolder.length === 9 && /^[0-9]+$/.test(cardHolder);
+}
+
+function validateExpirationDate(expirationMonth, expirationYear) {
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth() + 1;
+  const enteredYear = parseInt(expirationYear, 10);
+  const enteredMonth = parseInt(expirationMonth, 10);
+
+  if (enteredYear < currentYear) {
+    return false;
+  } else if (enteredYear === currentYear && enteredMonth < currentMonth) {
+    return false;
+  }
+  return true;
+}
+
+function validateCVV(cvv) {
+  return /^\d{3}$/.test(cvv);
+}
+
+function showError(element, message) {
+  $(element).text(message).css("color", "red");
+}
+
+function clearErrorMessages() {
+  $(".error-message").text("");
+}
+/*
 $(document).ready(function () {
   $("#purchase-form").submit(function (event) {
     event.preventDefault();
-    clearErrorMessages();
-
     let isValid = true;
 
     const FirstName = $("#firstname").val();
@@ -73,18 +142,17 @@ $(document).ready(function () {
     }
 
     const city = $("#city").val();
-    if (!validateCity(city)) {
+    if (!validateName(city)) {
       Swal.fire({
         icon: "warning",
         title: "Validation Error",
         text: "City name can only contain letters.",
       });
-      // showError("#city-error", "City name can only contain letters.");
       isValid = false;
     }
 
     const street = $("#street").val();
-    if (!validateStreet(street)) {
+    if (!validateName(street)) {
       Swal.fire({
         icon: "warning",
         title: "Validation Error",
@@ -132,7 +200,6 @@ $(document).ready(function () {
         title: "Validation Error",
         text: "Card holder name must have 9 digits.",
       });
-      // showError("#card-holder-error", "Card holder name must have 9 digits.");
       isValid = false;
     }
 
@@ -169,7 +236,7 @@ $(document).ready(function () {
       const street = $("#street").val();
       const streetNumber = $("#street_number").val();
       const cardHolder = $("#card-holder").val();
-      const lastFourDigits = $("#card-number-3").val();
+      const lastFourDigits = $("#card-number-4").val();
       const expirationMonth = $("#card-expiration-month").val();
       const expirationYear = $("#card-expiration-year").val();
 
@@ -212,63 +279,115 @@ $(document).ready(function () {
     $("#myModal").hide();
   });
 });
+*/
+function updatePointsDropdown() {
+  var pointsSelect = document.getElementById("pointsSelect");
+  var options = pointsSelect.options;
+  var pointsNumber = parseInt(
+    document.getElementById("pointsNumber").textContent
+  );
 
-function validateName(city) {
-  return /^[A-Za-z\s]+$/.test(city);
-}
-
-function validateZipCode(phone) {
-  return /^\d{5}$/.test(phone);
-}
-function validatePhoneNumber(phone) {
-  return /^\d{10}$/.test(phone);
-}
-
-function validateCity(city) {
-  return /^[A-Za-z\s]+$/.test(city);
-}
-
-function validateStreet(street) {
-  return /^[A-Za-z\s]+$/.test(street);
-}
-
-function validateStreetNumber(streetNumber) {
-  return /^\d+$/.test(streetNumber);
-}
-
-function validateCardNumber(cardNumber) {
-  return /^\d{4}$/.test(cardNumber);
-}
-
-function validateCardHolder(cardHolder) {
-  return cardHolder.length === 9 && /^[0-9]+$/.test(cardHolder);
-}
-
-function validateExpirationDate(expirationMonth, expirationYear) {
-  const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().getMonth() + 1;
-  const enteredYear = parseInt(expirationYear, 10);
-  const enteredMonth = parseInt(expirationMonth, 10);
-
-  if (enteredYear < currentYear) {
-    return false;
-  } else if (enteredYear === currentYear && enteredMonth < currentMonth) {
-    return false;
+  for (var i = 0; i < options.length; i++) {
+    var optionValue = parseInt(options[i].value);
+    options[i].disabled = pointsNumber < optionValue;
   }
-  return true;
 }
+/*
+$(document).ready(function () {
+  function updatePoints() {
+    var selectedPoints = parseInt($("#pointsSelect").val());
+    var totalPrice = parseFloat(
+      $("#total-price").text().replace("Total(USD) $", "")
+    );
 
-function validateCVV(cvv) {
-  return /^\d{3}$/.test(cvv);
-}
+    var updatedPoints = -selectedPoints + Math.round(totalPrice * 0.1);
 
-function showError(element, message) {
-  $(element).text(message).css("color", "red");
-}
+    $("#pointsNumber").text(updatedPoints);
+    $("#pointsSelect option").each(function () {
+      var optionPoints = parseInt($(this).val());
+      if (optionPoints <= updatedPoints) {
+        $(this).prop("disabled", false);
+      } else {
+        $(this).prop("disabled", true);
+      }
+    });
 
-function clearErrorMessages() {
-  $(".error-message").text("");
-}
+    // Update points on the server
+    //updatePointsOnServer(updatedPoints);
+  }
+ 
+  function updatePointsOnServer(updatedPoints) {
+    // Create a request body
+    var requestBody = JSON.stringify({ points: updatedPoints });
+
+    // Make a POST request to update points
+    fetch("http://127.0.0.1:8080/api/current-user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: requestBody,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Points updated on the server:", data);
+        // You can handle the response data if needed
+      })
+      .catch((error) => {
+        console.error("Error updating points:", error);
+      });
+  }
+*/
+// Call the updatePoints function when the select value changes
+// $("#pointsSelect").on("change", updatePoints);
+
+// Call the updatePoints function initially to set up the UI
+// updatePoints();
+//});
+
+/*~~~~~~~~~~~~~~~~~~~ card get api~~~~~~~~~~~~~~~~~~`*/
+fetch("http://127.0.0.1:8080/api/current-user")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Fetch error: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if (data && data.creditCard) {
+      document.getElementById("card-number-1").value =
+        data.creditCard.card_number.substr(0, 4) || "";
+
+      document.querySelector("#card-number-2").value =
+        data.creditCard.card_number.substr(4, 4);
+      document.querySelector("#card-number-3").value =
+        data.creditCard.card_number.substr(8, 4);
+      document.querySelector("#card-number-4").value =
+        data.creditCard.card_number.substr(12, 4);
+
+      document.querySelector("#card-holder").value =
+        data.creditCard.holder_name;
+      document.querySelector("#card-expiration-month").value =
+        data.creditCard.expiration_date.substr(0, 2);
+      document.querySelector("#card-expiration-year").value =
+        data.creditCard.expiration_date.slice(-4);
+      document.querySelector("#card-ccv").value = data.creditCard.ccv;
+    } else {
+      document.querySelector("#card-number-1").value = "";
+      document.querySelector("#card-number-2").value = "";
+      document.querySelector("#card-number-3").value = "";
+      document.querySelector("#card-number-4").value = "";
+      document.querySelector("#card-holder").value = "";
+      document.querySelector("#card-expiration-month").value = "";
+      document.querySelector("#card-expiration-year").value = "";
+      document.querySelector("#card-ccv").value = "";
+    }
+  })
+  .catch((error) => {
+    console.error("Error fetching user details:", error);
+  });
+
+/*~~~~~~~~~~~~~~~~~~~ address get api~~~~~~~~~~~~~~~~~~`*/
 
 fetch("http://127.0.0.1:8080/address")
   .then((response) => response.json())
@@ -291,30 +410,7 @@ fetch("http://127.0.0.1:8080/address")
   .catch((error) => {
     console.error("Error fetching address data:", error);
   });
-
-
-
-  $(document).ready(function () {
-    $.ajax({
-      url: 'http://127.0.0.1:8080/creditcard',
-      type: 'GET',
-      dataType: 'json', 
-      success: function (data) {
-        const cardNumber =data.card_number;
-        $('#card-number').val(cardNumber.substr(0, 4));
-        $('#card-number-1').val(cardNumber.substr(4, 4));
-        $('#card-number-2').val(cardNumber.substr(8, 4));
-        $('#card-number-3').val(cardNumber.substr(12, 4));
-        $('#card-holder').val(data.holder_name);
-        $('#card-expiration-month').val(data.expiration_date);
-        $('#card-ccv').val(data.ccv);
-      },
-      error: function () {
-        console.log('Error fetching credit card data');
-      },
-    });
-  });
-
+/*~~~~~~~~~~~~~~~~~~~ points get api~~~~~~~~~~~~~~~~~~`*/
 
 $.ajax({
   url: "http://127.0.0.1:8080/api/current-user",
@@ -329,214 +425,330 @@ $.ajax({
   },
 });
 
-function updatePointsDropdown() {
-  var pointsSelect = document.getElementById("pointsSelect");
-  var options = pointsSelect.options;
-  var pointsNumber = parseInt(
-    document.getElementById("pointsNumber").textContent
-  );
-
-  for (var i = 0; i < options.length; i++) {
-    var optionValue = parseInt(options[i].value);
-    options[i].disabled = pointsNumber < optionValue;
-  }
-}
-
-$(document).ready(function () {
-  $("#purchase-button").click(function (event) {
-    event.preventDefault();
-
-    const checkbox = $(".cl-checkbox-address");
-
-
- 
-    // if (checkbox.checked) {
-      const firstName = $("#firstname").val();
-      const lastName = $("#lastname").val();
-      const phoneNumber = $("#phone").val();
-      const country = $("#country").val();
-      const city = $("#city").val();
-      const postalCode = $("#zipcode").val();
-      const street = $("#street").val();
-      const streetNumber = $("#street_number").val();
-
-      const data = {
-        firstName,
-        lastName,
-        phoneNumber,
-        country,
-        city,
-        postalCode,
-        street,
-        streetNumber,
-      };
-      console.log(data);
-
-      $.ajax({
-        url: "http://127.0.0.1:8080/address",
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(data),
-        success: function (result) {
-          console.log("Data sent successfully:", result);
-          $("#purchase-form").submit();
-        },
-        error: function (error) {
-          console.error("Error sending data:", error);
-        },
-      });
-    // } else {
-    //   $("#purchase-form").submit();
-    // }
-  });
-});
-
-
-$(document).ready(function () {
-  $("#purchase-button").click(function (event) {
-    event.preventDefault();
-
-    const checkbox = $(".cl-checkbox");
-    // if (checkbox.prop("checked")) {
-      const card_number =
-        $("#card-number").val() +
-        $("#card-number-1").val() +
-        $("#card-number-2").val() +
-        $("#card-number-3").val();
-
-      const holder_name = $("#card-holder").val();
-      const expiration_date = $("#card-expiration-month").val();
-      const ccv = $("#card-ccv").val();
-      const data = {
-        card_number,
-        holder_name,
-        expiration_date,
-        ccv,
-      };
-
-      $.ajax({
-        url: "http://127.0.0.1:8080/creditcard",
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(data),
-        success: function (result) {
-          console.log("Data sent successfully:", result);
-          $("#purchase-form").submit();
-        },
-        error: function (error) {
-          console.error("Error sending data:", error);
-        },
-      });
-    // } else {
-    //   $("#purchase-form").submit();
-    // }
-  });
-});
-
-
-
-$(document).ready(function () {
-  function updatePoints() {
-    var selectedPoints = parseInt($("#pointsSelect").val());
-    var totalPrice = parseFloat(
-      $("#total-price").text().replace("Total(USD) $", "")
-    );
-
-    var updatedPoints = -selectedPoints + Math.round(totalPrice * 0.1);
-
-    $("#pointsNumber").text(updatedPoints);
-    $("#pointsSelect option").each(function () {
-      var optionPoints = parseInt($(this).val());
-      if (optionPoints <= updatedPoints) {
-        $(this).prop("disabled", false);
-      } else {
-        $(this).prop("disabled", true);
-      }
-    });
-
-    // Update points on the server
-    updatePointsOnServer(updatedPoints);
-  }
-
-  function updatePointsOnServer(updatedPoints) {
-    // Construct the API URL
-    var apiUrl = "http://127.0.0.1:8080/api/current-user";
-
-    // Create a request body
-    var requestBody = JSON.stringify({ points: updatedPoints });
-
-    // Make a POST request to update points
-    fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: requestBody
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log("Points updated on the server:", data);
-      // You can handle the response data if needed
-    })
-    .catch(error => {
-      console.error("Error updating points:", error);
-    });
-  }
-
-  // Call the updatePoints function when the select value changes
-  $("#pointsSelect").on("change", updatePoints);
-
-  // Call the updatePoints function initially to set up the UI
-  updatePoints();
-});
+/*~~~~~~~~~~~~~~~~~~~ post  api~~~~~~~~~~~~~~~~~~`*/
 
 $(document).ready(function () {
   $("#purchase-form").submit(function (event) {
     event.preventDefault();
-    var firstName = $("#firstname").val();
-    var lastName = $("#lastname").val();
-    var phoneNumber = $("#phone").val();
-    var country = $("#country").val();
-    var city = $("#city").val();
-    var postalCode = $("#zipcode").val();
-    var street = $("#street").val();
-    var streetNumber = $("#street_number").val();
-    var card_number =
-      $("#card-number").val() +
-      $("#card-number-1").val() +
-      $("#card-number-2").val() +
-      $("#card-number-3").val();
-    var holder_name = $("#card-holder").val();
-    var expiration_date = $("#card-expiration-month").val();
-    var ccv = $("#card-ccv").val();
-    var points = $("#pointsNumber").val();
+    let isValid = true;
 
-    var formData = {
-      firstname: firstName,
-      lastname: lastName,
-      phone: phoneNumber,
-      country: country,
-      city: city,
-      postalCode: postalCode,
-      street: street,
-      streetNumber: streetNumber,
-      card_number: card_number,
-      holder_name: holder_name,
-      expiration_date: expiration_date,
-      ccv: ccv,
-      points: points,
-    };
+    const FirstName = $("#firstname").val();
+    if (!validateName(FirstName)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "First name can only contain letters.",
+      });
+      // showError("#firstname-error", "First name can only contain letters.");
+      isValid = false;
+    }
 
-    $.ajax({
-      type: "POST",
-      url: "http://127.0.0.1:8080/payment",
-      data: formData,
-      success: function (response) {
-        console.log("Payment successful:", response);
-      },
-      error: function (error) {
-        console.error("Payment error:", error);
-      },
-    });
+    const LastName = $("#lastname").val();
+    if (!validateName(LastName)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Last name can only contain letters.",
+      });
+      // showError("#lastname-error", "Last name can only contain letters.");
+      isValid = false;
+    }
+
+    const country = $("#country").val();
+    if (!validateName(country)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Country name can only contain letters.",
+      });
+      // showError("#country-error", "Country name can only contain letters.");
+      isValid = false;
+    }
+
+    const zipcode = $("#zipcode").val();
+    if (!validateZipCode(zipcode)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Zipcode can only contain only 5 digits.",
+      });
+      // showError("#zipcode-error", "Zipcode can only contain only 5 digits.");
+      isValid = false;
+    }
+
+    const phone = $("#phone").val();
+    if (!validatePhoneNumber(phone)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Phone number must be 10 digits.",
+      });
+      // showError("#phone-error", "Phone number must be 10 digits.");
+      isValid = false;
+    }
+
+    const city = $("#city").val();
+    if (!validateName(city)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "City name can only contain letters.",
+      });
+      isValid = false;
+    }
+
+    const street = $("#street").val();
+    if (!validateName(street)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Street name can only contain letters.",
+      });
+      // showError("#street-error", "Street name can only contain letters.");
+      isValid = false;
+    }
+
+    const streetNumber = $("#street_number").val();
+    if (!validateStreetNumber(streetNumber)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Street number must be digits.",
+      });
+      // showError("#street-number-error", "Street number must be digits.");
+      isValid = false;
+    }
+
+    const cardNumber = $("#card-number-1").val();
+    const cardNumber1 = $("#card-number-2").val();
+    const cardNumber2 = $("#card-number-3").val();
+    const cardNumber3 = $("#card-number-4").val();
+
+    if (
+      !validateCardNumber(cardNumber) ||
+      !validateCardNumber(cardNumber1) ||
+      !validateCardNumber(cardNumber2) ||
+      !validateCardNumber(cardNumber3)
+    ) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Card number must have 4 digits each.",
+      });
+      // showError("#card-number-error", "Card number must have 4 digits each.");
+      isValid = false;
+    }
+
+    const cardHolder = $("#card-holder").val();
+    if (!validateCardHolder(cardHolder)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Card holder name must have 9 digits.",
+      });
+      isValid = false;
+    }
+
+    const expirationMonth = $("#card-expiration-month").val();
+    const expirationYear = $("#card-expiration-year").val();
+    if (!validateExpirationDate(expirationMonth, expirationYear)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Invalid expiration date.",
+      });
+      // showError("#expiration-month-error", "Invalid expiration date.");
+      isValid = false;
+    }
+
+    const cvv = $("#card-ccv").val();
+    if (!validateCVV(cvv)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: '"CVV must be 3 digits.',
+      });
+      // showError("#cvv-number-error", "CVV must be 3 digits.");
+      isValid = false;
+    }
+
+    if (isValid) {
+      if (saveAddress) {
+        var formData = {
+          city: $("#city").val(),
+          street: $("#street").val(),
+          streetNumber: $("#street_number").val(),
+          country: $("#country").val(),
+          postalCode: $("#zipcode").val(),
+          firstName: $("#firstname").val(),
+          lastName: $("#lastname").val(),
+          phoneNumber: $("#phone").val(),
+        };
+        $.ajax({
+          url: "http://127.0.0.1:8080/address", // Replace with your actual URL
+          type: "POST",
+          data: formData,
+          success: function (response) {
+            console.log(response);
+          },
+          error: function (error) {
+            // Handle errors here
+            console.error("Error:", error);
+          },
+        });
+      }
+      var card_expiration_year = document.getElementById(
+        "card-expiration-year"
+      ).value;
+      var card_expiration_month = document.getElementById(
+        "card-expiration-month"
+      ).value;
+      var card_expiration = card_expiration_month + "/" + card_expiration_year;
+      var card_number =
+        document.getElementById("card-number-1").value +
+        document.getElementById("card-number-2").value +
+        document.getElementById("card-number-3").value +
+        document.getElementById("card-number-4").value;
+      if (saveCard) {
+        var formData = {
+          card_number: card_number,
+          holder_name: $("#card-holder").val(),
+          expiration_date: card_expiration,
+          ccv: $("#card-ccv").val(),
+        };
+        console.log(formData.holder_name);
+
+        // Send AJAX POST request
+        $.ajax({
+          type: "POST",
+          url: "http://127.0.0.1:8080/creditcard",
+          data: formData,
+          success: function (response) {
+            // Handle success response
+            console.log("Success:", response);
+          },
+          error: function (error) {
+            // Handle error response
+            console.log("Error:", error);
+          },
+        });
+      }
+
+      var formData = {
+        city: $("#city").val(),
+        street: $("#street").val(),
+        streetNumber: $("#street_number").val(),
+        country: $("#country").val(),
+        postalCode: $("#zipcode").val(),
+        firstName: $("#firstname").val(),
+        lastName: $("#lastname").val(),
+        phone: $("#phone").val(),
+        card_number: card_number,
+        holder_name: $("#card-holder").val(),
+        expiration_date: card_expiration,
+        ccv: $("#card-ccv").val(),
+        points: 666 /*~~~~~~~~~~~~~NEED TO BE CHANGED!!!!!!~~~~~~~~~~*/,
+      };
+
+      $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:8080/payment",
+        data: formData,
+        success: function (response) {
+          console.log("Payment successful:", response);
+        },
+        error: function (error) {
+          console.error("Payment error:", error);
+        },
+      });
+    }
   });
 });
+
+// $(document).ready(function () {
+//   $("#purchase-button").click(function (event) {
+//     event.preventDefault();
+
+//     const checkbox = $(".cl-checkbox-address");
+
+//     // if (checkbox.checked) {
+//     const firstName = $("#firstname").val();
+//     const lastName = $("#lastname").val();
+//     const phoneNumber = $("#phone").val();
+//     const country = $("#country").val();
+//     const city = $("#city").val();
+//     const postalCode = $("#zipcode").val();
+//     const street = $("#street").val();
+//     const streetNumber = $("#street_number").val();
+
+//     const data = {
+//       firstName,
+//       lastName,
+//       phoneNumber,
+//       country,
+//       city,
+//       postalCode,
+//       street,
+//       streetNumber,
+//     };
+//     console.log(data);
+
+//     $.ajax({
+//       url: "http://127.0.0.1:8080/address",
+//       type: "POST",
+//       contentType: "application/json",
+//       data: JSON.stringify(data),
+//       success: function (result) {
+//         console.log("Data sent successfully:", result);
+//         $("#purchase-form").submit();
+//       },
+//       error: function (error) {
+//         console.error("Error sending data:", error);
+//       },
+//     });
+//     // } else {
+//     //   $("#purchase-form").submit();
+//     // }
+//   });
+// });
+
+// $(document).ready(function () {
+//   $("#purchase-button").click(function (event) {
+//     event.preventDefault();
+
+//     const checkbox = $(".cl-checkbox");
+//     // if (checkbox.prop("checked")) {
+//     const card_number =
+//       $("#card-number-1").val() +
+//       $("#card-number-2").val() +
+//       $("#card-number-3").val() +
+//       $("#card-number-4").val();
+
+//     const holder_name = $("#card-holder").val();
+//     const expiration_date =
+//       $("#card-expiration-month").val() +
+//       "/" +
+//       $("#card-expiration-year").val();
+//     const ccv = $("#card-ccv").val();
+//     const data = {
+//       card_number,
+//       holder_name,
+//       expiration_date,
+//       ccv,
+//     };
+
+//     $.ajax({
+//       url: "http://127.0.0.1:8080/creditcard",
+//       type: "POST",
+//       contentType: "application/json",
+//       data: JSON.stringify(data),
+//       success: function (result) {
+//         console.log("Data sent successfully:", result);
+//         $("#purchase-form").submit();
+//       },
+//       error: function (error) {
+//         console.error("Error sending data:", error);
+//       },
+//     });
+//   });
+// });
