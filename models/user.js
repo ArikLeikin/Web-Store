@@ -67,9 +67,12 @@ const userSchema = new Schema({
   ],
   interested: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Product",
-      required: true,
+      productId: {
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+        required: true,
+      },
+      socketId: { type: String, required: true },
     },
   ],
   points: {

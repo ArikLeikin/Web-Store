@@ -6,8 +6,11 @@ const app = express();
 const User = require("./models/user");
 const mongoose = require("mongoose");
 const session = require("express-session");
-const flash = require("connect-flash");
 const MongoDBStore = require("connect-mongodb-session")(session);
+const http = require("http");
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
 
 const store = new MongoDBStore({
   uri: "mongodb+srv://playtopia:playtopia@webstore.svlylpv.mongodb.net/",
@@ -71,6 +74,26 @@ app.use((req, res, next) => {
   res.redirect("/404");
 });
 
+io.on("connection", (socket) => {
+  //console.log("A user connected:", socket.id);
+
+  // Handle "notify" event when user clicks "Notify Me"
+  socket.on("notify", async (data) => {
+    const { productId, userId } = data;
+    const user = await User.find(userId);
+    const interested = user.interested;
+    const exist = interested.some(
+      (item) => item.productId._id.toString() === id
+    );
+    if (!exist) {
+      interested.push({ productId: productId, socketId: socket.id });
+      await user.save();
+    }
+    // Update the user's interested list in the database
+    // ... your database update logic ...
+  });
+});
+
 // Connect to MongoDB and start the server
 mongoose
   .connect(
@@ -81,10 +104,12 @@ mongoose
       "@webstore.svlylpv.mongodb.net/"
   )
   .then((result) => {
-    app.listen(process.env.PORT, () => {
+    server.listen(process.env.PORT, () => {
       console.log("Server started");
     });
   })
   .catch((err) => {
     console.log(err);
   });
+
+module.exports = io;
