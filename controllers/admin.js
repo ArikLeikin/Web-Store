@@ -4,6 +4,22 @@ const StoreLocations = require("../models/store-locations");
 const User = require("../models/user");
 const axios = require("axios");
 const { pipeline } = require("nodemailer/lib/xoauth2");
+const io = require("../app.js");
+
+async function notifyInterestedUsers(io, productId) {
+  const users = await User.find();
+
+  users.forEach((user) => {
+    const interestedProduct = user.interested.find((product) =>
+      product.productId.equals(productId)
+    );
+    if (interestedProduct) {
+      io.to(interestedProduct.socketId).emit("productBackInStock", {
+        productId,
+      });
+    }
+  });
+}
 
 exports.create = async (req, res) => {
   try {
@@ -114,6 +130,7 @@ exports.update = async (req, res) => {
         updated.image = image.map((image) => image.path.split("public")[1]);
         console.log(updated);
         await Product.findOneAndUpdate({ _id: id }, updated);
+        notifyInterestedUsers(io, id);
         break;
       case "order":
         await Order.findOneAndUpdate({ _id: id }, updated);
