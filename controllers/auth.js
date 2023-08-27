@@ -114,7 +114,10 @@ exports.postRegister = async (req, res, next) => {
 
 exports.getResetPassword = async (req, res, next) => {
   try {
-    const resetPagePath = path.join(__dirname, "../public/html/reset.html");
+    const resetPagePath = path.join(
+      __dirname,
+      "../public/html/passwordReset.html"
+    );
     res.status(200).sendFile(resetPagePath);
   } catch (err) {
     console.log(err);

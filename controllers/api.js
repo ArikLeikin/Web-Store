@@ -37,6 +37,7 @@ module.exports = {
       const users = await User.find();
       res.status(200).json(users);
     } catch (err) {
+      console.log(err);
       res.status(500).json({ message: "Error retrieving users", error: err });
     }
   },
