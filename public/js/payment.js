@@ -280,18 +280,7 @@ $(document).ready(function () {
   });
 });
 */
-function updatePointsDropdown() {
-  var pointsSelect = document.getElementById("pointsSelect");
-  var options = pointsSelect.options;
-  var pointsNumber = parseInt(
-    document.getElementById("pointsNumber").textContent
-  );
 
-  for (var i = 0; i < options.length; i++) {
-    var optionValue = parseInt(options[i].value);
-    options[i].disabled = pointsNumber < optionValue;
-  }
-}
 /*
 $(document).ready(function () {
   function updatePoints() {
@@ -834,7 +823,8 @@ function calculateTotalPrice() {
               method: 'GET',
               dataType: 'json'
           }).then(function(productData) {
-            updateTotal(productData.data.price,productQuantity );
+             updateTotal(productData.data.price,productQuantity );
+             updatePointsDropdown();
           });
           }  
         
@@ -842,6 +832,7 @@ function calculateTotalPrice() {
     }
 
     });
+ 
     }
             
         
@@ -855,4 +846,29 @@ function calculateTotalPrice() {
 
 calculateTotalPrice();
 
+
+// function updatePointsDropdown() {
+//   var pointsSelect = document.getElementById("pointsSelect");
+//   var options = pointsSelect.options;
+//   var pointsNumber = parseInt(
+//     document.getElementById("pointsNumber").textContent
+//   );
+
+//   for (var i = 0; i < options.length; i++) {
+//     var optionValue = parseInt(options[i].value);
+//     options[i].disabled = pointsNumber < optionValue;
+//   }
+// }
+
+function updatePointsDropdown() {
+  var pointsSelect = document.getElementById("pointsSelect");
+  var options = pointsSelect.options;
+  var pointsNumber = parseInt(document.getElementById("pointsNumber").textContent);
+
+  for (var i = 0; i < options.length; i++) {
+    var optionValue = parseInt(options[i].value);
+    options[i].disabled = pointsNumber < optionValue || totalPrice < optionValue;
+  }
+
+}
 
