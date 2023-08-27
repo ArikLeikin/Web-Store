@@ -300,7 +300,7 @@ exports.postPayment = async (req, res, next) => {
     //   "cart.items.product"
     // ); // FIND -> RETURNS ARRAY!
     // req.session.user = req.session.user[0];
-    const user = req.session.user;
+    const user = await User.findById(req.session.user._id);
     const cartItems = user.cart.items;
 
     if (cartItems.length === 0) {
@@ -421,13 +421,13 @@ exports.addProductToCart = async (req, res, next) => {
 };
 
 exports.getCart = async (req, res, next) => {
-  const user = req.session.user;
+  const user = await User.findById(req.session.user._id);
+
   if (user == undefined) {
     return res.status(401).json("Log in required");
   }
-  const cart = user.cart || [];
+  const cart = user.cart;
   if (cart.items.length === 0) return res.status(401).json("Cart is Empty");
-  //console.log(cart.items);
   res.status(200).json({
     data: cart.items,
   });
@@ -486,8 +486,6 @@ exports.postCartDelete = async (req, res, next) => {
   const productId = req.body.product;
   const user = await User.findById(req.session.user._id);
   const cart = user.cart;
-  console.log(req.body);
-  console.log(cart);
 
   try {
     const cartItemIndex = cart.items.findIndex(
@@ -555,8 +553,6 @@ exports.postWishlistAdd = async (req, res, next) => {
   try {
     const productIdToSave = req.body.productId;
     let quantityToSave = 1;
-    if (quantityToSave <= 0)
-      return res.status(400).json({ message: "Non positive quantity" });
     const user = await User.findById(req.session.user._id);
     const wishlist = user.wishlist || [];
     if (wishlist.length > 0) {
@@ -595,9 +591,8 @@ exports.postWishlistDelete = async (req, res, next) => {
   // req.session.user = req.session.user[0]; --> For testing
 
   const productId = req.body.productId;
-  const user = req.session.user;
+  const user = await User.findById(req.session.user._id);
   const wishlist = user.wishlist;
-
   try {
     const wishlistItemIndex = wishlist.findIndex(
       (item) => item.product.toString() === productId
@@ -626,7 +621,7 @@ exports.postWishlistUpdate = async (req, res, next) => {
   // req.session.user = req.session.user[0]; --> For testing
   const productId = req.body.productId;
   const newQuantity = parseInt(req.body.quantity);
-  const user = req.session.user;
+  const user = await User.findById(req.session.user._id);
   const wishlist = user.wishlist;
 
   try {
