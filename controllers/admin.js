@@ -17,7 +17,9 @@ exports.create = async (req, res) => {
     // Assuming passed all required params in body
     switch (expression) {
       case "product":
-        newDocument.image = req.files.map((image) => image.path);
+        newDocument.image = req.files.map(
+          (image) => image.path.split("public")[1]
+        );
         await Product.create(newDocument);
         let message =
           "A new product has arrived! check out the new product called:" +
