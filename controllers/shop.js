@@ -329,9 +329,10 @@ exports.postPayment = async (req, res, next) => {
     });
     let total_price = 0;
     for (let i = 0; i < cartItems.length; i++) {
-      let singleItem = await Product.findById(
-        cartItems[i].product.toHexString()
-      );
+      // let singleItem = await Product.findById(
+      //   cartItems[i].product.toHexString()
+      // );
+      let singleItem = await Product.findById(cartItems[i].product._id);
       total_price += singleItem.price * cartItems[i].quantity;
     }
     console.log("PRICE: " + total_price);
@@ -380,7 +381,7 @@ exports.postPayment = async (req, res, next) => {
 
     // Clear the user's cart in the session or the database
     user.cart.items = [];
-    user.orderHistory.push(newOrder._id);
+    user.orderHistory.push(newOrder);
 
     await user.save();
 
@@ -389,6 +390,7 @@ exports.postPayment = async (req, res, next) => {
     await req.session.save();
     return res.status(200).json({ message: "Order created successfully" });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "An error occurred" });
   }
 };
