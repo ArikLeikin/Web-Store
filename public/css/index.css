@@ -8,9 +8,14 @@ body {
   min-height: 100vh !important;
   margin: 0;
 }
-.logout {
-  float: right;
+
+.header-logout {
   color: white;
+  float: right;
+  text-decoration: none;
+}
+.header-logout:hover {
+  text-decoration: underline;
 }
 .page-title {
   text-align: center;
@@ -286,56 +291,6 @@ li:hover a.hasDropdown:after {
   flex: 1;
 }
 
-.btn-twitter {
-  color: #55acee;
-}
-
-.btn-instagram {
-  color: #e4405f;
-}
-
-.btn-youtube {
-  color: #cd201f;
-}
-
-.btn-tiktok {
-  color: #000000;
-}
-
-.footer {
-  background-color: #384fb2;
-  max-height: fit-content;
-}
-
-.footer a {
-  color: #e4dfcc;
-}
-
-.btn-social-icon.btn-facebook:hover {
-  color: #3b5998;
-  /* Facebook color */
-}
-
-.btn-social-icon.btn-twitter:hover {
-  color: #1da1f2;
-  /* Twitter color */
-}
-
-.btn-social-icon.btn-instagram:hover {
-  color: #e4405f;
-  /* Instagram color */
-}
-
-.btn-social-icon.btn-youtube:hover {
-  color: #ff0000;
-  /* YouTube color */
-}
-
-.btn-social-icon.btn-tiktok:hover {
-  color: #000000;
-  /* TikTok color */
-}
-
 /*model dialog*/
 
 .modal {
@@ -498,4 +453,59 @@ login-btn:hover {
 
 main {
   margin-bottom: 50px;
+}
+/*footer*/
+.links-section {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+}
+.footer-col {
+  width: 18%;
+}
+.footer-col-bigger {
+  width: 28%;
+}
+.footer-col-title {
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+ul.footer-col-list {
+  list-style: none;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  padding-left: 3px;
+}
+.footer-col-list li {
+  margin-bottom: 3px;
+}
+.footer-col-list a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  font-size: 13px;
+}
+.footer-col-list a:hover {
+  text-decoration: underline;
+}
+p.footer-desc {
+  font-family: monospace;
+  font-size: 14px;
+  margin-top: 60px;
+}
+p.footer-desc a {
+  font-weight: bold;
+  color: black;
+}
+.footer-facebook {
+  margin-bottom: 10px;
+}
+.footer-facebook a {
+  text-decoration: none;
+  color: black;
+  font-family: monospace;
+}
+.footer-facebook a:hover {
+  text-decoration: underline;
 }
