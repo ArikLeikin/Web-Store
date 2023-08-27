@@ -22,15 +22,14 @@ $(document).ready(function () {
     productLink.href = "/product-details?id=" + product._id;
 
     // Creating the product image element
-
     if (product.image && product.image.length > 0) {
-      const imagePath = product.image[0].replace(/\\/g, "/");
-      const productImage = $("<img>")
-        .attr("src", imagePath)
-        .attr("alt", "item");
-      productLink.append(productImage);
-      imgContainer.append(productLink);
-      productItem.append(imgContainer);
+      const imagePath = product.image[0]; //.replace(/\\/g, "/");
+      const productImage = document.createElement("img");
+      productImage.src = imagePath;
+      productImage.alt = "item";
+      productLink.appendChild(productImage);
+      imgContainer.appendChild(productLink);
+      productItem.appendChild(imgContainer);
     }
 
     // Creating the product title section
