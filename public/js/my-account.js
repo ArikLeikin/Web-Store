@@ -402,12 +402,12 @@ function createOrderElement(order) {
   orderSummary.appendChild(orderNumber);
   orderSummary.appendChild(totalPrice);
 
-  const viewOrderBtn = document.createElement("button");
-  viewOrderBtn.classList.add("btn-account-page");
-  viewOrderBtn.textContent = "View Order";
+  // const viewOrderBtn = document.createElement("button");
+  // viewOrderBtn.classList.add("btn-account-page");
+  // viewOrderBtn.textContent = "View Order";
 
   orderFooter.appendChild(orderSummary);
-  orderFooter.appendChild(viewOrderBtn);
+  // orderFooter.appendChild(viewOrderBtn);
 
   cardHeader.appendChild(orderStatus);
   cardHeader.appendChild(orderInfo);

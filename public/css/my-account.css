@@ -450,6 +450,7 @@ i.fa.fa-arrow-up:hover {
   margin: 5px 0;
   font-weight: bold;
   cursor: pointer;
+  height: 30px;
 }
 .wish-edit {
   float: right;
