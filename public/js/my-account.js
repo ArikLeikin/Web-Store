@@ -346,7 +346,8 @@ fetch("http://127.0.0.1:8080/api/current-user")
       alertBox.style.display = "block";
     } else {
       alertBox.style.display = "none";
-      orders.forEach((order) => {
+      console.log(data.orderHistory);
+      data.orderHistory.forEach((order) => {
         const orderElement = createOrderElement(order);
         orderHistoryContainer.appendChild(orderElement);
       });
