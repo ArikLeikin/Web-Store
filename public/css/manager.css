@@ -2,6 +2,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  margin-left: 20px;
 }
 
 table,
@@ -111,4 +112,8 @@ p{
   padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: darkred;
 }

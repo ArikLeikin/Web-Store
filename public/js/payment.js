@@ -686,6 +686,9 @@ $(document).ready(function () {
       }
       calculateTotalPrice();
 
+      var pointsSelect = document.getElementById("pointsSelect");
+      var options = pointsSelect.value;
+      console.log(options);
       var formData = {
         city: $("#city").val(),
         street: $("#street").val(),
@@ -700,8 +703,9 @@ $(document).ready(function () {
         expiration_date: card_expiration,
         ccv: $("#card-ccv").val(),
         total_price:$("#total-price").val(),
-        points: 0 /*~~~~~~~~~~~~~NEED TO BE CHANGED!!!!!!~~~~~~~~~~*/,
+        points: options,
       };
+      console.log(formData);
 
       $.ajax({
         type: "POST",

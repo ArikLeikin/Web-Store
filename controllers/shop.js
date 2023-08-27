@@ -296,6 +296,7 @@ exports.getYourAccount = (req, res, next) => {
 
 exports.postPayment = async (req, res, next) => {
   try {
+    console.log("6");
     // req.session.user = await User.find({ username: "admin" }).populate(
     //   "cart.items.product"
     // ); // FIND -> RETURNS ARRAY!
@@ -310,6 +311,7 @@ exports.postPayment = async (req, res, next) => {
     if (cartItems.length === 0) {
       return res.status(400).json({ message: "Cart is empty" });
     }
+    console.log("5");
     const yad2Products = cartItems.filter(
       (item) => item.product.category.toString() === "yad2"
     );
@@ -320,6 +322,7 @@ exports.postPayment = async (req, res, next) => {
     //   const index = array.indexOf(yad2Products[i].product._id);
     //   userToModify.usedProducts.slice(index, 1);
     // }
+    console.log("1");
     yad2Products.forEach((yad2Product) => {
       const userToModify = users.find((someUser) =>
         someUser.usedProducts.includes(yad2Product.product._id)
@@ -327,6 +330,7 @@ exports.postPayment = async (req, res, next) => {
       const index = userToModify.usedProducts.indexOf(yad2Product.product._id);
       userToModify.usedProducts.splice(index, 1);
     });
+    console.log("2");
     let total_price = 0;
     for (let i = 0; i < cartItems.length; i++) {
       // let singleItem = await Product.findById(
@@ -335,8 +339,9 @@ exports.postPayment = async (req, res, next) => {
       let singleItem = await Product.findById(cartItems[i].product._id);
       total_price += singleItem.price * cartItems[i].quantity;
     }
+    console.log("3");
     console.log("PRICE: " + total_price);
-    const points = parent(req.body.points);
+    const points = parseInt(req.body.points);
     // assuming passed a param -> 0---allPointsOfUser
     total_price -= points;
     user.points -= points;
