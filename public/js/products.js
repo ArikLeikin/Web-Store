@@ -23,7 +23,7 @@ $(document).ready(function () {
 
     // Creating the product image element
     if (product.image && product.image.length > 0) {
-      const imagePath = product.image[0]; //.replace(/\\/g, "/");
+      const imagePath = product.image[0];
       const productImage = document.createElement("img");
       productImage.src = imagePath;
       productImage.alt = "item";
