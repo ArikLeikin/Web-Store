@@ -208,7 +208,7 @@ exports.uploadYad2 = async (req, res, next) => {
       title: req.body.title,
       price: req.body.price,
       description: req.body.description,
-      image: image.map((image) => image.path),
+      image: image.map((image) => image.path.split("public")[1]),
       condition: req.body.condition,
       added_date: req.body.added_date,
       age_range: req.body.age_range,
@@ -238,18 +238,15 @@ exports.getYad2Update = (req, res, next) => {
 
 exports.postYad2Update = async (req, res, next) => {
   try {
-
-
     const id = req.params.id;
     const product = await Product.findById(id);
-    product.title=req.body.title;
+    product.title = req.body.title;
     product.condition = req.body.condition;
     product.price = req.body.price;
     product.age_range = req.body.age_range;
     product.description = req.body.description;
-    const image= JSON.parse(JSON.stringify(req.files))["image[]"];
-   product.image = image.map((image) => image.path);
-
+    const image = JSON.parse(JSON.stringify(req.files))["image[]"];
+    product.image = image.map((image) => image.path.split("public")[1]);
 
     await product.save();
     res.status(200).json({ message: "Product updated successfully" });
@@ -502,7 +499,7 @@ exports.postCartDelete = async (req, res, next) => {
       // req.session.user.cart = cart;
       // req.session.cart = cart;
       // Save changes to both the user and the session
-      req.session.user=user;
+      req.session.user = user;
       await user.save();
       await req.session.save();
       return res.status(200).json({ message: "Product removed from cart" });
@@ -811,7 +808,7 @@ exports.postSupplier = async (req, res) => {
       price: price,
       title: title,
       age_range: age_range,
-      image: images.map((image) => image.path),
+      image: images.map((image) => image.path.split("public")[1]),
       description: description,
       quantity: quantity,
       added_date: added_date,
