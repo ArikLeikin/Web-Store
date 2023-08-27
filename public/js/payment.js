@@ -410,7 +410,7 @@ fetch("http://127.0.0.1:8080/address")
   .catch((error) => {
     console.error("Error fetching address data:", error);
   });
-/*~~~~~~~~~~~~~~~~~~~ points get api~~~~~~~~~~~~~~~~~~`*/
+// /*~~~~~~~~~~~~~~~~~~~ points get api~~~~~~~~~~~~~~~~~~`*/
 
 $.ajax({
   url: "http://127.0.0.1:8080/api/current-user",
@@ -573,6 +573,57 @@ $(document).ready(function () {
     }
 
     if (isValid) {
+      const FirstName = $("#firstname").val();
+      const LastName = $("#lastname").val();
+      const country = $("#country").val();
+      const zipcode = $("#zipcode").val();
+      const phone = $("#phone").val();
+      const city = $("#city").val();
+      const street = $("#street").val();
+      const streetNumber = $("#street_number").val();
+      const cardHolder = $("#card-holder").val();
+      const lastFourDigits = $("#card-number-4").val();
+      const expirationMonth = $("#card-expiration-month").val();
+      const expirationYear = $("#card-expiration-year").val();
+
+      const totalElement = document.querySelector("#total-price");
+
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const cartTotal = urlParams.get("total");
+
+      if (cartTotal !== null) {
+        totalElement.textContent = "Total(USD) $" + cartTotal;
+      }
+      const modalContent = `
+      <style>.select:after{ display:none;
+      }</style>
+          <h2>Thank you for your purchase! We hope you will visit us again.</h2>
+          <h2>Your Purchase Details:</h2>
+          <p><strong>First Name:</strong> ${FirstName}</p>
+           <p><strong>Last Name:</strong> ${LastName}</p>
+          <p><strong>Country:</strong> ${country}</p>
+          <p><strong>Zipcode:</strong> ${zipcode}</p>
+          <p><strong>Phone Number:</strong> ${phone}</p>
+          <p><strong>City:</strong> ${city}</p>
+          <p><strong>Street:</strong> ${street}</p>
+          <p><strong>Street Number:</strong> ${streetNumber}</p>
+          <p><strong>Card Holder:</strong> ${cardHolder}</p>
+          <p><strong>Last Four Digits of Credit Card:</strong> ${lastFourDigits}</p>
+          <p><strong>Expiration Date:</strong> ${expirationMonth}/${expirationYear}</p>
+          <p><strong>Total Amount:</strong> $${cartTotal}</p>
+          
+        `;
+
+      $("#modal-content").html(modalContent);
+
+      $("#myModal").show();
+      $(".close").click(function () {
+        $("#myModal").hide();
+      });
+    
+
+
       if (saveAddress) {
         var formData = {
           city: $("#city").val(),
@@ -633,6 +684,7 @@ $(document).ready(function () {
           },
         });
       }
+      calculateTotalPrice();
 
       var formData = {
         city: $("#city").val(),
@@ -647,7 +699,8 @@ $(document).ready(function () {
         holder_name: $("#card-holder").val(),
         expiration_date: card_expiration,
         ccv: $("#card-ccv").val(),
-        points: "666" /*~~~~~~~~~~~~~NEED TO BE CHANGED!!!!!!~~~~~~~~~~*/,
+        total_price:$("#total-price").val(),
+        points: 666 /*~~~~~~~~~~~~~NEED TO BE CHANGED!!!!!!~~~~~~~~~~*/,
       };
 
       $.ajax({
@@ -752,3 +805,50 @@ $(document).ready(function () {
 //     });
 //   });
 // });
+
+
+
+
+
+function calculateTotalPrice() {
+  $.ajax({
+    url: 'http://127.0.0.1:8080/cart/products',
+    method: 'GET',
+    dataType: 'json',
+    success:  function(data) {
+        
+        data.data.forEach(function(product) {
+          var productId = product.product;
+          var productQuantity = product.quantity;
+          calculate1(productId,productQuantity);
+
+
+          function calculate1(productId,productQuantity)
+          {
+            $.ajax({
+              url: `http://127.0.0.1:8080/api/product/${productId}`,
+              method: 'GET',
+              dataType: 'json'
+          }).then(function(productData) {
+            updateTotal(productData.data.price,productQuantity );
+          });
+          }  
+        
+      });
+    }
+
+    });
+    }
+            
+        
+    let totalPrice = 0;
+    function updateTotal(price,quantity) {  
+      totalPrice += (price*quantity);
+       const totalPriceElement = document.getElementById('total-price');
+        totalPriceElement.textContent = `Total(USD) $${totalPrice.toFixed(2)}`;
+    }
+
+
+calculateTotalPrice();
+
+

@@ -260,6 +260,7 @@
                       success: function(response) {
                         cartItemRow.remove();
                         var removedSubtotal = parseFloat(subtotalValue.text().replace("$", ""));
+                        console.log("remove"+ removedSubtotal);
                         updateTotal(-removedSubtotal);
                       },
                       error: function(xhr, status, error) {
@@ -297,7 +298,7 @@
       const subtotal = quantity * price;
       subtotalElement.text("$" + subtotal.toFixed(2));
     }
-
+   
     function updateTotal(adjustment = 0) {
       const subtotalElements = $(".cart-item-value.subtotal");
       const totalElement = $(".cart-item-value.total");
@@ -305,9 +306,11 @@
       let total = 0;
       subtotalElements.each(function() {
         total += parseFloat($(this).text().replace("$", ""));
+        console.log( "a"+total);
       });
-      total += adjustment;
+      //total += adjustment;
       total = Math.max(total, 0);
+      console.log(total);
       totalElement.text("$" + total.toFixed(2));
     }
 
