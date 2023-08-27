@@ -5,18 +5,39 @@ const User = require("../models/user");
 const axios = require("axios");
 const { pipeline } = require("nodemailer/lib/xoauth2");
 const io = require("../app.js");
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+  service: process.env.EMAIL_SERVICE, // Use the appropriate service here
+  auth: {
+    user: process.env.EMAIL_USERNAME, // Replace with your Gmail email address
+    pass: process.env.EMAIL_PASSWORD, // Replace with your Gmail password or App Password
+  },
+});
 
 async function notifyInterestedUsers(io, productId) {
   const users = await User.find();
+  const product = await Product.findById(productId);
 
   users.forEach((user) => {
     const interestedProduct = user.interested.find((product) =>
       product.productId.equals(productId)
     );
     if (interestedProduct) {
-      io.to(interestedProduct.socketId).emit("productBackInStock", {
-        productId,
+      // send mail to user upon back to stock
+      transporter.sendMail({
+        to: user.email,
+        from: process.env.EMAIL_USERNAME,
+        subject: `${product.title} is back in stock!`,
+        html: `
+          <p>${product.title} is back! </p>
+          <p> For more details enter the following link:<a href="http://localhost:${process.env.PORT}/product-details?id=${productId}">Product page</a></p>
+        `,
       });
+
+      // io.to(interestedProduct.socketId).emit("productBackInStock", {
+      //   productId,
+      // });
     }
   });
 }
