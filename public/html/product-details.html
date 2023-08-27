@@ -299,46 +299,41 @@
             dataType: "json",
             success: function (data) {
               const { title, price, description, quantity, image } = data.data;
-              const productCategory= data.data.category;
+              const productCategory = data.data.category;
 
+              $.ajax({
+                url: "http://127.0.0.1:8080/api/current-user",
+                method: "GET",
+                dataType: "json",
+                success: function (userData) {
+                  const userPermission = userData.permission;
 
-         $.ajax({
-        url: "http://127.0.0.1:8080/api/current-user",
-        method: "GET",
-        dataType: "json",
-        success: function (userData) {
-          const userPermission = userData.permission;
+                  if (userPermission === "admin") {
+                    const editIcon = document.createElement("i");
+                    editIcon.className = "fas fa-pencil-alt edit-icon";
+                    editIcon.style.display = "inline";
+                    editIcon.style.position = "absolute";
+                    editIcon.style.top = "200px";
+                    editIcon.style.right = "110px";
+                    editIcon.addEventListener("click", function () {
+                      if (productCategory === "yad2") {
+                        window.location.href =
+                          "http://127.0.0.1:8080/Yad2Update?id=" + productId;
+                      } else {
+                        window.location.href =
+                          "http://127.0.0.1:8080/product-update?id=" +
+                          productId;
+                      }
+                    });
+                    productInfoDiv.appendChild(editIcon);
+                  }
 
-          if (userPermission === "admin") {
-            const editIcon = document.createElement("i");
-            editIcon.className = "fas fa-pencil-alt edit-icon";
-            editIcon.style.display = "inline"; 
-            editIcon.style.position = "absolute"; 
-            editIcon.style.top = "200px"; 
-            editIcon.style.right = "110px";
-            editIcon.addEventListener("click", function () {
-              if(productCategory === "yad2")
-              {
-                window.location.href = "http://127.0.0.1:8080/Yad2Update?id=" +productId;
-
-              }
-              else
-              {
-               
-                window.location.href = "http://127.0.0.1:8080/product-update?id=" +productId;
-              }
-             
-              
-            });
-            productInfoDiv.appendChild(editIcon);
-          }
-
-          productView.appendChild(productInfoDiv);
-        },
-        error: function (error) {
-          console.error("Error fetching user data:", error);
-        },
-      });
+                  productView.appendChild(productInfoDiv);
+                },
+                error: function (error) {
+                  console.error("Error fetching user data:", error);
+                },
+              });
 
               const capitalizeFirstLetter = (str) => {
                 return str.charAt(0).toUpperCase() + str.slice(1);
@@ -347,7 +342,6 @@
               const productView = document.createElement("div");
               productView.className = "productView";
 
-            
               //Product images
               const productImagesDiv = document.createElement("div");
               productImagesDiv.className = "productView-images";
@@ -361,33 +355,15 @@
 
               productImagesDiv.appendChild(productImage);
 
-     const slickSlider = document.createElement("ul");
-      slickSlider.className = "productView-slick-slider";
-      const slickTrack = document.createElement("div");
-      slickTrack.className = "slick-track";
+              const slickSlider = document.createElement("ul");
+              slickSlider.className = "productView-slick-slider";
+              const slickTrack = document.createElement("div");
+              slickTrack.className = "slick-track";
 
-      // data.images.forEach((imgSrc, index) => {
-      //   const slickItem = document.createElement("li");
-      //   slickItem.className = `productView-imageSlick ${index === 0 ? "active" : ""}`;
-      //   slickItem.dataset.slickIndex = index;
-      //   slickItem.setAttribute("aria-hidden", "false");
-      //   slickItem.setAttribute("tabindex", "0");
+              slickSlider.appendChild(slickTrack);
+              productImagesDiv.appendChild(slickSlider);
 
-      //   const imgOption = document.createElement("img");
-      //   imgOption.src = imgSrc;
-      //   imgOption.alt = capitalizeFirstLetter(title);
-      //   imgOption.title = capitalizeFirstLetter(title);
-      //   imgOption.dataset.sizes = "auto";
-      //   imgOption.className = "productView-image-option";
-
-      //   slickItem.appendChild(imgOption);
-      //   slickTrack.appendChild(slickItem);
-      // });
-
-      slickSlider.appendChild(slickTrack);
-      productImagesDiv.appendChild(slickSlider);
-
-      productView.appendChild(productImagesDiv);
+              productView.appendChild(productImagesDiv);
               // productView.appendChild(productImagesDiv);
 
               // Product information
@@ -480,34 +456,32 @@
               productDetailsDiv.append(productView);
 
               // Add a click event listener to the button
-addToCartButton.addEventListener("click", function(event) {
-  event.preventDefault();
+              addToCartButton.addEventListener("click", function (event) {
+                event.preventDefault();
 
-  const productId = window.location.search.split("=")[1];
-  const quantity = $("#quantity").val();
+                const productId = window.location.search.split("=")[1];
+                const quantity = $("#quantity").val();
 
-  addToCart(productId, quantity);
-});
+                addToCart(productId, quantity);
+              });
 
-
-// Your addToCart function now includes the AJAX request
-function addToCart(productId, quantity) {
-  $.ajax({
-    url: "http://127.0.0.1:8080/cart/add",
-    method: "POST",
-    data: {
-      productId: productId,
-      quantity: quantity
-    },
-    success: function (response) {
-      console.log("Product added to cart:", response);
-    },
-    error: function (error) {
-      console.error("Error adding product to cart:", error);
-    },
-  });
-}
-
+              // Your addToCart function now includes the AJAX request
+              function addToCart(productId, quantity) {
+                $.ajax({
+                  url: "http://127.0.0.1:8080/cart/add",
+                  method: "POST",
+                  data: {
+                    productId: productId,
+                    quantity: quantity,
+                  },
+                  success: function (response) {
+                    console.log("Product added to cart:", response);
+                  },
+                  error: function (error) {
+                    console.error("Error adding product to cart:", error);
+                  },
+                });
+              }
 
               $(".minus").click(function () {
                 const input = $(this).next();
@@ -545,114 +519,60 @@ function addToCart(productId, quantity) {
                 }
               });
 
+              $(".favorite-button").click(function () {
+                const productId = window.location.search.split("=")[1];
+                const heartIcon = $(this).find("i");
+                const isFavorite = heartIcon.hasClass("fas");
 
-     $(".favorite-button").click(function () {
-    const productId = window.location.search.split("=")[1];
-    const heartIcon = $(this).find("i");
-    const isFavorite = heartIcon.hasClass("fas");
+                if (!isFavorite) {
+                  addToWishlist(productId);
+                  heartIcon.toggleClass("fas far");
+                  $(this).attr("aria-label", "Remove from favorites");
+                }
+              });
 
-    if (!isFavorite) {
-
-      addToWishlist(productId);
-      heartIcon.toggleClass("fas far");
-      $(this).attr("aria-label", "Remove from favorites");
-    }
-  });
-
-  function addToWishlist(productId) {
-    $.ajax({
-      url: "http://127.0.0.1:8080/wishlist/add",
-      method: "POST",
-      data: {
-        productId: productId,
-      },
-      success: function (response) {
-        console.log("Product added to wishlist:", response);
-      },
-      error: function (error) {
-        console.error("Error adding product to wishlist:", error);
-      },
-    });
-  }
-
-              
+              function addToWishlist(productId) {
+                $.ajax({
+                  url: "http://127.0.0.1:8080/wishlist/add",
+                  method: "POST",
+                  data: {
+                    productId: productId,
+                  },
+                  success: function (response) {
+                    console.log("Product added to wishlist:", response);
+                  },
+                  error: function (error) {
+                    console.error("Error adding product to wishlist:", error);
+                  },
+                });
+              }
             },
             error: function (error) {
               console.error("Error fetching data:", error);
             },
           });
 
+          $(document).on("click", ".btn-ns-hot", function () {
+            event.preventDefault();
+            console.log("clicked");
+            const productId = window.location.search.split("=")[1];
+            const quantity = $("#quantity").val();
 
-  // $(".btn-ns-hot").click(function (event) {
-  //   event.preventDefault(); 
-    
-  //   const productId = window.location.search.split("=")[1];
-  //   const quantity = $("#quantity").val();
-
-  //   addToCart(productId, quantity);
-  // });
-
-  // function addToCart(productId, quantity) {
-    
-  //   $.ajax({
-  //     url: "http://127.0.0.1:8080/cart/add",
-  //     method: "POST",
-  //     data: {
-  //       productId: productId,
-  //       quantity: quantity
-  //     },
-  //     success: function (response) {
-  //       console.log("Product added to cart:", response);
-  //     },
-  //     error: function (error) {
-  //       console.error("Error adding product to cart:", error);
-  //     },
-  //   });
-  // }
-
-
-          
- 
-    $(document).on("click", ".btn-ns-hot", function () {
-    event.preventDefault(); 
-    console.log("clicked")
-    const productId = window.location.search.split("=")[1];
-    const quantity = $("#quantity").val();
-
-    $.ajax({
-      url: "http://127.0.0.1:8080/cart/add",
-      method: "POST",
-      data: {
-        productId: productId,
-        quantity: quantity
-      },
-      success: function (response) {
-        console.log("Product added to cart:", response);
-      },
-      error: function (error) {
-        console.error("Error adding product to cart:", error);
-      },
-    });
-  });
-
-  function addToCart(productId, quantity) {
-    console.log("Clicked add");
-    $.ajax({
-      url: "http://127.0.0.1:8080/cart/add",
-      method: "POST",
-      data: {
-        productId: productId,
-        quantity: quantity
-      },
-      success: function (response) {
-        console.log("Product added to cart:", response);
-      },
-      error: function (error) {
-        console.error("Error adding product to cart:", error);
-      },
-    });
-  }
-
+            $.ajax({
+              url: "http://127.0.0.1:8080/cart/add",
+              method: "POST",
+              data: {
+                productId: productId,
+                quantity: quantity,
+              },
+              success: function (response) {
+                console.log("Product added to cart:", response);
+              },
+              error: function (error) {
+                console.error("Error adding product to cart:", error);
+              },
+            });
+          });
         });
       </script>
 
