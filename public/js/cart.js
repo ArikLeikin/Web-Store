@@ -181,7 +181,11 @@
 
                 // Cart Item Title Cell
                 var titleCell = $("<td>").addClass("cart-item-block cart-item-title");
-                var titleLink = $("<a>").addClass("cart-item-name").text(productDetails.data.title);
+                var titleLink = $("<a>").attr("href", "/product-details?id=" + productId) 
+                           .addClass("cart-item-name").text(productDetails.data.title).css({
+                            "color": "black",      
+                            "text-decoration": "none" 
+                          });
                 var priceLabel = $("<span>").addClass("cart-item-label qty").text("Price");
                 var priceValue = $("<span>").addClass("cart-item-value qty").text("$" + productDetails.data.price.toFixed(2));
                 titleCell.append($("<h4>").append(titleLink)).append(priceLabel).append(priceValue);
