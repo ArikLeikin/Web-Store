@@ -306,7 +306,7 @@ exports.postPayment = async (req, res, next) => {
     if (cartItems.length === 0) {
       return res.status(400).json({ message: "Cart is empty" });
     }
-    console.log(cartItems);
+
     let total_price = 0;
     for (let i = 0; i < cartItems.length; i++) {
       let singleItem = await Product.findById(
@@ -318,7 +318,7 @@ exports.postPayment = async (req, res, next) => {
 
     // assuming passed a param -> 0---allPointsOfUser
     total_price -= req.body.points;
-    req.session.user.points -= req.body.points;
+    user.points -= req.body.points;
     //console.log(total_price);
     const date = new Date();
     const dateToSubmit = new Date(
@@ -334,7 +334,7 @@ exports.postPayment = async (req, res, next) => {
       order_date: dateToSubmit,
       status: "Pending", // Set the initial status as desired
     });
-    req.session.user.points += total_price * 0.1;
+    user.points += total_price * 0.1;
     /*[
       {name,quantity}
       {name,quantity}
@@ -354,16 +354,17 @@ exports.postPayment = async (req, res, next) => {
         <p>Playtopia</p>
       `,
     });
+
     await newOrder.save();
 
     // Clear the user's cart in the session or the database
     user.cart.items = [];
 
     await user.save();
+
     // req.session.user = user;
     // req.session.cart = { items: [] };
     await req.session.save();
-
     return res.status(200).json({ message: "Order created successfully" });
   } catch (error) {
     res.status(500).json({ message: "An error occurred" });

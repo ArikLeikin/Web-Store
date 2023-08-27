@@ -25,8 +25,8 @@ module.exports = {
   },
   getCurrentUser: async (req, res) => {
     try {
-      console.log(req.session.user);
-      res.status(200).json(req.session.user);
+      const user = await User.findById(req.session.user._id);
+      res.status(200).json(user);
     } catch (err) {
       res.status(500).json({ message: "Error retrieving user", error: err });
     }
