@@ -65,6 +65,13 @@ const userSchema = new Schema({
       quantity: { type: Number, required: true },
     },
   ],
+  interested: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Product",
+      required: true,
+    },
+  ],
   points: {
     type: Number,
     default: 200,

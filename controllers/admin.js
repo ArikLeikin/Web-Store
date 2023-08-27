@@ -111,7 +111,7 @@ exports.update = async (req, res) => {
     switch (expression) {
       case "product":
         const image = JSON.parse(JSON.stringify(req.files))["image[]"];
-        updated.image = image.map((image) => image.path);
+        updated.image = image.map((image) => image.path.split("public")[1]);
         console.log(updated);
         await Product.findOneAndUpdate({ _id: id }, updated);
         break;
