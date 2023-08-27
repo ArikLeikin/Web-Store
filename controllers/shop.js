@@ -336,10 +336,10 @@ exports.postPayment = async (req, res, next) => {
       total_price += singleItem.price * cartItems[i].quantity;
     }
     console.log("PRICE: " + total_price);
-
+    const points = parent(req.body.points);
     // assuming passed a param -> 0---allPointsOfUser
-    total_price -= req.body.points;
-    user.points -= req.body.points;
+    total_price -= points;
+    user.points -= points;
     //console.log(total_price);
     const date = new Date();
     const dateToSubmit = new Date(

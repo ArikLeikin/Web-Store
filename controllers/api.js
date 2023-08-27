@@ -78,7 +78,10 @@ module.exports = {
   getOrderHistory: async (req, res) => {
     try {
       //Need to check
-      res.status(200).json(req.session.user.orderHistory);
+      const user = await User.findById(req.session.user._id).populate(
+        "orderHistory"
+      );
+      res.status(200).json(user.orderHistory);
     } catch (err) {
       res
         .status(500)
