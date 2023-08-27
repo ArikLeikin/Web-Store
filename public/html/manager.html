@@ -12,6 +12,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../js/index.js"></script>
@@ -290,35 +295,35 @@
       <section id="content-management">
         <h2>Content Management:</h2>
         <p>
-          In order to learn abou the statistice of different age ranges in the
+          In order to learn about the statistice of different age ranges in the
           countey according to areas - go to:
           <a href="../html/statistics.html">Statistics Page</a>
         </p>
         <!-- Need to add websocket managment -->
       </section>
 
-      <form id="add-user-form">
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" required /><br />
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" required /><br />
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city" required /><br />
-        <label for="street">Street:</label>
-        <input type="text" id="street" name="street" required /><br />
-        <label for="country">Country:</label>
-        <input type="text" id="country" name="country" required /><br />
-        <label for="postalCode">Postal Code:</label>
-        <input type="text" id="postalCode" name="postalCode" required /><br />
-        <label for="password">password:</label>
-        <input type="text" id="password" name="password" required /><br />
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" /><br />
-        <label for="phoneNumber">Phone Number:</label>
-        <input type="text" id="phoneNumber" name="phoneNumber" /><br />
-        <label for="creditCard">Credit Card:</label>
-        <input type="text" id="creditCard" name="creditCard" /><br />
-        <button type="submit">Add User</button>
+      <h2>Users Management:</h2>
+
+      <form  class =form id="add-user-form">
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" name="firstName" required />
+          <div id="firstName-error" class="error-message"></div>
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" name="lastName" required />
+          <div id="lastName-error" class="error-message"></div>
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+          <div id="password-error" class="error-message"></div>
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" />
+          <div id="email-error" class="error-message"></div>
+          <label for="phoneNumber">Phone Number:</label>
+          <input type="text" id="phoneNumber" name="phoneNumber" />
+          <div id="phoneNumber-error" class="error-message"></div>
+  
+        <button type="submit" id="add-button">Add User</button>
       </form>
 
       <table id="data-table">
@@ -326,14 +331,9 @@
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>City</th>
-            <th>Street</th>
-            <th>Country</th>
-            <th>Postal Code</th>
             <th>Password</th>
             <th>Email</th>
             <th>Phone Number</th>
-            <th>Credit Card</th>
             <th>ID</th>
             <th>Action</th>
           </tr>
@@ -375,14 +375,9 @@
             const row = $("<tr>");
             row.append($("<td>").text(data.name.firstName));
             row.append($("<td>").text(data.name.lastName));
-            row.append($("<td>").text(data.address.city));
-            row.append($("<td>").text(data.address.street));
-            row.append($("<td>").text(data.address.country));
-            row.append($("<td>").text(data.address.postalCode));
             row.append($("<td>").text(data.password));
             row.append($("<td>").text(data.email || "-"));
             row.append($("<td>").text(data.phoneNumber || "-"));
-            row.append($("<td>").text(data.creditCard || "-"));
             row.append($("<td>").text(data._id));
 
             const deleteButton = $("<button>")
@@ -411,29 +406,110 @@
             });
           }
 
-          // Add User Form submission event
+            $(document).ready(function () {
           $("#add-user-form").submit(function (event) {
             event.preventDefault();
+            clearErrorMessages();
+            let isValid = true;
+        
+            const FirstName = $("#firstName").val();
+            if (!validateName(FirstName)) {
+                 Swal.fire({
+                icon: "warning",
+                title: "Validation Error",
+                text: "First name can only contain letters.",
+              });
+              //showError("#firstName-error", "First name can only contain letters.");
+              isValid = false;
+            }
+        
+            const LastName = $("#lastName").val();
+            if (!validateName(LastName)) {
+               Swal.fire({
+              icon: "warning",
+              title: "Validation Error",
+              text: "Last name can only contain letters.",
+            });
+              //showError("#lastName-error", "Last name can only contain letters.");
+              isValid = false;
+            }
+        
+            const phone = $("#phoneNumber").val();
+            if (!validatePhoneNumber(phone)) {
+               Swal.fire({
+                icon: "warning",
+                title: "Validation Error",
+                text: "Phone number must be 10 digits.",
+               });
+             // showError("#phoneNumber-error", "Phone number must be 10 digits.");
+              isValid = false;
+            }
 
+            const password = $("#password").val();
+            var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
+          if (!passwordPattern.test(password)) {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Invalid Password",
+                    text: "Password must contain at least 8 characters, including 1 number, 1 uppercase letter, 1 lowercase letter, and 1 special character.",
+                  });
+            //showError("#password-error", "Password must contain at least 8 characters, including 1 number, 1 uppercase letter, 1 lowercase letter, and 1 special character.");
+            isValid = false;
+          }
+
+          if (isValid) {
             const newUser = {
-              firstName: $("#firstName").val(),
-              lastName: $("#lastName").val(),
-              city: $("#city").val(),
-              street: $("#street").val(),
-              country: $("#country").val(),
-              postalCode: $("#postalCode").val(),
-              email: $("#email").val(),
-              phoneNumber: $("#phoneNumber").val(),
-              creditCard: $("#creditCard").val(),
-              creditCard: $("#creditCard").val(),
-              password: $("#password").val(),
-            };
+            firstName: $("#firstName").val(),
+            lastName: $("#lastName").val(),
+            email: $("#email").val(),
+            phoneNumber: $("#phoneNumber").val(),
+            password: $("#password").val(),
+          };
 
-            addUser(newUser);
+          addUser(newUser);
 
-            // Clear the form fields after submission
-            $(this).trigger("reset");
+          // Clear the form fields after submission
+          $(this).trigger("reset");
+                
+                }
+
           });
+      });
+
+      function showError(element, message) {
+        $(element).text(message).css("color", "red");
+      }
+      function clearErrorMessages() {
+        $(".error-message").text("");
+      }
+
+      function validatePhoneNumber(phone) {
+          return /^\d{10}$/.test(phone);
+        }
+
+        function validateName(str) {
+          return /^[A-Za-z\s]+$/.test(str);
+        }
+
+
+
+          // // Add User Form submission event
+          // $("#add-user-form").submit(function (event) {
+          //   event.preventDefault();
+
+          //   const newUser = {
+          //     firstName: $("#firstName").val(),
+          //     lastName: $("#lastName").val(),
+          //     email: $("#email").val(),
+          //     phoneNumber: $("#phoneNumber").val(),
+          //     password: $("#password").val(),
+          //   };
+
+          //   addUser(newUser);
+
+          //   // Clear the form fields after submission
+          //   $(this).trigger("reset");
+          // });
 
           // Function to delete a user
           function deleteUser(userId) {
@@ -459,180 +535,10 @@
         });
       </script>
 
-      <!-- Add this to your HTML, customize as needed -->
-      <div
-        class="modal fade"
-        id="editProductModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="editProductModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="editProductModalLabel">
-                Edit Product
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form id="editProductForm">
-                <div class="form-group">
-                  <label for="editTitle">Title</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="editTitle"
-                    name="editTitle"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="editPrice">Price</label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    class="form-control"
-                    id="editPrice"
-                    name="editPrice"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="editDescription">Description</label>
-                  <textarea
-                    class="form-control"
-                    id="editDescription"
-                    name="editDescription"
-                    required
-                  ></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="editCategory">Category</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="editCategory"
-                    name="editCategory"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="editCondition">Condition</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="editCondition"
-                    name="editCondition"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="editManufactureDate">Manufacture Date</label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="editManufactureDate"
-                    name="editManufactureDate"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="editSupplier">Supplier</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="editSupplier"
-                    name="editSupplier"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="editQuantity">Quantity</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="editQuantity"
-                    name="editQuantity"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="editAgeRange">Age Range </label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="editAgeRange"
-                    name="editAgeRange"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="editImage1">Image 1 URL</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="editImage1"
-                    name="editImage1"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="editImage2">Image 2 URL</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="editImage2"
-                    name="editImage2"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="editImage3">Image 3 URL</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="editImage3"
-                    name="editImage3"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="editImage4">Image 4 URL</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="editImage4"
-                    name="editImage4"
-                  />
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                form="editProductForm"
-                class="btn btn-primary"
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <h2>Products Management:</h2>
+      
+
+      <h2>Products View:</h2>
       <script>
         $(document).ready(function () {
           $.ajax({
@@ -664,164 +570,33 @@
                 "manufacture_date",
                 "supplier",
                 "quantity",
-                "age_range_from",
-                "age_range_to",
+                "age_range",
               ];
 
               fields.forEach(function (field) {
                 var cell = row.insertCell();
+                
 
                 if (field === "image") {
-                  cell.innerHTML =
-                    '<img src="' + product[field][0] + '" width="100">';
+                  cell.innerHTML = 
+                    '<img src="' +  product[field] + '" width="100">';
                 } else {
                   cell.innerHTML = product[field];
                 }
               });
-
-              var deleteCell = row.insertCell();
-              var deleteButton = document.createElement("button");
-              deleteButton.innerHTML = "Delete Product";
-              deleteButton.onclick = function () {
-                deleteProduct(product._id);
-              };
-              deleteCell.appendChild(deleteButton);
-
-              var editCell = row.insertCell();
-              var editButton = document.createElement("button");
-              editButton.innerHTML = "Edit";
-              editButton.onclick = function () {
-                editProduct(product);
-              };
-              editCell.appendChild(editButton);
             });
-          }
 
-          function deleteProduct(id) {
-            if (confirm("Are you sure you want to delete this product?")) {
-              $.ajax({
-                url: "http://127.0.0.1:8080/delete/product/" + id,
-                type: "POST",
-                success: function (response) {
-                  alert("Product deleted successfully.");
-                  location.reload(); // Refresh the page
-                },
-                error: function (xhr, status, error) {
-                  console.error("Error:", error);
-                },
-              });
-            }
-          }
 
-          // Function to add a new product
-          $("#addProductForm").submit(function (event) {
-            event.preventDefault(); // Prevent the form from submitting normally
-
-            // Get form data
-            var formData = {
-              title: $("#title").val(),
-              price: parseFloat($("#price").val()),
-              description: $("#description").val(),
-              category: $("#category").val(),
-              condition: $("#condition").val(),
-              added_date: $("#manufacture_date").val(),
-              supplier: $("#supplier").val(),
-              quantity: parseInt($("#quantity").val()),
-              age_range: parseInt($("#age_range").val()),
-              image: [
-                $("#image1").val(),
-                $("#image2").val(),
-                $("#image3").val(),
-                $("#image4").val(),
-              ],
-            };
-
-            // Send POST request to add a new product
-            $.ajax({
-              url: "http://127.0.0.1:8080/create/product",
-              type: "POST",
-              data: JSON.stringify(formData),
-              contentType: "application/json",
-              success: function (response) {
-                alert("Product added successfully.");
-                location.reload(); // Refresh the page
-              },
-              error: function (xhr, status, error) {
-                console.error("Error:", error);
-              },
-            });
+           }
           });
 
-          function editProduct(product) {
-            // Populate the edit form fields with the product data
-            $("#editTitle").val(product.title);
-            $("#editPrice").val(product.price);
-            $("#editDescription").val(product.description);
-            $("#editCategory").val(product.category);
-            $("#editCondition").val(product.condition);
-            $("#editManufactureDate").val(product.added_date);
-            $("#editSupplier").val(product.supplier);
-            $("#editQuantity").val(product.quantity);
-            $("#editAgeRange").val(product.age_range);
-            //Populate the image fields
-            for (var i = 1; i <= 4; i++) {
-              $("#editImage" + i).val(product.image[i - 1]);
-            }
-
-            // Show the edit form
-            $("#editProductModal").show();
-
-            // Handle form submission
-            $("#editProductForm")
-              .off("submit")
-              .on("submit", function (event) {
-                event.preventDefault();
-
-                var updatedData = {
-                  title: $("#editTitle").val(),
-                  price: parseFloat($("#editPrice").val()),
-                  description: $("#editDescription").val(),
-                  category: $("#editCategory").val(),
-                  condition: $("#editCondition").val(),
-                  added_date: $("#editManufactureDate").val(),
-                  supplier: $("#editSupplier").val(),
-                  quantity: parseInt($("#editQuantity").val()),
-                  age_range: parseInt($("#editAgeRange").val()),
-                  image: [
-                    $("#editImage1").val(),
-                    $("#editImage2").val(),
-                    $("#editImage3").val(),
-                    $("#editImage4").val(),
-                  ],
-                };
-
-                updateProduct(product._id, updatedData);
-                $("#editProductModal").hide();
-              });
-          }
-
-          function updateProduct(id, updatedData) {
-            $.ajax({
-              url: "http://127.0.0.1:8080/update/product/" + id,
-              type: "POST",
-              data: updatedData,
-              success: function (response) {
-                alert("Product updated successfully.");
-                location.reload(); // Refresh the page
-              },
-              error: function (xhr, status, error) {
-                console.error("Error:", error);
-              },
-            });
-          }
-        });
       </script>
 
-      <table id="productTable">
+       <table id="productTable">
         <tr>
           <th>ID</th>
           <th>Title</th>
-          <th>Price</th>
+           <th>Price</th>
           <th>Description</th>
           <th>Image</th>
           <th>Condition</th>
@@ -829,73 +604,11 @@
           <th>Manufacture Date</th>
           <th>Supplier</th>
           <th>Quantity</th>
-          <th>Age Range (From)</th>
-          <th>Age Range (To)</th>
-          <th>Action</th>
-          <th>Edit</th>
+          <th>Age Range </th>
         </tr>
-      </table>
+       </table>
 
-      <form id="addProductForm">
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" required /><br />
-
-        <label for="price">Price:</label>
-        <input
-          type="number"
-          step="0.01"
-          id="price"
-          name="price"
-          required
-        /><br />
-
-        <label for="description">Description:</label>
-        <textarea
-          id="description"
-          name="description"
-          rows="4"
-          required
-        ></textarea
-        ><br />
-
-        <label for="category">Category:</label>
-        <input type="text" id="category" name="category" required /><br />
-
-        <label for="condition">Condition:</label>
-        <select id="condition" name="condition" required>
-          <option value="new">New</option>
-          <option value="used">Used</option></select
-        ><br />
-
-        <label for="manufacture_date">Manufacture Date:</label>
-        <input
-          type="date"
-          id="manufacture_date"
-          name="manufacture_date"
-          required
-        /><br />
-
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity" required /><br />
-
-        <label for="age_range">Age Range:</label>
-        <input type="text" id="age_range" name="age_range" required /><br />
-
-        <label for="image1">Image 1 URL:</label>
-        <input type="text" id="image1" name="image1" required /><br />
-
-        <label for="image2">Image 2 URL:</label>
-        <input type="text" id="image2" name="image2" required /><br />
-
-        <label for="image3">Image 3 URL:</label>
-        <input type="text" id="image3" name="image3" required /><br />
-
-        <label for="image4">Image 4 URL:</label>
-        <input type="text" id="image4" name="image4" required /><br />
-
-        <button type="submit">Add Product</button>
-      </form>
-
+      
       <div id="editModal" class="modal">
         <div class="modal-content"></div>
         <div class="modal-footer">
