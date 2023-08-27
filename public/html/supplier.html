@@ -444,7 +444,7 @@
             var condition = $("#condition").val();
             var description = $("#description").val();
             var image = $("#productPhotos")[0].files;
-            
+
             // Create a FormData object to send the data
             var formData = new FormData();
             formData.append("category", category);
@@ -458,7 +458,7 @@
             }
 
             $.ajax({
-              url: "http://127.0.0.1:8080/supplier",
+              url: "http://127.0.0.1:8080/create/product",
               type: "POST",
               data: formData,
               contentType: false,

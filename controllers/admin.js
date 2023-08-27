@@ -19,11 +19,12 @@ async function notifyInterestedUsers(io, productId) {
   const users = await User.find();
   const product = await Product.findById(productId);
 
-  users.forEach((user) => {
+  users.forEach(async (user) => {
     const interestedProduct = user.interested.find((product) =>
       product.productId.equals(productId)
     );
     if (interestedProduct) {
+      user.interested.slice(user.interested.indexOf(interestedProduct), 1);
       // send mail to user upon back to stock
       transporter.sendMail({
         to: user.email,
@@ -39,6 +40,7 @@ async function notifyInterestedUsers(io, productId) {
       //   productId,
       // });
     }
+    await user.save();
   });
 }
 
@@ -50,24 +52,75 @@ exports.create = async (req, res) => {
     console.log(expression);
     const newDocument = req.body;
 
-    //console.log(newDocument);
+    console.log(newDocument);
     // Assuming passed all required params in body
     switch (expression) {
       case "product":
-        newDocument.image = req.files.map(
-          (image) => image.path.split("public")[1]
-        );
-        await Product.create(newDocument);
-        let message =
-          "A new product has arrived! check out the new product called:" +
-          newDocument.title +
-          "\n at http://localhost:8080";
-        await axios.post(
-          "https://graph.facebook.com/111544942041745/feed?message=" +
-            message +
-            "&access_token=" +
-            process.env.FACEBOOK_API_KEY
-        );
+        // newDocument.image = req.files.map(
+        //   (image) => image.path.split("public")[1]
+        // );
+        const {
+          price,
+          age_range,
+          category,
+          title,
+          condition,
+          quantity,
+          added_date,
+          description,
+        } = req.body;
+        const checkIfProductExist = await Product.find({ title: title });
+        console.log(checkIfProductExist);
+        if (checkIfProductExist.length != 0) {
+          return res
+            .status(401)
+            .json({ message: "Product name already in use." });
+        }
+        const images = req.files["image[]"];
+        //console.log(images);
+        const product = new Product({
+          category: category,
+          condition: condition,
+          price: price,
+          title: title,
+          age_range: age_range,
+          image: images.map((image) => image.path.split("public")[1]),
+          description: description,
+          quantity: quantity,
+          added_date: added_date,
+        });
+        const accessToken = process.env.FACEBOOK_API_KEY;
+        const pageId = 111544942041745;
+        const message = "This is a public post using the Facebook API!";
+
+        const apiUrl = `https://graph.facebook.com/${pageId}/feed`;
+
+        const postData = {
+          message: message,
+          access_token: accessToken,
+          privacy: "EVERYONE",
+        };
+
+        axios
+          .post(apiUrl, postData)
+          .then((response) => {
+            console.log("Post was successfully published:", response.data);
+          })
+          .catch((error) => {
+            console.error("Error publishing post:", error.response.data);
+          });
+
+        await product.save();
+        // let message =
+        //   "A new product has arrived! check out the new product called:\n" +
+        //   newDocument.title +
+        //   "\n at http://localhost:8080/";
+        // await axios.post(
+        //   "https://graph.facebook.com/111544942041745/feed?message=" +
+        //     message +
+        //     "&access_token=" +
+        //     process.env.FACEBOOK_API_KEY
+        // );
         break;
       case "order":
         await Order.create(newDocument);
@@ -86,6 +139,7 @@ exports.create = async (req, res) => {
       message: "Created successfully",
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       message: "Failed to create",
     });
@@ -150,8 +204,11 @@ exports.update = async (req, res) => {
         const image = JSON.parse(JSON.stringify(req.files))["image[]"];
         updated.image = image.map((image) => image.path.split("public")[1]);
         console.log(updated);
+        const product = await Product.findById(id);
         await Product.findOneAndUpdate({ _id: id }, updated);
-        notifyInterestedUsers(io, id);
+        if (product.quantity === 0) {
+          notifyInterestedUsers(io, id);
+        }
         break;
       case "order":
         await Order.findOneAndUpdate({ _id: id }, updated);
