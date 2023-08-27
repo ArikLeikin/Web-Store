@@ -332,7 +332,7 @@ fetch("http://127.0.0.1:8080/api/current-user")
   });
 
 //user order list
-fetch("http://127.0.0.1:8080/api/current-user")
+fetch("http://127.0.0.1:8080/api/orders/history")
   .then((response) => {
     if (!response.ok) {
       throw new Error(`Fetch error: ${response.status} ${response.statusText}`);
@@ -342,12 +342,12 @@ fetch("http://127.0.0.1:8080/api/current-user")
   .then((data) => {
     var alertBox = document.getElementById("orders-alert-box");
     const orderHistoryContainer = document.getElementById("order-history");
-    if (data.orderHistory.length == 0) {
+    if (data.length == 0) {
       alertBox.style.display = "block";
     } else {
       alertBox.style.display = "none";
-      console.log(data.orderHistory);
-      data.orderHistory.forEach((order) => {
+
+      data.forEach((order) => {
         const orderElement = createOrderElement(order);
         orderHistoryContainer.appendChild(orderElement);
       });
