@@ -124,6 +124,10 @@ main {
   width: 190px;
   height: auto;
 }
+.img-container {
+  width: 190px;
+  height: 210px;
+}
 .product-title,
 .product-price {
   font-size: 15px;

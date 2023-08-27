@@ -613,45 +613,45 @@ function addToCart(productId, quantity) {
 
           
  
-    $(document).on("click", ".btn-ns-hot", function () {
-    event.preventDefault(); 
-    console.log("clicked")
-    const productId = window.location.search.split("=")[1];
-    const quantity = $("#quantity").val();
+  //   $(document).on("click", ".btn-ns-hot", function () {
+  //   event.preventDefault(); 
+  //   console.log("clicked")
+  //   const productId = window.location.search.split("=")[1];
+  //   const quantity = $("#quantity").val();
 
-    $.ajax({
-      url: "http://127.0.0.1:8080/cart/add",
-      method: "POST",
-      data: {
-        productId: productId,
-        quantity: quantity
-      },
-      success: function (response) {
-        console.log("Product added to cart:", response);
-      },
-      error: function (error) {
-        console.error("Error adding product to cart:", error);
-      },
-    });
-  });
+  //   $.ajax({
+  //     url: "http://127.0.0.1:8080/cart/add",
+  //     method: "POST",
+  //     data: {
+  //       productId: productId,
+  //       quantity: quantity
+  //     },
+  //     success: function (response) {
+  //       console.log("Product added to cart:", response);
+  //     },
+  //     error: function (error) {
+  //       console.error("Error adding product to cart:", error);
+  //     },
+  //   });
+  // });
 
-  function addToCart(productId, quantity) {
-    console.log("Clicked add");
-    $.ajax({
-      url: "http://127.0.0.1:8080/cart/add",
-      method: "POST",
-      data: {
-        productId: productId,
-        quantity: quantity
-      },
-      success: function (response) {
-        console.log("Product added to cart:", response);
-      },
-      error: function (error) {
-        console.error("Error adding product to cart:", error);
-      },
-    });
-  }
+  // function addToCart(productId, quantity) {
+  //   console.log("Clicked add");
+  //   $.ajax({
+  //     url: "http://127.0.0.1:8080/cart/add",
+  //     method: "POST",
+  //     data: {
+  //       productId: productId,
+  //       quantity: quantity
+  //     },
+  //     success: function (response) {
+  //       console.log("Product added to cart:", response);
+  //     },
+  //     error: function (error) {
+  //       console.error("Error adding product to cart:", error);
+  //     },
+  //   });
+  // }
 
         });
       </script>

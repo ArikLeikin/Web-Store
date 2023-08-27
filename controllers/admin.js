@@ -17,7 +17,9 @@ exports.create = async (req, res) => {
     // Assuming passed all required params in body
     switch (expression) {
       case "product":
-        newDocument.image = req.files.map((image) => image.path);
+        newDocument.image = req.files.map(
+          (image) => image.path.split("public")[1]
+        );
         await Product.create(newDocument);
         let message =
           "A new product has arrived! check out the new product called:" +
@@ -109,7 +111,7 @@ exports.update = async (req, res) => {
     switch (expression) {
       case "product":
         const image = JSON.parse(JSON.stringify(req.files))["image[]"];
-        updated.image = image.map((image) => image.path);
+        updated.image = image.map((image) => image.path.split("public")[1]);
         console.log(updated);
         await Product.findOneAndUpdate({ _id: id }, updated);
         break;
