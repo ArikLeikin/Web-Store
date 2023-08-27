@@ -647,7 +647,7 @@ $(document).ready(function () {
         holder_name: $("#card-holder").val(),
         expiration_date: card_expiration,
         ccv: $("#card-ccv").val(),
-        points: 666 /*~~~~~~~~~~~~~NEED TO BE CHANGED!!!!!!~~~~~~~~~~*/,
+        points: "666" /*~~~~~~~~~~~~~NEED TO BE CHANGED!!!!!!~~~~~~~~~~*/,
       };
 
       $.ajax({

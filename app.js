@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path"); // Import the 'path' module
 const app = express();
 const User = require("./models/user");
 const mongoose = require("mongoose");
@@ -13,19 +14,21 @@ const store = new MongoDBStore({
   collection: "mySessions",
 });
 
-//view engine
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, "public")));
+
+// View engine setup (if you plan to use views)
 // app.set("view engine", "ejs");
 // app.set("views", "views");
 
-//setting up routes
+// Import routes
 const shopRoutes = require("./routes/shop.routes");
 const connectRoutes = require("./routes/auth.routes");
 const errorRoutes = require("./routes/error.routes");
 const apiRoutes = require("./routes/api.routes");
 const adminRoutes = require("./routes/admin.routes");
 
-//middleware for each request
-app.use(express.static("public"));
+// Middleware setup
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
@@ -37,9 +40,7 @@ app.use(
   })
 );
 
-//app.use(flash());
-
-// for each request the session is added to the request
+// Middleware to attach user data to request
 app.use((req, res, next) => {
   if (!req.session.user) {
     return next();
@@ -58,18 +59,19 @@ app.use((req, res, next) => {
   next();
 });
 
-//routing request
+// Routing setup
 app.use(apiRoutes);
 app.use(shopRoutes);
 app.use(connectRoutes);
 app.use(errorRoutes);
 app.use(adminRoutes);
 
-//when something went wrong
+// Handle 404 errors
 app.use((req, res, next) => {
   res.redirect("/404");
 });
 
+// Connect to MongoDB and start the server
 mongoose
   .connect(
     "mongodb+srv://" +
