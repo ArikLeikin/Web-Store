@@ -700,7 +700,7 @@ $(document).ready(function () {
         expiration_date: card_expiration,
         ccv: $("#card-ccv").val(),
         total_price:$("#total-price").val(),
-        points: 666 /*~~~~~~~~~~~~~NEED TO BE CHANGED!!!!!!~~~~~~~~~~*/,
+        points: 0 /*~~~~~~~~~~~~~NEED TO BE CHANGED!!!!!!~~~~~~~~~~*/,
       };
 
       $.ajax({
