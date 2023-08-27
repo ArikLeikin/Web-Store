@@ -820,8 +820,6 @@ function calculateTotalPrice() {
         data.data.forEach(function(product) {
           var productId = product.product;
           var productQuantity = product.quantity;
-          console.log(productId);
-          console.log(productQuantity);
           calculate1(productId,productQuantity);
 
 
@@ -832,8 +830,6 @@ function calculateTotalPrice() {
               method: 'GET',
               dataType: 'json'
           }).then(function(productData) {
-            console.log("price");
-            console.log(productData.data.price);
             updateTotal(productData.data.price,productQuantity );
           });
           }  
@@ -847,13 +843,12 @@ function calculateTotalPrice() {
         
     let totalPrice = 0;
     function updateTotal(price,quantity) {  
-      console.log(price);
-      console.log(quantity);
       totalPrice += (price*quantity);
-       console.log(totalPrice);
        const totalPriceElement = document.getElementById('total-price');
         totalPriceElement.textContent = `Total(USD) $${totalPrice.toFixed(2)}`;
     }
 
 
 calculateTotalPrice();
+
+
