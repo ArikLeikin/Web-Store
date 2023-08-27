@@ -77,6 +77,8 @@ $(document).ready(function () {
           if (productExistsInWishlist) {
             wishlistExists = true;
             console.log("the product is on wish list");
+            const heartIcon = document.getElementById("heartIcon");
+            heartIcon.className = "fas fa-heart";
           } else {
             wishlistExists = false;
             console.log("the product is not on wish list");
@@ -174,13 +176,8 @@ $(document).ready(function () {
       favoriteButton.className = "favorite-button";
       favoriteButton.setAttribute("aria-label", "Add to favorites");
       const heartIcon = document.createElement("i");
-      // while ((wishlistExists = null)) {
-      console.log(wishlistExists);
-      if (wishlistExists) {
-        heartIcon.className = "fas fa-heart";
-      } else {
-        heartIcon.className = "far fa-heart";
-      }
+      heartIcon.id = "heartIcon";
+      heartIcon.className = "far fa-heart";
 
       favoriteButton.appendChild(heartIcon);
 
