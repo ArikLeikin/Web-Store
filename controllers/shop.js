@@ -300,13 +300,33 @@ exports.postPayment = async (req, res, next) => {
     //   "cart.items.product"
     // ); // FIND -> RETURNS ARRAY!
     // req.session.user = req.session.user[0];
-    const user = await User.findById(req.session.user._id);
+    const user = await User.findById(req.session.user._id).populate(
+      "cart.items.product"
+    );
+    const users = await User.find();
+
     const cartItems = user.cart.items;
 
     if (cartItems.length === 0) {
       return res.status(400).json({ message: "Cart is empty" });
     }
-
+    const yad2Products = cartItems.filter(
+      (item) => item.product.category.toString() === "yad2"
+    );
+    // for (let i = 0; i < yad2Products.length; i++) {
+    //   const userToModify = users.find((someUser) =>
+    //     someUser.usedProducts.contains(yad2Products[i].product._id)
+    //   );
+    //   const index = array.indexOf(yad2Products[i].product._id);
+    //   userToModify.usedProducts.slice(index, 1);
+    // }
+    yad2Products.forEach((yad2Product) => {
+      const userToModify = users.find((someUser) =>
+        someUser.usedProducts.includes(yad2Product.product._id)
+      );
+      const index = userToModify.usedProducts.indexOf(yad2Product.product._id);
+      userToModify.usedProducts.splice(index, 1);
+    });
     let total_price = 0;
     for (let i = 0; i < cartItems.length; i++) {
       let singleItem = await Product.findById(
@@ -334,6 +354,7 @@ exports.postPayment = async (req, res, next) => {
       order_date: dateToSubmit,
       status: "Pending", // Set the initial status as desired
     });
+
     user.points += total_price * 0.1;
     /*[
       {name,quantity}
@@ -359,6 +380,7 @@ exports.postPayment = async (req, res, next) => {
 
     // Clear the user's cart in the session or the database
     user.cart.items = [];
+    user.orderHistory.push(newOrder._id);
 
     await user.save();
 
@@ -439,7 +461,7 @@ exports.postCartAdd = async (req, res, next) => {
     // req.session.user = await User.find({ username: "admin" }); // FIND -> RETURNS ARRAY!
     // req.session.user = req.session.user[0];  --> For testing
     const productIdToSave = req.body.productId;
-    let quantityToSave = req.body.quantity;
+    let quantityToSave = parseInt(req.body.quantity);
     if (quantityToSave <= 0)
       return res.status(400).json({ message: "Non positive quantity" });
     const user = await User.findById(req.session.user._id);
@@ -515,7 +537,7 @@ exports.updateCartProductQuantity = async (req, res, next) => {
   // req.session.user = req.session.user[0]; --> For testing
   const productId = req.body.productId;
   const newQuantity = parseInt(req.body.quantity);
-  const user = req.session.user;
+  const user = await User.findById(req.session.user._id);
   const cart = user.cart;
 
   try {
