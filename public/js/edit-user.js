@@ -103,8 +103,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (isValid && userID != null) {
-      const formData = $(this).serialize(); // Serialize form data
-      console.log(userID);
+      //const formData = $(this).serialize(); // Serialize form data
+      //console.log(formData);
+      var formData = {
+        name: {
+          firstName: $("#firstName").val(),
+          lastName: $("#lastName").val(),
+        },
+        phoneNumber: $("#phoneNumber").val(),
+        email: $("#email").val(),
+      };
+      console.log(formData);
       $.ajax({
         url: `http://127.0.0.1:8080/update/user/${userID}`,
         type: "POST",
@@ -112,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
         success: function (response) {
           // Handle the response data here
           console.log(response);
-          alert("Your personal details have been successfully updated");
+          alert("Those personal details have been successfully updated");
         },
         error: function (error) {
           // Handle errors here

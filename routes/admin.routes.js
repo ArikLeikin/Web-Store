@@ -50,7 +50,7 @@ router.get(
 
 router.post("/create/user", adminController.create);
 router.get("/get/user/:id", isAdmin, adminController.get);
-router.put("/update/user/:id", isAdmin, adminController.update);
+router.post("/update/user/:id", isAdmin, adminController.update);
 router.post("/delete/user/:id", isAdmin, adminController.delete);
 router.get(
   "/users-by-country/:country",
