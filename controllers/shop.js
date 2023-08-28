@@ -210,7 +210,7 @@ exports.uploadYad2 = async (req, res, next) => {
       description: req.body.description,
       image: image.map((image) => image.path.split("public")[1]),
       condition: req.body.condition,
-      added_date: req.body.added_date,
+      added_date: new Date(),
       age_range: req.body.age_range,
     });
     await newProduct.save();
@@ -355,6 +355,8 @@ exports.postPayment = async (req, res, next) => {
       // );
       let singleItem = await Product.findById(cartItems[i].product._id);
       total_price += singleItem.price * cartItems[i].quantity;
+      console.log("single item= " + singleItem);
+      console.log("cart item[i]= " + cartItems[i]);
       singleItem.quantity -= cartItems[i].quantity;
       await singleItem.save();
     }
@@ -376,7 +378,7 @@ exports.postPayment = async (req, res, next) => {
       user_info: user._id,
       products: cartItems.map((item) => ({
         item: item.product,
-        quantity: item.quantity,
+        quantity: parseInt(item.quantity),
       })),
       total_price: total_price,
       order_date: dateToSubmit,
@@ -829,7 +831,6 @@ exports.postSupplier = async (req, res) => {
     title,
     condition,
     quantity,
-    added_date,
     description,
   } = req.body;
   try {
@@ -858,7 +859,8 @@ exports.postSupplier = async (req, res) => {
       image: images.map((image) => image.path.split("public")[1]),
       description: description,
       quantity: quantity,
-      added_date: added_date,
+      added_date: new Date(),
+      // added_date: new Date(),
     });
 
     // const imageDocs = [];

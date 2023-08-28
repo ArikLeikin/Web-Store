@@ -85,7 +85,7 @@ module.exports = {
       const user = await User.findById(req.session.user._id).populate({
         path: "orderHistory", // Field containing the array of references
         populate: {
-          path: "products", // Field within the nested reference
+          path: "products.item", // Field within the nested reference
           model: "Product", // The name of the Product model
         },
       });

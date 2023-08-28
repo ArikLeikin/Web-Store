@@ -38,6 +38,7 @@ const ProductSchema = new Schema({
   },
   added_date: {
     type: Date,
+    required: true,
   },
   quantity: {
     type: Number,

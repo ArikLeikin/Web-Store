@@ -282,76 +282,28 @@
 
     <main style="margin-top: 170px" id="main-form">
       <section class="cart">
-        <table class="cart-items">
-          <tr class="cart-item" id="item-64e886bd119df5c512e288b9">
-            <td class="cart-item-block cart-item-del">
-              <a
-                class="cart-remove icon"
-                href="#"
-                data-cart-itemid="10b74f62-7f30-47cb-b78b-a12f682eaeab"
-                data-confirm-delete="Are you sure you want to delete this item?"
-                ><img src="../images/white-icons/x-icon.png"
-              /></a>
-            </td>
-            <td class="cart-item-block cart-item-figure">
-              <img
-                src="\product-images\git commands.png"
-                alt="asdfasd"
-                title="asdfasd"
-                class="cart-item-image"
-              />
-            </td>
-            <td class="cart-item-block cart-item-title">
-              <h4>
-                <a
-                  href="/product-details?id=64e886bd119df5c512e288b9"
-                  class="cart-item-name"
-                  style="color: rgb(0, 0, 0); text-decoration: none"
-                  >asdfasd</a
-                >
-              </h4>
-              <span class="cart-item-label qty">Price</span
-              ><span class="cart-item-value qty">$1231.00</span>
-            </td>
-            <td class="cart-item-block cart-item-quantity">
-              <div class="quantity-input">
-                <input
-                  class="input-text qty text"
-                  type="text"
-                  size="4"
-                  id="quantity"
-                  value="1"
-                />
-              </div>
-            </td>
-            <td class="cart-item-block cart-item-subtotal">
-              <strong class="cart-item-value subtotal">$1231.00</strong>
-            </td>
-          </tr>
-        </table>
-      </section>
-      <div class="box" id="cart-alert-box">
-        <div class="alertBox alertBox--info">
-          <div class="alertBox-column alertBox-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
-              ></path>
-            </svg>
-          </div>
+        <label for="order-status" class="status-label">Order Status</label>
+        <select
+          class="status-select"
+          id="order-status"
+          name="order-status"
+          required
+        >
+          <option value="Pending">Pending</option>
+          <option value="Approved">Approved</option>
+          <option value="Delivered">Delivered</option>
+        </select>
+        <p class="order-date">Order Date :<span id="order-date"></span></p>
 
-          <span class="alertBox-column alertBox-message"
-            >You have not added anything to your shopping cart yet. Scroll
-            through the site and add items you liked!</span
-          >
-        </div>
-      </div>
-      <div class="cart-container" id="cart-container"></div>
+        <h3>Products in this Order</h3>
+
+        <table class="cart-items"></table>
+        <p class="order-total">Total Amount :<span id="order-total"></span></p>
+        <br />
+        <div class="cart-details"></div>
+
+        <div class="cart-container" id="cart-container"></div>
+      </section>
     </main>
     <div id="myModal" class="modal">
       <div class="modal-content">

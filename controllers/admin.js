@@ -88,7 +88,7 @@ exports.create = async (req, res) => {
           image: images.map((image) => image.path.split("public")[1]),
           description: description,
           quantity: quantity,
-          added_date: added_date,
+          added_date: new Date(),
         });
         const accessToken = process.env.FACEBOOK_API_KEY;
         const pageId = 111544942041745;
@@ -161,7 +161,7 @@ exports.get = async (req, res) => {
         break;
       case "order":
         returnedObject = await Order.findById(id)
-          .populate("products")
+          .populate("products.item")
           .populate("user_info");
         break;
       case "store-locations":

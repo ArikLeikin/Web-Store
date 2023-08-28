@@ -440,7 +440,7 @@
             var condition = $("#condition").val();
             var description = $("#description").val();
             var image = $("#productPhotos")[0].files;
-
+            var quantity = $("#quantity").val();
             // Create a FormData object to send the data
             var formData = new FormData();
             formData.append("category", category);
@@ -449,6 +449,7 @@
             formData.append("price", price);
             formData.append("condition", condition);
             formData.append("description", description);
+            formData.append("quantity", quantity);
             for (var i = 0; i < image.length; i++) {
               formData.append("image[]", image[i]);
             }
@@ -461,6 +462,7 @@
               processData: false,
               success: function (response) {
                 console.log("Product added successfully:", response);
+                window.location.href = "http://127.0.0.1:8080/manager";
               },
               error: function (xhr, status, error) {
                 console.error("Error adding product:", error);

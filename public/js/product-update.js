@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then((response) => response.json())
       .then((data) => {
-        window.location.href = "http://127.0.0.1:8080/products";
+        window.location.href = "http://127.0.0.1:8080/manager";
       })
       .catch((error) => {
         console.error("Error deleting product:", error);
@@ -156,45 +156,6 @@ $(document).ready(function () {
       $("#quantity").val(data.data.quantity);
       $("#category").val(data.data.category);
       $("#description").val(data.data.description);
-
-      // const files = data.data.image.map((path) => {
-      //   const parts = path.split("/");
-      //   const fileName = parts[parts.length - 1];
-      //   return new File([path], fileName);
-      // });
-
-      // const fileList = new DataTransfer();
-      // files.forEach((file) => {
-      //   fileList.items.add(file);
-      // });
-      // const fileInput = $('input[name="image[]"]');
-      // fileInput[0].files = fileList.files;
-
-      // const fileInput = $('input[name="image[]"]').val(
-      //   productImages.join("\n")
-      // );
-      //fileInput.value = productImages.join("\n");
-
-      // const fileInput = $('input[name="image[]"]');
-      // console.log(fileInput[0].files);
-      // // Set initial values of the file input
-      // data.data.image.forEach(path => {
-      //   const parts = path.split('/');
-      //   const fileName = parts[parts.length - 1];
-      //   const file = new File([path], fileName);
-      //   fileInput[0].files.push(file);
-      // });
-
-      //  const imageUrls = data.data.image;
-      // if (imageUrls && Array.isArray(imageUrls)) {
-      //   const imageContainer = document.getElementById('image-container');
-      //   imageUrls.forEach(imageUrl => {
-      //     const imageElement = document.createElement('img');
-      //     imageElement.src = imageUrl;
-      //     imageElement.alt = 'Product Image';
-      //     imageContainer.appendChild(imageElement);
-      //   });
-      // }
     },
     error: function (error) {
       console.error("Error fetching product data:", error);
