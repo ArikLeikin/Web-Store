@@ -26,21 +26,21 @@ $(document).ready(function () {
     }
 
     var productPhotos = $("#productPhotos")[0].files;
-    if (productPhotos.length === 0) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Please upload at least 1 photo.",
-      });
-      isValid = false;
-    } else if (productPhotos.length > 4) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "You can upload a maximum of 4 photos.",
-      });
-      isValid = false;
-    }
+    // if (productPhotos.length === 0) {
+    //   Swal.fire({
+    //     icon: "warning",
+    //     title: "Validation Error",
+    //     text: "Please upload at least 1 photo.",
+    //   });
+    //   isValid = false;
+    // } else if (productPhotos.length > 4) {
+    //   Swal.fire({
+    //     icon: "warning",
+    //     title: "Validation Error",
+    //     text: "You can upload a maximum of 4 photos.",
+    //   });
+    //   isValid = false;
+    // }
 
     if (!validateNumber(quantity)) {
       Swal.fire({
@@ -157,18 +157,23 @@ $(document).ready(function () {
       $("#category").val(data.data.category);
       $("#description").val(data.data.description);
 
-      const files = data.data.image.map((path) => {
-        const parts = path.split("/");
-        const fileName = parts[parts.length - 1];
-        return new File([path], fileName);
-      });
+      // const files = data.data.image.map((path) => {
+      //   const parts = path.split("/");
+      //   const fileName = parts[parts.length - 1];
+      //   return new File([path], fileName);
+      // });
 
-      const fileList = new DataTransfer();
-      files.forEach((file) => {
-        fileList.items.add(file);
-      });
-      const fileInput = $('input[name="image[]"]');
-      fileInput[0].files = fileList.files;
+      // const fileList = new DataTransfer();
+      // files.forEach((file) => {
+      //   fileList.items.add(file);
+      // });
+      // const fileInput = $('input[name="image[]"]');
+      // fileInput[0].files = fileList.files;
+
+      // const fileInput = $('input[name="image[]"]').val(
+      //   productImages.join("\n")
+      // );
+      //fileInput.value = productImages.join("\n");
 
       // const fileInput = $('input[name="image[]"]');
       // console.log(fileInput[0].files);

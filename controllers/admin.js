@@ -204,12 +204,15 @@ exports.update = async (req, res) => {
     // Assuming passed same names as written in schema
     switch (expression) {
       case "product":
+        //console.log(req.files);
         const image = JSON.parse(JSON.stringify(req.files))["image[]"];
-        updated.image = image.map((image) => image.path.split("public")[1]);
-        console.log(updated);
+        //console.log(image);
+        if (image !== undefined) {
+          updated.image = image.map((image) => image.path.split("public")[1]);
+        }
         const product = await Product.findById(id);
-        console.log(product.quantity);
-        if (product.quantity === 0) {
+        //console.log(product.quantity);
+        if (product.quantity === 0 && parseInt(updated.quantity) > 0) {
           console.log("inside if");
           notifyInterestedUsers(io, id);
         }

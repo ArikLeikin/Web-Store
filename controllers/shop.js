@@ -246,8 +246,9 @@ exports.postYad2Update = async (req, res, next) => {
     product.age_range = req.body.age_range;
     product.description = req.body.description;
     const image = JSON.parse(JSON.stringify(req.files))["image[]"];
-    product.image = image.map((image) => image.path.split("public")[1]);
-
+    if (image !== undefined) {
+      product.image = image.map((image) => image.path.split("public")[1]);
+    }
     await product.save();
     res.status(200).json({ message: "Product updated successfully" });
   } catch (error) {
