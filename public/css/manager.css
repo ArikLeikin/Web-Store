@@ -184,3 +184,16 @@ p{
 .delete-order-button:hover {
   background-color: #c82333;
 }
+
+#search-input,
+#search-product-input,
+#search-orders-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-left: 30px;
+  width: 20%;
+  box-sizing: border-box;
+}
