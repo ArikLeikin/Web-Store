@@ -844,6 +844,9 @@ document.addEventListener("DOMContentLoaded", function () {
         error: function (error) {
           // Handle error response
           console.log("Error:", error);
+          alert(
+            "Please check that you are entering your current password correctly"
+          );
         },
       });
     }
