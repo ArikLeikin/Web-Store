@@ -87,3 +87,36 @@ $(document).ready(function () {
     initMap();
   };
 });
+
+
+$(document).ready(function() {
+  $('#contactForm').submit(function(e) {
+      e.preventDefault();
+
+      const name = $('#name').val();
+      const email = $('#email').val();
+      const message = $('#message').val();
+
+      const data = {
+          name: name,
+          message: message,
+          email: email
+      };
+
+      const url = 'http://127.0.0.1:8080/contact';
+
+      $.ajax({
+          type: 'POST',
+          url: url,
+          data: data,
+          success: function(response) {
+              console.log('Message sent successfully!', response);
+              alert("Message sent successfully!");
+              window.location.href = "http://127.0.0.1:8080/contact";
+          },
+          error: function(error) {
+              console.error('Failed to send message.', error);
+          }
+      });
+  });
+});

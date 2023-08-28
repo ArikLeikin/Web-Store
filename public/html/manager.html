@@ -447,14 +447,14 @@
             }
 
             const password = $("#password").val();
-            var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
+            var passwordPattern = /^(?=.{4,})/;
           if (!passwordPattern.test(password)) {
                   Swal.fire({
                     icon: "error",
                     title: "Invalid Password",
-                    text: "Password must contain at least 8 characters, including 1 number, 1 uppercase letter, 1 lowercase letter, and 1 special character.",
+                    text: "Password must contain at least 4 characters.",
                   });
-            //showError("#password-error", "Password must contain at least 8 characters, including 1 number, 1 uppercase letter, 1 lowercase letter, and 1 special character.");
+            //showError("#password-error", "Password must contain at least 4 characters.");
             isValid = false;
           }
 

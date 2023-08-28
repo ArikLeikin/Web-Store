@@ -94,10 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.success) {
-          
-            window.location.href = "http://127.0.0.1:8080/products";
-        }
+         window.location.href = "http://127.0.0.1:8080/products";
+        
 
       })
       .catch((error) => {
@@ -288,9 +286,8 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             success: function(data) {
-              if (data.success) {
-                window.location.href = "http://127.0.0.1:8080/products";
-              }
+              window.location.href = "http://127.0.0.1:8080/products";
+              
             },
             error: function(error) {
               console.error("Error updating product:", error);
