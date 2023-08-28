@@ -378,81 +378,83 @@ fetch("http://127.0.0.1:8080/api/current-user")
   });
 
 // Fetch user data including wishlist
-document.addEventListener('DOMContentLoaded', function () {
-  const wishItemsContainer = document.querySelector('.wish-items-container');
-  fetch('http://127.0.0.1:8080/wishlist/products')
-    .then(response => response.json())
-    .then(data => {
+document.addEventListener("DOMContentLoaded", function () {
+  const wishItemsContainer = document.querySelector(".wish-items-container");
+  fetch("http://127.0.0.1:8080/wishlist/products")
+    .then((response) => response.json())
+    .then((data) => {
       //const wishItemsContainer = document.querySelector('.wish-items');
 
-      data.data.forEach(item => {
-        const wishItem = document.createElement('div');
-        wishItem.className = 'wish-item';
+      data.data.forEach((item) => {
+        const wishItem = document.createElement("div");
+        wishItem.className = "wish-item";
 
-        const wishDelete = document.createElement('div');
-        wishDelete.className = 'wish-delete';
+        const wishDelete = document.createElement("div");
+        wishDelete.className = "wish-delete";
 
-        const deleteIcon = document.createElement('i');
-        deleteIcon.className = 'fa fa-trash';
-        deleteIcon.id = 'wish';
+        const deleteIcon = document.createElement("i");
+        deleteIcon.className = "fa fa-trash";
+        deleteIcon.id = "wish";
 
-        deleteIcon.addEventListener('click', () => {
-          const confirmation = confirm('Are you sure you want to remove this item from your wishlist?');
-           if (confirmation) {
-             removeWishItem(item.product); 
-           }
+        deleteIcon.addEventListener("click", () => {
+          const confirmation = confirm(
+            "Are you sure you want to remove this item from your wishlist?"
+          );
+          if (confirmation) {
+            removeWishItem(item.product);
+          }
         });
 
         wishDelete.appendChild(deleteIcon);
         wishItem.appendChild(wishDelete);
 
-        const img = document.createElement('img');
+        const img = document.createElement("img");
         img.src = item.image;
-        img.alt = 'item';
+        img.alt = "item";
         wishItem.appendChild(img);
 
-        const titleSection = document.createElement('section');
-        titleSection.className = 'title';
+        const titleSection = document.createElement("section");
+        titleSection.className = "title";
 
-        const titleDesc = document.createElement('span');
-        titleDesc.className = 'title-desc center';
+        const titleDesc = document.createElement("span");
+        titleDesc.className = "title-desc center";
 
-        const titleLink = document.createElement('a');
-        titleLink.href = '#';
+        const titleLink = document.createElement("a");
+        titleLink.href = "#";
         titleLink.textContent = item.title;
 
         titleDesc.appendChild(titleLink);
         titleSection.appendChild(titleDesc);
 
-        const titlePrice = document.createElement('span');
-        titlePrice.className = 'title-price center';
+        const titlePrice = document.createElement("span");
+        titlePrice.className = "title-price center";
         titlePrice.textContent = `$${item.price}`;
 
         titleSection.appendChild(titlePrice);
         wishItem.appendChild(titleSection);
 
-        const addToCartBtn = document.createElement('button');
-        addToCartBtn.className = 'add-to-cart';
-        addToCartBtn.id = 'addToCartBtn';
-        addToCartBtn.type = 'button';
-        addToCartBtn.textContent = 'Add to cart';
+        const addToCartBtn = document.createElement("button");
+        addToCartBtn.className = "add-to-cart";
+        addToCartBtn.id = "addToCartBtn";
+        addToCartBtn.type = "button";
+        addToCartBtn.textContent = "Add to cart";
 
-        addToCartBtn.addEventListener('click', () => {
-          addToCart(item.product); 
+        addToCartBtn.addEventListener("click", () => {
+          addToCart(item.product);
         });
 
         wishItem.appendChild(addToCartBtn);
 
-        const modal = document.createElement('div');
-        modal.className = 'modal';
-        modal.id = 'cartModal';
+        const modal = document.createElement("div");
+        modal.className = "modal";
+        modal.id = "cartModal";
 
-        const modalContent = document.createElement('div');
-        modalContent.className = 'modal-content';
+        const modalContent = document.createElement("div");
+        modalContent.className = "modal-content";
 
-        const modalText = document.createElement('p');
-        modalText.className = 'centered-text';
-        modalText.textContent = 'Product added to cart! \u2713';
+        const modalText = document.createElement("p");
+        modalText.className = "centered-text";
+        modalText.textContent = "Product added to cart! \u2713";
 
         modalContent.appendChild(modalText);
         modal.appendChild(modalContent);
@@ -462,51 +464,47 @@ document.addEventListener('DOMContentLoaded', function () {
         wishItemsContainer.appendChild(wishItem);
       });
     })
-    .catch(error => {
-      console.error('Error fetching wishlist data:', error);
+    .catch((error) => {
+      console.error("Error fetching wishlist data:", error);
     });
 
-    function removeWishItem(itemId) {
-      console.log(itemId);
-      $.ajax({
-        url: 'http://127.0.0.1:8080/wishlist/delete',
-        type: 'POST',
-        data: { productId: itemId },
-        dataType: 'json',
-        success: function(data) {
-          const wishItem = document.getElementById(`wish-item-${itemId}`);
-          if (wishItem) {
-            wishItem.remove();
-          }
-          
-        },
-        error: function(error) {
-          console.error('Error deleting wishlist item:', error);
+  function removeWishItem(itemId) {
+    console.log(itemId);
+    $.ajax({
+      url: "http://127.0.0.1:8080/wishlist/delete",
+      type: "POST",
+      data: { productId: itemId },
+      dataType: "json",
+      success: function (data) {
+        const wishItem = document.getElementById(`wish-item-${itemId}`);
+        if (wishItem) {
+          wishItem.remove();
         }
-      });
-      
-    }
+      },
+      error: function (error) {
+        console.error("Error deleting wishlist item:", error);
+      },
+    });
+  }
 
-
-    function addToCart(productId) {
-      fetch('http://127.0.0.1:8080/cart/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data: {product: productId}
-      })
-      .then(response => response.json())
-      .then(data => {
+  function addToCart(productId) {
+    fetch("http://127.0.0.1:8080/cart/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: { product: productId },
+    })
+      .then((response) => response.json())
+      .then((data) => {
         // Assuming the response data indicates success
         // Show a modal or alert indicating the product was added to the cart
       })
-      .catch(error => {
-        console.error('Error adding product to cart:', error);
+      .catch((error) => {
+        console.error("Error adding product to cart:", error);
       });
-    }
+  }
 });
-
 
 //user yad2 list
 fetch("http://127.0.0.1:8080/api/current-user")
@@ -525,32 +523,108 @@ fetch("http://127.0.0.1:8080/api/current-user")
     } else {
       alertBox.style.display = "none";
       // usedProducts list is not empty, create and populate the template
-      data.usedProducts.forEach((item) => {
-        var usedProductTemplate = `
-          <div class="wish-item">
-            <div class="wish-option">
-              <div aria-label="wish-delete left" class="wish-delete">
-                <i class="fa fa-trash" id="yad2"></i>
-              </div>
-              <div aria-label="wish-edit right" class="wish-edit">
-                <i class="fa fa-edit"></i>
-              </div>
-            </div>
-            <img src="${item.image}" alt="item" />
-            <section class="title">
-              <span class="title-desc center">
-                <a href="#">${item.title}</a>
-              </span>
-              <br />
-              <span class="title-price center">$${item.price}</span>
-            </section>
-          </div>
-        `;
-
+      // populate - userProducts
+      console.log(data);
+      for (let i = 0; i < data.usedProducts.length; i++) {
+        const item = data.usedProducts[i];
+        console.log(item);
         var usedProductDiv = document.createElement("div");
-        usedProductDiv.innerHTML = usedProductTemplate;
+        usedProductDiv.className = "wish-item";
+
+        var wishOptionDiv = document.createElement("div");
+        wishOptionDiv.className = "wish-option";
+
+        var wishDeleteDiv = document.createElement("div");
+        wishDeleteDiv.setAttribute("aria-label", "wish-delete left");
+        wishDeleteDiv.className = "wish-delete";
+
+        var trashIcon = document.createElement("i");
+        trashIcon.className = "fa fa-trash";
+        trashIcon.id = "yad2";
+        wishDeleteDiv.appendChild(trashIcon);
+        trashIcon.addEventListener("click", function () {
+          $.ajax({
+            url: `http://127.0.0.1:8080/api/yad2/delete?id=${item._id}`,
+            method: "GET",
+            success: function (response) {
+              alert("product removed successfully!");
+              window.location.href = "http://127.0.0.1:8080/my-account";
+            },
+            error: function (xhr, status, error) {
+              console.error("Error: " + error);
+            },
+          });
+        });
+
+        var wishEditDiv = document.createElement("div");
+        wishEditDiv.setAttribute("aria-label", "wish-edit right");
+        wishEditDiv.className = "wish-edit";
+
+        var editIcon = document.createElement("i");
+        editIcon.className = "fa fa-edit";
+        wishEditDiv.appendChild(editIcon);
+        editIcon.addEventListener("click", function () {
+          window.location.href = `http://127.0.0.1:8080/Yad2Update?id=${item._id}`;
+        });
+
+        wishOptionDiv.appendChild(wishDeleteDiv);
+        wishOptionDiv.appendChild(wishEditDiv);
+
+        var imgElement = document.createElement("img");
+        imgElement.src = item.image;
+        imgElement.alt = "item";
+
+        var titleSection = document.createElement("section");
+        titleSection.className = "title";
+
+        var titleDescSpan = document.createElement("span");
+        titleDescSpan.className = "title-desc center";
+
+        var titleLink = document.createElement("a");
+        titleLink.href = "http://127.0.0.1:8080/product-details?id=" + item._id;
+        titleLink.textContent = item.title;
+        titleDescSpan.appendChild(titleLink);
+
+        var brElement = document.createElement("br");
+
+        var titlePriceSpan = document.createElement("span");
+        titlePriceSpan.className = "title-price center";
+        titlePriceSpan.textContent = "$" + item.price;
+
+        titleSection.appendChild(titleDescSpan);
+        titleSection.appendChild(brElement);
+        titleSection.appendChild(titlePriceSpan);
+
+        usedProductDiv.appendChild(wishOptionDiv);
+        usedProductDiv.appendChild(imgElement);
+        usedProductDiv.appendChild(titleSection);
+
         yad2ItemsContainer.appendChild(usedProductDiv);
-      });
+        // var usedProductTemplate = `
+        //   <div class="wish-item">
+        //     <div class="wish-option">
+        //       <div aria-label="wish-delete left" class="wish-delete">
+        //         <i class="fa fa-trash" id="yad2"></i>
+        //       </div>
+        //       <div aria-label="wish-edit right" class="wish-edit">
+        //         <i class="fa fa-edit"></i>
+        //       </div>
+        //     </div>
+        //     <img src="${item.image}" alt="item" />
+        //     <section class="title">
+        //       <span class="title-desc center">
+        //         <a href="#">${item.title}</a>
+        //       </span>
+        //       <br />
+        //       <span class="title-price center">$${item.price}</span>
+        //     </section>
+        //   </div>
+        // `;
+
+        // var usedProductDiv = document.createElement("div");
+        // usedProductDiv.innerHTML = usedProductTemplate;
+        // yad2ItemsContainer.appendChild(usedProductDiv);
+      }
     }
   })
   .catch((error) => {
