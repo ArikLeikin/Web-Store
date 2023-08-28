@@ -42,7 +42,6 @@ async function notifyInterestedUsers(io, productId) {
       // });
       await user.save();
     }
-   
   });
 }
 
@@ -193,6 +192,8 @@ exports.get = async (req, res) => {
 
 exports.update = async (req, res) => {
   try {
+    console.log(req.params);
+    console.log(req.body);
     const updated = req.body;
     const id = req.params.id;
     console.log(req.url);
@@ -212,7 +213,7 @@ exports.update = async (req, res) => {
           console.log("inside if");
           notifyInterestedUsers(io, id);
         }
-        
+
         await Product.findOneAndUpdate({ _id: id }, updated);
         break;
       case "order":
@@ -401,22 +402,21 @@ exports.getProductUpdate = async (req, res, next) => {
 };
 
 exports.getOrderUpdate = async (req, res) => {
-  try{
+  try {
     const file = path.join(__dirname, "../public/html/order-update.html");
     res.status(200).sendFile(file);
-  }catch(error){
+  } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });
   }
-}
+};
 
 exports.getEditUser = async (req, res) => {
-  try{
+  try {
     const file = path.join(__dirname, "../public/html/edit-user.html");
     res.status(200).sendFile(file);
-  }catch(error){
+  } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });
   }
-}
-
+};
