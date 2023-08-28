@@ -230,6 +230,12 @@ fetch("http://127.0.0.1:8080/api/current-user")
     document.getElementById("lastName").value = data.name.lastName;
     document.getElementById("phoneNumber").value = data.phoneNumber;
     document.getElementById("email").value = data.email;
+
+    var adminLink = document.getElementById("only-admin");
+
+    if (data.permission === "admin") {
+      adminLink.style.display = "block";
+    } else adminLink.style.display = "none";
   })
   .catch((error) => {
     console.error("Error fetching user details:", error);
@@ -287,7 +293,8 @@ function createOrderElement(order) {
   cartProducts.classList.add("cart-products");
 
   for (let i = 0; i < order.products.length; i++) {
-    let product = order.products[i];
+    let product = order.products[i].item;
+    console.log(product.image);
     const productItem = createProductItem(product.image[0], product._id);
     cartProducts.appendChild(productItem);
   }
@@ -529,9 +536,10 @@ fetch("http://127.0.0.1:8080/api/current-user")
   .then((data) => {
     var alertBox = document.getElementById("yad2-alert-box");
     var yad2ItemsContainer = document.getElementById("yad2-items");
-
+    var yad2Box = document.getElementById("yad2-box");
     if (data.usedProducts.length === 0) {
       alertBox.style.display = "block";
+      yad2Box.style.display = "none";
     } else {
       alertBox.style.display = "none";
       // usedProducts list is not empty, create and populate the template

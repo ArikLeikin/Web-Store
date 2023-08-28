@@ -46,9 +46,9 @@ $(document).ready(function () {
     var productName = $("#productName").val();
     var price = $("#price").val();
     var description = $("#description").val();
-   
+
     let isValid = true;
-    
+
     // if (!validateNumber(price)) {
     //   $("#price-error").text("Price name should only contain digits.");
     //   isValid= false; // Prevent proceeding to the next step
@@ -60,26 +60,25 @@ $(document).ready(function () {
 
     if (!validateNumber(price)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Price should only contain digits.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Price should only contain digits.",
       });
       isValid = false;
     }
-    if (price === '0') {
+    if (price === "0") {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Price should be greater than 0.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Price should be greater than 0.",
       });
-      isValid = false;    
+      isValid = false;
     }
-
 
     if (!validateLettersDigitsAndSpaces(productName)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
+        icon: "warning",
+        title: "Validation Error",
         text: "Product name should be only letters or digits, and at least 4 characters.",
       });
       isValid = false;
@@ -87,16 +86,15 @@ $(document).ready(function () {
 
     if (!validateLettersDigitsAndSpaces2(description)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Descriptionn should be at leat 5 characters.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Descriptionn should be at leat 5 characters.",
       });
       isValid = false;
     }
     function validateLettersDigitsAndSpaces2(str) {
       return /^[a-zA-Z0-9 ]{5,}$/.test(str);
     }
-
 
     //  if (!validateLettersDigitsAndSpaces(productName)) {
     //   $("#productName-error").text("Product name should be only letters or digits, and at least 4 characters.");
@@ -109,9 +107,8 @@ $(document).ready(function () {
     function validateLettersDigitsAndSpaces(str) {
       return /^[a-zA-Z0-9 ]{4,}$/.test(str);
     }
-    
-    if(!isValid)
-    {
+
+    if (!isValid) {
       return false;
     }
 
@@ -127,19 +124,19 @@ $(document).ready(function () {
 
     const Toast = Swal.mixin({
       toast: true,
-      position: 'top-end',
+      position: "top-end",
       showConfirmButton: false,
       timer: 3000,
       timerProgressBar: true,
       didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer);
-        toast.addEventListener('mouseleave', Swal.resumeTimer);
-      }
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
     });
 
     Toast.fire({
-      icon: 'success',
-      title: 'Step 1 completed successfully!'
+      icon: "success",
+      title: "Step 1 completed successfully!",
     });
 
     //show the next fieldset
@@ -176,13 +173,11 @@ $(document).ready(function () {
   $(".next2").click(function () {
     $("#bankAccount-error").text("");
     $("#productPhoto-error").text("");
-    
-    
+
     var bankAccount = $("#bankAccount").val();
-  
-   
+
     let isValid = true;
-    
+
     // if (!validateBankAccount(bankAccount)) {
     //   $("#bankAccount-error").text("Bank Account name should contain 14 digits.");
     //   isValid= false; // Prevent proceeding to the next step
@@ -190,41 +185,35 @@ $(document).ready(function () {
 
     if (!validateBankAccount(bankAccount)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
+        icon: "warning",
+        title: "Validation Error",
         text: "Bank Account name should contain 14 digits.",
       });
       isValid = false;
     }
 
-
     var productPhotos = $("#productPhotos")[0].files;
     if (productPhotos.length === 0) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Please upload at least 1 photo.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Please upload at least 1 photo.",
       });
       isValid = false;
     } else if (productPhotos.length > 4) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'You can upload a maximum of 4 photos.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "You can upload a maximum of 4 photos.",
       });
       isValid = false;
-
     }
-
 
     function validateBankAccount(str) {
       return /^\d{14}$/.test(str);
     }
 
-    
-
-    if(!isValid)
-    {
+    if (!isValid) {
       return false;
     }
 
@@ -240,19 +229,19 @@ $(document).ready(function () {
 
     const Toast = Swal.mixin({
       toast: true,
-      position: 'top-end',
+      position: "top-end",
       showConfirmButton: false,
       timer: 3000,
       timerProgressBar: true,
       didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer);
-        toast.addEventListener('mouseleave', Swal.resumeTimer);
-      }
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
     });
 
     Toast.fire({
-      icon: 'success',
-      title: 'Step 2 completed successfully!'
+      icon: "success",
+      title: "Step 2 completed successfully!",
     });
 
     //show the next fieldset

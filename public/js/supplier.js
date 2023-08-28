@@ -1,5 +1,3 @@
-
-
 /*nofar*/
 
 //jQuery time
@@ -11,7 +9,11 @@ $(document).ready(function () {
   var animating; //flag to prevent quick multi-click glitches
 
   $(".next1").click(function () {
-    var currentSubtitle = $(this).parentsUntil(".msform").find(".fs-subtitle").text().trim();
+    var currentSubtitle = $(this)
+      .parentsUntil(".msform")
+      .find(".fs-subtitle")
+      .text()
+      .trim();
     if (currentSubtitle !== "step 1") {
       return false; // Prevent proceeding to the next step
     }
@@ -43,19 +45,19 @@ $(document).ready(function () {
     $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
     const Toast = Swal.mixin({
       toast: true,
-      position: 'top-end',
+      position: "top-end",
       showConfirmButton: false,
       timer: 3000,
       timerProgressBar: true,
       didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer);
-        toast.addEventListener('mouseleave', Swal.resumeTimer);
-      }
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
     });
 
     Toast.fire({
-      icon: 'success',
-      title: 'Step 1 completed successfully!'
+      icon: "success",
+      title: "Step 1 completed successfully!",
     });
 
     //show the next fieldset
@@ -103,64 +105,61 @@ $(document).ready(function () {
 
     if (!validateNumber(price)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Price should only contain digits.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Price should only contain digits.",
       });
       isValid = false;
     }
-    if (price === '0') {
+    if (price === "0") {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Price should be greater than 0.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Price should be greater than 0.",
       });
-      isValid = false;    
+      isValid = false;
     }
 
     if (!validateLettersDigitsAndSpaces(productName)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
+        icon: "warning",
+        title: "Validation Error",
         text: "Product name should be only letters or digits, and at least 4 characters.",
       });
       isValid = false;
     }
 
-
     var productPhotos = $("#productPhotos")[0].files;
     if (productPhotos.length === 0) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Please upload at least 1 photo.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Please upload at least 1 photo.",
       });
       isValid = false;
     } else if (productPhotos.length > 4) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'You can upload a maximum of 4 photos.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "You can upload a maximum of 4 photos.",
       });
       isValid = false;
-
     }
 
-    
     if (!validateNumber(quantity)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Quantity should only contain digits.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Quantity should only contain digits.",
       });
       isValid = false;
     }
 
     if (!validateLettersDigitsAndSpaces2(description)) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Descriptionn should be at leat 5 characters.',
+        icon: "warning",
+        title: "Validation Error",
+        text: "Descriptionn should be at leat 5 characters.",
       });
       isValid = false;
     }
@@ -177,7 +176,6 @@ $(document).ready(function () {
     }
 
     if (!isValid) {
-
       return false;
     }
 
@@ -192,19 +190,19 @@ $(document).ready(function () {
     $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
     const Toast = Swal.mixin({
       toast: true,
-      position: 'top-end',
+      position: "top-end",
       showConfirmButton: false,
       timer: 3000,
       timerProgressBar: true,
       didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer);
-        toast.addEventListener('mouseleave', Swal.resumeTimer);
-      }
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
     });
 
     Toast.fire({
-      icon: 'success',
-      title: 'Step 2 completed successfully!'
+      icon: "success",
+      title: "Step 2 completed successfully!",
     });
 
     //show the next fieldset
@@ -323,40 +321,3 @@ $(document).ready(function () {
     );
   });
 });
-
-// $(document).ready(function () {
-//   $("#uploadForm").submit(function (event) {
-//     const inputElement = $("#productPhotos")[0];
-//     const selectedFiles = inputElement.files;
-
-//     // Check if at least one photo is uploaded
-//     if (selectedFiles.length < 1) {
-//       event.preventDefault();
-//       Swal.fire("Error", "Please upload at least one photo.", "error");
-//       return;
-//     }
-
-//     // Check if the number of photos exceeds the maximum limit
-//     if (selectedFiles.length > 4) {
-//       event.preventDefault();
-//       Swal.fire("Error", "You can upload a maximum of four photos.", "error");
-//       return;
-//     }
-
-//     // Check file types for each selected photo
-//     for (let i = 0; i < selectedFiles.length; i++) {
-//       const file = selectedFiles[i];
-//       const fileType = file.type;
-
-//       if (fileType !== "image/jpeg" && fileType !== "image/png" && fileType !== "image/gif") {
-//         event.preventDefault();
-//         Swal.fire("Error", "Unsupported file type. Please upload JPG, PNG, or GIF images.", "error");
-//         return;
-//       }
-//     }
-//   });
-// });
-
-
-// Michal
-
