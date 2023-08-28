@@ -104,19 +104,43 @@ function validateExpirationDate(expirationMonth, expirationYear) {
 // personal details validation
 
 $(document).ready(function () {
-  $("#password-form").submit(function (e) {
-    var newpassword = $("#newpassword").val();
+  document.addEventListener("DOMContentLoaded", function () {
+    $("#password-form").submit(function (event) {
+      event.preventDefault();
+      var newPassword = $("#newpassword").val();
+      var currentPassword = $("#currpassword").val();
 
-    var passwordPattern =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
-    if (!passwordPattern.test(newpassword)) {
-      Swal.fire({
-        icon: "error",
-        title: "Invalid Password",
-        text: "Password must contain at least 8 characters, including 1 number, 1 uppercase letter, 1 lowercase letter, and 1 special character.",
+      var passwordPattern =
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
+      if (!passwordPattern.test(newPassword)) {
+        Swal.fire({
+          icon: "error",
+          title: "Invalid Password",
+          text: "Password must contain at least 8 characters, including 1 number, 1 uppercase letter, 1 lowercase letter, and 1 special character.",
+        });
+        return; // Exit the function if password is invalid
+      }
+      var formData = {
+        newPassword: newPassword,
+        currentPassword: currentPassword,
+      };
+      console.log(formData);
+
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/passwordUpdate",
+        data: formData,
+        success: function (response) {
+          // Handle success response
+          console.log("Success:", response);
+          alert("password updated successfully");
+        },
+        error: function (error) {
+          // Handle error response
+          console.log("Error:", error);
+        },
       });
-      return; // Exit the function if password is invalid
-    }
+    });
   });
 });
 

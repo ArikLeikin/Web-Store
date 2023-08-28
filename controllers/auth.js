@@ -169,6 +169,37 @@ exports.getNewPassword = async (req, res, next) => {
   }
 };
 
+exports.postUpdatePassword = async (req, res) => {
+  try {
+    const currPassword = req.body.currentPassword;
+    const newPassword = req.body.newPassword;
+    console.log(req.body);
+    if (newPassword === currPassword) {
+      console.log("WHYYY");
+      return res.status(400).json({ message: "Passwords are same." });
+    }
+    console.log("1");
+    console.log(req.session);
+    const user = await User.findById(req.session.user._id);
+    console.log("2");
+    const match = await bcrypt.compare(currPassword, user.password);
+    console.log("3");
+    console.log(match);
+    if (!match) {
+      return res.status(400).json({ message: "wrong current password" });
+    }
+    console.log("Hello");
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
+    user.password = hashedPassword;
+    await user.save();
+    return res.status(200).json({ message: "Password updated successfully!" });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Error in passwordUpdate in server" });
+  }
+};
+
 exports.postNewPassword = async (req, res, next) => {
   const newPassword = req.body.password;
   const newPasswordConfirm = req.body.passwordConfirm;
