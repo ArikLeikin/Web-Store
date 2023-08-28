@@ -266,7 +266,7 @@ function validatePhoneNumber(phone) {
 
     tableBody.on("click", ".edit-button", function () {
         const userId = $(this).data("userid");
-        window.location.href = "http://127.0.0.1:8080/edit-user?id=" + userId;   `${baseUrl}/user/edit/${userId}`;
+        window.location.href = "http://127.0.0.1:8080/edit-user?id=" + userId;   
       });
 
   
@@ -303,15 +303,13 @@ function validatePhoneNumber(phone) {
         var row = table.insertRow();
 
         var fields = [
-          "_id",
           "title",
           "price",
           "description",
           "image",
           "condition",
           "category",
-          "manufacture_date",
-          "supplier",
+          "added_date",
           "quantity",
           "age_range",
         ];
@@ -327,8 +325,22 @@ function validatePhoneNumber(phone) {
             cell.innerHTML = product[field];
           }
         });
+        var actionCell = row.insertCell();
+        var editButton = document.createElement("button");
+        editButton.className = "edit-button";
+        editButton.setAttribute("data-id", product._id);
+        editButton.textContent = "Edit Product";
+        editButton.addEventListener("click", function () {
+          var productId = this.getAttribute("data-id");
+          window.location.href =
+            "http://127.0.0.1:8080/product-update?id=" + productId;
+        });
+        actionCell.appendChild(editButton);
+
+
+
       });
-
-
      }
-    });
+
+
+ });
