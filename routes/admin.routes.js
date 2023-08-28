@@ -61,4 +61,8 @@ router.get("/user/group-by-permissions", isAdmin, adminController.usersGroupBy);
 
 router.post("/points/user/:id", isAdmin, adminController.updatePointsUser);
 
+router.get("/edit-user", isAdmin, adminController.getEditUser);
+
+router.get("/order-update", isAdmin, adminController.getOrderUpdate);
+
 module.exports = router;
