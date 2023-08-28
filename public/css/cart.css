@@ -1,12 +1,3 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-.header {
-  position: static;
-}
-
 .shopping-cart {
   width: 600px;
   margin: 20px auto;
@@ -81,17 +72,23 @@ input.input-text {
   text-align: center;
 }
 td.cart-item-block.cart-item-del {
-  padding-right: 25px;
+  flex: 0.5;
 }
 td.cart-item-block.cart-item-figure {
   padding: 0px;
+  flex: 2;
 }
 td.cart-item-block.cart-item-title {
-  padding-left: 10px;
-  padding-right: 10px;
+  flex: 4;
   align-self: first baseline;
 }
-
+td.cart-item-block.cart-item-quantity {
+  flex: 1.5;
+}
+td.cart-item-block.cart-item-subtotal {
+  text-align: right;
+  flex: 1.5;
+}
 h4.cart-item-name {
   margin-top: 5px;
   margin-bottom: 10px;
@@ -106,19 +103,11 @@ h4.cart-item-name a {
   color: #696969;
 }
 
-td.cart-item-block.cart-item-quantity {
-  padding-left: 350px;
-  padding-right: 10px;
-}
 .cart-item-label.subtotal,
 .cart-item-value.subtotal {
   color: black;
 }
-td.cart-item-block.cart-item-subtotal {
-  text-align: right;
-  padding-left: 15px;
-  padding-right: 0px;
-}
+
 .cart-item-label.total,
 .cart-item-value.total {
   color: black;
@@ -138,4 +127,50 @@ td.cart-item-block.cart-item-subtotal {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+/*alert box*/
+.box {
+  /* border: 1px solid #ccc; */
+  background-color: white;
+  padding: 20px;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  overflow: auto;
+  margin: 0 auto;
+  width: 60%;
+  margin-top: 20px;
+}
+.box-icon-title {
+  font-size: 25px;
+}
+.box-text-title {
+  padding-left: 7px;
+  font-size: 30px;
+}
+.alertBox {
+  border-style: none;
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1.125rem 0.75rem 1.125rem;
+  transition: opacity 0.3s ease-out;
+}
+.alertBox-column {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+}
+
+.alertBox-column {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
+}
+.alertBox-message {
+  text-align: left;
+  padding-left: 15px;
 }
