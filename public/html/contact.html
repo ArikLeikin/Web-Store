@@ -14,6 +14,10 @@
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script
+      type="text/javascript"
+      src="https://www.bing.com/api/maps/mapcontrol?key=Aqz-TxrGvUdOSD7cnyI5P2ic19CAV1RJo4MhsKRP0us6CJhf0gyTaBJrZJzL2OHY"
+    ></script>
     <script src="../js/index.js"></script>
     <script src="../js/contact.js"></script>
     <link rel="stylesheet" href="../css/contact.css" />
@@ -324,27 +328,16 @@
           </div>
           <button class="btn-ns-hot con-btn" type="submit">Send Message</button>
         </form>
-
+        <br />
         <h3>Come visit us at:</h3>
 
         <div class="address-map-container">
-          <div class="address-container">
-            <div class="address">
-              <h3>Address 1</h3>
-              <p>123 Main Street, Cityville, State 12345</p>
-              <p>Contact: +1 (123) 456-7890</p>
-            </div>
-            <div class="address">
-              <h3>Address 2</h3>
-              <p>456 Elm Street, Townsville, State 67890</p>
-              <p>Contact: +1 (987) 654-3210</p>
-            </div>
-          </div>
+          <div class="address-container"></div>
 
           <div
             class="map-container"
             id="mapContainer"
-            style="width: 300px; height: 300px"
+            style="width: 350px; height: 350px"
           ></div>
         </div>
       </section>
@@ -356,91 +349,5 @@
         <div id="modal-content"></div>
       </div>
     </div>
-
-    <script
-      type="text/javascript"
-      src="https://www.bing.com/api/maps/mapcontrol?key=Aqz-TxrGvUdOSD7cnyI5P2ic19CAV1RJo4MhsKRP0us6CJhf0gyTaBJrZJzL2OHY"
-    ></script>
-
-    <script type="text/javascript">
-      function initMap() {
-        // var apiKey = "Aqz-TxrGvUdOSD7cnyI5P2ic19CAV1RJo4MhsKRP0us6CJhf0gyTaBJrZJzL2OHY";
-        var apiKey = "AIzaSyAc--L5B2_74eqSZrsum00Dc4fYJ1XdSmY";
-
-        var map = new Microsoft.Maps.Map(
-          document.getElementById("mapContainer"),
-          {
-            credentials: apiKey,
-          }
-        );
-
-        // Make a GET request to retrieve store locations
-        const apiUrl = "http://localhost:8080/api/store-locations";
-        fetch(apiUrl)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(
-                `Fetch error: ${response.status} ${response.statusText}`
-              );
-            }
-            return response.json();
-          })
-          .then((data) => {
-            for (let i = 0; i < data.data.length; i++) {
-              let location = data.data[i];
-              var latitude = location.latitude; // Replace with the actual latitude property
-              var longitude = location.longitude; // Replace with the actual longitude property
-
-              var locationCoords = new Microsoft.Maps.Location(
-                longitude,
-                latitude
-              );
-
-              var pin = new Microsoft.Maps.Pushpin(locationCoords, {
-                title: location.name, // Replace with the actual name property
-                subTitle: location.description, // Replace with the actual description property
-              });
-
-              // Add the pin to the map
-              map.entities.push(pin);
-            }
-          })
-
-          //32.015817
-          .catch((error) => {
-            console.error("Error fetching user details:", error);
-          });
-
-        // $.get(apiUrl) // Update the URL to match your API endpoint
-        //   .done(function (data) {
-        //     console.log(data);
-        //     // data.array.forEach((element) => {
-        //     //   console.log(element.address);
-        //     // });
-        //     // Iterate through the received locations and add pins to the map
-        //   })
-        //   .fail(function (error) {
-        //     console.log(error);
-        //     console.error("Error fetching store locations:", error);
-        //   });
-
-        // Times Square coordinates
-        var latitude = 40.758896; // Times Square latitude
-        var longitude = -73.98513; // Times Square longitude
-
-        var locationCoords = new Microsoft.Maps.Location(latitude, longitude);
-
-        var pin = new Microsoft.Maps.Pushpin(locationCoords, {
-          title: "Times Square",
-          subTitle: "New York City, USA",
-        });
-
-        // Add the pin to the map
-        map.entities.push(pin);
-      }
-      window.onload = function () {
-        initMap();
-      };
-    </script>
   </body>
 </html>
