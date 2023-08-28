@@ -143,3 +143,44 @@ p{
 .edit-button + .delete-button {
   margin-left: 5px;
 }
+
+#addProductsButton {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+#addProductsButton:hover {
+  background-color: #0056b3;
+}
+
+.view-details-button {
+  background-color: #28a745;
+  color: #fff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.view-details-button:hover {
+  background-color: #218838;
+}
+
+.delete-order-button {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.delete-order-button:hover {
+  background-color: #c82333;
+}

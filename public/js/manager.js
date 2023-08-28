@@ -253,7 +253,7 @@ function validatePhoneNumber(phone) {
     // Function to delete a user
     function deleteUser(userId) {
       $.ajax({
-        url: `${baseUrl}/delete/user/${userId}`, // Update the URL to the appropriate delete endpoint
+        url: `${baseUrl}/delete/user/${userId}`, 
         method: "POST",
         success: function () {
           fetchUsers(); // Refresh the user list after deletion
@@ -337,10 +337,91 @@ function validatePhoneNumber(phone) {
         });
         actionCell.appendChild(editButton);
 
-
-
       });
      }
+
+     $("#addProductsButton").on("click", function () {
+        window.location.href = "http://127.0.0.1:8080/supplier";
+      });
+
+
+
+
+
+        
+        
+        $.ajax({
+          url: "http://127.0.0.1:8080/api/orders",
+          type: "GET",
+          dataType: "json",
+          success: function (data) {
+            populateOrderTable(data);
+          },
+          error: function (xhr, status, error) {
+            console.error("Error:", error);
+          },
+        });
+    
+        function populateOrderTable(orders) {
+          var table = document.getElementById("orderTable");
+    
+          orders.forEach(function (order) {
+            var row = table.insertRow();
+    
+            var fields = ["user_info","products", "total_price", "order_date", "status"];
+    
+            fields.forEach(function (field) {
+              var cell = row.insertCell();
+              if(field==="products")
+              {
+                cell.textContent = order.products.length;
+              }
+              else{
+                cell.textContent = order[field];
+              }
+              
+            });
+
+            var OrderId=order._id;
+    
+            var actionCell = row.insertCell();
+            var viewDetailsButton = document.createElement("button");
+            viewDetailsButton.className = "view-details-button";
+            viewDetailsButton.textContent = "View Details";
+            viewDetailsButton.addEventListener("click", function () {
+                window.location.href = "http://127.0.0.1:8080/order-update?id=" + OrderId;
+              });
+            actionCell.appendChild(viewDetailsButton);
+
+            
+            var deleteOrderButton = document.createElement("button");
+            deleteOrderButton.className = "delete-order-button";
+            deleteOrderButton.textContent = "Delete Order";
+            deleteOrderButton.addEventListener("click", function () {
+              if (confirm("Are you sure you want to delete this order?")) {
+                deleteOrder(OrderId);
+              }
+           });
+           actionCell.appendChild(deleteOrderButton);
+
+
+
+            function deleteOrder(orderId) {
+              $.ajax({
+                url: `http://127.0.0.1:8080/delete/order/${orderId}` ,
+                type: "POST",
+                success: function () {
+                  console.log("delete");
+                  location.reload();
+                },
+                error: function (xhr, status, error) {
+                  console.error("Error:", error);
+                },
+              });
+            }
+          });
+        }
+     
 
 
  });
