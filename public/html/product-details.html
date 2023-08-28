@@ -15,6 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../js/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
 
     <script src="../js/product-details.js"></script>
     <link rel="stylesheet" href="../css/product-details.css" />
@@ -290,6 +291,50 @@
 
     <main style="margin-top: 190px">
       <div id="product-details"></div>
+      <script>
+//           const socket = io();
+
+// const productId = window.location.search.split("=")[1];
+//   const url = `http://127.0.0.1:8080/api/product/${productId}`;
+//   const productDetailsDiv = $("#product-details");
+
+//   $.ajax({
+//     url: url,
+//     method: "GET",
+//     dataType: "json",
+//     success: function (data) {
+//       const { title, price, description, quantity, image } = data.data;
+//       const productId = data.data._id;
+    
+
+//   $.ajax({
+//         url: "http://127.0.0.1:8080/api/current-user",
+//         method: "GET",
+//         dataType: "json",
+//         success: function (userData) {
+//           const userId=userData._id;
+//           notifyServer(userId, productId);
+
+
+         
+//         // Function to notify the server
+//         function notifyServer(userId, productId) {
+
+//           console.log(userId);
+//           console.log(productId);
+//           const data = { userId, productId };
+//           console.log(socket);
+//           //socket.emit("notify", data);
+//         }
+//         }
+//       });
+//     }
+
+//     });
+
+          
+      </script>
+
       <script>
         // $(document).ready(function () {
         //   const productId = window.location.search.split("=")[1];

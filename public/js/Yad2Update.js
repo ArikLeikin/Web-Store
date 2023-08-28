@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     let isValid = true;
     var price = $("#price").val();
-    var bankAccount = $("#bankAccount").val();
+    //var bankAccount = $("#bankAccount").val();
     var productName = $("#productName").val();
 
     if (!validateLettersDigitsAndSpaces(productName)) {
@@ -32,18 +32,18 @@ $(document).ready(function () {
       isValid = false;
     }
 
-    if (!ValidBankAccount(bankAccount)) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Validation Error',
-        text: 'Please enter a valid bank account (14 digits).',
-      });
-      // showError(
-      //   "#bankAccount-error",
-      //   "Please enter a valid bank account (14 digits)."
-      // );
-      isValid = false;
-    }
+    // if (!ValidBankAccount(bankAccount)) {
+    //   Swal.fire({
+    //     icon: 'warning',
+    //     title: 'Validation Error',
+    //     text: 'Please enter a valid bank account (14 digits).',
+    //   });
+    //   // showError(
+    //   //   "#bankAccount-error",
+    //   //   "Please enter a valid bank account (14 digits)."
+    //   // );
+    //   isValid = false;
+    // }
 
     var productPhotos = $("#productPhotos")[0].files;
     if (productPhotos.length === 0) {
@@ -76,9 +76,6 @@ function ValidBankAccount(str) {
 }
 
 
-
-
-
 function showError(element, message) {
   $(element).text(message).css("color", "red");
 }
@@ -87,41 +84,6 @@ function clearErrorMessages() {
   $(".error-message").text("");
 }
 
-
-
-$(document).ready(function() {
-  $("#UpdateYad2-form").submit(function(event) {
-    event.preventDefault(); 
-    
-    var title = $("#productName").val();
-    var condition = $("#condition").val();
-    var price = $("#price").val();
-    var age_range = $("#age").val();
-    var bankAccount = $("#bankAccount").val();
-    var description = $("#description").val();
-    
-    var data = {
-      title: title,
-      condition: condition,
-      price: price,
-      age_range: age_range,
-      bankAccount: bankAccount,
-      description: description
-    };
-    
-    $.ajax({
-      type: "POST",
-      url: "http://127.0.0.1:8080/Yad2Update", 
-      data: data,
-      success: function(response) {
-        console.log("Success:", response);
-      },
-      error: function(error) {
-        console.log("Error:", error);
-      }
-    });
-  });
-});
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -138,10 +100,8 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.success) {
-          
-            window.location.href = "http://127.0.0.1:8080/products";
-        }
+           console.log("success");
+            window.location.href = "http://127.0.0.1:8080/products?category=yad2";
 
       })
       .catch((error) => {
@@ -177,7 +137,7 @@ $(document).ready(function() {
     formData.append("title", title);
     formData.append("price", price);
     formData.append("condition", condition);
-    formData.append("bankAccount", bankAccount);
+    //formData.append("bankAccount", bankAccount);
     formData.append("description", description);
     for (var i = 0; i < image.length; i++) {
       formData.append("image[]", image[i]);
@@ -190,9 +150,8 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             success: function(data) {
-              if (data.success) {
-                // window.location.href = "http://127.0.0.1:8080/products";
-              }
+                console.log("success");
+                window.location.href = "http://127.0.0.1:8080/products?category=yad2";
             },
             error: function(error) {
               console.error("Error updating product:", error);
@@ -212,7 +171,7 @@ $(document).ready(function() {
       $('#condition').val(data.data.condition);
       $('#price').val(data.data.price);
       $('#age').val(data.data.age_range);
-      $('#bankAccount').val(data.data.bankAccount);
+      //$('#bankAccount').val(data.data.bankAccount);
       $('#category').val(data.data.category);
       $('#description').val(data.data.description);
 
