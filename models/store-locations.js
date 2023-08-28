@@ -7,7 +7,7 @@ const StoreLocationsSchema = new Schema({
     required: true,
   },
   phone_number: {
-    type: Number,
+    type: String,
     required: true,
   },
   phone_area_code: {
