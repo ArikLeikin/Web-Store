@@ -242,9 +242,10 @@ module.exports = {
   
       // Remove the product with the given productId from the user's usedProducts array
       user.usedProducts = await user.usedProducts.filter(product => product.toString() !== productId);
-  
+      
       // Save the user's updated data
       await user.save();
+      await Product.findByIdAndDelete(productId);
   
       res.status(200).json({ message: 'Product deleted successfully' });
     } catch (error) {
