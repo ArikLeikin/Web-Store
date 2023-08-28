@@ -1,23 +1,7 @@
 $(document).ready(function () {
   const socket = io();
-  //Quantity minus and plus buttons
-  $(".minus").click(function () {
-    const input = $(this).next();
-    let quantity = parseInt(input.val());
-    if (quantity > 1) {
-      quantity--;
-      input.val(quantity);
-    }
-  });
-
-  $(".plus").click(function () {
-    const input = $(this).prev();
-    let quantity = parseInt(input.val());
-    quantity++;
-    input.val(quantity);
-  });
-
-  // Image click handler
+  
+  //Image click handler
   $(".productView-imageSlick").click(function () {
     $(".productView-imageSlick").removeClass("active");
     $(this).addClass("active");
@@ -32,6 +16,7 @@ $(document).ready(function () {
   const url = `http://127.0.0.1:8080/api/product/${productId}`;
   const productDetailsDiv = $("#product-details");
   var userId=null;
+  var isYad2=null;
 
   $.ajax({
     url: url,
@@ -42,6 +27,7 @@ $(document).ready(function () {
       const productCategory = data.data.category;
       const productId = data.data._id;
       const Quantity= data.data.quantity;
+      isYad2=productCategory;
 
       $.ajax({
         url: "http://127.0.0.1:8080/api/current-user",
@@ -51,6 +37,7 @@ $(document).ready(function () {
           const userPermission = userData.permission;
           const userid=userData._id;
           userId=userid;
+         
          
 
           if (userPermission === "admin") {
@@ -165,6 +152,12 @@ $(document).ready(function () {
 
       productQtySection.appendChild(quantityInputDiv);
 
+      
+      if (isYad2 === "yad2") {
+        quantityInputDiv.style.display = "none";
+      }
+
+
       // Add to cart section
 
     
@@ -195,15 +188,13 @@ $(document).ready(function () {
         socket.emit("notify", data);
       }
 
-      if (Quantity === 0) {
+      if (Quantity === 0 && isYad2 !== "yad2" ) {
         addToCartButton.style.display = "none";
         notifyMe.style.display = "block";
       }
       else{
         notifyMe.style.display = "none";
       }
-
-
 
       const favoriteButton = document.createElement("button");
       favoriteButton.className = "favorite-button";
@@ -266,6 +257,7 @@ $(document).ready(function () {
             quantity: quantity,
           },
           success: function (response) {
+            alert("Product added to cart!");
             console.log("Product added to cart:", response);
           },
           error: function (error) {
@@ -273,6 +265,23 @@ $(document).ready(function () {
           },
         });
       }
+
+      $(".minus").click(function () {
+        const input = $(this).next();
+        let quantity = parseInt(input.val());
+        if (quantity > 1) {
+          quantity--;
+          input.val(quantity);
+        }
+      });
+    
+      $(".plus").click(function () {
+        const input = $(this).prev();
+        let quantity = parseInt(input.val());
+        quantity++;
+        input.val(quantity);
+      });
+    
 
       // Favorite button click handler
       $(".favorite-button").click(function () {

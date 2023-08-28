@@ -163,6 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
           console.log("Success:", response);
 
           alert("card details updated successfully");
+          window.location.href = "http://127.0.0.1:8080/my-account";
         },
         error: function (error) {
           // Handle error response
@@ -213,6 +214,7 @@ $(document).ready(function () {
       success: function (response) {
         console.log(response);
         alert("credit card deleted successfully");
+        window.location.href = "http://127.0.0.1:8080/my-account";
       },
       error: function (error) {
         console.error("Error:", error);
