@@ -160,7 +160,7 @@ exports.get = async (req, res) => {
         returnedObject = await Product.find({ _id: id });
         break;
       case "order":
-        returnedObject = await Order.find({ _id: id });
+        returnedObject = await Order.findById(id).populate("products");
         break;
       case "store-locations":
         returnedObject = await StoreLocations.find({ _id: id });
