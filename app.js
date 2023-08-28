@@ -75,15 +75,15 @@ app.use((req, res, next) => {
 });
 
 io.on("connection", (socket) => {
-  //console.log("A user connected:", socket.id);
+  console.log("A user connected:", socket.id);
 
   // Handle "notify" event when user clicks "Notify Me"
   socket.on("notify", async (data) => {
     const { productId, userId } = data;
-    const user = await User.find(userId);
+    const user = await User.findById(userId);
     const interested = user.interested;
     const exist = interested.some(
-      (item) => item.productId._id.toString() === id
+      (item) => item.productId._id.toString() === productId
     );
     if (!exist) {
       interested.push({ productId: productId, socketId: socket.id });

@@ -24,7 +24,7 @@ async function notifyInterestedUsers(io, productId) {
       product.productId.equals(productId)
     );
     if (interestedProduct) {
-      user.interested.slice(user.interested.indexOf(interestedProduct), 1);
+      user.interested.splice(user.interested.indexOf(interestedProduct), 1);
       // send mail to user upon back to stock
       transporter.sendMail({
         to: user.email,
@@ -39,8 +39,9 @@ async function notifyInterestedUsers(io, productId) {
       // io.to(interestedProduct.socketId).emit("productBackInStock", {
       //   productId,
       // });
+      await user.save();
     }
-    await user.save();
+   
   });
 }
 
@@ -205,10 +206,13 @@ exports.update = async (req, res) => {
         updated.image = image.map((image) => image.path.split("public")[1]);
         console.log(updated);
         const product = await Product.findById(id);
-        await Product.findOneAndUpdate({ _id: id }, updated);
+        console.log(product.quantity);
         if (product.quantity === 0) {
+          console.log("inside if");
           notifyInterestedUsers(io, id);
         }
+        
+        await Product.findOneAndUpdate({ _id: id }, updated);
         break;
       case "order":
         await Order.findOneAndUpdate({ _id: id }, updated);

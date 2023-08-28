@@ -214,3 +214,25 @@ h4.productView-name {
 .edit-icon:hover {
   color: rgb(113, 108, 98); 
 }
+
+
+.notify-button {
+  margin-top: 10px;
+  padding: 4px 14px;
+  background-color: #007bff;
+  color: white; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  float: left;
+}
+
+.notify-button:hover {
+  background-color: #1d76d6; 
+}
+
+.notify-button a {
+  text-decoration: none; 
+  color: inherit; 
+}
