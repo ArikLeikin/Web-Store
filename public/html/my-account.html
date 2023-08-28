@@ -20,7 +20,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../js/index.js"></script>
-    <script src="../js/my-account.js"></script>
+    <script src="../js/my-account.js"defer></script>
     <link rel="stylesheet" href="../css/my-account.css" />
   </head>
 
@@ -835,10 +835,8 @@
 
             <div class="wish-items-container"></div>
 
-           
-
-            <!-- no item in wish list
-            <div class="box" id="wishlist-alert-box">
+            <!-- no item in wish list -->
+            <!-- <div class="box" id="wishlist-alert-box">
               <div class="alertBox alertBox--info">
                 <div class="alertBox-column alertBox-icon">
                   <svg
@@ -890,7 +888,7 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>  -->
           </div>
 
           <!-- yad2 list-->
@@ -1113,7 +1111,7 @@
         $(".page-section").hide();
         $("#wish-list").show();
 
-        fetchAndDisplayProducts();
+        //fetchAndDisplayProducts();
       }
     });
 
