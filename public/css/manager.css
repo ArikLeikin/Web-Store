@@ -117,3 +117,29 @@ p{
 .delete-button:hover {
   background-color: darkred;
 }
+
+/* Style for Edit and Delete buttons */
+.edit-button,
+.delete-button {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.edit-button {
+  background-color: #169d07;
+  color: white;
+}
+
+/* On hover styles */
+.edit-button:hover,
+.delete-button:hover {
+  background-color: #76838c;
+}
+
+/* Add margin between buttons */
+.edit-button + .delete-button {
+  margin-left: 5px;
+}
