@@ -24,6 +24,8 @@ router.get("/api/order/:orderId", apiController.getOrder);
 router.get("/api/orders/user/:userId", apiController.getAllOrdersByUser);
 router.get("/api/orders", apiController.getAllOrders);
 
+router.post("/api/yad2/delete/:id", apiController.deleteFromYad2List);
+
 // router.get("/api/supplier/:supplierId", apiController.getSupplier);
 // router.get("/api/suppliers", apiController.getAllSuppliers);
 
