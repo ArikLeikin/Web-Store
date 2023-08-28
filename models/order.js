@@ -9,9 +9,15 @@ const OrderSchema = new Schema({
   },
   products: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Product",
-      default: null,
+      item: {
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+        default: null,
+      },
+      quantity: {
+        type: Number,
+        require: true,
+      },
     },
   ],
   total_price: {

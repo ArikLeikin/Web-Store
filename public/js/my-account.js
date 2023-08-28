@@ -332,9 +332,9 @@ function createProductItem(imageSrc, productId) {
   const img = document.createElement("img");
   img.src = imageSrc;
   img.alt = "item";
-  img.addEventListener("click", function() {
+  img.addEventListener("click", function () {
     console.log("Clicked");
-    const url = "http://127.0.0.1:8080/product-details?id=" + productId
+    const url = "http://127.0.0.1:8080/product-details?id=" + productId;
     window.location.href = url; // Redirect when image is clicked
   });
 
@@ -381,8 +381,6 @@ fetch("http://127.0.0.1:8080/api/current-user")
   .catch((error) => {
     console.error("Error fetching user details:", error);
   });
-
-
 
 //Fetch user data including wishlist
 fetch("http://127.0.0.1:8080/api/current-user")
@@ -520,8 +518,6 @@ fetch("http://127.0.0.1:8080/api/current-user")
 //   });
 // });
 
-
-
 //user yad2 list
 fetch("http://127.0.0.1:8080/api/current-user")
   .then((response) => {
@@ -560,8 +556,8 @@ fetch("http://127.0.0.1:8080/api/current-user")
         wishDeleteDiv.appendChild(trashIcon);
         trashIcon.addEventListener("click", function () {
           $.ajax({
-            url: `http://127.0.0.1:8080/api/yad2/delete?id=${item._id}`,
-            method: "GET",
+            url: `http://127.0.0.1:8080/api/yad2/delete/${item._id}`,
+            method: "POST",
             success: function (response) {
               alert("product removed successfully!");
               window.location.href = "http://127.0.0.1:8080/my-account";
