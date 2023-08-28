@@ -117,15 +117,3 @@ fieldset.fieldset-footer {
 .error-message {
   color: red;
 }
-
-
-.delete-btn {
-  background-color: rgb(219, 0, 0);
-  float: left;
-  margin-right: 20px;
-}
-.delete-btn:hover {
-  background-color: rgb(188, 0, 0);
-  outline: solid 3px rgb(120, 0, 0);
-  outline-offset: -3px;
-}

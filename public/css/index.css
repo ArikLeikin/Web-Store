@@ -435,7 +435,7 @@ login-btn:hover {
 }
 .delete-btn {
   background-color: rgb(219, 0, 0);
-  float: left;
+  float: left !important;
   margin-right: 20px;
 }
 .delete-btn:hover {
