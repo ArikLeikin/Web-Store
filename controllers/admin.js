@@ -1,3 +1,4 @@
+const path = require("path");
 const Product = require("../models/product");
 const Order = require("../models/order");
 const StoreLocations = require("../models/store-locations");
@@ -398,3 +399,24 @@ exports.getProductUpdate = async (req, res, next) => {
     }
   });
 };
+
+exports.getOrderUpdate = async (req, res) => {
+  try{
+    const file = path.join(__dirname, "../public/html/order-update.html");
+    res.status(200).sendFile(file);
+  }catch(error){
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+exports.getEditUser = async (req, res) => {
+  try{
+    const file = path.join(__dirname, "../public/html/edit-user.html");
+    res.status(200).sendFile(file);
+  }catch(error){
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
