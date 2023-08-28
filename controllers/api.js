@@ -68,7 +68,8 @@ module.exports = {
   getWishList: async (req, res) => {
     try {
       //Need to check
-      res.status(200).json(req.session.user.wishlist);
+      const user = await User.findById(req.session.user._id);
+      res.status(200).json(user.wishlist);
     } catch (err) {
       res
         .status(500)
