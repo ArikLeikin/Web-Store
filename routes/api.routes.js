@@ -10,7 +10,7 @@ router.get("/api/users", apiController.getAllUsers);
 
 router.get("/api/store-locations", apiController.getStoreLocations);
 
-router.get("/api/search", apiController.getSearch);
+router.get("/api/search/:title", apiController.getSearch);
 router.get("/api/products/:amountValue", apiController.getProductsByAmount);
 router.get("/api/products", apiController.getAllProducts);
 router.get("/api/product/:productId", apiController.getProduct);

@@ -1,9 +1,10 @@
 var saveAddress = true;
 var saveCard = true;
-
+var global_cart_price;
 $(document).ready(function () {
   const checkboxAddress = document.getElementById("saveAddress");
   const checkboxCard = document.getElementById("saveCard");
+  const pointsSelect = document.getElementById("pointsSelect");
 
   checkboxAddress.addEventListener("change", function () {
     const isChecked = this.checked;
@@ -29,6 +30,13 @@ $(document).ready(function () {
       console.log("Card Checkbox is unchecked");
       saveCard = false;
     }
+  });
+
+  pointsSelect.addEventListener("change", function () {
+    var options = pointsSelect.value;
+    const totalElement = document.getElementById("total-price");
+    $("#total-price").val(global_cart_price - parseInt(options));
+    totalElement.textContent = global_cart_price - parseInt(options);
   });
 });
 
@@ -80,259 +88,6 @@ function showError(element, message) {
 function clearErrorMessages() {
   $(".error-message").text("");
 }
-/*
-$(document).ready(function () {
-  $("#purchase-form").submit(function (event) {
-    event.preventDefault();
-    let isValid = true;
-
-    const FirstName = $("#firstname").val();
-    if (!validateName(FirstName)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "First name can only contain letters.",
-      });
-      // showError("#firstname-error", "First name can only contain letters.");
-      isValid = false;
-    }
-
-    const LastName = $("#lastname").val();
-    if (!validateName(LastName)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Last name can only contain letters.",
-      });
-      // showError("#lastname-error", "Last name can only contain letters.");
-      isValid = false;
-    }
-
-    const country = $("#country").val();
-    if (!validateName(country)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Country name can only contain letters.",
-      });
-      // showError("#country-error", "Country name can only contain letters.");
-      isValid = false;
-    }
-
-    const zipcode = $("#zipcode").val();
-    if (!validateZipCode(zipcode)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Zipcode can only contain only 5 digits.",
-      });
-      // showError("#zipcode-error", "Zipcode can only contain only 5 digits.");
-      isValid = false;
-    }
-
-    const phone = $("#phone").val();
-    if (!validatePhoneNumber(phone)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Phone number must be 10 digits.",
-      });
-      // showError("#phone-error", "Phone number must be 10 digits.");
-      isValid = false;
-    }
-
-    const city = $("#city").val();
-    if (!validateName(city)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "City name can only contain letters.",
-      });
-      isValid = false;
-    }
-
-    const street = $("#street").val();
-    if (!validateName(street)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Street name can only contain letters.",
-      });
-      // showError("#street-error", "Street name can only contain letters.");
-      isValid = false;
-    }
-
-    const streetNumber = $("#street_number").val();
-    if (!validateStreetNumber(streetNumber)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Street number must be digits.",
-      });
-      // showError("#street-number-error", "Street number must be digits.");
-      isValid = false;
-    }
-
-    const cardNumber = $("#card-number").val();
-    const cardNumber1 = $("#card-number-1").val();
-    const cardNumber2 = $("#card-number-2").val();
-    const cardNumber3 = $("#card-number-3").val();
-
-    if (
-      !validateCardNumber(cardNumber) ||
-      !validateCardNumber(cardNumber1) ||
-      !validateCardNumber(cardNumber2) ||
-      !validateCardNumber(cardNumber3)
-    ) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Card number must have 4 digits each.",
-      });
-      // showError("#card-number-error", "Card number must have 4 digits each.");
-      isValid = false;
-    }
-
-    const cardHolder = $("#card-holder").val();
-    if (!validateCardHolder(cardHolder)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Card holder name must have 9 digits.",
-      });
-      isValid = false;
-    }
-
-    const expirationMonth = $("#card-expiration-month").val();
-    const expirationYear = $("#card-expiration-year").val();
-    if (!validateExpirationDate(expirationMonth, expirationYear)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Invalid expiration date.",
-      });
-      // showError("#expiration-month-error", "Invalid expiration date.");
-      isValid = false;
-    }
-
-    const cvv = $("#card-ccv").val();
-    if (!validateCVV(cvv)) {
-      Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: '"CVV must be 3 digits.',
-      });
-      // showError("#cvv-number-error", "CVV must be 3 digits.");
-      isValid = false;
-    }
-
-    if (isValid) {
-      const FirstName = $("#firstname").val();
-      const LastName = $("#lastname").val();
-      const country = $("#country").val();
-      const zipcode = $("#zipcode").val();
-      const phone = $("#phone").val();
-      const city = $("#city").val();
-      const street = $("#street").val();
-      const streetNumber = $("#street_number").val();
-      const cardHolder = $("#card-holder").val();
-      const lastFourDigits = $("#card-number-4").val();
-      const expirationMonth = $("#card-expiration-month").val();
-      const expirationYear = $("#card-expiration-year").val();
-
-      const totalElement = document.querySelector("#total-price");
-
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-      const cartTotal = urlParams.get("total");
-
-      if (cartTotal !== null) {
-        totalElement.textContent = "Total(USD) $" + cartTotal;
-      }
-      const modalContent = `
-      <style>.select:after{ display:none;
-      }</style>
-          <h2>Thank you for your purchase! We hope you will visit us again.</h2>
-          <h2>Your Purchase Details:</h2>
-          <p><strong>First Name:</strong> ${FirstName}</p>
-           <p><strong>Last Name:</strong> ${LastName}</p>
-          <p><strong>Country:</strong> ${country}</p>
-          <p><strong>Zipcode:</strong> ${zipcode}</p>
-          <p><strong>Phone Number:</strong> ${phone}</p>
-          <p><strong>City:</strong> ${city}</p>
-          <p><strong>Street:</strong> ${street}</p>
-          <p><strong>Street Number:</strong> ${streetNumber}</p>
-          <p><strong>Card Holder:</strong> ${cardHolder}</p>
-          <p><strong>Last Four Digits of Credit Card:</strong> ${lastFourDigits}</p>
-          <p><strong>Expiration Date:</strong> ${expirationMonth}/${expirationYear}</p>
-          <p><strong>Total Amount:</strong> $${cartTotal}</p>
-          
-        `;
-
-      $("#modal-content").html(modalContent);
-
-      $("#myModal").show();
-    }
-  });
-
-  $(".close").click(function () {
-    $("#myModal").hide();
-  });
-});
-*/
-
-/*
-$(document).ready(function () {
-  function updatePoints() {
-    var selectedPoints = parseInt($("#pointsSelect").val());
-    var totalPrice = parseFloat(
-      $("#total-price").text().replace("Total(USD) $", "")
-    );
-
-    var updatedPoints = -selectedPoints + Math.round(totalPrice * 0.1);
-
-    $("#pointsNumber").text(updatedPoints);
-    $("#pointsSelect option").each(function () {
-      var optionPoints = parseInt($(this).val());
-      if (optionPoints <= updatedPoints) {
-        $(this).prop("disabled", false);
-      } else {
-        $(this).prop("disabled", true);
-      }
-    });
-
-    // Update points on the server
-    //updatePointsOnServer(updatedPoints);
-  }
- 
-  function updatePointsOnServer(updatedPoints) {
-    // Create a request body
-    var requestBody = JSON.stringify({ points: updatedPoints });
-
-    // Make a POST request to update points
-    fetch("http://127.0.0.1:8080/api/current-user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: requestBody,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Points updated on the server:", data);
-        // You can handle the response data if needed
-      })
-      .catch((error) => {
-        console.error("Error updating points:", error);
-      });
-  }
-*/
-// Call the updatePoints function when the select value changes
-// $("#pointsSelect").on("change", updatePoints);
-
-// Call the updatePoints function initially to set up the UI
-// updatePoints();
-//});
 
 /*~~~~~~~~~~~~~~~~~~~ card get api~~~~~~~~~~~~~~~~~~`*/
 fetch("http://127.0.0.1:8080/api/current-user")
@@ -407,6 +162,7 @@ $.ajax({
   dataType: "json",
   success: function (data) {
     document.getElementById("pointsNumber").textContent = data.points;
+
     updatePointsDropdown();
   },
   error: function (error) {
@@ -575,33 +331,28 @@ $(document).ready(function () {
       const expirationMonth = $("#card-expiration-month").val();
       const expirationYear = $("#card-expiration-year").val();
 
-      const totalElement = document.querySelector("#total-price");
+      const totalElement = document.getElementById("total-price");
 
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
-      const cartTotal = urlParams.get("total");
+      const cartTotal = $("#total-price").val();
 
-      if (cartTotal !== null) {
-        totalElement.textContent = "Total(USD) $" + cartTotal;
-      }
+      // if (cartTotal !== null) {
+      //   totalElement.textContent = cartTotal;
+      //   $("#total-price").val(cartTotal);
+      // }
       const modalContent = `
       <style>.select:after{ display:none;
       }</style>
-          <h2>Thank you for your purchase! We hope you will visit us again.</h2>
-          <h2>Your Purchase Details:</h2>
-          <p><strong>First Name:</strong> ${FirstName}</p>
-           <p><strong>Last Name:</strong> ${LastName}</p>
-          <p><strong>Country:</strong> ${country}</p>
-          <p><strong>Zipcode:</strong> ${zipcode}</p>
-          <p><strong>Phone Number:</strong> ${phone}</p>
-          <p><strong>City:</strong> ${city}</p>
-          <p><strong>Street:</strong> ${street}</p>
-          <p><strong>Street Number:</strong> ${streetNumber}</p>
-          <p><strong>Card Holder:</strong> ${cardHolder}</p>
-          <p><strong>Last Four Digits of Credit Card:</strong> ${lastFourDigits}</p>
-          <p><strong>Expiration Date:</strong> ${expirationMonth}/${expirationYear}</p>
-          <p><strong>Total Amount:</strong> $${cartTotal}</p>
-          
+          <h3>Thank you for your purchase! We hope you will visit us again.</h3>
+          <h4>Your Purchase Details:</h4>
+          <p>First Name: ${FirstName}<br>
+           <p>Last Name: ${LastName}<br>        
+           <p>Phone Number: ${phone}<br>
+          <p>Address: ${street} ${streetNumber}, ${city}, ${country}<br>
+          <p>Zipcode: ${zipcode}<br>
+          <p>Card Number: ••••-••••-••••-${lastFourDigits}</p>
+          <p><strong>Total Amount: $${$("#total-price").val()}</strong></p>
         `;
 
       $("#modal-content").html(modalContent);
@@ -609,9 +360,8 @@ $(document).ready(function () {
       $("#myModal").show();
       $(".close").click(function () {
         $("#myModal").hide();
+        window.location.href = "http://127.0.0.1:8080/my-account";
       });
-    
-
 
       if (saveAddress) {
         var formData = {
@@ -691,7 +441,7 @@ $(document).ready(function () {
         holder_name: $("#card-holder").val(),
         expiration_date: card_expiration,
         ccv: $("#card-ccv").val(),
-        total_price:$("#total-price").val(),
+        total_price: global_cart_price,
         points: options,
       };
       console.log(formData);
@@ -711,164 +461,53 @@ $(document).ready(function () {
   });
 });
 
-// $(document).ready(function () {
-//   $("#purchase-button").click(function (event) {
-//     event.preventDefault();
-
-//     const checkbox = $(".cl-checkbox-address");
-
-//     // if (checkbox.checked) {
-//     const firstName = $("#firstname").val();
-//     const lastName = $("#lastname").val();
-//     const phoneNumber = $("#phone").val();
-//     const country = $("#country").val();
-//     const city = $("#city").val();
-//     const postalCode = $("#zipcode").val();
-//     const street = $("#street").val();
-//     const streetNumber = $("#street_number").val();
-
-//     const data = {
-//       firstName,
-//       lastName,
-//       phoneNumber,
-//       country,
-//       city,
-//       postalCode,
-//       street,
-//       streetNumber,
-//     };
-//     console.log(data);
-
-//     $.ajax({
-//       url: "http://127.0.0.1:8080/address",
-//       type: "POST",
-//       contentType: "application/json",
-//       data: JSON.stringify(data),
-//       success: function (result) {
-//         console.log("Data sent successfully:", result);
-//         $("#purchase-form").submit();
-//       },
-//       error: function (error) {
-//         console.error("Error sending data:", error);
-//       },
-//     });
-//     // } else {
-//     //   $("#purchase-form").submit();
-//     // }
-//   });
-// });
-
-// $(document).ready(function () {
-//   $("#purchase-button").click(function (event) {
-//     event.preventDefault();
-
-//     const checkbox = $(".cl-checkbox");
-//     // if (checkbox.prop("checked")) {
-//     const card_number =
-//       $("#card-number-1").val() +
-//       $("#card-number-2").val() +
-//       $("#card-number-3").val() +
-//       $("#card-number-4").val();
-
-//     const holder_name = $("#card-holder").val();
-//     const expiration_date =
-//       $("#card-expiration-month").val() +
-//       "/" +
-//       $("#card-expiration-year").val();
-//     const ccv = $("#card-ccv").val();
-//     const data = {
-//       card_number,
-//       holder_name,
-//       expiration_date,
-//       ccv,
-//     };
-
-//     $.ajax({
-//       url: "http://127.0.0.1:8080/creditcard",
-//       type: "POST",
-//       contentType: "application/json",
-//       data: JSON.stringify(data),
-//       success: function (result) {
-//         console.log("Data sent successfully:", result);
-//         $("#purchase-form").submit();
-//       },
-//       error: function (error) {
-//         console.error("Error sending data:", error);
-//       },
-//     });
-//   });
-// });
-
-
-
-
-
 function calculateTotalPrice() {
   $.ajax({
-    url: 'http://127.0.0.1:8080/cart/products',
-    method: 'GET',
-    dataType: 'json',
-    success:  function(data) {
-        
-        data.data.forEach(function(product) {
-          var productId = product.product;
-          var productQuantity = product.quantity;
-          calculate1(productId,productQuantity);
+    url: "http://127.0.0.1:8080/cart/products",
+    method: "GET",
+    dataType: "json",
+    success: function (data) {
+      data.data.forEach(function (product) {
+        var productId = product.product;
+        var productQuantity = product.quantity;
+        calculate1(productId, productQuantity);
 
-
-          function calculate1(productId,productQuantity)
-          {
-            $.ajax({
-              url: `http://127.0.0.1:8080/api/product/${productId}`,
-              method: 'GET',
-              dataType: 'json'
-          }).then(function(productData) {
-             updateTotal(productData.data.price,productQuantity );
-             updatePointsDropdown();
+        function calculate1(productId, productQuantity) {
+          $.ajax({
+            url: `http://127.0.0.1:8080/api/product/${productId}`,
+            method: "GET",
+            dataType: "json",
+          }).then(function (productData) {
+            updateTotal(productData.data.price, productQuantity);
+            updatePointsDropdown();
           });
-          }  
-        
+        }
       });
-    }
+    },
+  });
+}
 
-    });
- 
-    }
-            
-        
-    let totalPrice = 0;
-    function updateTotal(price,quantity) {  
-      totalPrice += (price*quantity);
-       const totalPriceElement = document.getElementById('total-price');
-        totalPriceElement.textContent = `Total(USD) $${totalPrice.toFixed(2)}`;
-    }
-
+let totalPrice = 0;
+function updateTotal(price, quantity) {
+  totalPrice += price * quantity;
+  const totalPriceElement = document.getElementById("total-price");
+  totalPriceElement.textContent = totalPrice;
+  $("#total-price").val(totalPrice);
+  global_cart_price = totalPrice;
+}
 
 calculateTotalPrice();
-
-
-// function updatePointsDropdown() {
-//   var pointsSelect = document.getElementById("pointsSelect");
-//   var options = pointsSelect.options;
-//   var pointsNumber = parseInt(
-//     document.getElementById("pointsNumber").textContent
-//   );
-
-//   for (var i = 0; i < options.length; i++) {
-//     var optionValue = parseInt(options[i].value);
-//     options[i].disabled = pointsNumber < optionValue;
-//   }
-// }
 
 function updatePointsDropdown() {
   var pointsSelect = document.getElementById("pointsSelect");
   var options = pointsSelect.options;
-  var pointsNumber = parseInt(document.getElementById("pointsNumber").textContent);
+  var pointsNumber = parseInt(
+    document.getElementById("pointsNumber").textContent
+  );
 
   for (var i = 0; i < options.length; i++) {
     var optionValue = parseInt(options[i].value);
-    options[i].disabled = pointsNumber < optionValue || totalPrice < optionValue;
+    options[i].disabled =
+      pointsNumber < optionValue || totalPrice < optionValue;
   }
-
 }
-

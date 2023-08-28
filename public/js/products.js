@@ -221,6 +221,7 @@ $(document).ready(function () {
 
     fetchAndDisplayProducts();
   }
+  fetchAndDisplayProducts(); // Initial fetch and display
 
   $("#filter-button").click(function () {
     fetchAndDisplayProducts();
@@ -229,6 +230,20 @@ $(document).ready(function () {
   $("#Sortbyfilter").change(function () {
     fetchAndDisplayProducts();
   });
+  const urlSearch = getUrlParameter("search_query");
+  if (urlSearch) {
+    console.log(urlSearch.toLowerCase());
+    const apiUrl =
+      "http://127.0.0.1:8080/api/search/" + urlSearch.toLowerCase();
 
-  fetchAndDisplayProducts(); // Initial fetch and display
+    $.get(apiUrl, function (data, status) {
+      if (status === "success") {
+        applyFilters(data);
+      } else {
+        console.error("Error fetching products:", status);
+      }
+    }).fail(function () {
+      console.error("Network error occurred");
+    });
+  }
 });

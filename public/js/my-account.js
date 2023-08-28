@@ -87,6 +87,10 @@ function validateCVV(cvv) {
 function validateCardHolder(cardHolder) {
   return cardHolder.length === 9 && /^[0-9]+$/.test(cardHolder);
 }
+function validatePassword(pass) {
+  return /^[^\s\t]{4,}$/.test(pass);
+}
+
 function validateExpirationDate(expirationMonth, expirationYear) {
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth() + 1;
@@ -100,130 +104,6 @@ function validateExpirationDate(expirationMonth, expirationYear) {
   }
   return true;
 }
-
-// personal details validation
-
-$(document).ready(function () {
-  document.addEventListener("DOMContentLoaded", function () {
-    $("#password-form").submit(function (event) {
-      event.preventDefault();
-      var newPassword = $("#newpassword").val();
-      var currentPassword = $("#currpassword").val();
-
-      var passwordPattern =
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
-      if (!passwordPattern.test(newPassword)) {
-        Swal.fire({
-          icon: "error",
-          title: "Invalid Password",
-          text: "Password must contain at least 8 characters, including 1 number, 1 uppercase letter, 1 lowercase letter, and 1 special character.",
-        });
-        return; // Exit the function if password is invalid
-      }
-      var formData = {
-        newPassword: newPassword,
-        currentPassword: currentPassword,
-      };
-      console.log(formData);
-
-      $.ajax({
-        type: "POST",
-        url: "http://localhost:8080/passwordUpdate",
-        data: formData,
-        success: function (response) {
-          // Handle success response
-          console.log("Success:", response);
-          alert("password updated successfully");
-        },
-        error: function (error) {
-          // Handle error response
-          console.log("Error:", error);
-        },
-      });
-    });
-  });
-});
-
-// $(document).ready(function () {
-//   $("#new-payment-form").submit(function (event) {
-//     event.preventDefault();
-
-//     let isValid = true;
-//     const cardNumber = $("#new-card-number-1").val();
-//     const cardNumber1 = $("#new-card-number-2").val();
-//     const cardNumber2 = $("#new-card-number-3").val();
-//     const cardNumber3 = $("#new-card-number-4").val();
-
-//     if (
-//       !validateCardNumber(cardNumber) ||
-//       !validateCardNumber(cardNumber1) ||
-//       !validateCardNumber(cardNumber2) ||
-//       !validateCardNumber(cardNumber3)
-//     ) {
-//       Swal.fire({
-//         icon: "warning",
-//         title: "Validation Error",
-//         text: "ZCard number must have 4 digits each.",
-//       });
-//       // showError("#card-number-error", "Card number must have 4 digits each.");
-//       isValid = false;
-//     }
-
-//     const cardHolder = $("#new-card-holder").val();
-//     if (!validateCardHolder(cardHolder)) {
-//       Swal.fire({
-//         icon: "warning",
-//         title: "Validation Error",
-//         text: "Card holder name must have 9 digits.",
-//       });
-//       // showError("#card-holder-error", "Card holder name must have 9 digits.");
-//       isValid = false;
-//     }
-
-//     const expirationMonth = $("#new-card-expiration-month").val();
-//     const expirationYear = $("#new-card-expiration-year").val();
-//     if (!validateExpirationDate(expirationMonth, expirationYear)) {
-//       Swal.fire({
-//         icon: "warning",
-//         title: "Validation Error",
-//         text: "Invalid expiration date.",
-//       });
-//       // showError("#expiration-month-error", "Invalid expiration date.");
-//       isValid = false;
-//     }
-
-//     const cvv = $("#new-card-ccv").val();
-//     if (!validateCVV(cvv)) {
-//       Swal.fire({
-//         icon: "warning",
-//         title: "Validation Error",
-//         text: "CCV must be 3 digits.",
-//       });
-//       // showError("#cvv-number-error", "CCV must be 3 digits.");
-//       isValid = false;
-//     }
-//     if (!isValid) {
-//       return false;
-//     }
-//   });
-// });
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   const deleteIcon = document.getElementById("address");
-
-//   if (deleteIcon) {
-//     deleteIcon.addEventListener("click", function (event) {
-//       // const confirmDelete = confirm("Are you sure you want to delete this address?");
-//       Swal.fire({
-//         icon: "warning",
-//         title: "Confirmation",
-//         text: "Are you sure you want to delete this address?",
-//       });
-
-//       event.preventDefault(); // Prevents the default action (e.g., navigation or form submission)
-//     });
-//   }
-// });
 
 document.addEventListener("DOMContentLoaded", function () {
   const deleteIcon = document.getElementById("payment");
@@ -399,16 +279,18 @@ function createOrderElement(order) {
 
   const orderDate = document.createElement("h5");
   orderDate.classList.add("order-sub-info");
-  orderDate.innerHTML = `Order Date <span>${order.order_date}</span>`;
+  orderDate.innerHTML = `Order Date <span>${
+    order.order_date.split("T")[0]
+  }</span>`;
 
   const cartProducts = document.createElement("div");
   cartProducts.classList.add("cart-products");
 
-  order.products.forEach((product) => {
-    const productItem = createProductItem(product.imageSrc);
+  for (let i = 0; i < order.products.length; i++) {
+    let product = order.products[i];
+    const productItem = createProductItem(product.image[0]);
     cartProducts.appendChild(productItem);
-  });
-
+  }
   const orderFooter = document.createElement("div");
   orderFooter.classList.add("order-footer");
 
@@ -914,6 +796,59 @@ document.addEventListener("DOMContentLoaded", function () {
         error: function (error) {
           // Handle error response
           console.log("Error:", error);
+        },
+      });
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  $("#password-form").submit(function (event) {
+    event.preventDefault();
+    var newPassword = $("#newpassword").val();
+    var currentPassword = $("#currpassword").val();
+    let isValid = true;
+
+    if (!validatePassword(newPassword)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Password must contain at least 4 characters.",
+      });
+      // showError("#card-holder-error", "Card holder name must have 9 digits.");
+      isValid = false;
+    }
+    if (newPassword === currentPassword) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "your current Password and your new one are the same.",
+      });
+      // showError("#card-holder-error", "Card holder name must have 9 digits.");
+      isValid = false;
+    }
+    if (isValid) {
+      var formData = {
+        newPassword: newPassword,
+        currentPassword: currentPassword,
+      };
+
+      console.log(formData);
+      $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:8080/passwordUpdate",
+        data: formData,
+        success: function (response) {
+          // Handle success response
+          console.log("Success:", response);
+          alert("password updated successfully");
+        },
+        error: function (error) {
+          // Handle error response
+          console.log("Error:", error);
+          alert(
+            "Please check that you are entering your current password correctly"
+          );
         },
       });
     }
