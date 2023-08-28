@@ -266,6 +266,23 @@ exports.getYourAccount = (req, res, next) => {
   });
 };
 
+exports.postContact = (req, res, next) => {
+  try {
+    transporter.sendMail({
+      to: process.env.EMAIL_USERNAME,
+      from: req.body.email,
+      subject: `Contact ${req.body.name}`,
+      // Need to check
+      html: `
+        <p>${req.body.message},</p>
+      `,
+    });
+    res.status(200).json({ message: "Sent mail successfully!" });
+  } catch (err) {
+    res.status(500).json({ message: "Error on server side" });
+  }
+};
+
 // exports.postPayment = async (req, res, next) => {
 //   const phone = req.body.phone;
 //   const city = req.body.city;
