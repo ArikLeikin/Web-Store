@@ -357,69 +357,90 @@
       </div>
     </div>
 
-    <script type="text/javascript" src="https://www.bing.com/api/maps/mapcontrol?key=YOUR_BING_MAPS_API_KEY"></script>
+    <script
+      type="text/javascript"
+      src="https://www.bing.com/api/maps/mapcontrol?key=Aqz-TxrGvUdOSD7cnyI5P2ic19CAV1RJo4MhsKRP0us6CJhf0gyTaBJrZJzL2OHY"
+    ></script>
 
-
-    
     <script type="text/javascript">
       function initMap() {
-  // var apiKey = "Aqz-TxrGvUdOSD7cnyI5P2ic19CAV1RJo4MhsKRP0us6CJhf0gyTaBJrZJzL2OHY";
-  var apiKey= "AIzaSyAc--L5B2_74eqSZrsum00Dc4fYJ1XdSmY";
+        // var apiKey = "Aqz-TxrGvUdOSD7cnyI5P2ic19CAV1RJo4MhsKRP0us6CJhf0gyTaBJrZJzL2OHY";
+        var apiKey = "AIzaSyAc--L5B2_74eqSZrsum00Dc4fYJ1XdSmY";
 
-  var map = new Microsoft.Maps.Map(
-    document.getElementById("mapContainer"),
-    {
-      credentials: apiKey,
-    }
-  );
+        var map = new Microsoft.Maps.Map(
+          document.getElementById("mapContainer"),
+          {
+            credentials: apiKey,
+          }
+        );
 
-  // Make a GET request to retrieve store locations
-  const apiUrl = "http://127.0.0.1:8080/api/store-locations";
-  $.get(apiUrl) // Update the URL to match your API endpoint
-    .done(function (data) {
-      if (data && data.data) {
-        // Iterate through the received locations and add pins to the map
-        data.data.forEach(function (location) {
-          var latitude = location.latitude; // Replace with the actual latitude property
-          var longitude = location.longitude; // Replace with the actual longitude property
+        // Make a GET request to retrieve store locations
+        const apiUrl = "http://localhost:8080/api/store-locations";
+        fetch(apiUrl)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                `Fetch error: ${response.status} ${response.statusText}`
+              );
+            }
+            return response.json();
+          })
+          .then((data) => {
+            for (let i = 0; i < data.data.length; i++) {
+              let location = data.data[i];
+              var latitude = location.latitude; // Replace with the actual latitude property
+              var longitude = location.longitude; // Replace with the actual longitude property
 
-          var locationCoords = new Microsoft.Maps.Location(latitude, longitude);
+              var locationCoords = new Microsoft.Maps.Location(
+                longitude,
+                latitude
+              );
 
-          var pin = new Microsoft.Maps.Pushpin(locationCoords, {
-            title: location.name, // Replace with the actual name property
-            subTitle: location.description, // Replace with the actual description property
+              var pin = new Microsoft.Maps.Pushpin(locationCoords, {
+                title: location.name, // Replace with the actual name property
+                subTitle: location.description, // Replace with the actual description property
+              });
+
+              // Add the pin to the map
+              map.entities.push(pin);
+            }
+          })
+
+          //32.015817
+          .catch((error) => {
+            console.error("Error fetching user details:", error);
           });
 
-          // Add the pin to the map
-          map.entities.push(pin);
+        // $.get(apiUrl) // Update the URL to match your API endpoint
+        //   .done(function (data) {
+        //     console.log(data);
+        //     // data.array.forEach((element) => {
+        //     //   console.log(element.address);
+        //     // });
+        //     // Iterate through the received locations and add pins to the map
+        //   })
+        //   .fail(function (error) {
+        //     console.log(error);
+        //     console.error("Error fetching store locations:", error);
+        //   });
+
+        // Times Square coordinates
+        var latitude = 40.758896; // Times Square latitude
+        var longitude = -73.98513; // Times Square longitude
+
+        var locationCoords = new Microsoft.Maps.Location(latitude, longitude);
+
+        var pin = new Microsoft.Maps.Pushpin(locationCoords, {
+          title: "Times Square",
+          subTitle: "New York City, USA",
         });
+
+        // Add the pin to the map
+        map.entities.push(pin);
       }
-    })
-    .fail(function (error) {
-      console.error("Error fetching store locations:", error);
-    });
-
-
-  // Times Square coordinates
-  var latitude = 40.758896; // Times Square latitude
-  var longitude = -73.985130; // Times Square longitude
-
-  var locationCoords = new Microsoft.Maps.Location(latitude, longitude);
-
-  var pin = new Microsoft.Maps.Pushpin(locationCoords, {
-    title: "Times Square",
-    subTitle: "New York City, USA",
-  });
-
-  // Add the pin to the map
-  map.entities.push(pin);
-
-}
       window.onload = function () {
         initMap();
       };
-      
-
     </script>
   </body>
 </html>

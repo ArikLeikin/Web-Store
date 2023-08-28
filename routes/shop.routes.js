@@ -28,6 +28,7 @@ router.get("/about", shopController.getAboutPage);
 router.get("/addressUpdate", shopController.getaddressUpdate);
 
 router.get("/contact", shopController.getContactPage);
+router.post("/contact", shopController.postContact);
 
 router.get("/creditCardUpdate", shopController.getCreditCardUpdate);
 
