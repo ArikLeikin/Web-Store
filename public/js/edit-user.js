@@ -1,57 +1,4 @@
-$(document).ready(function () {
-    $("#userEdit-form").submit(function (event) {
-      event.preventDefault();
-      clearErrorMessages();
-      let isValid = true;
-  
-      const FirstName = $("#firstName").val();
-      if (!validateName(FirstName)) {
-           Swal.fire({
-          icon: "warning",
-          title: "Validation Error",
-          text: "First name can only contain letters.",
-        });
-        //showError("#firstName-error", "First name can only contain letters.");
-        isValid = false;
-      }
-  
-      const LastName = $("#lastName").val();
-      if (!validateName(LastName)) {
-         Swal.fire({
-        icon: "warning",
-        title: "Validation Error",
-        text: "Last name can only contain letters.",
-      });
-        //showError("#lastName-error", "Last name can only contain letters.");
-        isValid = false;
-      }
-  
-      const phone = $("#phoneNumber").val();
-      if (!validatePhoneNumber(phone)) {
-         Swal.fire({
-          icon: "warning",
-          title: "Validation Error",
-          text: "Phone number must be 10 digits.",
-         });
-       // showError("#phoneNumber-error", "Phone number must be 10 digits.");
-        isValid = false;
-      }
-
-      const password = $("#password").val();
-      var passwordPattern = /^(?=.{4,})/;
-    if (!passwordPattern.test(password)) {
-            Swal.fire({
-              icon: "error",
-              title: "Invalid Password",
-              text: "Password must contain at least 4 characters.",
-            });
-      //showError("#password-error", "Password must contain at least 4 characters.");
-      isValid = false;
-    }
-
-    });
-});
-
+var userID = null;
 function showError(element, message) {
   $(element).text(message).css("color", "red");
 }
@@ -60,9 +7,122 @@ function clearErrorMessages() {
 }
 
 function validatePhoneNumber(phone) {
-    return /^\d{10}$/.test(phone);
-  }
+  return /^\d{10}$/.test(phone);
+}
 
-  function validateName(str) {
-    return /^[A-Za-z\s]+$/.test(str);
+function validateName(str) {
+  return /^[A-Za-z\s]+$/.test(str);
+}
+function validateContainsAtSymbol(str) {
+  return /@/.test(str);
+}
+function getUrlParameter(name) {
+  const results = new RegExp("[?&]" + name + "=([^&#]*)").exec(
+    window.location.href
+  );
+  if (results == null) {
+    return null;
+  } else {
+    return decodeURI(results[1]) || 0;
   }
+}
+$(document).ready(function () {
+  const urlID = getUrlParameter("id");
+  console.log(urlID);
+
+  if (urlID) {
+    userID = urlID;
+    const apiUrl = "http://127.0.0.1:8080/api/user/" + userID;
+    fetch(apiUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Fetch error: ${response.status} ${response.statusText}`
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        document.getElementById("firstName").value = data.name.firstName;
+        document.getElementById("lastName").value = data.name.lastName;
+        document.getElementById("phoneNumber").value = data.phoneNumber;
+        document.getElementById("email").value = data.email;
+      })
+      .catch((error) => {
+        console.error("Error fetching user details:", error);
+      });
+  }
+});
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~POST API ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+document.addEventListener("DOMContentLoaded", function () {
+  $("#userEdit-form").submit(function (event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+    // Get the input values
+    var firstName = $("#firstName").val();
+    var lastName = $("#lastName").val();
+    var phoneNumber = $("#phoneNumber").val();
+    var email = $("#email").val();
+
+    let isValid = true;
+
+    if (!validateName(firstName)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "First name should be only letters.",
+      });
+      isValid = false;
+    }
+
+    if (!validateName(lastName)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Last name should be only letters.",
+      });
+      isValid = false;
+    }
+
+    if (!validatePhoneNumber(phoneNumber)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Phone number can be only 10 digits",
+      });
+      isValid = false;
+    }
+
+    if (!validateContainsAtSymbol(email)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Email address should contain @.",
+      });
+      isValid = false;
+    }
+
+    if (isValid && userID != null) {
+      const formData = $(this).serialize(); // Serialize form data
+      console.log(userID);
+      $.ajax({
+        url: `http://127.0.0.1:8080/update/user/${userID}`,
+        type: "POST",
+        data: formData,
+        success: function (response) {
+          // Handle the response data here
+          console.log(response);
+          alert("Your personal details have been successfully updated");
+        },
+        error: function (error) {
+          // Handle errors here
+          console.error("Error:", error);
+          console.error(
+            "the url api we try to get to is :",
+            `http://127.0.0.1:8080/update/user/${userID}`
+          );
+        },
+      });
+    }
+  });
+});

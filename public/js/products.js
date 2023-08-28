@@ -233,6 +233,10 @@ $(document).ready(function () {
   const urlSearch = getUrlParameter("search_query");
   if (urlSearch) {
     console.log(urlSearch.toLowerCase());
+    $("#category-title").text(
+      "Search resualt for '" + urlSearch.toLowerCase() + "' Games"
+    );
+
     const apiUrl =
       "http://127.0.0.1:8080/api/search/" + urlSearch.toLowerCase();
 
