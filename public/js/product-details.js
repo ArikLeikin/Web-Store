@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  const socket = io();
   //Quantity minus and plus buttons
   $(".minus").click(function () {
     const input = $(this).next();
@@ -23,15 +24,14 @@ $(document).ready(function () {
     const imageSource = $(this).find("img").attr("src");
     $(".productView-image").attr("src", imageSource);
   });
-});
 
-$(document).ready(function () {
   var wishlistExists = null;
 
   /*get request*/
   const productId = window.location.search.split("=")[1];
   const url = `http://127.0.0.1:8080/api/product/${productId}`;
   const productDetailsDiv = $("#product-details");
+  var userId=null;
 
   $.ajax({
     url: url,
@@ -41,6 +41,7 @@ $(document).ready(function () {
       const { title, price, description, quantity, image } = data.data;
       const productCategory = data.data.category;
       const productId = data.data._id;
+      const Quantity= data.data.quantity;
 
       $.ajax({
         url: "http://127.0.0.1:8080/api/current-user",
@@ -48,6 +49,9 @@ $(document).ready(function () {
         dataType: "json",
         success: function (userData) {
           const userPermission = userData.permission;
+          const userid=userData._id;
+          userId=userid;
+         
 
           if (userPermission === "admin") {
             const editIcon = document.createElement("i");
@@ -162,6 +166,8 @@ $(document).ready(function () {
       productQtySection.appendChild(quantityInputDiv);
 
       // Add to cart section
+
+    
       const addToCartSection = document.createElement("section");
       addToCartSection.className = "add-to-cart-section";
 
@@ -171,6 +177,33 @@ $(document).ready(function () {
       addToCartLink.href = "#";
       addToCartLink.textContent = "ADD TO CART";
       addToCartButton.appendChild(addToCartLink);
+
+      const notifyMe = document.createElement("button");
+      notifyMe.className = "notify-button";
+      const notifyMeLink = document.createElement("a");
+      notifyMeLink.href = "#";
+      notifyMeLink.textContent = "Notify me when the product is back in stock";
+      notifyMe.appendChild(notifyMeLink);
+
+      notifyMe.addEventListener("click", function() {
+        notifyServer(userId, productId);
+      });
+      function notifyServer(userId, productId) {
+        console.log(userId);
+        console.log(productId);
+        const data = { userId, productId };
+        socket.emit("notify", data);
+      }
+
+      if (Quantity === 0) {
+        addToCartButton.style.display = "none";
+        notifyMe.style.display = "block";
+      }
+      else{
+        notifyMe.style.display = "none";
+      }
+
+
 
       const favoriteButton = document.createElement("button");
       favoriteButton.className = "favorite-button";
@@ -182,6 +215,7 @@ $(document).ready(function () {
       favoriteButton.appendChild(heartIcon);
 
       addToCartSection.appendChild(addToCartButton);
+      addToCartSection.appendChild(notifyMe);
       addToCartSection.appendChild(favoriteButton);
 
       // Product description section

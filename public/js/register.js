@@ -153,7 +153,7 @@ $(document).ready(function () {
 
 
     
-    if (!validateOnlyLetters(firstName)) {
+    if (!validateOnlyLettersWithSpaces(firstName)) {
       Swal.fire({
         icon: 'warning',
         title: 'Validation Error',
@@ -162,7 +162,7 @@ $(document).ready(function () {
       return;
     }
 
-    if (!validateOnlyLetters(lastName)) {
+    if (!validateOnlyLettersWithSpaces(lastName)) {
       Swal.fire({
         icon: 'warning',
         title: 'Validation Error',
@@ -170,10 +170,10 @@ $(document).ready(function () {
       });
       return
     }
-    function validateOnlyLetters(str) {
-      return /^[a-zA-Z]+$/.test(str);
-    }
-    
+    function validateOnlyLettersWithSpaces(str) {
+      return /^[a-zA-Z\s]+$/.test(str);
+  }
+  
     if (!validateTenDigits(phoneNumber)) {
       Swal.fire({
         icon: 'warning',
