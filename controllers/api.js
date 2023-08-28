@@ -230,31 +230,34 @@ module.exports = {
     }
   },
 
-  deleteFromYad2List : async (req, res) => {
+  deleteFromYad2List: async (req, res) => {
     try {
+      console.log("Hello");
       const productId = req.params.id;
       const userId = req.session.user._id;
-  
+
       // Find the user by their ID
-      const user = await User.findById(userId);
-  
+      const user = await User.findById(userId).populate("usedProducts");
+
       if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+        return res.status(404).json({ message: "User not found" });
       }
-  
+      console.log(user);
       // Remove the product with the given productId from the user's usedProducts array
-      user.usedProducts = await user.usedProducts.filter(product => product.toString() !== productId);
-      
+      user.usedProducts = user.usedProducts.filter(
+        (product) => product.toString() !== productId
+      );
+
       // Save the user's updated data
       await user.save();
       await Product.findByIdAndDelete(productId);
-  
-      res.status(200).json({ message: 'Product deleted successfully' });
+
+      res.status(200).json({ message: "Product deleted successfully" });
     } catch (error) {
       console.log(error);
       res.status(500).json({
-        message: 'Internal server error',
+        message: "Internal server error",
       });
     }
-  }
-}
+  },
+};

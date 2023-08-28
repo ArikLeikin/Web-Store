@@ -374,7 +374,10 @@ exports.postPayment = async (req, res, next) => {
 
     const newOrder = new Order({
       user_info: user._id,
-      products: cartItems.map((item) => item.product._id),
+      products: cartItems.map((item) => ({
+        item: item.product,
+        quantity: item.quantity,
+      })),
       total_price: total_price,
       order_date: dateToSubmit,
       status: "Pending", // Set the initial status as desired
