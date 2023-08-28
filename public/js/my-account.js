@@ -279,16 +279,18 @@ function createOrderElement(order) {
 
   const orderDate = document.createElement("h5");
   orderDate.classList.add("order-sub-info");
-  orderDate.innerHTML = `Order Date <span>${order.order_date}</span>`;
+  orderDate.innerHTML = `Order Date <span>${
+    order.order_date.split("T")[0]
+  }</span>`;
 
   const cartProducts = document.createElement("div");
   cartProducts.classList.add("cart-products");
 
-  order.products.forEach((product) => {
-    const productItem = createProductItem(product.imageSrc);
+  for (let i = 0; i < order.products.length; i++) {
+    let product = order.products[i];
+    const productItem = createProductItem(product.image[0]);
     cartProducts.appendChild(productItem);
-  });
-
+  }
   const orderFooter = document.createElement("div");
   orderFooter.classList.add("order-footer");
 

@@ -70,7 +70,7 @@ $(document).ready(function () {
               );
               var image = $("<img>")
                 .attr({
-                  src: productDetails.data.image[0].split("public")[1],
+                  src: productDetails.data.image[0],
                   alt: productDetails.data.title,
                   title: productDetails.data.title,
                 })

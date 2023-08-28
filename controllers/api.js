@@ -79,9 +79,13 @@ module.exports = {
   getOrderHistory: async (req, res) => {
     try {
       //Need to check
-      const user = await User.findById(req.session.user._id).populate(
-        "orderHistory"
-      );
+      const user = await User.findById(req.session.user._id).populate({
+        path: "orderHistory", // Field containing the array of references
+        populate: {
+          path: "products", // Field within the nested reference
+          model: "Product", // The name of the Product model
+        },
+      });
       res.status(200).json(user.orderHistory);
     } catch (err) {
       res
@@ -198,8 +202,11 @@ module.exports = {
   },
   getSearch: async (req, res, next) => {
     try {
-      const title = req.body.search_query; // need to ask
-      const products = await Product.find({ title: title });
+      console.log(req.params.title);
+      const title = req.params.title; // need to ask
+      const products = await Product.find({
+        title: { $regex: title, $options: "i" },
+      });
       res.status(200).json(products);
     } catch (err) {
       res.status(500).json({ message: "Error in server" });

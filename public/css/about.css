@@ -1,14 +1,3 @@
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 20px;
-  position: static;
-}
-
-p {
-  margin-bottom: 10px;
-}
-
 .logo {
   width: 150px;
   height: 150px;

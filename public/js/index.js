@@ -1,3 +1,12 @@
+document.addEventListener("DOMContentLoaded", function () {
+  $("#search-form").submit(function (event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+    window.location.href =
+      "http://127.0.0.1:8080/products?search_query=" +
+      document.getElementById("search_query").value;
+  });
+});
+
 $(document).ready(function () {
   const userIsLoggedIn = false; // Change this to true if the user is logged in
 

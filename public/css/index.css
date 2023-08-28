@@ -455,6 +455,14 @@ main {
   margin-bottom: 50px;
 }
 /*footer*/
+.footer {
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #dfdfdf;
+  margin-bottom: 40px;
+}
 .links-section {
   display: flex;
   width: 90%;
