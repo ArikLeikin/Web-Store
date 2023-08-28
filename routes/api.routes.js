@@ -8,6 +8,9 @@ router.get("/api/current-user", apiController.getCurrentUser);
 router.get("/api/user/:userId", apiController.getUser);
 router.get("/api/users", apiController.getAllUsers);
 
+router.get("/api/store-locations", apiController.getStoreLocations);
+
+router.get("/api/search", apiController.getSearch);
 router.get("/api/products/:amountValue", apiController.getProductsByAmount);
 router.get("/api/products", apiController.getAllProducts);
 router.get("/api/product/:productId", apiController.getProduct);
@@ -23,7 +26,5 @@ router.get("/api/orders", apiController.getAllOrders);
 
 // router.get("/api/supplier/:supplierId", apiController.getSupplier);
 // router.get("/api/suppliers", apiController.getAllSuppliers);
-
-router.get("/api/store-locations", apiController.getStoreLocations);
 
 module.exports = router;

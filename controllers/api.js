@@ -196,12 +196,21 @@ module.exports = {
       });
     }
   },
+  getSearch: async (req, res, next) => {
+    try {
+      const title = req.body.search_query; // need to ask
+      const products = await Product.find({ title: title });
+      res.status(200).json(products);
+    } catch (err) {
+      res.status(500).json({ message: "Error in server" });
+    }
+  },
 
   getStoreLocations: async (req, res, next) => {
     try {
       const locations = await StoreLocations.find();
-      //console.log(locations);
-      res.status(200).json({
+      console.log(locations);
+      return res.status(200).json({
         data: locations,
       });
     } catch (err) {
