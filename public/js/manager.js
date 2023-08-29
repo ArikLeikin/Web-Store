@@ -1,3 +1,30 @@
+/*collapsible-div for address button*/
+$(document).ready(function () {
+  console.log("inside");
+  var coll = document.getElementsByClassName("collapsible-div");
+  var i;
+  for (i = 0; i < coll.length; i++) {
+    console.log(coll[i]);
+
+    coll[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+
+      var content = this.nextElementSibling;
+      content.classList.toggle("slideout");
+
+      if (content.style.display === "block") {
+        content.style.display = "none";
+        content.classList.toggle("slidein");
+        content.classList.toggle("slideout");
+      } else {
+        content.style.display = "block";
+        content.classList.toggle("slidein");
+        content.classList.toggle("slideout");
+      }
+    });
+  }
+});
+
 //Users
 $(document).ready(function () {
   const baseUrl = "http://127.0.0.1:8080"; // Base URL
@@ -332,7 +359,7 @@ $(document).ready(function () {
       actionCell.appendChild(viewDetailsButton);
 
       var deleteOrderButton = document.createElement("button");
-      deleteOrderButton.className = "delete-order-button";
+      deleteOrderButton.className = "delete-button";
       deleteOrderButton.textContent = "Delete Order";
       deleteOrderButton.addEventListener("click", function () {
         if (confirm("Are you sure you want to delete this order?")) {
@@ -386,95 +413,101 @@ $(document).ready(function () {
   }
 });
 
-
 //Store Locations
 $(document).ready(function () {
-// Function to fetch data from the API endpoint
-async function fetchData() {
-  try {
-    const response = await fetch('http://127.0.0.1:8080/api/store-locations');
-    const data = await response.json();
-    return data.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    return [];
-  }
-}
-
-// Function to populate the table with data
-async function populateTable() {
-  const tableBody = document.querySelector('#store-table tbody');
-  const data = await fetchData();
-  
-  data.forEach(item => {
-    var ID=item._id;
-    const row = tableBody.insertRow();
-    const addressCell = row.insertCell();
-    const phoneNumberCell = row.insertCell();
-    const phoneAreaCodeCell = row.insertCell();
-    const longitudeCell = row.insertCell();
-    const latitudeCell = row.insertCell();
-    const actionCell = row.insertCell(); // New Action cell
-    
-    addressCell.textContent = item.address;
-    phoneNumberCell.textContent = item.phone_number;
-    phoneAreaCodeCell.textContent = item.phone_area_code;
-    longitudeCell.textContent = item.longitude;
-    latitudeCell.textContent = item.latitude;
-    
-    // Create an Edit Address button
-    const editButton = document.createElement('button');
-    editButton.textContent = 'Edit Address';
-    editButton.addEventListener('click', () => {
-      // Redirect to the specified URL
-      window.location.href = 'http://127.0.0.1:8080/store-location-edit?id='+ ID;
-    });
-    actionCell.appendChild(editButton);
-  });
-}
-
-// Call the populateTable function to populate the table
-populateTable();
-
-
-function updateTableWithSearch(query) {
-  const tableBody = document.querySelector('#store-table tbody');
-  const rows = tableBody.querySelectorAll('tr');
-  
-  rows.forEach(row => {
-    const addressCell = row.cells[0];
-    const phoneNumberCell = row.cells[1];
-    const phoneAreaCodeCell = row.cells[2];
-    const longitudeCell = row.cells[3];
-    const latitudeCell = row.cells[4];
-    
-    const addressText = addressCell.textContent.toLowerCase();
-    const phoneNumberText = phoneNumberCell.textContent.toLowerCase();
-    const phoneAreaCodeText = phoneAreaCodeCell.textContent.toLowerCase();
-    const longitudeText = longitudeCell.textContent.toLowerCase();
-    const latitudeText = latitudeCell.textContent.toLowerCase();
-    
-    if (
-      addressText.includes(query) ||
-      phoneNumberText.includes(query) ||
-      phoneAreaCodeText.includes(query) ||
-      longitudeText.includes(query) ||
-      latitudeText.includes(query)
-    ) {
-      row.style.display = ''; // Show the row
-    } else {
-      row.style.display = 'none'; // Hide the row
+  // Function to fetch data from the API endpoint
+  async function fetchData() {
+    try {
+      const response = await fetch("http://127.0.0.1:8080/api/store-locations");
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return [];
     }
+  }
+
+  // Function to populate the table with data
+  async function populateTable() {
+    const tableBody = document.querySelector("#store-table tbody");
+    const data = await fetchData();
+
+    data.forEach((item) => {
+      var ID = item._id;
+      const row = tableBody.insertRow();
+      const addressCell = row.insertCell();
+      const phoneNumberCell = row.insertCell();
+      const phoneAreaCodeCell = row.insertCell();
+      const longitudeCell = row.insertCell();
+      const latitudeCell = row.insertCell();
+      const actionCell = row.insertCell(); // New Action cell
+
+      addressCell.textContent = item.address;
+      phoneNumberCell.textContent = item.phone_number;
+      phoneAreaCodeCell.textContent = item.phone_area_code;
+      longitudeCell.textContent = item.longitude;
+      latitudeCell.textContent = item.latitude;
+
+      var editButton = document.createElement("button");
+      editButton.className = "edit-button";
+      editButton.setAttribute("data-id", item._id);
+      editButton.textContent = "Edit Address";
+      editButton.addEventListener("click", function () {
+        var storagetId = this.getAttribute("data-id");
+        window.location.href =
+          "http://127.0.0.1:8080/store-location-edit?id=" + storagetId;
+      });
+      /*actionCell.appendChild(editButton);
+      // Create an Edit Address button
+      const editButton = document.createElement("button");
+      editButton.textContent = "Edit Address";
+      editButton.addEventListener("click", () => {
+        // Redirect to the specified URL
+        window.location.href =
+          "http://127.0.0.1:8080/store-location-edit?id=" + ID;
+      });*/
+      actionCell.appendChild(editButton);
+    });
+  }
+
+  // Call the populateTable function to populate the table
+  populateTable();
+
+  function updateTableWithSearch(query) {
+    const tableBody = document.querySelector("#store-table tbody");
+    const rows = tableBody.querySelectorAll("tr");
+
+    rows.forEach((row) => {
+      const addressCell = row.cells[0];
+      const phoneNumberCell = row.cells[1];
+      const phoneAreaCodeCell = row.cells[2];
+      const longitudeCell = row.cells[3];
+      const latitudeCell = row.cells[4];
+
+      const addressText = addressCell.textContent.toLowerCase();
+      const phoneNumberText = phoneNumberCell.textContent.toLowerCase();
+      const phoneAreaCodeText = phoneAreaCodeCell.textContent.toLowerCase();
+      const longitudeText = longitudeCell.textContent.toLowerCase();
+      const latitudeText = latitudeCell.textContent.toLowerCase();
+
+      if (
+        addressText.includes(query) ||
+        phoneNumberText.includes(query) ||
+        phoneAreaCodeText.includes(query) ||
+        longitudeText.includes(query) ||
+        latitudeText.includes(query)
+      ) {
+        row.style.display = ""; // Show the row
+      } else {
+        row.style.display = "none"; // Hide the row
+      }
+    });
+  }
+
+  // Attach event listener to the search input
+  const searchInput = document.getElementById("search-locations-input");
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    updateTableWithSearch(query);
   });
-}
-
-// Attach event listener to the search input
-const searchInput = document.getElementById('search-locations-input');
-searchInput.addEventListener('input', () => {
-  const query = searchInput.value.toLowerCase();
-  updateTableWithSearch(query);
 });
-  
-
-});
-
