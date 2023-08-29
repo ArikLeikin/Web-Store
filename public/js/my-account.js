@@ -253,6 +253,7 @@ fetch("http://127.0.0.1:8080/api/current-user")
   .then((data) => {
     document.getElementById("full-user-name").textContent =
       data.name.firstName + " " + data.name.lastName;
+    document.getElementById("points-number").textContent = data.points;
     document.getElementById("firstName").value = data.name.firstName;
     document.getElementById("lastName").value = data.name.lastName;
     document.getElementById("phoneNumber").value = data.phoneNumber;
