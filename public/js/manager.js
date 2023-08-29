@@ -457,6 +457,22 @@ $(document).ready(function () {
         window.location.href =
           "http://127.0.0.1:8080/store-location-edit?id=" + storagetId;
       });
+
+
+      var deleteButton = document.createElement("button");
+      deleteButton.className = "delete-button";
+      deleteButton.setAttribute("data-id", item._id);
+      deleteButton.textContent = "Delete";
+      deleteButton.addEventListener("click", function () {
+      var storeId = this.getAttribute("data-id");
+      if(confirm("Are you sure you want to delete this store location?"))
+      {
+        deleteStoreLocation(ID); 
+      }
+      
+    });
+       actionCell.appendChild(editButton);
+      actionCell.appendChild(deleteButton);
       /*actionCell.appendChild(editButton);
       // Create an Edit Address button
       const editButton = document.createElement("button");
@@ -490,6 +506,16 @@ $(document).ready(function () {
       const longitudeText = longitudeCell.textContent.toLowerCase();
       const latitudeText = latitudeCell.textContent.toLowerCase();
 
+      // const deleteButton = row.querySelector(".delete-button");
+      // if (deleteButton) {
+      //   deleteButton.addEventListener("click", function () {
+      //     var storeId = this.getAttribute("data-id");
+      //     deleteStoreLocation(storeId);
+      //   });
+      // }
+
+
+
       if (
         addressText.includes(query) ||
         phoneNumberText.includes(query) ||
@@ -510,4 +536,167 @@ $(document).ready(function () {
     const query = searchInput.value.toLowerCase();
     updateTableWithSearch(query);
   });
+
+
+  $("#add-location-form").submit(function (event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+    // Get the input values
+  
+    var phoneNumber = $("#phoneNumber").val();
+    var phoneareacode = $("#phoneareacode").val();
+    var longitude = $("#longitude").val();
+    var latitude = $("#latitude").val();
+    let isValid = true;
+  
+    // if (!validatePhoneNumber(phoneNumber)) {
+    //   Swal.fire({
+    //     icon: "warning",
+    //     title: "Validation Error",
+    //     text: "Phone number can be only 9 digits",
+    //   });
+    //   isValid = false;
+    // }
+  
+    if (!containsDigits(phoneareacode)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Phone Area Code should be only digits.",
+      });
+      isValid = false;
+    }
+  
+    if (!containsDigitsAndDot(longitude)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Longitude should be only digits and a dot.",
+      });
+      isValid = false;
+    }
+  
+    if (!containsDigitsAndDot(latitude)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Latitude should be only digits and a dot.",
+      });
+      isValid = false;
+    }
+  
+    if (isValid) {
+      var formData = {
+          address:$("#address").val(),
+          phone_number: $("#phonenumber").val(),
+          phone_area_code:$("#phoneareacode").val(),
+          latitude:$("#latitude").val(),
+          longitude: $("#longitude").val() 
+      };
+      console.log(formData);
+      addLocation(formData)
+      
+    }
+  });
+
+  function addLocation(formData)
+{
+  $.ajax({
+    url: `http://127.0.0.1:8080/create/store-locations`,
+    type: "POST",
+    data: formData,
+    success: function (response) {
+      // Handle the response data here
+      console.log(response);
+      alert("The new store location is successfully added");
+      addRowToTable(response);
+      
+    },
+    error: function (error) {
+      // Handle errors here
+      console.error("Error:", error);
+    },
+  });
+
+}
+
+
 });
+
+
+async function deleteStoreLocation(storeId) {
+  try {
+    const response = await fetch(`http://127.0.0.1:8080/delete/store-locations/${storeId}`, {
+      method: "POST",
+    });
+
+    if (response.ok) {
+      // If successful response, remove the corresponding row from the table
+      const rowToDelete = document.querySelector(`[data-id="${storeId}"]`).parentNode.parentNode;
+      rowToDelete.parentNode.removeChild(rowToDelete);
+    } else {
+      console.error("Error deleting store location");
+    }
+  } catch (error) {
+    console.error("Error deleting store location:", error);
+  }
+}
+
+
+
+
+function validatePhoneNumber(phone) {
+  return /^\d{9}$/.test(phone);
+}
+
+
+function containsDigits(input) {
+return /\d+/.test(input);
+}
+
+function containsDigitsAndDot(input) {
+return /^[\d.]+$/.test(input);
+}
+
+
+function addRowToTable(item) {
+  const tableBody = document.querySelector("#store-table tbody");
+  const row = tableBody.insertRow();
+  const addressCell = row.insertCell();
+  const phoneNumberCell = row.insertCell();
+  const phoneAreaCodeCell = row.insertCell();
+  const longitudeCell = row.insertCell();
+  const latitudeCell = row.insertCell();
+  const actionCell = row.insertCell(); 
+
+  addressCell.textContent = item.address;
+  phoneNumberCell.textContent = item.phone_number;
+  phoneAreaCodeCell.textContent = item.phone_area_code;
+  longitudeCell.textContent = item.longitude;
+  latitudeCell.textContent = item.latitude;
+
+  var editButton = document.createElement("button");
+  editButton.className = "edit-button";
+  editButton.setAttribute("data-id", item._id);
+  editButton.textContent = "Edit Address";
+  editButton.addEventListener("click", function () {
+    var storagetId = this.getAttribute("data-id");
+    window.location.href =
+      "http://127.0.0.1:8080/store-location-edit?id=" + item._id;
+  });
+
+  var deleteButton = document.createElement("button");
+  deleteButton.className = "delete-button";
+  deleteButton.setAttribute("data-id", item._id);
+  deleteButton.textContent = "Delete";
+  deleteButton.addEventListener("click", function () {
+    var storeId = this.getAttribute("data-id");
+    if (confirm("Are you sure you want to delete this store location?")) {
+      deleteStoreLocation(ID);
+    }
+  });
+
+  actionCell.appendChild(editButton);
+  actionCell.appendChild(deleteButton);
+  
+  window.location.href = "http://127.0.0.1:8080/manager"
+}
