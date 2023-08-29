@@ -65,6 +65,12 @@ router.get("/edit-user", isAdmin, adminController.getEditUser);
 
 router.get("/order-update", isAdmin, adminController.getOrderUpdate);
 
+router.get(
+  "/store-location-edit",
+  isAdmin,
+  adminController.getStoreLocationEdit
+);
+
 router.get("/d3", isAdmin, adminController.getD3);
 
 module.exports = router;

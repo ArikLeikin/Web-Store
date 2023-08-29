@@ -449,6 +449,19 @@ exports.getOrderUpdate = async (req, res) => {
   }
 };
 
+exports.getStoreLocationEdit = async (req, res) => {
+  try {
+    const file = path.join(
+      __dirname,
+      "../public/html/store-location-edit.html"
+    );
+    res.status(200).sendFile(file);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 exports.getEditUser = async (req, res) => {
   try {
     const file = path.join(__dirname, "../public/html/edit-user.html");
