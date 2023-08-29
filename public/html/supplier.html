@@ -361,16 +361,16 @@
               required
               placeholder="Quantity"
             />
-            <select
+          
+            <!-- <select
               class="third-input form-select"
               id="condition"
               name="condition"
               required
             >
-              <!-- <option value="" disabled selected hidden>Condition</option> -->
               <option value="New">New</option>
               <option value="Used">Used</option>
-            </select>
+            </select>  -->
           </div>
           <input
             type="file"
@@ -437,7 +437,7 @@
             var age_range = $("#ages").val();
             var title = $("#productName").val();
             var price = $("#price").val();
-            var condition = $("#condition").val();
+             var condition = "New";
             var description = $("#description").val();
             var image = $("#productPhotos")[0].files;
             var quantity = $("#quantity").val();

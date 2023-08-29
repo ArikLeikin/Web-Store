@@ -31,3 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     plusSlides(1);
   }, 4000); // 5000 milliseconds = 5 seconds
 });
+
+
+
+
