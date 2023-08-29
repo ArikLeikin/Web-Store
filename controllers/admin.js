@@ -157,7 +157,7 @@ exports.get = async (req, res) => {
     let returnedObject;
     switch (expression) {
       case "product":
-        returnedObject = await Product.find({ _id: id });
+        returnedObject = await Product.findById( id );
         break;
       case "order":
         returnedObject = await Order.findById(id)
@@ -165,10 +165,10 @@ exports.get = async (req, res) => {
           .populate("user_info");
         break;
       case "store-locations":
-        returnedObject = await StoreLocations.find({ _id: id });
+        returnedObject = await StoreLocations.findById( id );
         break;
       case "user":
-        returnedObject = await User.find({ _id: id });
+        returnedObject = await User.findById( id );
         break;
       default:
         // Handle cases where the expression doesn't match any of the expected values

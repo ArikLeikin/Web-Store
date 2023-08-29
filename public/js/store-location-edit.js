@@ -1,9 +1,34 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     const Id = window.location.search.split("=")[1];
+    console.log(Id);
+    const url = `http://127.0.0.1:8080/get/store-locations/${Id}`;
 
+    fetch(`http://127.0.0.1:8080/get/store-locations/${Id}`)
+            .then(response => response.json())
+            .then(data => {
+                // Assuming the data structure matches the form field names
+                const {
+                   
+                    address,
+                    phone_number,
+                    phone_area_code,
+                    longitude,
+                    latitude
+                } = data.data;
+                console.log(data);
+                console.log(address);
 
-
+                // Populate form fields with data
+                document.getElementById('address').value = address;
+                document.getElementById('phoneNumber').value = phone_number;
+                document.getElementById('phoneareacode').value = phone_area_code;
+                document.getElementById('longitude').value = longitude;
+                document.getElementById('latitude').value = latitude;
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
 
 
     $("#store-location-edit-form").submit(function (event) {
@@ -24,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         Swal.fire({
           icon: "warning",
           title: "Validation Error",
-          text: "Phone number can be only 10 digits",
+          text: "Phone number can be only 9 digits",
         });
         isValid = false;
       }
@@ -66,20 +91,20 @@ document.addEventListener("DOMContentLoaded", function () {
         };
         console.log(formData);
         $.ajax({
-          url: `http://127.0.0.1:8080/update/user/${userID}`,
+          url: `http://127.0.0.1:8080/update/store-locations/${Id}`,
           type: "POST",
           data: formData,
           success: function (response) {
             // Handle the response data here
             console.log(response);
-            alert("Those personal details have been successfully updated");
+            alert("The details are successfully updated");
           },
           error: function (error) {
             // Handle errors here
             console.error("Error:", error);
             console.error(
               "the url api we try to get to is :",
-              `http://127.0.0.1:8080/update/user/${userID}`
+              `http://127.0.0.1:8080/update/store-locations/${Id}`
             );
           },
         });
@@ -89,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
 
   function validatePhoneNumber(phone) {
-    return /^\d{10}$/.test(phone);
+    return /^\d{9}$/.test(phone);
   }
 
   function containsDigits(input) {

@@ -11,7 +11,7 @@ const StoreLocationsSchema = new Schema({
     required: true,
   },
   phone_area_code: {
-    type: Number,
+    type: String,
     required: true,
   },
   latitude: {
