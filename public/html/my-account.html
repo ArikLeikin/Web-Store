@@ -297,6 +297,11 @@
                 <span class="top-sidebar-title">Hi,</span><br />
                 <span class="top-sidebar-title bold" id="full-user-name"></span>
               </p>
+              <p>
+                <span class="top-sidebar-sub-title">You have </span>
+                <span class="top-sidebar-sub-title" id="points-number"></span>
+                <span class="top-sidebar-sub-title"> Points! </span>
+              </p>
             </div>
           </div>
           <div class="nav-sidebar">
@@ -1105,34 +1110,4 @@
       </div>
     </footer>
   </body>
-  <script>
-    // show 'wishtlist' parameter from the URL
-    // Define the getUrlParameter function
-    function getUrlParameter(name) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(name);
-    }
-
-    $(document).ready(function () {
-      const urlPar = getUrlParameter("show");
-      if (urlPar && urlPar.toLowerCase() === "wishlist") {
-        $(".page-section").hide();
-        $("#wish-list").show();
-
-        //fetchAndDisplayProducts();
-      }
-    });
-
-    function createProductItem(imageSrc) {
-      const item = document.createElement("div");
-      item.classList.add("item");
-
-      const img = document.createElement("img");
-      img.src = imageSrc;
-      img.alt = "item";
-
-      item.appendChild(img);
-      return item;
-    }
-  </script>
 </html>

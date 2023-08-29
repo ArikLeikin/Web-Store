@@ -111,6 +111,12 @@ a.inside-link:active {
   padding: 5px;
   letter-spacing: 2px;
 }
+.top-sidebar-sub-title {
+  font-size: 14px;
+  padding: 5px;
+  letter-spacing: 2px;
+  font-weight: 500px;
+}
 .top-sidebar-title.bold {
   font-weight: 500px;
 }
