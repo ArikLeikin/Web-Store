@@ -1,6 +1,8 @@
 var max = 0;
 
 $(document).ready(function () {
+  const urlSearch = getUrlParameter("search_query");
+
   const productGrid = $("#productGrid");
   $("#category-title").text("All Games");
   // Function to create the product HTML structure
@@ -71,6 +73,8 @@ $(document).ready(function () {
 
     if (max < product.price) {
       max = product.price;
+      const urlPrice = getUrlParameter("price");
+      if (urlPrice) max = parseInt(urlPrice);
       updatemaxprices();
     }
 
@@ -104,7 +108,7 @@ $(document).ready(function () {
 
   function updatemaxprices() {
     $("#max-price-input").attr("max", max + 1);
-    $("#max-price-input").val(parseInt(max + 1));
+    $("#max-price-input").val(parseInt(max));
     $("#min-price-input").attr(
       "max",
       parseInt($("#max-price-input").val()) - 1
@@ -175,7 +179,7 @@ $(document).ready(function () {
 
   // Extract 'category' parameter from the URL
   const urlCategory = getUrlParameter("category");
-  if (urlCategory) {
+  if (urlCategory && !urlSearch) {
     const optionValues = [
       { value: "", label: "All" },
       { value: "boardgames", label: "Board Games" },
@@ -203,7 +207,7 @@ $(document).ready(function () {
 
   // Extract 'category' parameter from the URL
   const urlAge = getUrlParameter("age");
-  if (urlAge) {
+  if (urlAge && !urlSearch) {
     const optionValues = [
       { value: "", label: "All" },
       { value: "0-12", label: "0-12 months" },
@@ -221,7 +225,8 @@ $(document).ready(function () {
 
     fetchAndDisplayProducts();
   }
-  fetchAndDisplayProducts(); // Initial fetch and display
+
+  if (!urlAge && !urlCategory && !urlSearch) fetchAndDisplayProducts(); // Initial fetch and display
 
   $("#filter-button").click(function () {
     fetchAndDisplayProducts();
@@ -230,7 +235,7 @@ $(document).ready(function () {
   $("#Sortbyfilter").change(function () {
     fetchAndDisplayProducts();
   });
-  const urlSearch = getUrlParameter("search_query");
+
   if (urlSearch) {
     console.log(urlSearch.toLowerCase());
     $("#category-title").text(

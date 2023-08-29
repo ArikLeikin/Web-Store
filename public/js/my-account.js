@@ -58,6 +58,33 @@ $(document).ready(function () {
     show("yad2-list");
   });
 });
+
+function getUrlParameter(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
+
+$(document).ready(function () {
+  const urlPar = getUrlParameter("show");
+  if (urlPar && urlPar.toLowerCase() === "wishlist") {
+    $(".page-section").hide();
+    $("#wish-list").show();
+    console.log("inside");
+    //fetchAndDisplayProducts();
+  }
+});
+
+function createProductItem(imageSrc) {
+  const item = document.createElement("div");
+  item.classList.add("item");
+
+  const img = document.createElement("img");
+  img.src = imageSrc;
+  img.alt = "item";
+
+  item.appendChild(img);
+  return item;
+}
 /* ~~~~~~~~~~~~ validation section ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 function validateOnlyLetters(str) {
   return /^[a-zA-Z]+$/.test(str);
@@ -437,7 +464,8 @@ fetch("http://127.0.0.1:8080/api/current-user")
           // contentType: false,
           success: function (response) {
             alert("Product removed successfully from wishlist!");
-            window.location.href = "http://127.0.0.1:8080/my-account";
+            window.location.href =
+              "http://127.0.0.1:8080/my-account?show=wishlist";
           },
           error: function (xhr, status, error) {
             console.error("Error: " + error);
@@ -492,7 +520,8 @@ fetch("http://127.0.0.1:8080/api/current-user")
           data: formData,
           success: function (response) {
             alert("product added successfully to cart!");
-            window.location.href = "http://127.0.0.1:8080/my-account";
+            window.location.href =
+              "http://127.0.0.1:8080/my-account?show=wishlist";
           },
           error: function (xhr, status, error) {
             console.error("Error: " + error);
@@ -520,122 +549,11 @@ fetch("http://127.0.0.1:8080/api/current-user")
       wishItemDiv.appendChild(cartModalDiv);
       console.log(wishItemsContainer);
       wishItemsContainer.appendChild(wishItemDiv);
-      //     var wishItemTemplate = `
-      //     <div class="wish-item">
-      //       <div aria-label="wish-delete" class="wish-delete">
-      //         <i class="fa fa-trash" id="wish"></i>
-      //       </div>
-      //       <img src="${item.product.image}" alt="item" />
-      //       <section class="title">
-      //         <span class="title-desc center">
-      //           <a href="#">${item.product.title}</a>
-      //         </span>
-      //         <br />
-      //         <span class="title-price center">$${item.product.price}</span>
-      //       </section>
-      //       <button class="add-to-cart" id="addToCartBtn" type="button">
-      //         Add to cart
-      //       </button>
-      //       <div class="modal" id="cartModal">
-      //         <div class="modal-content">
-      //           <p class="centered-text">
-      //             Product added to cart! &#10003;
-      //           </p>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   `;
-
-      //     var wishItemDiv = document.createElement("div");
-      //     wishItemDiv.innerHTML = wishItemTemplate;
-      //     wishItemsContainer.appendChild(wishItemDiv);
     }
   })
   .catch((error) => {
     console.error("Error fetching user details:", error);
   });
-
-// function deleteProduct(productId, productElement) {
-//   $.ajax({
-//     url: 'http://127.0.0.1:8080/wishlist/delete',
-//     method: 'POST',
-//     data: { productId: productId },
-//     success: function(response) {
-//       productElement.remove();
-//     },
-//     error: function(error) {
-//       console.error('Error deleting product:', error);
-//     }
-//   });
-// }
-
-// function addToCart(productId) {
-//   console.log(productId);
-//   var q=1;
-//   $.ajax({
-//     url: "http://127.0.0.1:8080/cart/add",
-//     method: "POST",
-//     data: {
-//       productId: productId,
-//       quantity: q,
-//     },
-//     success: function (response) {
-//       alert("Product added to cart!");
-//       console.log("Product added to cart:", response);
-//     },
-//     error: function (error) {
-//       console.error("Error adding product to cart:", error);
-//     },
-//   });
-// }
-// $(document).ready(function() {
-//   $.ajax({
-//     url: 'http://127.0.0.1:8080/wishlist/products',
-//     method: 'GET',
-//     dataType: 'json',
-//     success: function(data) {
-//       const wishItemsContainer = $('.wish-items-container');
-
-//       // Iterate through each product in the data and generate HTML
-//       data.data.forEach(product => {
-//         const wishItem = $('<div>').addClass('wish-item');
-
-//         // Create elements and set attributes
-//         const wishDelete = $('<div>').addClass('wish-delete').append(
-//           $('<i>').addClass('fa fa-trash').attr('aria-label', 'wish-delete')
-//         );
-//         const image = $('<img>').attr('src', product.image).attr('alt', 'item');
-//         const title = $('<a>').text(product.title);
-//         const price = $('<span>').addClass('title-price center').text('$' + product.price);
-//         const addToCartBtn = $('<button>').addClass('add-to-cart').attr('type', 'button').text('Add to cart');
-
-//         // Append elements to the wish item
-//         wishItem.append(wishDelete);
-//         wishItem.append(image);
-//         wishItem.append(title);
-//         wishItem.append(price);
-//         wishItem.append(addToCartBtn);
-
-//         wishDelete.click(function() {
-//           const confirmDelete = confirm('Are you sure you want to delete this product?');
-//           if (confirmDelete) {
-//             deleteProduct(product.product, wishItem);
-//           }
-//         });
-
-//         addToCartBtn.click(function() {
-//           addToCart(product.product);
-//         });
-
-//         // Append the wish item to the container
-//         wishItemsContainer.append(wishItem);
-//       });
-//     },
-//     error: function(error) {
-//       console.error('Error fetching wishlist products:', error);
-//     }
-//   });
-// });
 
 //user yad2 list
 fetch("http://127.0.0.1:8080/api/current-user")

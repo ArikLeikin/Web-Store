@@ -1,6 +1,6 @@
 main {
   margin: 0;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .category-title,
@@ -24,24 +24,24 @@ main {
 
 .filter-sidebar {
   float: left;
-  width: 230px;
   margin: 0;
   padding: 3px;
   height: 600px;
   margin-right: 10px;
+  margin-left: 10px;
+
   border: 1px solid #ccc;
   border-radius: 3px;
   background-color: white;
+  width: 19%;
 }
 .filter-sidebar,
 .product-grid-section {
   display: inline-block;
 }
-.filter-sidebar {
-  width: 19%;
-}
+
 .product-grid-section {
-  width: 70%;
+  width: 75%;
 }
 .filter-option {
   margin-bottom: 50px;
@@ -109,8 +109,8 @@ main {
 .product-item {
   background-color: #fff;
   float: left;
-  margin: 0 10px 10px 0;
-  width: 200px;
+  /* margin: 0 10px 10px 0; */
+  width: 27%;
   padding: 7px;
   min-height: 200px;
   display: grid;
@@ -121,11 +121,13 @@ main {
 .product-img img {
   display: block;
   margin: auto;
-  width: 190px;
+  width: 180px;
   height: auto;
+  aspect-ratio: 2/2; /*nofar*/
+  object-fit: contain;
 }
 .img-container {
-  width: 190px;
+  /* width: 190px; */
   height: 210px;
 }
 .product-title,
@@ -199,10 +201,13 @@ main {
 }
 
 #productGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  display: flex;
+  /* grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); */
   gap: 20px;
-  padding: 20px;
+  /* padding: 10px; */
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .product-container {
