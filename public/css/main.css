@@ -114,3 +114,23 @@
   left: 0;
   float: left;
 }
+
+
+.video-container {
+  max-width: 640px;
+  margin: 0 auto;
+  margin-left: 40px;
+}
+
+video {
+  width: 80%;
+  height: auto;
+  display: block;
+}
+
+.video-container p {
+  font-size: 18px;
+  color: #333;
+  margin-top: 20px;
+  font-weight: bold;
+}
