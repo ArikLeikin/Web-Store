@@ -26,8 +26,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     <script src="../js/index.js"></script>
-    <script src="../js/manager.js"></script>
-    <link rel="stylesheet" href="../css/manager.css" />
+    <script src="../js/store-location-edit.js"></script>
+    <link rel="stylesheet" href="../css/store-location-edit.css" />
   </head>
 
   <body>
@@ -290,9 +290,74 @@
       </nav>
       <!-- End Navigation Bar -->
     </header>
-    <main style="margin-top: 160px">
+    <main style="margin-top: 190px">
+        <div class="box">
+          <form class="t-form" id="store-location-edit-form">
+            <fieldset class="fieldset fieldset-address">
+              <label class="reg-label" for="address">Address</label>
+              <input
+                class="reg-input"
+                type="address"
+                id="address"
+                name="address"
+                required
+              />
+            </fieldset>
 
-    </main>
+            <fieldset class="fieldset-phoneNumber">
+                <label class="reg-label" for="phoneNumber">Phone number</label>
+                <input
+                  class="reg-input"
+                  type="phoneNumber"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  required
+                />
+              </fieldset>
+
+            <fieldset class="fieldset fieldset-phoneareacode">
+              <label class="reg-label" for="phoneareacode">Phon Area Code</label>
+              <input
+                class="reg-input"
+                type="phoneareacode"
+                id="phoneareacode"
+                name="phoneareacode"
+                required
+              />
+            </fieldset>
+           
+            <fieldset class="fieldset-longitude">
+              <label class="reg-label" for="longitude">Longitude</label>
+              <input
+                class="reg-input"
+                type="longitude"
+                id="longitude"
+                name="longitude"
+                required
+              />
+            </fieldset>
+
+            <fieldset class="fieldset-latitude">
+                <label class="reg-label" for="latitude">Latitude</label>
+                <input
+                  class="reg-input"
+                  type="latitude"
+                  id="latitude"
+                  name="latitude"
+                  required
+                />
+              </fieldset>
+  
+            <button
+              class="btn-account-page"
+              type="submit"
+              id="update-details-form"
+            >
+              Save Changes
+            </button>
+          </form>
+        </div>
+      </main>
 
     <footer class="footer">
       <div class="footer-continer">
