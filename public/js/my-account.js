@@ -398,45 +398,157 @@ fetch("http://127.0.0.1:8080/api/current-user")
     return response.json();
   })
   .then((data) => {
+    console.log(data);
     var alertBox = document.getElementById("wishlist-alert-box");
-    var wishItemsContainer = document.getElementById("wish-items");
-
+    var wishItemsContainer = document.getElementById("wish-items-container");
+    console.log(wishItemsContainer);
     if (data.wishlist.length === 0) {
       alertBox.style.display = "block";
     } else {
       alertBox.style.display = "none";
       // Wishlist is not empty, create and populate the template
-      data.wishlist.forEach((item) => {
-        var wishItemTemplate = `
-        <div class="wish-item">
-          <div aria-label="wish-delete" class="wish-delete">
-            <i class="fa fa-trash" id="wish"></i>
-          </div>
-          <img src="${item.product.image}" alt="item" />
-          <section class="title">
-            <span class="title-desc center">
-              <a href="#">${item.product.title}</a>
-            </span>
-            <br />
-            <span class="title-price center">$${item.product.price}</span>
-          </section>
-          <button class="add-to-cart" id="addToCartBtn" type="button">
-            Add to cart
-          </button>
-          <div class="modal" id="cartModal">
-            <div class="modal-content">
-              <p class="centered-text">
-                Product added to cart! &#10003;
-              </p>
-            </div>
-          </div>
-        </div>
-      `;
+    }
+    for (let i = 0; i < data.wishlist.length; i++) {
+      const item = data.wishlist[i];
+      console.log("product = " + item);
+      var wishItemDiv = document.createElement("div");
+      wishItemDiv.classList.add("wish-item");
 
-        var wishItemDiv = document.createElement("div");
-        wishItemDiv.innerHTML = wishItemTemplate;
-        wishItemsContainer.appendChild(wishItemDiv);
+      var wishDeleteDiv = document.createElement("div");
+      wishDeleteDiv.classList.add("wish-delete");
+      wishDeleteDiv.setAttribute("aria-label", "wish-delete");
+
+      var wishDeleteIcon = document.createElement("i");
+      wishDeleteIcon.classList.add("fa", "fa-trash");
+      wishDeleteIcon.id = "wish";
+      wishDeleteDiv.appendChild(wishDeleteIcon);
+
+      wishDeleteIcon.addEventListener("click", function () {
+        let formData = {
+          productId: item.product._id,
+        };
+        // console.log(item.product._id);
+        // formData.append("productId", item.product._id);
+        $.ajax({
+          url: `http://127.0.0.1:8080/wishlist/delete`,
+          method: "POST",
+          data: formData,
+          // processData: false,
+          // contentType: false,
+          success: function (response) {
+            alert("Product removed successfully from wishlist!");
+            window.location.href = "http://127.0.0.1:8080/my-account";
+          },
+          error: function (xhr, status, error) {
+            console.error("Error: " + error);
+          },
+        });
       });
+
+      var wishItemImage = document.createElement("img");
+      wishItemImage.src = item.product.image[0];
+      wishItemImage.alt = "item";
+
+      wishItemImage.addEventListener("click", function () {
+        window.location.href =
+          "http://127.0.0.1:8080/product-details?id=" + item.product._id;
+      });
+
+      var titleSection = document.createElement("section");
+      titleSection.classList.add("title");
+
+      var titleDescSpan = document.createElement("span");
+      titleDescSpan.classList.add("title-desc", "center");
+      var titleLink = document.createElement("a");
+      titleLink.href =
+        "http://127.0.0.1:8080/product-details?id=" + item.product._id;
+      titleLink.textContent = item.product.title;
+      titleDescSpan.appendChild(titleLink);
+
+      var priceSpan = document.createElement("span");
+      priceSpan.classList.add("title-price", "center");
+      priceSpan.textContent = "$" + item.product.price;
+
+      titleSection.appendChild(titleDescSpan);
+      titleSection.appendChild(document.createElement("br"));
+      titleSection.appendChild(priceSpan);
+
+      var addToCartBtn = document.createElement("button");
+      addToCartBtn.classList.add("add-to-cart");
+      addToCartBtn.id = "addToCartBtn";
+      addToCartBtn.type = "button";
+      addToCartBtn.textContent = "Add to cart";
+      addToCartBtn.addEventListener("click", function () {
+        // let formData = new FormData();
+        // formData.append("productId", item.product._id);
+        // formData.append("quantity", "1");
+        let formData = {
+          productId: item.product._id,
+          quantity: "1",
+        };
+        $.ajax({
+          url: `http://127.0.0.1:8080/cart/add`,
+          method: "POST",
+          data: formData,
+          success: function (response) {
+            alert("product added successfully to cart!");
+            window.location.href = "http://127.0.0.1:8080/my-account";
+          },
+          error: function (xhr, status, error) {
+            console.error("Error: " + error);
+          },
+        });
+      });
+
+      var cartModalDiv = document.createElement("div");
+      cartModalDiv.classList.add("modal");
+      cartModalDiv.id = "cartModal";
+
+      var modalContentDiv = document.createElement("div");
+      modalContentDiv.classList.add("modal-content");
+      var modalText = document.createElement("p");
+      modalText.classList.add("centered-text");
+      modalText.textContent = "Product added to cart! \u2713";
+
+      modalContentDiv.appendChild(modalText);
+      cartModalDiv.appendChild(modalContentDiv);
+
+      wishItemDiv.appendChild(wishDeleteDiv);
+      wishItemDiv.appendChild(wishItemImage);
+      wishItemDiv.appendChild(titleSection);
+      wishItemDiv.appendChild(addToCartBtn);
+      wishItemDiv.appendChild(cartModalDiv);
+      console.log(wishItemsContainer);
+      wishItemsContainer.appendChild(wishItemDiv);
+      //     var wishItemTemplate = `
+      //     <div class="wish-item">
+      //       <div aria-label="wish-delete" class="wish-delete">
+      //         <i class="fa fa-trash" id="wish"></i>
+      //       </div>
+      //       <img src="${item.product.image}" alt="item" />
+      //       <section class="title">
+      //         <span class="title-desc center">
+      //           <a href="#">${item.product.title}</a>
+      //         </span>
+      //         <br />
+      //         <span class="title-price center">$${item.product.price}</span>
+      //       </section>
+      //       <button class="add-to-cart" id="addToCartBtn" type="button">
+      //         Add to cart
+      //       </button>
+      //       <div class="modal" id="cartModal">
+      //         <div class="modal-content">
+      //           <p class="centered-text">
+      //             Product added to cart! &#10003;
+      //           </p>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   `;
+
+      //     var wishItemDiv = document.createElement("div");
+      //     wishItemDiv.innerHTML = wishItemTemplate;
+      //     wishItemsContainer.appendChild(wishItemDiv);
     }
   })
   .catch((error) => {

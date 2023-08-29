@@ -643,6 +643,7 @@ exports.postWishlistAdd = async (req, res, next) => {
 exports.postWishlistDelete = async (req, res, next) => {
   // req.session.user = await User.find({ username: "admin" }); // FIND -> RETURNS ARRAY!
   // req.session.user = req.session.user[0]; --> For testing
+  console.log("POST WISHLIST DELETE");
   console.log(req.body);
   const productId = req.body.productId;
   const user = await User.findById(req.session.user._id);
