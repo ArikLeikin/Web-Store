@@ -40,7 +40,7 @@ $(document).ready(function () {
           var latitude = location.latitude; // Replace with the actual latitude property
           var longitude = location.longitude; // Replace with the actual longitude property
 
-          var locationCoords = new Microsoft.Maps.Location(longitude, latitude);
+          var locationCoords = new Microsoft.Maps.Location(latitude,longitude);
 
           var pin = new Microsoft.Maps.Pushpin(locationCoords, {
             title: location.name, // Replace with the actual name property
