@@ -445,6 +445,72 @@
       </table>
 
       <h2 class="page-title sub">Store Locations Management</h2>
+      <br />
+        <div class="add-location-contianer">
+        <button class="collapsible-div btn-account-page" type="button">
+          Add New Store Location
+        </button>
+        
+        <form class="add-location-form" id="add-location-form">
+          <div class="form-row">
+            <div class="input-wrapper">
+              <label for="address">Address:</label>
+              <input
+                class="form-input"
+                type="text"
+                id="address"
+                name="address"
+                required
+              />
+            </div>
+            <div class="input-wrapper">
+              <label for="phonenumber">Phone number:</label>
+              <input
+                class="form-input"
+                type="phonenumber"
+                id="phonenumber"
+                name="phonenumber"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-wrapper">
+              <label for="phoneareacode">Phone Area Code:</label>
+              <input
+                class="form-input"
+                type="phoneareacode"
+                id="phoneareacode"
+                name="phoneareacode"
+                required
+              />
+            </div>
+            <div class="input-wrapper">
+              <label for="email">Longitude:</label>
+              <input 
+              class="form-input"
+               type="longitude"
+                id="longitude"
+                 name="longitude" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-wrapper">
+              <label for="latitude">Latitude:</label>
+              <input
+                class="form-input"
+                type="text"
+                id="latitude"
+                name="latitude"
+              />
+            </div>
+            <div class="input-wrapper">
+              <button type="submit" id="location-button">Create Store Location</button>
+            </div>
+          </div>
+        </form>
+      </div>
+       
       <input
         type="text"
         id="search-locations-input"
