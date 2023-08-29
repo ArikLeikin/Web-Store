@@ -175,16 +175,14 @@ exports.postUpdatePassword = async (req, res) => {
     const newPassword = req.body.newPassword;
     console.log(req.body);
     if (newPassword === currPassword) {
-      console.log("WHYYY");
       return res.status(400).json({ message: "Passwords are same." });
     }
-    console.log("1");
+
     console.log(req.session);
     const user = await User.findById(req.session.user._id);
-    console.log("2");
+
     const match = await bcrypt.compare(currPassword, user.password);
-    console.log("3");
-    console.log(match);
+
     if (!match) {
       return res.status(400).json({ message: "wrong current password" });
     }
