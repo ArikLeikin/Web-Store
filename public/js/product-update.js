@@ -64,7 +64,7 @@ $(document).ready(function () {
       var age_range = $("#age").val();
       var title = $("#productName").val();
       var price = $("#price").val();
-      var condition = $("#condition").val();
+      // var condition = $("#condition").val();
       var quantity = $("#quantity").val();
       var description = $("#description").val();
       var image = $("#productPhotos")[0].files;
@@ -75,7 +75,7 @@ $(document).ready(function () {
       formData.append("age_range", age_range);
       formData.append("title", title);
       formData.append("price", price);
-      formData.append("condition", condition);
+      // formData.append("condition", condition);
       formData.append("quantity", quantity);
       formData.append("description", description);
       for (var i = 0; i < image.length; i++) {
@@ -150,7 +150,7 @@ $(document).ready(function () {
       console.log(data.data);
 
       $("#productName").val(data.data.title);
-      $("#condition").val(data.data.condition);
+      // $("#condition").val(data.data.condition);
       $("#price").val(data.data.price);
       $("#age").val(data.data.age_range);
       $("#quantity").val(data.data.quantity);

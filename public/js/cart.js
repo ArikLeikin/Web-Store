@@ -40,6 +40,8 @@ $(document).ready(function () {
             method: "GET",
             dataType: "json",
             success: function (productDetails) {
+              var Category= productDetails.data.category;
+              console.log(Category);
               console.log(productDetails);
               var cartItemRow = $("<tr>")
                 .addClass("cart-item")
@@ -103,6 +105,7 @@ $(document).ready(function () {
               cartItemRow.append(titleCell);
 
               // Cart Item Quantity Cell
+              //if (Category !== "yad2" ){
               var quantityCell = $("<td>").addClass(
                 "cart-item-block cart-item-quantity"
               );
@@ -122,13 +125,24 @@ $(document).ready(function () {
                 .addClass("plus btn")
                 .attr("type", "button")
                 .val("+");
+                
               var quantityInputDiv = $("<div>")
-                .addClass("quantity-input")
+                .addClass("quantity-input");
+
+
+                if (Category === "yad2" ){
+                  quantityInputDiv.append(quantityInputt);
+                }
+
+                if (Category !== "yad2" ){
+                 quantityInputDiv
                 .append(minusButtonn)
                 .append(quantityInputt)
                 .append(plusButtonn);
+                }
               quantityCell.append(quantityInputDiv);
               cartItemRow.append(quantityCell);
+             // }
 
               // Cart Item Subtotal Cell
               var subtotalCell = $("<td>").addClass(
@@ -164,7 +178,7 @@ $(document).ready(function () {
                 currentQuantity--;
                 var cartItemId = productId;
 
-                if (currentQuantity > 1) {
+                if (currentQuantity > 0) {
                   $.ajax({
                     url: "http://127.0.0.1:8080/cart/update",
                     method: "POST",
