@@ -274,3 +274,50 @@ main {
 .filter-submit-button:hover {
   background-color: #0056b3;
 }
+
+/*alert box*/
+.box {
+  /* border: 1px solid #ccc; */
+  background-color: white;
+  padding: 20px;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  overflow: auto;
+  margin: 0 auto;
+  width: 60%;
+  margin-top: 20px;
+}
+.box-icon-title {
+  font-size: 25px;
+}
+.box-text-title {
+  padding-left: 7px;
+  font-size: 30px;
+}
+.alertBox {
+  border-style: none;
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1.125rem 0.75rem 1.125rem;
+  transition: opacity 0.3s ease-out;
+}
+.alertBox-column {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+}
+
+.alertBox-column {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
+}
+.alertBox-message {
+  text-align: left;
+  padding-left: 15px;
+}

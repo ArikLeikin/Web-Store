@@ -142,6 +142,8 @@ $(document).ready(function () {
       const productHTML = createProductHTML(product);
       productGrid.append(productHTML);
     });
+
+    checkIfNull();
   }
 
   function sortProductsByPrice(products, sortOrder) {
@@ -254,5 +256,22 @@ $(document).ready(function () {
     }).fail(function () {
       console.error("Network error occurred");
     });
+  }
+
+  /*check if there is no products in the grid*/
+  function isElementEmpty(element) {
+    return element.children.length === 0;
+  }
+  function checkIfNull() {
+    const productGrid = document.getElementById("productGrid");
+    var alertBox = document.getElementById("products-alert");
+
+    // Check if the element is null or undefined
+    if (isElementEmpty(productGrid)) {
+      alertBox.style.display = "block";
+    } else {
+      console.log("The element with ID 'productGrid' exists.");
+      alertBox.style.display = "none";
+    }
   }
 });
