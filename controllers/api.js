@@ -251,6 +251,28 @@ module.exports = {
       // Save the user's updated data
       await user.save();
       await Product.findByIdAndDelete(productId);
+      const users = await User.find();
+      for (let i = 0; i < users.length; i++) {
+        let currUser = users[i];
+        let currUserWishList = currUser.wishlist;
+        let currUserCart = currUser.cart;
+        let ifSave = false;
+        for (let j = 0; j < currUserWishList.length; j++) {
+          if (currUserWishList[j].product.toString() === productId) {
+            currUserWishList.splice(j, 1);
+            ifSave = true;
+            break;
+          }
+        }
+        for (let j = 0; j < currUserCart.items.length; j++) {
+          if (currUserCart.items[j].product.toString() === productId) {
+            currUserCart.items.splice(j, 1);
+            ifSave = true;
+            break;
+          }
+        }
+        if (ifSave) await currUser.save();
+      }
 
       res.status(200).json({ message: "Product deleted successfully" });
     } catch (error) {

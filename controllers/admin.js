@@ -257,6 +257,39 @@ exports.delete = async (req, res) => {
     switch (expression) {
       case "product":
         await Product.findOneAndDelete({ _id: id });
+        const users = await User.find();
+        for (let i = 0; i < users.length; i++) {
+          let currUser = users[i];
+          let currUserWishList = currUser.wishlist;
+          let currUserCart = currUser.cart;
+          let currUserUsedProducts = currUser.usedProducts;
+          let ifSave = false;
+          for (let j = 0; j < currUserWishList.length; j++) {
+            if (currUserWishList[j].product.toString() === id) {
+              currUserWishList.splice(j, 1);
+              ifSave = true;
+              break;
+            }
+          }
+          console.log(id);
+
+          for (let j = 0; j < currUserCart.items.length; j++) {
+            if (currUserCart.items[j].product.toString() === id) {
+              currUserCart.items.splice(j, 1);
+              ifSave = true;
+              break;
+            }
+          }
+          for (let j = 0; j < currUserUsedProducts.length; j++) {
+            if (currUserUsedProducts[j].toString() === id) {
+              currUserUsedProducts.splice(j, 1);
+              ifSave = true;
+              break;
+            }
+          }
+          if (ifSave) await currUser.save();
+        }
+
         break;
       case "order":
         await Order.findOneAndDelete({ _id: id });
@@ -434,4 +467,4 @@ exports.getD3 = async (req, res) => {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });
   }
-}
+};

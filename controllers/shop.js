@@ -385,7 +385,7 @@ exports.postPayment = async (req, res, next) => {
       status: "Pending", // Set the initial status as desired
     });
 
-    user.points += total_price * 0.1;
+    user.points += Math.round(total_price * 0.1);
     /*[
       {name,quantity}
       {name,quantity}
