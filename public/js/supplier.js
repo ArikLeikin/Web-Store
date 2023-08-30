@@ -103,7 +103,7 @@ $(document).ready(function () {
     var description = $("#description").val();
     let isValid = true;
 
-    if (!validateNumber(price)) {
+    if (!isOnlyDigits(price)) {
       Swal.fire({
         icon: "warning",
         title: "Validation Error",
@@ -146,7 +146,7 @@ $(document).ready(function () {
       isValid = false;
     }
 
-    if (!validateNumber(quantity)) {
+    if (!isOnlyDigits(quantity)) {
       Swal.fire({
         icon: "warning",
         title: "Validation Error",
@@ -164,11 +164,13 @@ $(document).ready(function () {
       isValid = false;
     }
 
-    function validateNumber(str) {
+  
+
+    function isOnlyDigits(str) {
       return /^\d+$/.test(str);
     }
     function validateLettersDigitsAndSpaces(str) {
-      return /^[a-zA-Z0-9 ]{4,}$/.test(str);
+      return /^[a-zA-Z0-9\s\S]{5,}$/.test(str);
     }
 
     function validateLettersDigitsAndSpaces2(str) {
