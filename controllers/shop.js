@@ -357,7 +357,9 @@ exports.postPayment = async (req, res, next) => {
       total_price += singleItem.price * cartItems[i].quantity;
       //console.log("single item= " + singleItem);
       //console.log("cart item[i]= " + cartItems[i]);
+
       singleItem.quantity -= cartItems[i].quantity;
+      await singleItem.save();
       //console.log("Single Item quantity = ", singleItem.quantity);
       const productId = singleItem._id.toString();
       console.log(singleItem.title);
@@ -392,7 +394,7 @@ exports.postPayment = async (req, res, next) => {
         }
         for (let j = 0; j < currUserCart.items.length; j++) {
           if (
-            singleItem.quantity === 0 &&
+            singleItem.quantity < 1 &&
             currUserCart.items[j].product.toString() === productId
           ) {
             currUserCart.items.splice(j, 1);
@@ -411,7 +413,6 @@ exports.postPayment = async (req, res, next) => {
         }
         if (ifSave) await currUser.save();
       }
-      await singleItem.save();
     }
 
     console.log("PRICE: " + total_price);
