@@ -6,6 +6,7 @@ $(document).ready(function () {
   const productGrid = $("#productGrid");
   $("#category-title").text("All Games");
   // Function to create the product HTML structure
+
   function createProductHTML(product) {
     const productItem = document.createElement("div");
     productItem.className = "product-item";
@@ -33,7 +34,12 @@ $(document).ready(function () {
       imgContainer.appendChild(productLink);
       productItem.appendChild(imgContainer);
     }
-
+    if (product.quantity === 0) {
+      const outOfStockText = document.createElement("p");
+      outOfStockText.className = "out-of-stock-text"; // Apply your desired class
+      outOfStockText.textContent = "Out of Stock";
+      imgContainer.appendChild(outOfStockText);
+    }
     // Creating the product title section
     const productTitleSection = document.createElement("section");
     productTitleSection.className = "product-title";
@@ -44,7 +50,7 @@ $(document).ready(function () {
 
     // Creating the product title link
     const productTitleLink = document.createElement("a");
-    productTitleLink.href = "#";
+    productTitleLink.href = "/product-details?id=" + product._id;
     productTitleLink.textContent = product.title.toLowerCase();
 
     // Adding the title link to the title description

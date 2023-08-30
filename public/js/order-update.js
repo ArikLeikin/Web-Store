@@ -35,6 +35,27 @@ $(document).ready(function () {
         // Append the user details template to the cart details container
         cartDetailsContainer.append(userDetailsTemplate);
 
+        // check if the user is admin
+        fetch("http://127.0.0.1:8080/api/current-user")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                `Fetch error: ${response.status} ${response.statusText}`
+              );
+            }
+            return response.json();
+          })
+          .then((data) => {
+            const orderStatusSelect = document.getElementById("order-status");
+
+            if (data.permission === "admin") {
+              orderStatusSelect.disabled = false;
+            } else orderStatusSelect.disabled = true;
+          })
+          .catch((error) => {
+            console.error("Error fetching user details:", error);
+          });
+
         for (let i = 0; i < data.data.products.length; i++) {
           let product = data.data.products[i].item;
           //  console.log("the product " + product.title);
