@@ -340,13 +340,13 @@ exports.postPayment = async (req, res, next) => {
     //   userToModify.usedProducts.slice(index, 1);
     // }
 
-    yad2Products.forEach((yad2Product) => {
-      const userToModify = users.find((someUser) =>
-        someUser.usedProducts.includes(yad2Product.product._id)
-      );
-      const index = userToModify.usedProducts.indexOf(yad2Product.product._id);
-      userToModify.usedProducts.splice(index, 1);
-    });
+    // yad2Products.forEach((yad2Product) => {
+    //   const userToModify = users.find((someUser) =>
+    //     someUser.usedProducts.includes(yad2Product.product._id)
+    //   );
+    //   const index = userToModify.usedProducts.indexOf(yad2Product.product._id);
+    //   userToModify.usedProducts.splice(index, 1);
+    // });
 
     let total_price = 0;
     for (let i = 0; i < cartItems.length; i++) {
@@ -544,7 +544,10 @@ exports.postCartAdd = async (req, res, next) => {
     let quantityToSave = parseInt(req.body.quantity);
     if (quantityToSave <= 0)
       return res.status(400).json({ message: "Non positive quantity" });
-    const user = await User.findById(req.session.user._id);
+    const user = await User.findById(req.session.user._id).populate(
+      "cart.items.product"
+    );
+    console.log(user.cart.items);
     let cart;
     if (!user.cart) {
       cart = { items: [] }; // Initialize the cart if it doesn't exist
@@ -554,11 +557,13 @@ exports.postCartAdd = async (req, res, next) => {
 
     if (cart.items.length > 0) {
       const existingCartItem = cart.items.find(
-        (item) => item.product.toString() === productIdToSave
+        (item) => item.product._id.toString() === productIdToSave
       );
 
       if (existingCartItem) {
-        existingCartItem.quantity += quantityToSave;
+        console.log(existingCartItem);
+        if (existingCartItem.product.category !== "yad2")
+          existingCartItem.quantity += quantityToSave;
       } else {
         cart.items.push({
           product: productIdToSave,
