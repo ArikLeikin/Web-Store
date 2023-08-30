@@ -271,11 +271,12 @@ exports.postContact = (req, res, next) => {
   try {
     transporter.sendMail({
       to: process.env.EMAIL_USERNAME,
-      from: req.body.email,
+      from: process.env.EMAIL_USERNAME,
       subject: `Contact ${req.body.name}`,
       // Need to check
       html: `
-        <p>${req.body.message},</p>
+        <p>${req.body.message},</p><br>
+        <p>Sent by: ${req.body.email}</p>
       `,
     });
     res.status(200).json({ message: "Sent mail successfully!" });
