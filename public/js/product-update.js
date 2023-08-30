@@ -102,7 +102,8 @@ $(document).ready(function () {
 });
 
 function validateLettersDigitsAndSpaces(str) {
-  return /^[a-zA-Z0-9 ]{4,}$/.test(str);
+  //return /^[a-zA-Z0-9 ]{4,}$/.test(str);
+  return /^[a-zA-Z0-9\s\S]{5,}$/.test(str);
 }
 function containsOnlyNumbers(str) {
   return /^(?!0)\d+$/.test(str);
@@ -112,7 +113,8 @@ function validateNumber(str) {
 }
 
 function validateLettersDigitsAndSpaces2(str) {
-  return /^[a-zA-Z0-9 ]{5,}$/.test(str);
+  // return /^[a-zA-Z0-9 ]{5,}$/.test(str);
+  return /^[a-zA-Z0-9\s\S]{5,}$/.test(str);
 }
 
 document.addEventListener("DOMContentLoaded", function () {

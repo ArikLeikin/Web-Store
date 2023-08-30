@@ -1,17 +1,5 @@
 /* CSS for Registration Page */
 
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
-  background-color: #fff;
-}
-
-h1 {
-  text-align: center;
-  color: #333;
-}
-
 .login-form {
   max-width: 400px;
   margin: 20px auto;
@@ -54,18 +42,12 @@ h1 {
   background-color: #ffa659;
 }
 
-p {
-  text-align: center;
-  margin-top: 10px;
-  color: #ffa659;
-}
-
-a {
+.a-link {
   text-decoration: none;
   color: #e98936;
 }
 
-a:hover {
+.a-link:hover {
   text-decoration: underline;
 }
 

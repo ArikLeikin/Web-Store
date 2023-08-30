@@ -172,7 +172,7 @@ $(document).ready(function () {
     }
 
     function validateLettersDigitsAndSpaces2(str) {
-      return /^[a-zA-Z0-9 ]{5,}$/.test(str);
+      return /^[a-zA-Z0-9\s\S]{5,}$/.test(str);
     }
 
     if (!isValid) {
