@@ -120,6 +120,7 @@ $(document).ready(function () {
                   size: "4",
                   id: "quantity",
                   value: quantity,
+                  readonly: true
                 });
               var plusButtonn = $("<input>")
                 .addClass("plus btn")
@@ -207,7 +208,8 @@ $(document).ready(function () {
                 let currentQuantity = parseInt(quantityInput.val());
                 currentQuantity++;
                 var cartItemId = productId;
-
+                const maxQuantity = productDetails.data.quantity;
+                if (currentQuantity <= maxQuantity){
                 $.ajax({
                   url: "http://127.0.0.1:8080/cart/update",
                   method: "POST",
@@ -228,7 +230,10 @@ $(document).ready(function () {
                     console.error("Error update (+) item: " + error);
                   },
                 });
+              }
               });
+              
+            
 
               quantityInput.on("input", function () {
                 updateItemSubtotal(

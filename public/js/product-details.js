@@ -140,6 +140,7 @@ $(document).ready(function () {
       quantityInput.className = "input-text qty text";
       quantityInput.size = "4";
       quantityInput.value = "1";
+      quantityInput.readOnly = true;
 
       const plusButton = document.createElement("input");
       plusButton.className = "plus btn";
