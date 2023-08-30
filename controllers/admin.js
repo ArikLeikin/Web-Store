@@ -305,10 +305,11 @@ exports.delete = async (req, res) => {
     const model = url.split("/");
     const expression = model[2];
     console.log(expression);
+    const users = await User.find();
     switch (expression) {
       case "product":
         await Product.findOneAndDelete({ _id: id });
-        const users = await User.find();
+
         for (let i = 0; i < users.length; i++) {
           let currUser = users[i];
           let currUserWishList = currUser.wishlist;
@@ -344,6 +345,16 @@ exports.delete = async (req, res) => {
         break;
       case "order":
         await Order.findOneAndDelete({ _id: id });
+        for (let i = 0; i < users.length; i++) {
+          const ordersOfUser = users[i].orderHistory;
+          for (let j = 0; j < ordersOfUser.length; j++) {
+            if (users[i].orderHistory[j]._id.toString() === id) {
+              users[i].orderHistory[j].splice(j, 1);
+              return;
+            }
+          }
+        }
+
         break;
       case "store-locations":
         await StoreLocations.findOneAndDelete({ _id: id });
@@ -356,7 +367,6 @@ exports.delete = async (req, res) => {
         return res.status(400).json({
           message: "Error with query",
         });
-        break;
     }
     res.status(200).json({
       message: "Deleted successfully.",
