@@ -350,7 +350,7 @@ $(document).ready(function () {
 
       var actionCell = row.insertCell();
       var viewDetailsButton = document.createElement("button");
-      viewDetailsButton.className = "view-details-button";
+      viewDetailsButton.className = "edit-button";
       viewDetailsButton.textContent = "View Details";
       viewDetailsButton.addEventListener("click", function () {
         window.location.href =
@@ -700,5 +700,5 @@ function addRowToTable(item) {
   actionCell.appendChild(editButton);
  
   
-  //window.location.href = "http://127.0.0.1:8080/manager"
+  window.location.href = "http://127.0.0.1:8080/manager"
 }

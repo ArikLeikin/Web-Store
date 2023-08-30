@@ -258,6 +258,10 @@ $(document).ready(function () {
             quantity: quantity,
           },
           success: function (response) {
+            if (isHTML(response)) {
+              window.location.href = "http://127.0.0.1:8080/login";
+              return;
+            }
             alert("Product added to cart!");
             console.log("Product added to cart:", response);
           },
@@ -265,6 +269,11 @@ $(document).ready(function () {
             console.error("Error adding product to cart:", error);
           },
         });
+
+        function isHTML(str) {
+          var doc = new DOMParser().parseFromString(str, 'text/html');
+          return Array.from(doc.body.childNodes).some(node => node.nodeType === 1);
+      }
       }
 
       $(".minus").click(function () {
@@ -310,6 +319,10 @@ $(document).ready(function () {
             productId: productId,
           },
           success: function (response) {
+            if (isHTML(response)) {
+              window.location.href = "http://127.0.0.1:8080/login";
+              return;
+            }
             console.log("Product added to wishlist:", response);
             alert("The item has been added to your favorites list");
           },
@@ -317,6 +330,11 @@ $(document).ready(function () {
             console.error("Error adding product to wishlist:", error);
           },
         });
+
+        function isHTML(str) {
+          var doc = new DOMParser().parseFromString(str, 'text/html');
+          return Array.from(doc.body.childNodes).some(node => node.nodeType === 1);
+      }
       }
 
       function RemoveFromWishlist(productId) {
