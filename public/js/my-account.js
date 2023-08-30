@@ -271,30 +271,87 @@ fetch("http://127.0.0.1:8080/api/current-user")
   });
 
 //user order list
-fetch("http://127.0.0.1:8080/api/orders/history")
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`Fetch error: ${response.status} ${response.statusText}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    var alertBox = document.getElementById("orders-alert-box");
-    const orderHistoryContainer = document.getElementById("order-history");
-    if (data.length == 0) {
-      alertBox.style.display = "block";
-    } else {
-      alertBox.style.display = "none";
+// fetch("http://127.0.0.1:8080/api/orders/history")
+//   .then((response) => {
+//     if (!response.ok) {
+//       throw new Error(`Fetch error: ${response.status} ${response.statusText}`);
+//     }
+//     return response.json();
+//   })
+//   .then((data) => {
+//     var alertBox = document.getElementById("orders-alert-box");
+//     const orderHistoryContainer = document.getElementById("order-history");
+//     if (data.length == 0) {
+//       alertBox.style.display = "block";
+//     } else {
+//       alertBox.style.display = "none";
 
-      data.forEach((order) => {
-        const orderElement = createOrderElement(order);
-        orderHistoryContainer.appendChild(orderElement);
-      });
-    }
-  })
-  .catch((error) => {
-    console.error("Error fetching user details:", error);
+//       data.forEach((order) => {
+//         const orderElement = createOrderElement(order);
+//         orderHistoryContainer.appendChild(orderElement);
+//       });
+//     }
+//   })
+//   .catch((error) => {
+//     console.error("Error fetching user details:", error);
+//   });
+
+// Fetch data from the server based on filters
+// Function to fetch and display orders
+function fetchAndDisplayOrders(startDate, endDate, orderStatus) {
+  const queryParams = new URLSearchParams({
+    startDate,
+    endDate,
+    orderStatus,
+    timestamp: new Date().getTime(),
   });
+
+  const url = `http://127.0.0.1:8080/api/orders/history?${queryParams}`;
+  const orderHistoryContainer = document.getElementById("order-history");
+
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          `Fetch error: ${response.status} ${response.statusText}`
+        );
+      }
+      return response.json();
+    })
+    .then((data) => {
+      var alertBox = document.getElementById("orders-alert-box");
+      if (data.length == 0) {
+        alertBox.style.display = "block";
+        orderHistoryContainer.innerHTML = "";
+      } else {
+        alertBox.style.display = "none";
+        orderHistoryContainer.innerHTML = "";
+
+        data.forEach((order) => {
+          const orderElement = createOrderElement(order);
+          orderHistoryContainer.appendChild(orderElement);
+        });
+      }
+    })
+    .catch((error) => {
+      orderHistoryContainer.innerHTML = "";
+      console.error("Error fetching user details:", error);
+    });
+}
+
+// Fetch and display orders when the page loads
+window.addEventListener("load", () => {
+  fetchAndDisplayOrders("", "", ""); // Fetch all orders
+});
+
+// Fetch and display orders when the "Filter" button is clicked
+document.getElementById("applyFilters").addEventListener("click", () => {
+  const startDate = document.getElementById("startDate").value;
+  const endDate = document.getElementById("endDate").value;
+  const orderStatus = document.getElementById("orderStatus").value;
+
+  fetchAndDisplayOrders(startDate, endDate, orderStatus);
+});
 
 function createOrderElement(order) {
   const orderDiv = document.createElement("div");

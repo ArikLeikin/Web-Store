@@ -372,35 +372,51 @@
         </div>
         <div class="t-content">
           <!--ORDERS-->
-          <div class="page-section order-history" id="order-history">
-            <div class="box">
-              <span class="box-icon-title"
-                ><i class="fa fa-shopping-cart"></i
-              ></span>
-              <span class="box-text-title">Order History</span>
-            </div>
-            <div class="box" id="orders-alert-box">
-              <div class="alertBox alertBox--info">
-                <div class="alertBox-column alertBox-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
-                    ></path>
-                  </svg>
-                </div>
+          <div class="box">
+            <span class="box-icon-title"
+              ><i class="fa fa-shopping-cart"></i
+            ></span>
+            <span class="box-text-title">Order History</span>
+          </div>
+          <div>
+            <label for="startDate" class="filter-label">Start Date:</label>
+            <input type="date" id="startDate" name="startDate" />
 
-                <span class="alertBox-column alertBox-message"
-                  >You haven't placed any orders with us. When you do, their
-                  status will appear on this page.</span
+            <label for="endDate" class="filter-label">End Date:</label>
+            <input type="date" id="endDate" name="endDate" />
+
+            <label for="orderStatus" class="filter-label">Order Status:</label>
+            <select id="orderStatus" name="orderStatus">
+              <option value="">All</option>
+              <option value="Pending">Pending</option>
+              <option value="Approved">Approved</option>
+              <option value="Delivered">Delivered</option>
+            </select>
+
+            <button id="applyFilters" class="btn-filter">Apply Filters</button>
+          </div>
+          <div class="box" id="orders-alert-box">
+            <div class="alertBox alertBox--info">
+              <div class="alertBox-column alertBox-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
                 >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+                  ></path>
+                </svg>
               </div>
+
+              <span class="alertBox-column alertBox-message"
+                >You haven't placed any orders with us. When you do, their
+                status will appear on this page.</span
+              >
             </div>
           </div>
+          <div class="page-section order-history" id="order-history"></div>
 
           <!-- personal details-->
           <div class="page-section personal-details" id="personal-details">
