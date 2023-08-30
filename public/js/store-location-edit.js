@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Handle the response data here
             console.log(response);
             alert("The details are successfully updated");
+            window.location.href = "http://127.0.0.1:8080/manager"
           },
           error: function (error) {
             // Handle errors here
