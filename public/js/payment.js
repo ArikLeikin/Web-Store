@@ -318,6 +318,7 @@ $(document).ready(function () {
     }
 
     if (isValid) {
+      $("#spinner").show();
       const FirstName = $("#firstname").val();
       const LastName = $("#lastname").val();
       const country = $("#country").val();
@@ -326,12 +327,12 @@ $(document).ready(function () {
       const city = $("#city").val();
       const street = $("#street").val();
       const streetNumber = $("#street_number").val();
-      const cardHolder = $("#card-holder").val();
+      // const cardHolder = $("#card-holder").val();
       const lastFourDigits = $("#card-number-4").val();
-      const expirationMonth = $("#card-expiration-month").val();
-      const expirationYear = $("#card-expiration-year").val();
+      // const expirationMonth = $("#card-expiration-month").val();
+      // const expirationYear = $("#card-expiration-year").val();
 
-      const totalElement = document.getElementById("total-price");
+      // const totalElement = document.getElementById("total-price");
 
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
@@ -356,12 +357,6 @@ $(document).ready(function () {
         `;
 
       $("#modal-content").html(modalContent);
-
-      $("#myModal").show();
-      $(".close").click(function () {
-        $("#myModal").hide();
-        window.location.href = "http://127.0.0.1:8080/my-account";
-      });
 
       if (saveAddress) {
         var formData = {
@@ -423,7 +418,7 @@ $(document).ready(function () {
           },
         });
       }
-      calculateTotalPrice();
+      // calculateTotalPrice();
 
       var pointsSelect = document.getElementById("pointsSelect");
       var options = pointsSelect.value;
@@ -452,9 +447,19 @@ $(document).ready(function () {
         data: formData,
         success: function (response) {
           console.log("Payment successful:", response);
+          $("#spinner").hide();
+          $("#myModal").show();
+          $(".close").click(function () {
+            $("#myModal").hide();
+            window.location.href = "http://127.0.0.1:8080/my-account";
+          });
         },
         error: function (error) {
           console.error("Payment error:", error);
+          alert("An error occurred, please try again later");
+          window.location.href = "http://127.0.0.1:8080/cart";
+
+          $("#spinner").hide();
         },
       });
     }
