@@ -56,6 +56,7 @@ input[type="submit"]:hover {
   text-align: center;
   position: relative;
   margin-top: 30px;
+  margin-bottom: 100px;
 }
 .msform fieldset {
   background: white;
