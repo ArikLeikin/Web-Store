@@ -521,3 +521,11 @@ i#address-delete-icon {
   font-size: 20px;
   cursor: pointer;
 }
+div#yad2-option {
+  text-align: center;
+  background-color: rgb(17 17 17 / 59%);
+  color: #ebebeb;
+  font-weight: bold;
+  height: min-content;
+  padding: 9px 4px;
+}
