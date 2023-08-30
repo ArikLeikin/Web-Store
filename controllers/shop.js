@@ -339,9 +339,9 @@ exports.postPayment = async (req, res, next) => {
       await singleItem.save();
       //console.log("Single Item quantity = ", singleItem.quantity);
       const productId = singleItem._id.toString();
-      console.log(singleItem.title);
-      console.log("new quantity = ", singleItem.quantity);
-      console.log(singleItem);
+      // console.log(singleItem.title);
+      // console.log("new quantity = ", singleItem.quantity);
+      // console.log(singleItem);
       //console.log(productId);
       for (let i = 0; i < users.length; i++) {
         let currUser = users[i];
@@ -406,7 +406,7 @@ exports.postPayment = async (req, res, next) => {
     );
 
     const newOrder = new Order({
-      user_info: user._id,
+      user_info: user,
       products: cartItems.map((item) => ({
         item: item.product,
         quantity: parseInt(item.quantity),
