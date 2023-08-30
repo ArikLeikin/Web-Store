@@ -5,7 +5,9 @@ function validateLettersDigitsAndSpaces(str) {
 function containsOnlyNumbers(str) {
   return /^\d+$/.test(str);
 }
-
+function validateDesc(str) {
+  return /^[a-zA-Z0-9\s\S]{4,}$/.test(str);
+}
 function isAtLeast5LettersAndCharacters(str) {
   return /^[a-zA-Z0-9\s\S]{5,}$/.test(str);
 }
@@ -68,7 +70,7 @@ $(document).ready(function () {
         var price = $("#price").val();
         var productName = $("#productName").val();
 
-        if (!validateLettersDigitsAndSpaces(productName)) {
+        if (!validateDesc(productName)) {
           Swal.fire({
             icon: "warning",
             title: "Validation Error",
