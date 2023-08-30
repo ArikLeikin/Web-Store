@@ -227,7 +227,7 @@ $(document).ready(function () {
 
       const productDescriptionTitle = document.createElement("span");
       productDescriptionTitle.className = "productView-details-title";
-      productDescriptionTitle.textContent = "Product Description";
+      productDescriptionTitle.textContent = "Product Description  \n \n";
 
       const productDescription = document.createElement("span");
       productDescription.className = "productView-details-description";
