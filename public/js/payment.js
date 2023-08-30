@@ -47,7 +47,7 @@ function validateName(str) {
 function validateZipCode(phone) {
   return /^\d{5}$/.test(phone);
 }
-function validatePhoneNumber(phone) {
+function validatePhoneNumber(str) {
   return /^05\d{8}$/.test(str);
 }
 
