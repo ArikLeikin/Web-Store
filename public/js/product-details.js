@@ -145,12 +145,14 @@ $(document).ready(function () {
       plusButton.type = "button";
       plusButton.value = "+";
 
-      quantityInputDiv.appendChild(minusButton);
-      quantityInputDiv.appendChild(quantityInput);
-      quantityInputDiv.appendChild(plusButton);
+      if (Quantity > 0) {
+            quantityInputDiv.appendChild(minusButton);
+          quantityInputDiv.appendChild(quantityInput);
+          quantityInputDiv.appendChild(plusButton);
+          productQtySection.appendChild(quantityInputDiv);
+      }
 
-      productQtySection.appendChild(quantityInputDiv);
-
+      
       if (isYad2 === "yad2") {
         quantityInputDiv.style.display = "none";
       }
@@ -284,8 +286,12 @@ $(document).ready(function () {
       $(".plus").click(function () {
         const input = $(this).prev();
         let quantity = parseInt(input.val());
-        quantity++;
-        input.val(quantity);
+        if(quantity<Quantity)
+        {
+            quantity++;
+          input.val(quantity);
+        }
+        
       });
 
       // Favorite button click handler
