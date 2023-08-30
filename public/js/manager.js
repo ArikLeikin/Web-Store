@@ -220,9 +220,32 @@ $(document).ready(function () {
 
   tableBody.on("click", ".delete-button", function () {
     const userId = $(this).data("userid");
-    if (confirm("Are you sure you want to delete this user?")) {
-      deleteUser(userId);
-    }
+    $.ajax({
+      url: "http://127.0.0.1:8080/api/current-user",
+      method: "GET",
+      dataType: "json",
+      success: function (userData) {
+        const LogedinId = userData._id;
+        if(LogedinId ===userId)
+        {
+          if (confirm("Are you sure you want to delete YOUR USER?")) {
+            deleteUser(userId);
+            window.location.href = "http://127.0.0.1:8080/logout"
+          }
+        }
+        else{
+          if (confirm("Are you sure you want to delete this user?")) {
+            deleteUser(userId);
+          }
+        }
+
+      },
+      error: function (error) {
+        console.error("Error fetching user data:", error);
+      },
+    });
+    
+    
   });
 });
 
@@ -398,24 +421,6 @@ $(document).ready(function () {
         const searchQuery = this.value;
         filterOrderTable(searchQuery);
       });
-
-      // function deleteOrder(orderId) {
-      //   console.log(" start delete order peocess");
-      //   $.ajax({
-      //     url: `http://127.0.0.1:8080/delete/order/${orderId}`,
-      //     method: "POST",
-      //     success: function (response) {
-      //       console.log(response);
-      //       location.reload();
-      //       //window.location.href = "http://127.0.0.1:8080/manager";
-      //     },
-      //     error: function (error) {
-      //       console.error(" order delete Error:", error);
-      //     },
-      //   });
-      // }
-
-
 
       function deleteOrder(orderId) {
         console.log("start delete order process");
