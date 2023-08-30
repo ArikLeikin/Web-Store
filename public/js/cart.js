@@ -209,7 +209,11 @@ $(document).ready(function () {
                 currentQuantity++;
                 var cartItemId = productId;
                 const maxQuantity = productDetails.data.quantity;
-                if (currentQuantity <= maxQuantity){
+                if(currentQuantity>maxQuantity)
+                  {
+                    alert("The maximum quantity of this product on our stock is:" + maxQuantity)
+                  }
+                else if (currentQuantity <= maxQuantity){
                 $.ajax({
                   url: "http://127.0.0.1:8080/cart/update",
                   method: "POST",
