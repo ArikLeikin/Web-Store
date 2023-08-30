@@ -220,8 +220,57 @@ exports.update = async (req, res) => {
           console.log("inside if");
           notifyInterestedUsers(io, id);
         }
-
+        const users = await User.find();
         await Product.findOneAndUpdate({ _id: id }, updated);
+        const productId = id;
+        const singleItem = product;
+        const quan = parseInt(updated.quantity);
+        for (let i = 0; i < users.length; i++) {
+          let currUser = users[i];
+          let currUserWishList = currUser.wishlist;
+          let currUserCart = currUser.cart;
+          let ifSave = false;
+          //console.log(currUser);
+          for (let j = 0; j < currUserWishList.length; j++) {
+            if (
+              quan === 0 &&
+              currUserWishList[j].product.toString() === productId
+            ) {
+              currUserWishList.splice(j, 1);
+              ifSave = true;
+              break;
+            }
+            if (
+              currUserWishList[j].product.toString() === productId &&
+              quan < currUserWishList[j].quantity
+            ) {
+              currUserWishList[j].quantity = quan;
+              ifSave = true;
+              break;
+            }
+          }
+          for (let j = 0; j < currUserCart.items.length; j++) {
+            if (
+              quan === 0 &&
+              currUserCart.items[j].product.toString() === productId
+            ) {
+              currUserCart.items.splice(j, 1);
+              ifSave = true;
+              break;
+            }
+
+            if (
+              currUserCart.items[j].product.toString() === productId &&
+              quan < currUserCart.items[j].quantity
+            ) {
+              currUserCart.items[j].quantity = quan;
+              ifSave = true;
+              break;
+            }
+          }
+          if (ifSave) await currUser.save();
+        }
+
         break;
       case "order":
         await Order.findOneAndUpdate({ _id: id }, updated);
