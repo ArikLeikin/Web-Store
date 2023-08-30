@@ -365,6 +365,7 @@ $(document).ready(function () {
       deleteOrderButton.textContent = "Delete Order";
       deleteOrderButton.addEventListener("click", function () {
         if (confirm("Are you sure you want to delete this order?")) {
+          console.log("confirmation before order delete");
           deleteOrder(OrderId);
         }
       });
@@ -398,16 +399,36 @@ $(document).ready(function () {
         filterOrderTable(searchQuery);
       });
 
+      // function deleteOrder(orderId) {
+      //   console.log(" start delete order peocess");
+      //   $.ajax({
+      //     url: `http://127.0.0.1:8080/delete/order/${orderId}`,
+      //     method: "POST",
+      //     success: function (response) {
+      //       console.log(response);
+      //       location.reload();
+      //       //window.location.href = "http://127.0.0.1:8080/manager";
+      //     },
+      //     error: function (error) {
+      //       console.error(" order delete Error:", error);
+      //     },
+      //   });
+      // }
+
+
+
       function deleteOrder(orderId) {
+        console.log("start delete order process");
         $.ajax({
           url: `http://127.0.0.1:8080/delete/order/${orderId}`,
-          type: "POST",
-          success: function () {
-            console.log("delete");
+          method: "POST",
+          success: function (response) {
+            console.log(response);
             location.reload();
           },
-          error: function (xhr, status, error) {
-            console.error("Error:", error);
+          error: function (error) {
+            console.error("order delete Error:", error);
+            console.log("Error response:", error.responseText); // Print the error response text
           },
         });
       }
