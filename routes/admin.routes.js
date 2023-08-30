@@ -72,5 +72,6 @@ router.get(
 );
 
 router.get("/d3", isAdmin, adminController.getD3);
+router.get("/d3_2", isAdmin, adminController.getD3_2);
 
 module.exports = router;

@@ -33,7 +33,7 @@ async function notifyInterestedUsers(io, productId) {
         subject: `${product.title} is back in stock!`,
         html: `
           <p>${product.title} is back! </p>
-          <p> For more details enter the following link:<a href="http://localhost:${process.env.PORT}/product-details?id=${productId}">Product page</a></p>
+          <p> For more details enter the following link:<a href="http://127.0.0.1:${process.env.PORT}/product-details?id=${productId}">Product page</a></p>
         `,
       });
 
@@ -540,6 +540,16 @@ exports.getEditUser = async (req, res) => {
 exports.getD3 = async (req, res) => {
   try {
     const file = path.join(__dirname, "../public/html/d3.html");
+    res.status(200).sendFile(file);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+exports.getD3_2 = async (req, res) => {
+  try {
+    const file = path.join(__dirname, "../public/html/d3_2.html");
     res.status(200).sendFile(file);
   } catch (error) {
     console.log(error);

@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <title>Playtopia|</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.png" />
     <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/passwordReset.css" />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -14,13 +12,21 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://www.bing.com/api/maps/mapcontrol?key=Aqz-TxrGvUdOSD7cnyI5P2ic19CAV1RJo4MhsKRP0us6CJhf0gyTaBJrZJzL2OHY"
+    ></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="../js/d3_2.js" defer></script>
+
     <script src="../js/index.js"></script>
   </head>
 
@@ -285,52 +291,10 @@
       <!-- End Navigation Bar -->
     </header>
     <main style="margin-top: 170px">
-      <h1 class="page-title">
-        <i class="fas fa-unlock-alt"></i> Password Reset
-      </h1>
-      <div class="t-container">
-        <form id="password-reset-form" class="form">
-          <fieldset>
-            <label for="token" class="reg-label" class="reg-label"
-              >Reset Token</label
-            >
-            <input
-              type="text"
-              id="token"
-              name="token"
-              class="reg-input"
-              required
-            />
-          </fieldset>
-          <fieldset>
-            <label for="password" class="reg-label">New Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              class="reg-input"
-              required
-            />
-          </fieldset>
-          <fieldset>
-            <label for="password-confirm" class="reg-label"
-              >Confirm Password</label
-            >
-            <input
-              type="password"
-              id="password-confirm"
-              name="passwordConfirm"
-              class="reg-input"
-              required
-            />
-          </fieldset>
-          <fieldset>
-            <button type="button" id="reset-button" class="btn-ns-hot">
-              Reset Password
-            </button>
-          </fieldset>
-        </form>
-      </div>
+      <canvas
+        id="myChart"
+        style="width: 60% !important; margin: 0 auto"
+      ></canvas>
     </main>
     <footer class="footer">
       <div class="footer-continer">
@@ -466,58 +430,5 @@
         </div>
       </div>
     </footer>
-    <script>
-      $(document).ready(function () {
-        // Handle form submission
-        $("#reset-button").click(function () {
-          const token = $("#token").val();
-          const password = $("#password").val();
-          const passwordConfirm = $("#password-confirm").val();
-
-          // Validate passwords match
-          if (password !== passwordConfirm) {
-            Swal.fire(
-              "Passwords don't match.",
-              "Please ensure the passwords match.",
-              "error"
-            );
-            return;
-          }
-
-          // Create data object to send in the POST request
-          const data = {
-            token: token,
-            password: password,
-            passwordConfirm: passwordConfirm,
-          };
-
-          // Send POST request using AJAX
-          $.ajax({
-            type: "POST",
-            url: "/new-password", // Replace with your server endpoint
-            data: data,
-            success: function (response) {
-              // Display success message using SweetAlert2
-              Swal.fire(
-                "Password Reset Successful",
-                "Your password has been reset.",
-                "success"
-              );
-              window.location.href = "http://127.0.0.1:8080/login";
-              // You can also redirect the user to the login page here
-              //  = "/login";
-            },
-            error: function (error) {
-              // Display error message using SweetAlert2
-              Swal.fire(
-                "Error",
-                "An error occurred while resetting your password.",
-                "error"
-              );
-            },
-          });
-        });
-      });
-    </script>
   </body>
 </html>
