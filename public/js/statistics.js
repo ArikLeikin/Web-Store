@@ -1,5 +1,5 @@
 const apiUrl =
-  "https://data.gov.il/api/3/action/datastore_search?resource_id=64edd0ee-3d5d-43ce-8562-c336c24dbc1f&limit=20";
+  "https://data.gov.il/api/3/action/datastore_search?resource_id=64edd0ee-3d5d-43ce-8562-c336c24dbc1f&q=ירושלים";
 
 const xhr = new XMLHttpRequest();
 xhr.open("GET", apiUrl, true);
@@ -12,7 +12,7 @@ xhr.onreadystatechange = function () {
       const row = document.createElement("tr");
       row.innerHTML = `
         <td>${record._id}</td>
-        <td>${record.נפה}</td>
+        <td>${record.שם_ישוב}</td>
         <td>${record.גיל_0_5}</td>
         <td>${record.גיל_6_18}</td>
         <td>${record.גיל_19_45}</td>
