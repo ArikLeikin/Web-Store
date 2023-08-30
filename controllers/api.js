@@ -3,6 +3,7 @@ const Order = require("../models/order");
 const Product = require("../models/product");
 const User = require("../models/user");
 const StoreLocations = require("../models/store-locations");
+const { ObjectId } = require("mongoose").Types;
 
 module.exports = {
   getCurrent: async (req, res) => {
@@ -78,7 +79,7 @@ module.exports = {
         .json({ message: "Error retrieving WishList", error: err });
     }
   },
-
+  /*
   getOrderHistory: async (req, res) => {
     try {
       //Need to check
@@ -90,6 +91,39 @@ module.exports = {
         },
       });
       res.status(200).json(user.orderHistory);
+    } catch (err) {
+      res
+        .status(500)
+        .json({ message: "Error retrieving order history", error: err });
+    }
+  },
+*/
+  getOrderHistory: async (req, res) => {
+    try {
+      const userId = req.session.user._id;
+      const { startDate, endDate, orderStatus } = req.query;
+
+      const query = { user_info: userId };
+
+      if (startDate && endDate) {
+        query.order_date = {
+          $gte: new Date(startDate),
+          $lte: new Date(endDate),
+        };
+      }
+
+      if (orderStatus) {
+        query.status = orderStatus;
+      }
+
+      const orders = await Order.find(query)
+        .populate({
+          path: "products.item",
+          model: "Product",
+        })
+        .sort("-order_date"); // Sort by order date in descending order
+
+      res.status(200).json(orders);
     } catch (err) {
       res
         .status(500)
