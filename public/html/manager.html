@@ -396,6 +396,18 @@
         <tbody></tbody>
       </table>
 
+      <h3 class="page-title sub">•GroupBy Users by Permissions</h3>
+      <table id="userTable" class="flat-table">
+        <thead>
+          <tr>
+            <th>Permission</th>
+            <th>Users</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Data will be added here -->
+        </tbody>
+      </table>
       <h2 class="page-title sub">Product Model Management</h2>
       <br />
       <button id="addProductsButton" class="btn-account-page">
@@ -445,11 +457,11 @@
 
       <h2 class="page-title sub">Store Locations Management</h2>
       <br />
-        <div class="add-location-contianer">
+      <div class="add-location-contianer">
         <button class="collapsible-div btn-account-page" type="button">
           Add New Store Location
         </button>
-        
+
         <form class="add-location-form" id="add-location-form">
           <div class="form-row">
             <div class="input-wrapper">
@@ -486,11 +498,12 @@
             </div>
             <div class="input-wrapper">
               <label for="email">Longitude:</label>
-              <input 
-              class="form-input"
-               type="longitude"
+              <input
+                class="form-input"
+                type="longitude"
                 id="longitude"
-                 name="longitude" />
+                name="longitude"
+              />
             </div>
           </div>
           <div class="form-row">
@@ -504,12 +517,14 @@
               />
             </div>
             <div class="input-wrapper">
-              <button type="submit" id="location-button">Create Store Location</button>
+              <button type="submit" id="location-button">
+                Create Store Location
+              </button>
             </div>
           </div>
         </form>
       </div>
-       
+
       <input
         type="text"
         id="search-locations-input"
@@ -677,5 +692,39 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      // Fetch data from the server
+      fetch("http://127.0.0.1:8080/user/group-by-permissions")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          const userTable = document
+            .getElementById("userTable")
+            .getElementsByTagName("tbody")[0];
+
+          // Loop through data and populate the table
+          console.log(data);
+          console.log(data.data);
+
+          // for(let i=0; i<data.le)
+          data.forEach((permissionGroup) => {
+            const row = userTable.insertRow();
+            const permissionCell = row.insertCell(0);
+            const usersCell = row.insertCell(1);
+
+            permissionCell.textContent = permissionGroup._id;
+
+            // Create a list of user names
+            const userList = permissionGroup.users
+              .map((user) => `${user.name.firstName} ${user.name.lastName}`)
+              .join(", ");
+            usersCell.textContent = userList;
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+        });
+    </script>
   </body>
 </html>

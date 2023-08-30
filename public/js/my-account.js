@@ -431,10 +431,10 @@ fetch("http://127.0.0.1:8080/api/current-user")
     return response.json();
   })
   .then((data) => {
-    console.log(data);
+    // console.log(data);
     var alertBox = document.getElementById("wishlist-alert-box");
     var wishItemsContainer = document.getElementById("wish-items-container");
-    console.log(wishItemsContainer);
+    // console.log(wishItemsContainer);
     if (data.wishlist.length === 0) {
       alertBox.style.display = "block";
     } else {
@@ -443,7 +443,7 @@ fetch("http://127.0.0.1:8080/api/current-user")
     }
     for (let i = 0; i < data.wishlist.length; i++) {
       const item = data.wishlist[i];
-      console.log("product = " + item);
+      // console.log("product = " + item);
       var wishItemDiv = document.createElement("div");
       wishItemDiv.classList.add("wish-item");
 
@@ -460,8 +460,6 @@ fetch("http://127.0.0.1:8080/api/current-user")
         let formData = {
           productId: item.product._id,
         };
-        // console.log(item.product._id);
-        // formData.append("productId", item.product._id);
         $.ajax({
           url: `http://127.0.0.1:8080/wishlist/delete`,
           method: "POST",
@@ -553,7 +551,7 @@ fetch("http://127.0.0.1:8080/api/current-user")
       wishItemDiv.appendChild(titleSection);
       wishItemDiv.appendChild(addToCartBtn);
       wishItemDiv.appendChild(cartModalDiv);
-      console.log(wishItemsContainer);
+      // console.log(wishItemsContainer);
       wishItemsContainer.appendChild(wishItemDiv);
     }
   })
@@ -580,10 +578,10 @@ fetch("http://127.0.0.1:8080/api/current-user")
       alertBox.style.display = "none";
       // usedProducts list is not empty, create and populate the template
       // populate - userProducts
-      console.log(data);
+      // console.log(data);
       for (let i = 0; i < data.usedProducts.length; i++) {
         const item = data.usedProducts[i];
-        console.log(item);
+        // console.log(item);
         var usedProductDiv = document.createElement("div");
         usedProductDiv.className = "wish-item";
 
@@ -623,7 +621,7 @@ fetch("http://127.0.0.1:8080/api/current-user")
         editIcon.addEventListener("click", function () {
           window.location.href = `http://127.0.0.1:8080/Yad2Update?id=${item._id}`;
         });
-        console.log("item.quantity " + item.quantity);
+        // console.log("item.quantity " + item.quantity);
 
         if (item.quantity < 1) {
           const soldOutSpan = document.createElement("p");
@@ -1032,7 +1030,7 @@ document.addEventListener("DOMContentLoaded", function () {
         currentPassword: currentPassword,
       };
 
-      console.log(formData);
+      // console.log(formData);
       $.ajax({
         type: "POST",
         url: "http://127.0.0.1:8080/passwordUpdate",
