@@ -27,7 +27,7 @@
 .productView-image {
   width: 350px;
   border-radius: 3px;
-  aspect-ratio: 3/2;
+  /* aspect-ratio: 3/2; */
   object-fit: contain;
 }
 .productView-name {
@@ -125,7 +125,7 @@ input.input-text {
 .productView-details {
   font-size: 14px;
   margin-top: 18px;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
 }
 .productView-details-title {
   font-weight: bold;
