@@ -28,10 +28,10 @@ function show(showPage) {
 }
 
 $(document).ready(function () {
-  show("order-history"); /*default tab*/
+  show("order-list"); /*default tab*/
 
   $("#order-history-link").click(function () {
-    show("order-history");
+    show("order-list");
   });
 
   $("#personal-details-link").click(function (e) {
