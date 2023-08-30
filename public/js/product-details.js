@@ -28,6 +28,7 @@ $(document).ready(function () {
       const productId = data.data._id;
       const Quantity = data.data.quantity;
       isYad2 = productCategory;
+      const Condition=data.data.condition;
 
       $.ajax({
         url: "http://127.0.0.1:8080/api/current-user",
@@ -224,6 +225,21 @@ $(document).ready(function () {
         outOfStockMessage.style.fontWeight = "bold";
       }
 
+      var productConditionSection=null;
+      if(isYad2 === "yad2")
+      {
+        productConditionSection = document.createElement("section");
+        productConditionSection.className = "productView-details";
+        const productConditionTitle = document.createElement("span");
+        productConditionTitle.className = "productView-details-title";
+        productConditionTitle.textContent = "Product Condition  \n \n";
+        const productCondition = document.createElement("span");
+        productCondition.className = "productView-details-condition";
+        productCondition.textContent = Condition;
+        productConditionSection.appendChild(productConditionTitle);
+        productConditionSection.appendChild(productCondition);
+      }
+
       // Product description section
       const productDescriptionSection = document.createElement("section");
       productDescriptionSection.className = "productView-details";
@@ -247,6 +263,10 @@ $(document).ready(function () {
       }
       productInfoDiv.appendChild(productQtySection);
       productInfoDiv.appendChild(addToCartSection);
+      if(isYad2  === "yad2")
+      {
+        productInfoDiv.appendChild(productConditionSection);
+      }
       productInfoDiv.appendChild(productDescriptionSection);
 
       productView.appendChild(productInfoDiv);
