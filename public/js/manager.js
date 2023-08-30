@@ -147,7 +147,7 @@ $(document).ready(function () {
         Swal.fire({
           icon: "warning",
           title: "Validation Error",
-          text: "Phone number must be 10 digits.",
+          text: "Phone number must be 10 digits and need to be start in '05'.",
         });
         // showError("#phoneNumber-error", "Phone number must be 10 digits.");
         isValid = false;
@@ -189,9 +189,11 @@ $(document).ready(function () {
     $(".error-message").text("");
   }
 
-  function validatePhoneNumber(phone) {
-    return /^\d{10}$/.test(phone);
+  function validatePhoneNumber(str) {
+    return /^05\d{8}$/.test(str);
   }
+
+ 
 
   function validateName(str) {
     return /^[A-Za-z\s]+$/.test(str);
@@ -542,20 +544,20 @@ $(document).ready(function () {
     event.preventDefault(); // Prevent the form from submitting normally
     // Get the input values
   
-    var phoneNumber = $("#phoneNumber").val();
+    var phoneNumber = $("#phonenumber").val();
     var phoneareacode = $("#phoneareacode").val();
     var longitude = $("#longitude").val();
     var latitude = $("#latitude").val();
     let isValid = true;
   
-    // if (!validatePhoneNumber(phoneNumber)) {
-    //   Swal.fire({
-    //     icon: "warning",
-    //     title: "Validation Error",
-    //     text: "Phone number can be only 9 digits",
-    //   });
-    //   isValid = false;
-    // }
+    if (!validatePhoneNumber1(phoneNumber)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Phone number can be only 9 or 10 digits and must begin with 0",
+      });
+      isValid = false;
+    }
   
     if (!containsDigits(phoneareacode)) {
       Swal.fire({
@@ -645,8 +647,10 @@ async function deleteStoreLocation(storeId) {
 
 
 
-function validatePhoneNumber(phone) {
-  return /^\d{9}$/.test(phone);
+
+
+function validatePhoneNumber1(str) {
+  return /^(05\d{8}|0\d{8})$/.test(str);
 }
 
 
