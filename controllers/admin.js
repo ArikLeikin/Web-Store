@@ -345,15 +345,19 @@ exports.delete = async (req, res) => {
         break;
       case "order":
         await Order.findOneAndDelete({ _id: id });
+        console.log("hello");
         for (let i = 0; i < users.length; i++) {
           const ordersOfUser = users[i].orderHistory;
+          console.log(ordersOfUser);
           for (let j = 0; j < ordersOfUser.length; j++) {
-            if (users[i].orderHistory[j]._id.toString() === id) {
+            if (users[i].orderHistory[j].toString() === id) {
+              console.log("inside if");
               users[i].orderHistory.splice(j, 1);
-              return;
+              break;
             }
           }
         }
+        console.log("end of for");
 
         break;
       case "store-locations":
