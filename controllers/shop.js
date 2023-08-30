@@ -314,10 +314,6 @@ exports.postContact = (req, res, next) => {
 
 exports.postPayment = async (req, res, next) => {
   try {
-    // req.session.user = await User.find({ username: "admin" }).populate(
-    //   "cart.items.product"
-    // ); // FIND -> RETURNS ARRAY!
-    // req.session.user = req.session.user[0];
     const user = await User.findById(req.session.user._id).populate(
       "cart.items.product"
     );
@@ -328,25 +324,6 @@ exports.postPayment = async (req, res, next) => {
     if (cartItems.length === 0) {
       return res.status(400).json({ message: "Cart is empty" });
     }
-
-    // const yad2Products = cartItems.filter(
-    //   (item) => item.product.category.toString() === "yad2"
-    // );
-    // for (let i = 0; i < yad2Products.length; i++) {
-    //   const userToModify = users.find((someUser) =>
-    //     someUser.usedProducts.contains(yad2Products[i].product._id)
-    //   );
-    //   const index = array.indexOf(yad2Products[i].product._id);
-    //   userToModify.usedProducts.slice(index, 1);
-    // }
-
-    // yad2Products.forEach((yad2Product) => {
-    //   const userToModify = users.find((someUser) =>
-    //     someUser.usedProducts.includes(yad2Product.product._id)
-    //   );
-    //   const index = userToModify.usedProducts.indexOf(yad2Product.product._id);
-    //   userToModify.usedProducts.splice(index, 1);
-    // });
 
     let total_price = 0;
     for (let i = 0; i < cartItems.length; i++) {
