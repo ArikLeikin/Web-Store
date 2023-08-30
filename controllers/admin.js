@@ -95,7 +95,7 @@ exports.create = async (req, res) => {
 
         const message = `A new product called: ${title} has arrived!
         \n Come visit us at: http://127.0.0.1:8080/
-        }`;
+        `;
 
         const apiUrl = `https://graph.facebook.com/${pageId}/feed`;
 
@@ -280,6 +280,9 @@ exports.update = async (req, res) => {
         break;
       case "user":
         await User.findOneAndUpdate({ _id: id }, updated);
+        if (updated.permission !== undefined) {
+          req.session.permission = updated.permission;
+        }
         break;
       default:
         // Handle cases where the expression doesn't match any of the expected values
@@ -364,7 +367,12 @@ exports.delete = async (req, res) => {
         await StoreLocations.findOneAndDelete({ _id: id });
         break;
       case "user":
+        const user = await User.findById(id);
+        for (let i = 0; i < user.usedProducts.length; i++) {
+          await Product.findByIdAndDelete(user.usedProducts[i].toString());
+        }
         await User.findOneAndDelete({ _id: id });
+
         break;
       default:
         // Handle cases where the expression doesn't match any of the expected values
