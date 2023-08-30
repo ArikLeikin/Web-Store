@@ -361,7 +361,7 @@
               required
               placeholder="Quantity"
             />
-          
+
             <!-- <select
               class="third-input form-select"
               id="condition"
@@ -380,13 +380,20 @@
             multiple
             required
           />
-          <input
+          <textarea
+            class="reg-input"
+            id="description"
+            name="description"
+            rows="4"
+            placeholder="Product Description"
+            required
+          ></textarea>
+          <!-- <input
             type="text"
             id="description"
             name="description"
-            required
-            placeholder="Product Description"
-          />
+            required 
+          /> -->
           <div id="productPhoto-error" class="error-message"></div>
           <input
             type="button"
@@ -437,7 +444,7 @@
             var age_range = $("#ages").val();
             var title = $("#productName").val();
             var price = $("#price").val();
-             var condition = "New";
+            var condition = "New";
             var description = $("#description").val();
             var image = $("#productPhotos")[0].files;
             var quantity = $("#quantity").val();

@@ -45,7 +45,7 @@ $(document).ready(function () {
     // Creating the product title link
     const productTitleLink = document.createElement("a");
     productTitleLink.href = "#";
-    productTitleLink.textContent = product.title;
+    productTitleLink.textContent = product.title.toLowerCase();
 
     // Adding the title link to the title description
     productTitleDesc.appendChild(productTitleLink);
