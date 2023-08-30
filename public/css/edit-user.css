@@ -19,7 +19,7 @@
 .t-form fieldset .select,
 .reg-input {
   width: 100%;
-  height: 20px;
+  /* height: 20px; */
   color: #333333;
   padding: 10px;
   border-radius: 5px;
@@ -50,13 +50,16 @@
 .fieldset-firstName,
 .fieldset-lastName,
 .fieldset-phoneNumber,
+.fieldset-points,
+.fieldset-permission,
 .fieldset-email {
   clear: none !important;
   float: left;
   width: 40%;
 }
 .fieldset-lastName,
-.fieldset-email {
+.fieldset-email,
+.fieldset-points {
   float: right;
   width: 45%;
 }
@@ -85,15 +88,10 @@
   background-color: #eee;
 }
 
-.fieldset-permission {
-  clear: both !important;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
+/* 
 #permission {
   width: 40%;
-  height: 40px; 
+  height: 40px;
   color: #333333;
   padding: 10px;
   border-radius: 5px;
@@ -101,6 +99,4 @@
   outline: none !important;
   border: 1px solid rgba(0, 0, 0, 0.3);
   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
-}
-
-
+} */
