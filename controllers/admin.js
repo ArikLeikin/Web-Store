@@ -349,7 +349,7 @@ exports.delete = async (req, res) => {
           const ordersOfUser = users[i].orderHistory;
           for (let j = 0; j < ordersOfUser.length; j++) {
             if (users[i].orderHistory[j]._id.toString() === id) {
-              users[i].orderHistory[j].splice(j, 1);
+              users[i].orderHistory.splice(j, 1);
               return;
             }
           }

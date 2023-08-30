@@ -36,8 +36,13 @@ $(document).ready(function () {
     }
     if (product.quantity === 0) {
       const outOfStockText = document.createElement("p");
-      outOfStockText.className = "out-of-stock-text"; // Apply your desired class
-      outOfStockText.textContent = "Out of Stock";
+      if (product.category === "yad2") {
+        outOfStockText.className = "sold-text"; // Apply your desired class
+        outOfStockText.textContent = "Sold";
+      } else {
+        outOfStockText.className = "out-of-stock-text"; // Apply your desired class
+        outOfStockText.textContent = "Out of Stock";
+      }
       imgContainer.appendChild(outOfStockText);
     }
     // Creating the product title section
@@ -145,8 +150,14 @@ $(document).ready(function () {
 
     productGrid.empty();
     filteredProducts.forEach((product) => {
-      const productHTML = createProductHTML(product);
-      productGrid.append(productHTML);
+      const urlCategory = getUrlParameter("category");
+      if (
+        urlCategory === "yad2" ||
+        (urlCategory != "yad2" && product.category != "yad2")
+      ) {
+        const productHTML = createProductHTML(product);
+        productGrid.append(productHTML);
+      }
     });
 
     checkIfNull();
