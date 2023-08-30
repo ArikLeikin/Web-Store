@@ -356,6 +356,7 @@ exports.delete = async (req, res) => {
             if (users[i].orderHistory[j].toString() === id) {
               console.log("inside if");
               users[i].orderHistory.splice(j, 1);
+              await users[i].save();
               break;
             }
           }
