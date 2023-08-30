@@ -47,6 +47,7 @@ $(document).ready(function () {
         document.getElementById("lastName").value = data.name.lastName;
         document.getElementById("phoneNumber").value = data.phoneNumber;
         document.getElementById("email").value = data.email;
+        document.getElementById("permission").value = data.permission;
       })
       .catch((error) => {
         console.error("Error fetching user details:", error);
@@ -63,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var lastName = $("#lastName").val();
     var phoneNumber = $("#phoneNumber").val();
     var email = $("#email").val();
+    var permission = $("#permission").val();
 
     let isValid = true;
 
@@ -112,6 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         phoneNumber: $("#phoneNumber").val(),
         email: $("#email").val(),
+        permission: $("#permission").val()
       };
       console.log(formData);
       $.ajax({
