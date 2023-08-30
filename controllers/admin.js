@@ -92,14 +92,16 @@ exports.create = async (req, res) => {
         });
         const accessToken = process.env.FACEBOOK_API_KEY;
         const pageId = 111544942041745;
-        const message = "This is a public post using the Facebook API!";
+
+        const message = `A new product called: ${title} has arrived!
+        \n Come visit us at: http://127.0.0.1:8080/
+        }`;
 
         const apiUrl = `https://graph.facebook.com/${pageId}/feed`;
 
         const postData = {
           message: message,
           access_token: accessToken,
-          privacy: "EVERYONE",
         };
 
         axios
@@ -157,7 +159,7 @@ exports.get = async (req, res) => {
     let returnedObject;
     switch (expression) {
       case "product":
-        returnedObject = await Product.findById( id );
+        returnedObject = await Product.findById(id);
         break;
       case "order":
         returnedObject = await Order.findById(id)
@@ -165,10 +167,10 @@ exports.get = async (req, res) => {
           .populate("user_info");
         break;
       case "store-locations":
-        returnedObject = await StoreLocations.findById( id );
+        returnedObject = await StoreLocations.findById(id);
         break;
       case "user":
-        returnedObject = await User.findById( id );
+        returnedObject = await User.findById(id);
         break;
       default:
         // Handle cases where the expression doesn't match any of the expected values
