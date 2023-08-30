@@ -168,7 +168,7 @@ $(document).ready(function () {
       return /^\d+$/.test(str);
     }
     function validateLettersDigitsAndSpaces(str) {
-      return /^[a-zA-Z0-9 ]{4,}$/.test(str);
+      return /^[a-zA-Z0-9\s\S]{5,}$/.test(str);
     }
 
     function validateLettersDigitsAndSpaces2(str) {

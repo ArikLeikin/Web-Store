@@ -623,10 +623,18 @@ fetch("http://127.0.0.1:8080/api/current-user")
         editIcon.addEventListener("click", function () {
           window.location.href = `http://127.0.0.1:8080/Yad2Update?id=${item._id}`;
         });
+        console.log("item.quantity " + item.quantity);
 
-        wishOptionDiv.appendChild(wishDeleteDiv);
-        wishOptionDiv.appendChild(wishEditDiv);
+        if (item.quantity < 1) {
+          const soldOutSpan = document.createElement("p");
 
+          soldOutSpan.className = "yad2-text";
+          soldOutSpan.textContent = "Sold Out";
+          wishOptionDiv.appendChild(soldOutSpan);
+        } else {
+          wishOptionDiv.appendChild(wishDeleteDiv);
+          wishOptionDiv.appendChild(wishEditDiv);
+        }
         var imgElement = document.createElement("img");
         imgElement.src = item.image;
         imgElement.alt = "item";
@@ -658,9 +666,6 @@ fetch("http://127.0.0.1:8080/api/current-user")
         titleSection.appendChild(brElement);
         titleSection.appendChild(titlePriceSpan);
 
-        if (item.quantity < 1) {
-          wishOptionDiv.textContent = "Sold Out";
-        }
         usedProductDiv.appendChild(wishOptionDiv);
         // usedProductDiv.appendChild(imgElement);
         usedProductDiv.appendChild(productLink);
