@@ -588,6 +588,7 @@ fetch("http://127.0.0.1:8080/api/current-user")
 
         var wishOptionDiv = document.createElement("div");
         wishOptionDiv.className = "wish-option";
+        wishOptionDiv.id = "yad2-option";
 
         var wishDeleteDiv = document.createElement("div");
         wishDeleteDiv.setAttribute("aria-label", "wish-delete left");
@@ -629,6 +630,12 @@ fetch("http://127.0.0.1:8080/api/current-user")
         imgElement.src = item.image;
         imgElement.alt = "item";
 
+        const productLink = document.createElement("a");
+        productLink.className = "product-img";
+        productLink.href =
+          "http://127.0.0.1:8080/product-details?id=" + item._id;
+        productLink.appendChild(imgElement);
+
         var titleSection = document.createElement("section");
         titleSection.className = "title";
 
@@ -650,35 +657,15 @@ fetch("http://127.0.0.1:8080/api/current-user")
         titleSection.appendChild(brElement);
         titleSection.appendChild(titlePriceSpan);
 
+        if (item.quantity < 1) {
+          wishOptionDiv.textContent = "Sold Out";
+        }
         usedProductDiv.appendChild(wishOptionDiv);
-        usedProductDiv.appendChild(imgElement);
+        // usedProductDiv.appendChild(imgElement);
+        usedProductDiv.appendChild(productLink);
         usedProductDiv.appendChild(titleSection);
 
         yad2ItemsContainer.appendChild(usedProductDiv);
-        // var usedProductTemplate = `
-        //   <div class="wish-item">
-        //     <div class="wish-option">
-        //       <div aria-label="wish-delete left" class="wish-delete">
-        //         <i class="fa fa-trash" id="yad2"></i>
-        //       </div>
-        //       <div aria-label="wish-edit right" class="wish-edit">
-        //         <i class="fa fa-edit"></i>
-        //       </div>
-        //     </div>
-        //     <img src="${item.image}" alt="item" />
-        //     <section class="title">
-        //       <span class="title-desc center">
-        //         <a href="#">${item.title}</a>
-        //       </span>
-        //       <br />
-        //       <span class="title-price center">$${item.price}</span>
-        //     </section>
-        //   </div>
-        // `;
-
-        // var usedProductDiv = document.createElement("div");
-        // usedProductDiv.innerHTML = usedProductTemplate;
-        // yad2ItemsContainer.appendChild(usedProductDiv);
       }
     }
   })
