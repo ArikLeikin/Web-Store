@@ -299,8 +299,18 @@ $(document).ready(function () {
       editButton.textContent = "Edit Product";
       editButton.addEventListener("click", function () {
         var productId = this.getAttribute("data-id");
-        window.location.href =
+
+        var Category = product.category;
+        if(Category=== "yad2")
+        {
+          window.location.href =
+          "http://127.0.0.1:8080/Yad2Update?id=" + productId;
+        }
+        else{
+          window.location.href =
           "http://127.0.0.1:8080/product-update?id=" + productId;
+        }
+        
       });
       actionCell.appendChild(editButton);
     });
