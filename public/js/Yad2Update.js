@@ -165,18 +165,18 @@ $(document).ready(function () {
       $("#category").val(data.data.category);
       $("#description").val(data.data.description);
 
-      const files = data.data.image.map((path) => {
-        const parts = path.split("/");
-        const fileName = parts[parts.length - 1];
-        return new File([path], fileName);
-      });
+      // const files = data.data.image.map((path) => {
+      //   const parts = path.split("/");
+      //   const fileName = parts[parts.length - 1];
+      //   return new File([path], fileName);
+      // });
 
-      const fileList = new DataTransfer();
-      files.forEach((file) => {
-        fileList.items.add(file);
-      });
-      const fileInput = $('input[name="image[]"]');
-      fileInput[0].files = fileList.files;
+      // const fileList = new DataTransfer();
+      // files.forEach((file) => {
+      //   fileList.items.add(file);
+      // });
+      // const fileInput = $('input[name="image[]"]');
+      // fileInput[0].files = fileList.files;
     },
     error: function (error) {
       console.error("Error fetching product data:", error);
