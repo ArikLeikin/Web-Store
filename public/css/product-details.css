@@ -27,6 +27,8 @@
 .productView-image {
   width: 350px;
   border-radius: 3px;
+  aspect-ratio: 3/2;
+  object-fit: contain;
 }
 .productView-name {
   font-size: 22px;
@@ -208,19 +210,18 @@ h4.productView-name {
   background-color: rgba(0, 0, 0, 0.1);
 }
 .favorite-button i {
-  color: red; 
+  color: red;
 }
 
 .edit-icon:hover {
-  color: rgb(113, 108, 98); 
+  color: rgb(113, 108, 98);
 }
-
 
 .notify-button {
   margin-top: 10px;
   padding: 4px 14px;
   background-color: #007bff;
-  color: white; 
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -229,10 +230,10 @@ h4.productView-name {
 }
 
 .notify-button:hover {
-  background-color: #1d76d6; 
+  background-color: #1d76d6;
 }
 
 .notify-button a {
-  text-decoration: none; 
-  color: inherit; 
+  text-decoration: none;
+  color: inherit;
 }

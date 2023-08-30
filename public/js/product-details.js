@@ -1,6 +1,6 @@
 $(document).ready(function () {
   const socket = io();
-  
+
   //Image click handler
   $(".productView-imageSlick").click(function () {
     $(".productView-imageSlick").removeClass("active");
@@ -15,8 +15,8 @@ $(document).ready(function () {
   const productId = window.location.search.split("=")[1];
   const url = `http://127.0.0.1:8080/api/product/${productId}`;
   const productDetailsDiv = $("#product-details");
-  var userId=null;
-  var isYad2=null;
+  var userId = null;
+  var isYad2 = null;
 
   $.ajax({
     url: url,
@@ -26,8 +26,8 @@ $(document).ready(function () {
       const { title, price, description, quantity, image } = data.data;
       const productCategory = data.data.category;
       const productId = data.data._id;
-      const Quantity= data.data.quantity;
-      isYad2=productCategory;
+      const Quantity = data.data.quantity;
+      isYad2 = productCategory;
 
       $.ajax({
         url: "http://127.0.0.1:8080/api/current-user",
@@ -35,10 +35,8 @@ $(document).ready(function () {
         dataType: "json",
         success: function (userData) {
           const userPermission = userData.permission;
-          const userid=userData._id;
-          userId=userid;
-         
-         
+          const userid = userData._id;
+          userId = userid;
 
           if (userPermission === "admin") {
             const editIcon = document.createElement("i");
@@ -62,7 +60,7 @@ $(document).ready(function () {
 
           const userWishlist = userData.wishlist;
           const productExistsInWishlist = userWishlist.some(
-            (wishlistItem) => wishlistItem.product.toString() === productId
+            (wishlistItem) => wishlistItem.product._id.toString() === productId
           );
 
           if (productExistsInWishlist) {
@@ -153,15 +151,12 @@ $(document).ready(function () {
 
       productQtySection.appendChild(quantityInputDiv);
 
-      
       if (isYad2 === "yad2") {
         quantityInputDiv.style.display = "none";
       }
 
-
       // Add to cart section
 
-    
       const addToCartSection = document.createElement("section");
       addToCartSection.className = "add-to-cart-section";
 
@@ -179,7 +174,7 @@ $(document).ready(function () {
       notifyMeLink.textContent = "Notify me when the product is back in stock";
       notifyMe.appendChild(notifyMeLink);
 
-      notifyMe.addEventListener("click", function() {
+      notifyMe.addEventListener("click", function () {
         notifyServer(userId, productId);
       });
       function notifyServer(userId, productId) {
@@ -189,11 +184,10 @@ $(document).ready(function () {
         socket.emit("notify", data);
       }
 
-      if (Quantity === 0 && isYad2 !== "yad2" ) {
+      if (Quantity === 0 && isYad2 !== "yad2") {
         addToCartButton.style.display = "none";
         notifyMe.style.display = "block";
-      }
-      else{
+      } else {
         notifyMe.style.display = "none";
       }
 
@@ -271,9 +265,11 @@ $(document).ready(function () {
         });
 
         function isHTML(str) {
-          var doc = new DOMParser().parseFromString(str, 'text/html');
-          return Array.from(doc.body.childNodes).some(node => node.nodeType === 1);
-      }
+          var doc = new DOMParser().parseFromString(str, "text/html");
+          return Array.from(doc.body.childNodes).some(
+            (node) => node.nodeType === 1
+          );
+        }
       }
 
       $(".minus").click(function () {
@@ -284,14 +280,13 @@ $(document).ready(function () {
           input.val(quantity);
         }
       });
-    
+
       $(".plus").click(function () {
         const input = $(this).prev();
         let quantity = parseInt(input.val());
         quantity++;
         input.val(quantity);
       });
-    
 
       // Favorite button click handler
       $(".favorite-button").click(function () {
@@ -332,9 +327,11 @@ $(document).ready(function () {
         });
 
         function isHTML(str) {
-          var doc = new DOMParser().parseFromString(str, 'text/html');
-          return Array.from(doc.body.childNodes).some(node => node.nodeType === 1);
-      }
+          var doc = new DOMParser().parseFromString(str, "text/html");
+          return Array.from(doc.body.childNodes).some(
+            (node) => node.nodeType === 1
+          );
+        }
       }
 
       function RemoveFromWishlist(productId) {
