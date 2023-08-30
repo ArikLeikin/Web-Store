@@ -5,7 +5,9 @@ function showError(element, message) {
 function clearErrorMessages() {
   $(".error-message").text("");
 }
-
+function validateDigitsOnly(str) {
+  return /^\d+$/.test(str);
+}
 function validatePhoneNumber(str) {
   return /^05\d{8}$/.test(str);
 }
@@ -48,6 +50,7 @@ $(document).ready(function () {
         document.getElementById("phoneNumber").value = data.phoneNumber;
         document.getElementById("email").value = data.email;
         document.getElementById("permission").value = data.permission;
+        document.getElementById("points").value = data.points;
       })
       .catch((error) => {
         console.error("Error fetching user details:", error);
@@ -65,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var phoneNumber = $("#phoneNumber").val();
     var email = $("#email").val();
     var permission = $("#permission").val();
+    var points = $("#points").val();
 
     let isValid = true;
 
@@ -103,7 +107,14 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       isValid = false;
     }
-
+    if (!validateDigitsOnly(points)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Validation Error",
+        text: "Points must be only digits.",
+      });
+      isValid = false;
+    }
     if (isValid && userID != null) {
       //const formData = $(this).serialize(); // Serialize form data
       //console.log(formData);
@@ -115,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
         phoneNumber: $("#phoneNumber").val(),
         email: $("#email").val(),
         permission: $("#permission").val(),
+        points: $("#points").val(),
       };
       console.log(formData);
       $.ajax({

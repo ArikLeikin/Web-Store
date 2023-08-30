@@ -331,17 +331,29 @@
             />
             <div id="email-error" class="error-message"></div>
           </fieldset>
-
-          <select
-          class="third-input form-select"
-          id="permission"
-          name="permission"
-          required
-        >
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-
+          <fieldset class="fieldset-permission">
+            <label class="reg-label" for="permission">Permission</label>
+            <select
+              class="third-input form-select select"
+              id="permission"
+              name="permission"
+              required
+            >
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </fieldset>
+          <fieldset class="fieldset-points">
+            <label class="reg-label" for="points">Points</label>
+            <input
+              class="reg-input"
+              type="text"
+              id="points"
+              name="points"
+              required
+            />
+            <div id="point-error" class="error-message"></div>
+          </fieldset>
           <button
             class="btn-account-page"
             type="submit"
