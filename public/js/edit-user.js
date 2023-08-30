@@ -6,7 +6,7 @@ function clearErrorMessages() {
   $(".error-message").text("");
 }
 
-function validatePhoneNumber(phone) {
+function validatePhoneNumber(str) {
   return /^05\d{8}$/.test(str);
 }
 
