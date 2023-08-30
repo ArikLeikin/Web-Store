@@ -359,32 +359,53 @@ exports.postPayment = async (req, res, next) => {
       //console.log("cart item[i]= " + cartItems[i]);
       singleItem.quantity -= cartItems[i].quantity;
       //console.log("Single Item quantity = ", singleItem.quantity);
-      if (singleItem.quantity === 0) {
-        const productId = singleItem._id.toString();
-        //console.log(productId);
-        for (let i = 0; i < users.length; i++) {
-          let currUser = users[i];
-          if (currUser._id.toString() === user._id.toString()) continue;
-          let currUserWishList = currUser.wishlist;
-          let currUserCart = currUser.cart;
-          let ifSave = false;
-          //console.log(currUser);
-          for (let j = 0; j < currUserWishList.length; j++) {
-            if (currUserWishList[j].product.toString() === productId) {
-              currUserWishList.splice(j, 1);
-              ifSave = true;
-              break;
-            }
+      const productId = singleItem._id.toString();
+      //console.log(productId);
+      for (let i = 0; i < users.length; i++) {
+        let currUser = users[i];
+        if (currUser._id.toString() === user._id.toString()) continue;
+        let currUserWishList = currUser.wishlist;
+        let currUserCart = currUser.cart;
+        let ifSave = false;
+        //console.log(currUser);
+        for (let j = 0; j < currUserWishList.length; j++) {
+          if (
+            singleItem.quantity === 0 &&
+            currUserWishList[j].product.toString() === productId
+          ) {
+            currUserWishList.splice(j, 1);
+            ifSave = true;
+            break;
           }
-          for (let j = 0; j < currUserCart.items.length; j++) {
-            if (currUserCart.items[j].product.toString() === productId) {
-              currUserCart.items.splice(j, 1);
-              ifSave = true;
-              break;
-            }
+          if (
+            currUserWishList[j].product.toString() === productId &&
+            singleItem.quantity < currUserWishList[j].quantity
+          ) {
+            currUserWishList[j].quantity = singleItem.quantity;
+            ifSave = true;
+            break;
           }
-          if (ifSave) await currUser.save();
         }
+        for (let j = 0; j < currUserCart.items.length; j++) {
+          if (
+            singleItem.quantity === 0 &&
+            currUserCart.items[j].product.toString() === productId
+          ) {
+            currUserCart.items.splice(j, 1);
+            ifSave = true;
+            break;
+          }
+
+          if (
+            currUserCart.items[j].product.toString() === productId &&
+            singleItem.quantity < currUserCart.items[j].quantity
+          ) {
+            currUserCart.items[j].quantity = singleItem.quantity;
+            ifSave = true;
+            break;
+          }
+        }
+        if (ifSave) await currUser.save();
       }
       await singleItem.save();
     }
