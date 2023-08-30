@@ -37,7 +37,7 @@ $(document).ready(function () {
     if (product.quantity === 0) {
       const outOfStockText = document.createElement("p");
       if (product.category === "yad2") {
-        outOfStockText.className = "sold-text"; // Apply your desired class
+        outOfStockText.className = "out-of-stock-text"; // Apply your desired class
         outOfStockText.textContent = "Sold";
       } else {
         outOfStockText.className = "out-of-stock-text"; // Apply your desired class
