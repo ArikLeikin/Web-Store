@@ -90,8 +90,9 @@ function validateOnlyLetters(str) {
   return /^[a-zA-Z]+$/.test(str);
 }
 function validateTenDigits(str) {
-  return /^\d{10}$/.test(str);
+  return /^05\d{8}$/.test(str);
 }
+
 function validateContainsAtSymbol(str) {
   return /@/.test(str);
 }
@@ -708,7 +709,7 @@ document.addEventListener("DOMContentLoaded", function () {
       Swal.fire({
         icon: "warning",
         title: "Validation Error",
-        text: "Phone number can be only 10 digits",
+        text: "Phone number can be only 10 digits and need to be start in '05'",
       });
       // showError("#phone-error", "Phone number can only contain only 10 digits.");
       isValid = false;
@@ -863,7 +864,7 @@ document.addEventListener("DOMContentLoaded", function () {
       Swal.fire({
         icon: "warning",
         title: "Validation Error",
-        text: "Phone number can be only 10 digits",
+        text: "Phone number can be only 10 digits and need to be start in '05'",
       });
       isValid = false;
     }
