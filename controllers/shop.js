@@ -329,9 +329,9 @@ exports.postPayment = async (req, res, next) => {
       return res.status(400).json({ message: "Cart is empty" });
     }
 
-    const yad2Products = cartItems.filter(
-      (item) => item.product.category.toString() === "yad2"
-    );
+    // const yad2Products = cartItems.filter(
+    //   (item) => item.product.category.toString() === "yad2"
+    // );
     // for (let i = 0; i < yad2Products.length; i++) {
     //   const userToModify = users.find((someUser) =>
     //     someUser.usedProducts.contains(yad2Products[i].product._id)
@@ -360,6 +360,9 @@ exports.postPayment = async (req, res, next) => {
       singleItem.quantity -= cartItems[i].quantity;
       //console.log("Single Item quantity = ", singleItem.quantity);
       const productId = singleItem._id.toString();
+      console.log(singleItem.title);
+      console.log("new quantity = ", singleItem.quantity);
+      console.log(singleItem);
       //console.log(productId);
       for (let i = 0; i < users.length; i++) {
         let currUser = users[i];
@@ -368,6 +371,7 @@ exports.postPayment = async (req, res, next) => {
         let currUserCart = currUser.cart;
         let ifSave = false;
         //console.log(currUser);
+
         for (let j = 0; j < currUserWishList.length; j++) {
           if (
             singleItem.quantity === 0 &&
