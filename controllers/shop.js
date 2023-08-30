@@ -554,26 +554,32 @@ exports.postCartAdd = async (req, res, next) => {
     } else {
       cart = user.cart;
     }
-
+    const product = await Product.findById(productIdToSave);
+    const currMaxQuantity = parseInt(product.quantity);
+    console.log(currMaxQuantity);
     if (cart.items.length > 0) {
       const existingCartItem = cart.items.find(
         (item) => item.product._id.toString() === productIdToSave
       );
 
       if (existingCartItem) {
-        console.log(existingCartItem);
-        if (existingCartItem.product.category !== "yad2")
-          existingCartItem.quantity += quantityToSave;
+        //console.log(existingCartItem);
+        if (existingCartItem.product.category !== "yad2") {
+          existingCartItem.quantity = Math.min(
+            existingCartItem.quantity + quantityToSave,
+            currMaxQuantity
+          );
+        }
       } else {
         cart.items.push({
           product: productIdToSave,
-          quantity: quantityToSave,
+          quantity: Math.min(quantityToSave, currMaxQuantity),
         });
       }
     } else {
       cart.items.push({
         product: productIdToSave,
-        quantity: quantityToSave,
+        quantity: Math.min(quantityToSave, currMaxQuantity),
       });
     }
     await user.save();
