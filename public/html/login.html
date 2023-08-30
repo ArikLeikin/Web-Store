@@ -285,7 +285,7 @@
       <!-- End Navigation Bar -->
     </header>
     <main style="margin-top: 150px">
-      <h1>Login Page</h1>
+      <h1 class="page-title">Login Page</h1>
 
       <form method="POST" action="/login" class="login-form">
         <label class="login-user" for="username">Email:</label>
@@ -312,11 +312,14 @@
         <input class="login-btn" type="submit" value="Login" />
         <div id="error-message" class="text-danger mt-2"></div>
       </form>
-      <p>
-        Not a member? <a href="http://127.0.0.1:8080/register">Register here</a
+      <p class="center">
+        Not a member?
+        <a class="a-link" href="http://127.0.0.1:8080/register">Register here</a
         ><br />
         Forgot your password?
-        <a href="http://127.0.0.1:8080/passwordReset">Reset here</a>
+        <a class="a-link" href="http://127.0.0.1:8080/passwordReset"
+          >Reset here</a
+        >
       </p>
     </main>
     <div id="myModal" class="modal">

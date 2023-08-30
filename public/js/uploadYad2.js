@@ -93,7 +93,8 @@ $(document).ready(function () {
       isValid = false;
     }
     function validateLettersDigitsAndSpaces2(str) {
-      return /^[a-zA-Z0-9 ]{5,}$/.test(str);
+      //return /^[a-zA-Z0-9 ]{5,}$/.test(str);
+      return /^[a-zA-Z0-9\s\S]{5,}$/.test(str);
     }
 
     //  if (!validateLettersDigitsAndSpaces(productName)) {
@@ -105,7 +106,8 @@ $(document).ready(function () {
       return /^\d+$/.test(str);
     }
     function validateLettersDigitsAndSpaces(str) {
-      return /^[a-zA-Z0-9 ]{4,}$/.test(str);
+      //return /^[a-zA-Z0-9 ]{4,}$/.test(str);
+      return /^[a-zA-Z0-9\s\S]{5,}$/.test(str);
     }
 
     if (!isValid) {
