@@ -546,3 +546,13 @@ exports.getD3 = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+exports.getD3_2 = async (req, res) => {
+  try {
+    const file = path.join(__dirname, "../public/html/d3_2.html");
+    res.status(200).sendFile(file);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
