@@ -529,3 +529,35 @@ i#address-delete-icon {
   height: min-content;
   padding: 9px 4px;
 }
+
+/*filter bar for orders section */
+input#startDate,
+input#endDate,
+#orderStatus {
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  color: #2c3e50;
+  font-size: 14px;
+}
+.btn-filter {
+  float: right;
+  margin-right: 0;
+  padding: 5px 8px;
+  font-size: 14px;
+  background: white;
+  border-radius: 2px;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  font-family: math;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-left: 30px;
+  color: black;
+  text-decoration: none;
+}
+.filter-label {
+  font-size: 13px;
+}
