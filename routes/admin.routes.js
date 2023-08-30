@@ -1,6 +1,7 @@
 const express = require("express");
 const adminController = require("../controllers/admin");
 const isAdmin = require("../middleware/isAdmin");
+const isAuth = require("../middleware/isAuth");
 
 const router = express.Router();
 const multer = require("multer");
@@ -32,7 +33,7 @@ router.post("/delete/product/:id", isAdmin, adminController.delete);
 router.get("/edit/product/:id", isAdmin, adminController.getProductUpdate);
 
 router.post("/create/order", isAdmin, adminController.create);
-router.get("/get/order/:id", isAdmin, adminController.get);
+router.get("/get/order/:id", isAuth, adminController.get);
 router.post("/update/order/:id", isAdmin, adminController.update);
 router.post("/delete/order/:id", isAdmin, adminController.delete);
 router.get("/order-by-user/:userId", isAdmin, adminController.getOrdersByUser);
@@ -62,8 +63,7 @@ router.get("/user/group-by-permissions", isAdmin, adminController.usersGroupBy);
 router.post("/points/user/:id", isAdmin, adminController.updatePointsUser);
 
 router.get("/edit-user", isAdmin, adminController.getEditUser);
-
-router.get("/order-update", isAdmin, adminController.getOrderUpdate);
+router.get("/order-update", isAuth, adminController.getOrderUpdate);
 
 router.get(
   "/store-location-edit",

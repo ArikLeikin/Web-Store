@@ -346,9 +346,13 @@ function createOrderElement(order) {
   // const viewOrderBtn = document.createElement("button");
   // viewOrderBtn.classList.add("btn-account-page");
   // viewOrderBtn.textContent = "View Order";
-
+  const viewOrderBtn = document.createElement("a");
+  viewOrderBtn.classList.add("btn-account-page");
+  viewOrderBtn.textContent = "View Order";
+  viewOrderBtn.href = "http://127.0.0.1:8080/order-update?id=" + order._id;
+  console.log(order);
   orderFooter.appendChild(orderSummary);
-  // orderFooter.appendChild(viewOrderBtn);
+  orderFooter.appendChild(viewOrderBtn);
 
   cardHeader.appendChild(orderStatus);
   cardHeader.appendChild(orderInfo);
