@@ -23,17 +23,6 @@ $(document).ready(function () {
     var category = $("#category").val();
     var ages = $("#ages").val();
 
-    // if (!/^[a-zA-Z\s]+$/.test(companyName)) {
-    //   Swal.fire({
-    //     icon: 'warning',
-    //     title: 'Validation Error',
-    //     text: "Company's name should only contain letters",
-    //   });
-    //   return false; // Prevent proceeding to the next step
-    // }
-
-    // $("#companyName-error").text("");
-
     var $form = $(this).parentsUntil("msform");
     if (animating) return false;
     animating = true;
@@ -120,7 +109,7 @@ $(document).ready(function () {
       isValid = false;
     }
 
-    if (!validateLettersDigitsAndSpaces(productName)) {
+    if (!validateDesc(productName)) {
       Swal.fire({
         icon: "warning",
         title: "Validation Error",
@@ -155,7 +144,7 @@ $(document).ready(function () {
       isValid = false;
     }
 
-    if (!validateLettersDigitsAndSpaces2(description)) {
+    if (!validateDesc(description)) {
       Swal.fire({
         icon: "warning",
         title: "Validation Error",
@@ -164,8 +153,9 @@ $(document).ready(function () {
       isValid = false;
     }
 
-  
-
+    function validateDesc(str) {
+      return /^[a-zA-Z0-9\s\S]{4,}$/.test(str);
+    }
     function isOnlyDigits(str) {
       return /^\d+$/.test(str);
     }

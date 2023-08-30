@@ -1,35 +1,15 @@
-// $(document).ready(function () {
-//   $("form").on("submit", function (event) {
-//     var price = $("#price").val();
-//     var bankAccount = $("#bankAccount").val();
-
-//     var isPriceValid = containsOnlyNumbers(price) && parseFloat(price) > 0;
-//     var isBankAccountValid = containsOnlyNumbers(bankAccount);
-
-//     if (!isPriceValid) {
-//       event.preventDefault();
-//       $("#price-error")
-//         .addClass("error-message")
-//         .text(
-//           "Please enter a valid price (numbers only and greater than zero)."
-//         );
-//     } else {
-//       $("#price-error").removeClass("error-message").text("");
-//     }
-
-//     if (!isBankAccountValid) {
-//       event.preventDefault();
-//       $("#bankAccount-error")
-//         .addClass("error-message")
-//         .text("Please enter a valid bank account (numbers only).");
-//     } else {
-//       $("#bankAccount-error").removeClass("error-message").text("");
-//     }
-//   });
-// });
-
 function containsOnlyNumbers(str) {
   return /^\d+$/.test(str);
+}
+function validateNumber(str) {
+  return /^\d+$/.test(str);
+}
+function validateLettersDigitsAndSpaces(str) {
+  //return /^[a-zA-Z0-9 ]{4,}$/.test(str);
+  return /^[a-zA-Z0-9\s\S]{5,}$/.test(str);
+}
+function validateDesc(str) {
+  return /^[a-zA-Z0-9\s\S]{4,}$/.test(str);
 }
 
 $(document).ready(function () {
@@ -49,15 +29,6 @@ $(document).ready(function () {
 
     let isValid = true;
 
-    // if (!validateNumber(price)) {
-    //   $("#price-error").text("Price name should only contain digits.");
-    //   isValid= false; // Prevent proceeding to the next step
-    // }
-    // if ( price==='0') {
-    //   $("#price-error").text("Price should be greater than +0 and only digits.");
-    //   isValid= false; // Prevent proceeding to the next step
-    // }
-
     if (!validateNumber(price)) {
       Swal.fire({
         icon: "warning",
@@ -75,7 +46,7 @@ $(document).ready(function () {
       isValid = false;
     }
 
-    if (!validateLettersDigitsAndSpaces(productName)) {
+    if (!validateDesc(productName)) {
       Swal.fire({
         icon: "warning",
         title: "Validation Error",
@@ -84,30 +55,13 @@ $(document).ready(function () {
       isValid = false;
     }
 
-    if (!validateLettersDigitsAndSpaces2(description)) {
+    if (!validateDesc(description)) {
       Swal.fire({
         icon: "warning",
         title: "Validation Error",
         text: "Descriptionn should be at leat 5 characters.",
       });
       isValid = false;
-    }
-    function validateLettersDigitsAndSpaces2(str) {
-      //return /^[a-zA-Z0-9 ]{5,}$/.test(str);
-      return /^[a-zA-Z0-9\s\S]{5,}$/.test(str);
-    }
-
-    //  if (!validateLettersDigitsAndSpaces(productName)) {
-    //   $("#productName-error").text("Product name should be only letters or digits, and at least 4 characters.");
-    //   isValid= false; // Prevent proceeding to the next step
-    // }
-
-    function validateNumber(str) {
-      return /^\d+$/.test(str);
-    }
-    function validateLettersDigitsAndSpaces(str) {
-      //return /^[a-zA-Z0-9 ]{4,}$/.test(str);
-      return /^[a-zA-Z0-9\s\S]{5,}$/.test(str);
     }
 
     if (!isValid) {

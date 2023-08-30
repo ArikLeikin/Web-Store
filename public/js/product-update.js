@@ -7,7 +7,7 @@ $(document).ready(function () {
     var quantity = $("#quantity").val();
     var description = $("#description").val();
 
-    if (!validateLettersDigitsAndSpaces(productName)) {
+    if (!validateDesc(productName)) {
       Swal.fire({
         icon: "warning",
         title: "Validation Error",
@@ -51,7 +51,7 @@ $(document).ready(function () {
       isValid = false;
     }
 
-    if (!validateLettersDigitsAndSpaces2(description)) {
+    if (!validateDesc(description)) {
       Swal.fire({
         icon: "warning",
         title: "Validation Error",
@@ -111,7 +111,9 @@ function containsOnlyNumbers(str) {
 function validateNumber(str) {
   return /^\d+$/.test(str);
 }
-
+function validateDesc(str) {
+  return /^[a-zA-Z0-9\s\S]{4,}$/.test(str);
+}
 function validateLettersDigitsAndSpaces2(str) {
   // return /^[a-zA-Z0-9 ]{5,}$/.test(str);
   return /^[a-zA-Z0-9\s\S]{5,}$/.test(str);
