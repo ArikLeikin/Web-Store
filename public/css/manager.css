@@ -7,7 +7,7 @@ main {
 }
 .page-title.sub {
   text-align: left;
-  font-size: 25px;
+  /* font-size: 25px; */
   color: #ff652d;
   text-decoration: underline;
 }
@@ -151,7 +151,6 @@ td {
   outline: solid 3px #117306;
   outline-offset: -3px;
 }
-
 
 .add-location-form {
   margin-top: 20px;
