@@ -1,5 +1,6 @@
 main {
   margin: 0;
+  margin-bottom: 50px;
   /* padding: 20px; */
 }
 
@@ -140,6 +141,7 @@ main {
 }
 .product-title {
   border-bottom: 1px solid #dcdcdc;
+  font-size: 17px;
 }
 .product-title-desc a {
   color: black;

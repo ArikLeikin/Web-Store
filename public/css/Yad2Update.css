@@ -34,7 +34,8 @@
 }
 
 .form fieldset input,
-.form fieldset .select {
+.form fieldset .select,
+.form fieldset textarea {
   width: 100%;
   /* height: 20px; */
   color: #333333;
