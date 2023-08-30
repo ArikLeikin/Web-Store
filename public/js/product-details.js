@@ -146,13 +146,12 @@ $(document).ready(function () {
       plusButton.value = "+";
 
       if (Quantity > 0) {
-            quantityInputDiv.appendChild(minusButton);
-          quantityInputDiv.appendChild(quantityInput);
-          quantityInputDiv.appendChild(plusButton);
-          productQtySection.appendChild(quantityInputDiv);
+        quantityInputDiv.appendChild(minusButton);
+        quantityInputDiv.appendChild(quantityInput);
+        quantityInputDiv.appendChild(plusButton);
+        productQtySection.appendChild(quantityInputDiv);
       }
 
-      
       if (isYad2 === "yad2") {
         quantityInputDiv.style.display = "none";
       }
@@ -177,19 +176,19 @@ $(document).ready(function () {
       notifyMe.appendChild(notifyMeLink);
 
       notifyMe.addEventListener("click", function () {
-        if(userId === null)
-        {
+        if (userId === null) {
           window.location.href = "http://127.0.0.1:8080/login";
-              return;
+          return;
         }
         notifyServer(userId, productId);
       });
       function notifyServer(userId, productId) {
         console.log(userId);
         console.log(productId);
-        
+
         const data = { userId, productId };
         socket.emit("notify", data);
+        alert("we will notify you when the product will be back to stock");
       }
 
       if (Quantity === 0 && isYad2 !== "yad2") {
@@ -198,7 +197,6 @@ $(document).ready(function () {
       } else {
         notifyMe.style.display = "none";
       }
-     
 
       const favoriteButton = document.createElement("button");
       favoriteButton.className = "favorite-button";
@@ -218,12 +216,10 @@ $(document).ready(function () {
         favoriteButton.style.display = "none";
         var outOfStockMessage = document.createElement("p");
         outOfStockMessage.textContent = "This product is out of stock.";
-        outOfStockMessage.style.color = "red"; 
+        outOfStockMessage.style.color = "red";
         outOfStockMessage.style.padding = "20x";
         outOfStockMessage.style.fontWeight = "bold";
-       
-    }
-    
+      }
 
       // Product description section
       const productDescriptionSection = document.createElement("section");
@@ -243,7 +239,9 @@ $(document).ready(function () {
       // Append all sections to the product info div
       productInfoDiv.appendChild(productTitle);
       productInfoDiv.appendChild(priceSpan);
-      productInfoDiv.appendChild(outOfStockMessage);
+      if (Quantity < 1 && isYad2 === "yad2") {
+        productInfoDiv.appendChild(outOfStockMessage);
+      }
       productInfoDiv.appendChild(productQtySection);
       productInfoDiv.appendChild(addToCartSection);
       productInfoDiv.appendChild(productDescriptionSection);
@@ -254,7 +252,7 @@ $(document).ready(function () {
 
       /*add to cart button */
       // Add a click event listener to the button
-     
+
       addToCartButton.addEventListener("click", function (event) {
         event.preventDefault();
 
@@ -309,17 +307,14 @@ $(document).ready(function () {
         let quantity = parseInt(input.val());
         console.log(quantity);
 
-         if(quantity===Quantity)
-        {
-          alert("The maximum quantity of this product on our stock is:" + Quantity)
-        }
-        else if(quantity<Quantity)
-        {
-            quantity++;
+        if (quantity === Quantity) {
+          alert(
+            "The maximum quantity of this product on our stock is:" + Quantity
+          );
+        } else if (quantity < Quantity) {
+          quantity++;
           input.val(quantity);
         }
-        
-        
       });
 
       // Favorite button click handler
