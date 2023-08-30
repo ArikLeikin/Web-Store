@@ -26,8 +26,7 @@ main {
 .filter-sidebar {
   float: left;
   margin: 0;
-  padding: 3px;
-  height: 600px;
+  padding: 20px 5px; /* height: 600px; */
   margin-right: 10px;
   margin-left: 10px;
 

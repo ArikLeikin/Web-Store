@@ -392,7 +392,7 @@ fetch("http://127.0.0.1:8080/api/current-user")
   .then((data) => {
     var alertBox = document.getElementById("payment-alert-box");
     var dataBox = document.getElementById("payment-box");
-    if (data && data.creditCard.card_number.slice(-4) != "") {
+    if (data && data.creditCard.card_number != "") {
       alertBox.style.display = "none";
       const creditCardTemplate = `
           <div aria-label="Edit" class="address-edit">
