@@ -594,6 +594,7 @@ $(document).ready(function () {
       };
       console.log(formData);
       addLocation(formData)
+      addRowToTable(formData);
       
     }
   });
@@ -608,7 +609,7 @@ $(document).ready(function () {
       // Handle the response data here
       console.log(response);
       alert("The new store location is successfully added");
-      addRowToTable(response);
+      //addRowToTable(response);
       
     },
     error: function (error) {
@@ -659,6 +660,7 @@ return /^[\d.]+$/.test(input);
 
 
 function addRowToTable(item) {
+  console.log("new row" + item);
   const tableBody = document.querySelector("#store-table tbody");
   const row = tableBody.insertRow();
   const addressCell = row.insertCell();
@@ -691,12 +693,12 @@ function addRowToTable(item) {
   deleteButton.addEventListener("click", function () {
     var storeId = this.getAttribute("data-id");
     if (confirm("Are you sure you want to delete this store location?")) {
-      deleteStoreLocation(ID);
+      deleteStoreLocation(item._id);
     }
   });
-
-  actionCell.appendChild(editButton);
   actionCell.appendChild(deleteButton);
+  actionCell.appendChild(editButton);
+ 
   
-  window.location.href = "http://127.0.0.1:8080/manager"
+  //window.location.href = "http://127.0.0.1:8080/manager"
 }
