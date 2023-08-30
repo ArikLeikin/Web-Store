@@ -273,7 +273,6 @@ $(document).ready(function () {
       var fields = [
         "title",
         "price",
-        "description",
         "image",
         "condition",
         "category",
