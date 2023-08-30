@@ -374,24 +374,24 @@ exports.postPayment = async (req, res, next) => {
         let ifSave = false;
         //console.log(currUser);
 
-        // for (let j = 0; j < currUserWishList.length; j++) {
-        //   if (
-        //     singleItem.quantity === 0 &&
-        //     currUserWishList[j].product.toString() === productId
-        //   ) {
-        //     currUserWishList.splice(j, 1);
-        //     ifSave = true;
-        //     break;
-        //   }
-        //   if (
-        //     currUserWishList[j].product.toString() === productId &&
-        //     singleItem.quantity < currUserWishList[j].quantity
-        //   ) {
-        //     currUserWishList[j].quantity = singleItem.quantity;
-        //     ifSave = true;
-        //     break;
-        //   }
-        // }
+        for (let j = 0; j < currUserWishList.length; j++) {
+          if (
+            singleItem.quantity === 0 &&
+            currUserWishList[j].product.toString() === productId
+          ) {
+            currUserWishList.splice(j, 1);
+            ifSave = true;
+            break;
+          }
+          if (
+            currUserWishList[j].product.toString() === productId &&
+            singleItem.quantity < currUserWishList[j].quantity
+          ) {
+            currUserWishList[j].quantity = singleItem.quantity;
+            ifSave = true;
+            break;
+          }
+        }
         for (let j = 0; j < currUserCart.items.length; j++) {
           if (
             singleItem.quantity < 1 &&
