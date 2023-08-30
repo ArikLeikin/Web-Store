@@ -30,6 +30,11 @@ $(document).ready(function () {
         <p>Full Name: ${data.data.user_info.name.firstName} ${data.data.user_info.name.lastName}</p>
         <p>Phone Number: ${data.data.user_info.phoneNumber}</p>
         <p>Email: ${data.data.user_info.email}</p>
+        <h3>User Address</h3>
+        <p>Country: ${data.data.user_info.address.country}</p>
+        <p>City: ${data.data.user_info.address.city}</p>
+        <p>Street: ${data.data.user_info.address.street}</p>
+        <p>Street number: ${data.data.user_info.address.streetNumber}</p>
       `;
 
         // Append the user details template to the cart details container
