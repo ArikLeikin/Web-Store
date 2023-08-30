@@ -521,7 +521,7 @@ i#address-delete-icon {
   font-size: 20px;
   cursor: pointer;
 }
-div#yad2-option {
+.yad2-text {
   text-align: center;
   background-color: rgb(17 17 17 / 59%);
   color: #ebebeb;
