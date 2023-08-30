@@ -1,3 +1,4 @@
+
 const serverEndpoint = 'http://127.0.0.1:8080/api/users';
 
 // Fetch user data from the server
@@ -13,7 +14,7 @@ fetch(serverEndpoint)
 
     // Iterate through user data to count users per category
     users.forEach(user => {
-        console.log(user.email + " : " + user.orderHistory.length);
+        console.log(user.email + " : " + user.orderHistory.lengthc);
       const orderCount = user.orderHistory.length;
       if (orderCount === 0) {
         usersPerCategory["0 orders"]++;
@@ -27,7 +28,9 @@ fetch(serverEndpoint)
     // Extract categories and user counts
     const categories = Object.keys(usersPerCategory);
     const userCounts = Object.values(usersPerCategory);
-    const barColors = ["red", "green", "blue"];
+    
+    // Alternating bar colors
+    const barColors = userCounts.map((count, index) => index % 2 === 0 ? "blue" : "orange");
 
     new Chart("myChart", {
       type: "bar",
