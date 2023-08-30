@@ -325,8 +325,10 @@ function fetchAndDisplayOrders(startDate, endDate, orderStatus) {
         orderHistoryContainer.innerHTML = "";
       } else {
         alertBox.style.display = "none";
+        orderHistoryContainer.style.display = "block";
         orderHistoryContainer.innerHTML = "";
 
+        console.log(data);
         data.forEach((order) => {
           const orderElement = createOrderElement(order);
           orderHistoryContainer.appendChild(orderElement);
@@ -354,6 +356,8 @@ document.getElementById("applyFilters").addEventListener("click", () => {
 });
 
 function createOrderElement(order) {
+  console.log("Hello");
+  console.log(order);
   const orderDiv = document.createElement("div");
   orderDiv.classList.add("box");
 
