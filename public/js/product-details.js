@@ -43,6 +43,9 @@ $(document).ready(function () {
             editIcon.className = "fas fa-pencil-alt edit-icon";
             editIcon.style.display = "inline";
             editIcon.style.position = "absolute";
+            editIcon.style.cursor = "pointer";
+            editIcon.style.fontSize = "20px";
+
             editIcon.style.top = "200px";
             editIcon.style.right = "110px";
             editIcon.addEventListener("click", function () {

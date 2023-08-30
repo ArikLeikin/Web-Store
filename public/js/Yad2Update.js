@@ -1,5 +1,6 @@
 function validateLettersDigitsAndSpaces(str) {
-  return /^[a-zA-Z0-9 ]{4,}$/.test(str);
+  //return /^[a-zA-Z0-9 ]{4,}$/.test(str);
+  return /^[a-zA-Z0-9\s\S]{5,}$/.test(str);
 }
 function containsOnlyNumbers(str) {
   return /^\d+$/.test(str);
@@ -59,15 +60,14 @@ $(document).ready(function () {
       $("#category").val(data.data.category);
       $("#description").val(data.data.description);
 
-
       $("#UpdateYad2-form").submit(function (event) {
         event.preventDefault();
         clearErrorMessages();
-    
+
         let isValid = true;
         var price = $("#price").val();
         var productName = $("#productName").val();
-    
+
         if (!validateLettersDigitsAndSpaces(productName)) {
           Swal.fire({
             icon: "warning",
@@ -77,7 +77,7 @@ $(document).ready(function () {
           // $("#productName-error").text("Product name should be only letters or digits.");
           isValid = false;
         }
-    
+
         if (!containsOnlyNumbers(price)) {
           Swal.fire({
             icon: "warning",
@@ -90,18 +90,17 @@ $(document).ready(function () {
           // );
           isValid = false;
         }
-    
+
         if (!isAtLeast5LettersAndCharacters(description)) {
           Swal.fire({
             icon: "warning",
             title: "Validation Error",
             text: "Please enter a valid price (numbers only and greater than zero).",
           });
-    
+
           isValid = false;
         }
-    
-    
+
         if (isValid) {
           event.preventDefault();
           var category = $("#category").val();
@@ -112,9 +111,9 @@ $(document).ready(function () {
           var quantity = $("#quantity").val();
           var description = $("#description").val();
           var image = $("#productPhotos")[0].files;
-    
+
           var formData = new FormData();
-    
+
           formData.append("category", category);
           formData.append("age_range", age_range);
           formData.append("title", title);
@@ -125,7 +124,7 @@ $(document).ready(function () {
           for (var i = 0; i < image.length; i++) {
             formData.append("image[]", image[i]);
           }
-    
+
           $.ajax({
             url: `http://127.0.0.1:8080/Yad2Update/${productId}`,
             type: "POST",
@@ -134,7 +133,8 @@ $(document).ready(function () {
             processData: false,
             success: function (data) {
               console.log("success");
-              window.location.href = "http://127.0.0.1:8080/products?category=yad2";
+              window.location.href =
+                "http://127.0.0.1:8080/products?category=yad2";
             },
             error: function (error) {
               console.error("Error updating product:", error);
@@ -150,6 +150,4 @@ $(document).ready(function () {
 });
 
 /*  ~~~~~~~~~~~~~~~~~ post api ~~~~~~~~~~~~~~~~~~~ */
-$(document).ready(function () {
-  
-});
+$(document).ready(function () {});
