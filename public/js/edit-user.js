@@ -7,7 +7,7 @@ function clearErrorMessages() {
 }
 
 function validatePhoneNumber(phone) {
-  return /^\d{10}$/.test(phone);
+  return /^05\d{8}$/.test(str);
 }
 
 function validateName(str) {
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
       Swal.fire({
         icon: "warning",
         title: "Validation Error",
-        text: "Phone number can be only 10 digits",
+        text: "Phone number can be only 10 digits and need to be start in '05'",
       });
       isValid = false;
     }
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         phoneNumber: $("#phoneNumber").val(),
         email: $("#email").val(),
-        permission: $("#permission").val()
+        permission: $("#permission").val(),
       };
       console.log(formData);
       $.ajax({

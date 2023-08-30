@@ -48,7 +48,7 @@ function validateZipCode(phone) {
   return /^\d{5}$/.test(phone);
 }
 function validatePhoneNumber(phone) {
-  return /^\d{10}$/.test(phone);
+  return /^05\d{8}$/.test(str);
 }
 
 function validateStreetNumber(streetNumber) {
@@ -226,7 +226,7 @@ $(document).ready(function () {
       Swal.fire({
         icon: "warning",
         title: "Validation Error",
-        text: "Phone number must be 10 digits.",
+        text: "Phone number must be 10 digits and need to be start in '05'.",
       });
       // showError("#phone-error", "Phone number must be 10 digits.");
       isValid = false;
