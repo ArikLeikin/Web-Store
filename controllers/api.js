@@ -219,7 +219,7 @@ module.exports = {
   getStoreLocations: async (req, res, next) => {
     try {
       const locations = await StoreLocations.find();
-      console.log(locations);
+      //console.log(locations);
       return res.status(200).json({
         data: locations,
       });
