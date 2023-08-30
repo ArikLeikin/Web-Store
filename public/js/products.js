@@ -245,6 +245,9 @@ $(document).ready(function () {
     fetchAndDisplayProducts();
   }
 
+  const urlPrice = getUrlParameter("price");
+  if (urlPrice && !urlSearch) fetchAndDisplayProducts();
+
   if (!urlAge && !urlCategory && !urlSearch) fetchAndDisplayProducts(); // Initial fetch and display
 
   $("#filter-button").click(function () {
